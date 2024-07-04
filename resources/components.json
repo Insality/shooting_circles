@@ -1,0 +1,156 @@
+{
+	"pack_id": "core",
+
+	"components": {
+		"id": "",
+		"prefab_id": false,
+		"pack_id": false,
+		"name": false,
+		"tiled_id": false,
+		"layer_id": false,
+		"hidden": false,
+
+		"transform": {
+			"position_x": 0,
+			"position_y": 0,
+			"position_z": 0,
+			"size_x": 1,
+			"size_y": 1,
+			"size_z": 1,
+			"scale_x": 1,
+			"scale_y": 1,
+			"scale_z": 1,
+			"rotation": 0
+		},
+
+		"game_object": {
+			"factory_url": "",
+			"is_slice9": false
+		},
+
+		"color": {
+			"hex_color": "",
+			"sprite_url": ""
+		},
+
+		"level_loader_command": {
+			"world_id": null,
+			"pack_id": null,
+			"offset_x": 0,
+			"offset_y": 0
+		},
+
+		"debug": {
+			"is_profiler_active": null
+		},
+
+		"on_spawn_command": {
+			"command": false
+		},
+
+		"input": {},
+
+		"on_key_released": {
+			"key_to_add_component_json": null,
+			"key_to_add_component": null
+		},
+
+		"window_event": {
+			"is_focus_gained": false,
+			"is_focus_lost": false,
+			"is_resized": false
+		},
+
+		"camera": {
+			"camera_url": ""
+		},
+
+		"health": {
+			"health": 0
+		},
+
+		"gui_main": {},
+		"health_circle_visual": {},
+		"cursor": {},
+
+		"damage_number": {
+			"damage": 1
+		},
+
+		"panthera": {
+			"animation_path": ""
+		},
+
+		"movement": {
+			"velocity_x": 0,
+			"velocity_y": 0,
+			"friction": 0
+		},
+
+		"movement_controller": {
+			"speed": 1,
+			"movement_x": 0,
+			"movement_y": 0
+		},
+
+		"remove_with_delay": {
+			"delay": 0
+		},
+
+		"explosion": {},
+
+		"make_explosion_on_spawn": {
+			"power": 0,
+			"distance": 0,
+			"position_x": 0,
+			"position_y": 0
+		},
+
+		"physics": {
+			"velocity_x": 0,
+			"velocity_y": 0
+		},
+
+		"collision": {},
+
+		"on_collision_remove": false,
+
+		"on_collision_damage": {
+			"damage": 0
+		},
+
+		"on_collision_explosion": {
+			"power": 0,
+			"distance": 0
+		},
+
+		"play_fx_on_remove": {
+			"fx_url": ""
+		},
+
+		"acceleration": {
+			"value": 0
+		},
+
+		"shooter_controller": {
+			"bullet_prefab_id": "",
+			"is_auto_shoot": false,
+			"spread_angle": 0,
+			"damage": 0,
+			"bullet_speed": 2000,
+			"fire_rate": 0,
+			"fire_rate_timer": 0,
+			"burst_count": 5,
+			"burst_count_current": 0,
+			"burst_rate": 1,
+			"bullets_per_shoot": 1
+		},
+
+		"on_target_count_command": {
+			"amount": 0,
+			"command": false
+		},
+
+		"target": false
+	}
+}

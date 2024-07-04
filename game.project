@@ -1,0 +1,129 @@
+[bootstrap]
+main_collection = /loader/loader.collectionc
+render = /builtins/render/default.renderc
+
+[script]
+shared_state = 1
+
+[display]
+width = 1920
+height = 1080
+high_dpi = 1
+
+[android]
+input_method = HiddenInputField
+
+[project]
+title = Shooting Circles
+developer = Insality
+publisher = Insality
+custom_resources = /resources
+dependencies#0 = https://github.com/Insality/defold-tweener/archive/refs/tags/2.zip
+dependencies#1 = https://github.com/Insality/defold-log/archive/refs/tags/3.zip
+dependencies#2 = https://github.com/Insality/defold-event/archive/refs/tags/3.zip
+dependencies#3 = https://github.com/Insality/panthera/archive/refs/tags/runtime.2.zip
+dependencies#4 = https://github.com/subsoap/defos/archive/refs/tags/v2.7.1.zip
+dependencies#5 = https://github.com/britzl/deftest/archive/refs/tags/2.8.0.zip
+
+[safearea]
+resize_game_view = 0
+
+[gui]
+max_particlefx_count = 16
+max_count = 8
+max_particle_count = 128
+
+[network]
+http_timeout = 10.0
+http_thread_count = 2
+
+[tilemap]
+max_count = 0
+max_tile_count = 0
+
+[sprite]
+max_count = 1024
+
+[particle_fx]
+max_count = 512
+max_emitter_count = 512
+max_particle_count = 2048
+
+[mesh]
+max_count = 0
+
+[label]
+max_count = 1024
+
+[log]
+level = DEBUG
+level_release = WARN
+time_tracking = 0
+memory_tracking = 1
+info_block_length = 24
+info_block = %levelshort[%logger
+message_block = ]: %message %context %tab<%function>
+max_log_length = 650
+inspect_depth = 0
+
+[panthera]
+hotreload_animations = 1
+
+[event]
+memory_trashold_warning = 100
+
+[html5]
+heap_size = 256
+scale_mode = stretch
+show_made_with_defold = 0
+show_console_banner = 0
+show_fullscreen_button = 0
+
+[render]
+clear_color_red = 0.105
+clear_color_blue = 0.137
+clear_color_green = 0.098
+
+[input]
+game_binding = /builtins/input/all.input_bindingc
+
+[physics]
+debug_alpha = 0.6
+world_count = 4
+gravity_y = 0.0
+ray_cast_limit_3d = 0
+scale = 0.01
+use_fixed_timestep = 1
+max_collision_object_count = 512
+max_collisions = 512
+max_contacts = 512
+
+[collectionfactory]
+max_count = 32
+
+[collection]
+max_instances = 2048
+
+[collection_proxy]
+max_count = 4
+
+[factory]
+max_count = 0
+
+[model]
+max_count = 0
+
+[sound]
+max_sound_instances = 128
+
+[graphics]
+max_draw_calls = 256
+verify_graphics_calls = 0
+texture_profiles = /game/misc/game.texture_profiles
+
+[native_extension]
+app_manifest = /game/misc/game.appmanifest
+
+[library]
+include_dirs = decore,detiled
+

@@ -1,0 +1,76 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "tilesets/shooting_circle.tsx",
+    "expandedProjectPaths": [
+        ".",
+        "maps",
+        "tilesets"
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "/Users/insality/code/defold/ecs_template/resources/tilesets/shooting_circle.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 0.2596,
+            "scaleInEditor": 0.43
+        },
+        "/Users/insality/code/defold/shooting_circles/resources/tilesets/shooting_circle.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "maps/game.tmx": {
+            "expandedObjectLayers": [
+                20
+            ],
+            "scale": 0.426,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 491.7840375586855,
+                "y": 505.8685446009389
+            }
+        },
+        "maps/loader.tmx": {
+            "scale": 1.6173,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 115.00649230198479,
+                "y": 1077.4129722376802
+            }
+        },
+        "tilesets/game.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "tilesets/shooting_circle.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 0.1194,
+            "scaleInEditor": 0.1398
+        }
+    },
+    "last.exportedFilePath": "/Users/insality/code/defold/shooting_circles/resources/tilesets",
+    "last.externalTilesetPath": "/Users/insality/code/defold/shooting_circles/game/tiled/tilesets",
+    "last.imagePath": "/Users/insality/code/defold/shooting_circles/game/tiled/images",
+    "lastUsedTilesetExportFilter": "All Files (*)",
+    "map.height": 18,
+    "map.lastUsedExportFilter": "All Files (*)",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 60,
+    "map.tileWidth": 60,
+    "map.width": 32,
+    "openFiles": [
+        "maps/game.tmx",
+        "tilesets/shooting_circle.tsx"
+    ],
+    "project": "game_shooting_circle.tiled-project",
+    "property.type": "int",
+    "recentFiles": [
+        "maps/game.tmx",
+        "tilesets/shooting_circle.tsx",
+        "/Users/insality/code/defold/ecs_template/resources/tilesets/shooting_circle.tsx",
+        "maps/loader.tmx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.type": 1
+}

@@ -1,0 +1,236 @@
+{
+	"pack_id": "core",
+	"entities": {
+		"debug": {
+			"debug": {},
+			"on_key_released": {
+				"key_to_command": {
+					"key_p": { "debug_command": { "toggle_profiler": true } },
+					"key_r": { "debug_command": { "restart": true } }
+				}
+			}
+		},
+
+		"gui_main": {
+			"game_object": {
+				"factory_url": "/spawner/spawner#gui_main"
+			},
+			"gui_main": {}
+		},
+
+		"damage_number": {
+			"transform": {},
+			"game_object": {
+				"factory_url": "/spawner/spawner#damage_number"
+			},
+			"damage_number": {
+				"amount": 1
+			}
+		},
+
+		"bullet_sniper": {
+			"transform": {
+				"scale_x": 1.25,
+				"scale_y": 1.25
+			},
+			"color": {
+				"hex_color": "95C8E2",
+				"sprite_url": "/root#sprite"
+			},
+			"game_object": {
+				"factory_url": "/spawner/spawner#bullet"
+			},
+			"on_collision_explosion": {
+				"power": 50000,
+				"damage": 30,
+				"distance": 128
+			},
+			"on_collision_damage": {
+				"damage": 30
+			},
+			"play_fx_on_remove": {
+				"fx_url": "explosion"
+			},
+			"on_collision_remove": true,
+			"physics": {},
+			"collision": {},
+			"remove_with_delay": {
+				"delay": 0.5
+			}
+		},
+
+		"bullet_arcade": {
+			"transform": {
+			},
+			"color": {
+				"hex_color": "95C8E2",
+				"sprite_url": "/root#sprite"
+			},
+			"game_object": {
+				"factory_url": "/spawner/spawner#bullet"
+			},
+			"on_collision_damage": {
+				"damage": 50
+			},
+			"physics": {},
+			"collision": {},
+			"remove_with_delay": {
+				"delay": 3
+			}
+		},
+
+		"bullet_pistol": {
+			"transform": {},
+			"color": {
+				"hex_color": "95C8E2",
+				"sprite_url": "/root#sprite"
+			},
+			"game_object": {
+				"factory_url": "/spawner/spawner#bullet"
+			},
+			"on_collision_damage": {
+				"damage": 50
+			},
+			"on_collision_remove": true,
+			"physics": {},
+			"collision": {},
+			"remove_with_delay": {
+				"delay": 0.7
+			}
+		},
+
+		"bullet_shotgun": {
+			"transform": {},
+			"color": {
+				"hex_color": "95C8E2",
+				"sprite_url": "/root#sprite"
+			},
+			"game_object": {
+				"factory_url": "/spawner/spawner#bullet_shotgun"
+			},
+			"on_collision_damage": {
+				"damage": 40
+			},
+			"on_collision_remove": true,
+			"physics": {},
+			"collision": {},
+			"remove_with_delay": {
+				"delay": 0.7
+			}
+		},
+
+		"bullet_rocket": {
+			"transform": {
+			},
+			"color": {
+				"hex_color": "CA8BD0",
+				"sprite_url": "/root#sprite"
+			},
+			"game_object": {
+				"factory_url": "/spawner/spawner#rocket"
+			},
+			"on_collision_damage": {
+				"damage": 50
+			},
+			"on_collision_explosion": {
+				"power": 80000,
+				"damage": 50,
+				"distance": 350
+			},
+			"acceleration": {
+				"value": 500
+			},
+			"on_collision_remove": true,
+			"physics": {},
+			"collision": {},
+			"remove_with_delay": {
+				"delay": 2
+			},
+			"play_fx_on_remove": {
+				"fx_url": "explosion_rocket"
+			}
+		},
+
+		"bullet_rocket_small": {
+			"transform": {
+				"scale_x": 0.5,
+				"scale_y": 0.5
+			},
+			"color": {
+				"hex_color": "CA8BD0",
+				"sprite_url": "/root#sprite"
+			},
+			"game_object": {
+				"factory_url": "/spawner/spawner#rocket"
+			},
+			"on_collision_damage": {
+				"damage": 20
+			},
+			"on_collision_explosion": {
+				"power": 30000,
+				"damage": 50,
+				"distance": 128
+			},
+			"acceleration": {
+				"value": 600
+			},
+			"on_collision_remove": true,
+			"physics": {},
+			"collision": {},
+			"remove_with_delay": {
+				"delay": 2
+			},
+			"play_fx_on_remove": {
+				"fx_url": "explosion_rocket"
+			}
+		},
+
+		"bullet_pistol_explosion": {
+			"transform": {},
+			"color": {
+				"hex_color": "95C8E2",
+				"sprite_url": "/root#sprite"
+			},
+			"game_object": {
+				"factory_url": "/spawner/spawner#bullet"
+			},
+			"on_collision_damage": {
+				"damage": 10
+			},
+			"on_collision_explosion": {
+				"power": 15000,
+				"damage": 30,
+				"distance": 256
+			},
+			"on_collision_remove": true,
+			"physics": {},
+			"collision": {},
+			"remove_with_delay": {
+				"delay": 0.7
+			},
+			"play_fx_on_remove": {
+				"fx_url": "explosion"
+			}
+		},
+
+		"explosion": {
+			"transform": {},
+			"game_object": {
+				"factory_url": "/spawner/spawner#explosion"
+			},
+			"remove_with_delay": {
+				"delay": 0.1
+			}
+		},
+
+		"explosion_enemy": {
+			"transform": {},
+			"game_object": {
+				"factory_url": "/spawner/spawner#explosion_enemy"
+			},
+			"remove_with_delay": {
+				"delay": 0.1
+			}
+		}
+	}
+}

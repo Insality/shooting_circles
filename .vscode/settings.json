@@ -1,0 +1,91 @@
+{
+	"files.exclude": {
+		".deployer_cache": true,
+		".github": true,
+		".internal": true,
+		"**/.DS_Store": true,
+		"**/.git": true,
+		"**/.gui": true,
+		"**/node_modules": true,
+		"build": true,
+		"bundle": true,
+		"dist": true,
+		"input": true,
+		"LICENSE": true,
+		"node_modules": true
+	},
+
+	"glsllint.additionalStageAssociations": {
+		".fp": "frag",
+		".vp": "vert"
+	},
+
+	"files.associations": {
+		"*.gui_script": "lua",
+		"*.script": "lua",
+		"*.render_script": "lua",
+		"*.project": "ini",
+		"*.editor_script": "lua",
+		"*.fp": "glsl",
+		"*.vp": "glsl",
+		"*.go": "textproto",
+		"*.animationset": "textproto",
+		"*.atlas": "textproto",
+		"*.buffer": "json",
+		"*.camera": "textproto",
+		"*.collection": "textproto",
+		"*.collectionfactory": "textproto",
+		"*.collectionproxy": "textproto",
+		"*.collisionobject": "textproto",
+		"*.display_profiles": "textproto",
+		"*.factory": "textproto",
+		"*.gamepads": "textproto",
+		"*.gui": "textproto",
+		"*.input_binding": "textproto",
+		"*.label": "textproto",
+		"*.material": "textproto",
+		"*.mesh": "textproto",
+		"*.model": "textproto",
+		"*.particlefx": "textproto",
+		"*.render": "textproto",
+		"*.sound": "textproto",
+		"*.spinemodel": "textproto",
+		"*.spinescene": "textproto",
+		"*.sprite": "textproto",
+		"*.texture_profiles": "textproto",
+		"*.tilemap": "textproto",
+		"*.tilesource": "textproto",
+		"*.manifest": "textproto"
+	},
+
+	"Lua.workspace.checkThirdParty": false,
+
+	"Lua.diagnostics.globals": [
+		"update",
+		"on_message",
+		"final",
+		"on_input",
+		"assert_equal",
+		"defos",
+		"lua_script_instance",
+		"describe",
+		"before",
+		"after",
+		"it",
+		"assert_true",
+		"hash",
+		"pb",
+		"fixed_update",
+		"on_reload",
+		"utf8",
+		"clipboard",
+		"spine",
+		"init"
+	],
+
+	"Lua.workspace.ignoreDir": [
+		".vscode",
+		"decore/templates",
+	],
+	"Lua.runtime.version": "Lua 5.1"
+}

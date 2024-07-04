@@ -1,0 +1,34 @@
+#!/bin/bash
+# https://github.com/Insality/defold-deployer
+
+# You can point bob version for project in format "filename:sha"
+bob_sha="180:9141d9d3605e3f5d51c71293116d769da2613d39"
+
+# Select Defold channel. Values: stable, beta, alpha
+bob_channel="stable"
+
+# If true, it will check and download latest bob version. It will ignore bob_sha param
+use_latest_bob=false
+
+# Select Defold build server
+build_server="https://build.defold.com"
+
+# Set patch (last value after dot) game version value as total git commits count (1.2.0 -> 1.2.{commits_count})
+# You allow to get SHA commit from version via: git rev-list --all --reverse | sed -n {N}p
+enable_incremental_version=true
+
+# Use git commits count as android.version_code on build
+enable_incremental_android_version_code=true
+
+# Local resource cache folder for deployer script. This folder will be added to gitignore if exists
+resource_cache_local=".cache_deployer"
+
+# If true, add `-l yes` build param for publish live content
+is_live_content=false
+
+# Set to true, if you do not need to strip executables
+no_strip_executable=false
+
+# Is need to build html report
+is_build_html_report=true
+

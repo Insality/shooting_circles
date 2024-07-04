@@ -1,0 +1,442 @@
+{
+    "automappingRulesFile": "",
+    "commands": [
+    ],
+    "extensionsPath": "extensions",
+    "folders": [
+        "."
+    ],
+    "propertyTypes": [
+        {
+            "color": "#ffa0a0a4",
+            "id": 2,
+            "members": [
+                {
+                    "name": "camera_url",
+                    "type": "string",
+                    "value": "/camera#script"
+                }
+            ],
+            "name": "camera",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset"
+            ]
+        },
+        {
+            "color": "#ffa0a0a4",
+            "id": 18,
+            "members": [
+            ],
+            "name": "collision",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset"
+            ]
+        },
+        {
+            "color": "#ffa0a0a4",
+            "id": 8,
+            "members": [
+                {
+                    "name": "hex_color",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "sprite_url",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "color",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset"
+            ]
+        },
+        {
+            "color": "#ffa0a0a4",
+            "id": 1,
+            "members": [
+                {
+                    "name": "factory_url",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "is_slice9",
+                    "type": "bool",
+                    "value": false
+                }
+            ],
+            "name": "game_object",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset"
+            ]
+        },
+        {
+            "color": "#ffa0a0a4",
+            "id": 20,
+            "members": [
+                {
+                    "name": "health",
+                    "type": "float",
+                    "value": 0
+                }
+            ],
+            "name": "health",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset"
+            ]
+        },
+        {
+            "color": "#ffa0a0a4",
+            "id": 21,
+            "members": [
+            ],
+            "name": "health_circle_visual",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset"
+            ]
+        },
+        {
+            "color": "#ffa0a0a4",
+            "id": 24,
+            "members": [
+                {
+                    "name": "speed",
+                    "type": "float",
+                    "value": 0
+                }
+            ],
+            "name": "movement_controller",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset"
+            ]
+        },
+        {
+            "color": "#ffa0a0a4",
+            "id": 22,
+            "members": [
+                {
+                    "name": "damage",
+                    "type": "float",
+                    "value": 0
+                }
+            ],
+            "name": "on_collision_damage",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset"
+            ]
+        },
+        {
+            "color": "#ffa0a0a4",
+            "id": 19,
+            "members": [
+                {
+                    "name": "damage",
+                    "type": "float",
+                    "value": 0
+                },
+                {
+                    "name": "distance",
+                    "type": "float",
+                    "value": 0
+                },
+                {
+                    "name": "power",
+                    "type": "float",
+                    "value": 0
+                }
+            ],
+            "name": "on_collision_explosion",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset"
+            ]
+        },
+        {
+            "color": "#ffa0a0a4",
+            "id": 27,
+            "members": [
+                {
+                    "name": "command",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "on_spawn_command",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset"
+            ]
+        },
+        {
+            "color": "#ffa0a0a4",
+            "id": 26,
+            "members": [
+                {
+                    "name": "amount",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "command",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "on_target_count_command",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset"
+            ]
+        },
+        {
+            "color": "#ffa0a0a4",
+            "id": 5,
+            "members": [
+                {
+                    "name": "animation_path",
+                    "type": "string",
+                    "value": "/resources/animations/name.json"
+                }
+            ],
+            "name": "panthera",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset"
+            ]
+        },
+        {
+            "color": "#ffa0a0a4",
+            "id": 17,
+            "members": [
+            ],
+            "name": "physics",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset"
+            ]
+        },
+        {
+            "color": "#ffa0a0a4",
+            "id": 16,
+            "members": [
+            ],
+            "name": "physics_movement",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset"
+            ]
+        },
+        {
+            "color": "#ffa0a0a4",
+            "id": 28,
+            "members": [
+                {
+                    "name": "fx_url",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "play_fx_on_remove",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset"
+            ]
+        },
+        {
+            "color": "#ffa0a0a4",
+            "id": 11,
+            "members": [
+                {
+                    "name": "delay",
+                    "type": "float",
+                    "value": 0
+                }
+            ],
+            "name": "remove_with_delay",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset"
+            ]
+        },
+        {
+            "color": "#ffa0a0a4",
+            "id": 10,
+            "members": [
+                {
+                    "name": "bullet_prefab_id",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "bullet_speed",
+                    "type": "float",
+                    "value": 2000
+                },
+                {
+                    "name": "bullets_per_shoot",
+                    "type": "int",
+                    "value": 1
+                },
+                {
+                    "name": "burst_count",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "burst_rate",
+                    "type": "float",
+                    "value": 0
+                },
+                {
+                    "name": "fire_rate",
+                    "type": "float",
+                    "value": 0
+                },
+                {
+                    "name": "is_auto_shoot",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "spread_angle",
+                    "type": "float",
+                    "value": 0
+                }
+            ],
+            "name": "shooter_controller",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset"
+            ]
+        }
+    ]
+}

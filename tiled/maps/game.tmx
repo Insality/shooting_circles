@@ -1,0 +1,4432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="2022.09.22" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="60" tileheight="60" infinite="0" nextlayerid="22" nextobjectid="1223">
+ <editorsettings>
+  <export target="../../resources/maps/game.json" format="json"/>
+ </editorsettings>
+ <tileset firstgid="1" source="../tilesets/shooting_circle.tsx"/>
+ <objectgroup id="4" name="background" locked="1">
+  <properties>
+   <property name="position_z" type="float" value="-10"/>
+  </properties>
+  <object id="41" gid="5" x="0" y="1080" width="1080" height="1080"/>
+  <object id="42" gid="6" x="-221" y="10" width="1454" height="363.5"/>
+  <object id="43" gid="6" x="-205" y="1425" width="1454" height="363.5"/>
+  <object id="44" gid="6" x="-350" y="-86" width="1454" height="363.5" rotation="90"/>
+  <object id="45" gid="6" x="1070" y="-86" width="1454" height="363.5" rotation="90"/>
+ </objectgroup>
+ <objectgroup id="9" name="level1">
+  <properties>
+   <property name="exclude" type="bool" value="true"/>
+  </properties>
+  <object id="182" gid="1" x="147" y="589" width="64" height="64">
+   <properties>
+    <property name="shooter_controller" type="class" propertytype="shooter_controller">
+     <properties>
+      <property name="bullet_prefab_id" value="bullet_pistol"/>
+      <property name="bullet_speed" type="float" value="3000"/>
+      <property name="burst_count" type="int" value="6"/>
+      <property name="burst_rate" type="float" value="0.4"/>
+      <property name="damage" type="float" value="40"/>
+      <property name="fire_rate" type="float" value="0.15"/>
+      <property name="is_auto_shoot" type="bool" value="true"/>
+      <property name="spread" type="float" value="32"/>
+      <property name="spread_angle" type="float" value="5"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="189" gid="3" x="828" y="419" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="40"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="195" gid="3" x="915" y="584" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="40"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="201" gid="3" x="849" y="798" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="40"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="210" gid="3" x="479" y="968" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="40"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="216" gid="3" x="678" y="903" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="40"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="229" gid="3" x="698" y="271" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="40"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="230" gid="3" x="488" y="198" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="40"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="231" gid="10" x="796" y="-381" width="200" height="200"/>
+  <object id="268" gid="11" x="419" y="1080" width="1080" height="140" rotation="270"/>
+ </objectgroup>
+ <objectgroup id="10" name="level2" visible="0" locked="1">
+  <properties>
+   <property name="exclude" type="bool" value="true"/>
+  </properties>
+  <object id="236" gid="1" x="134" y="589" width="64" height="64">
+   <properties>
+    <property name="shooter_controller" type="class" propertytype="shooter_controller">
+     <properties>
+      <property name="bullet_prefab_id" value="bullet_pistol_explosion"/>
+      <property name="bullet_speed" type="float" value="3000"/>
+      <property name="burst_count" type="int" value="2"/>
+      <property name="burst_rate" type="float" value="0.4"/>
+      <property name="damage" type="float" value="40"/>
+      <property name="fire_rate" type="float" value="0.15"/>
+      <property name="is_auto_shoot" type="bool" value="true"/>
+      <property name="spread" type="float" value="32"/>
+      <property name="spread_angle" type="float" value="15"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="237" gid="3" x="828" y="419" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="60"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="238" gid="3" x="915" y="584" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="60"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="239" gid="3" x="847" y="805" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="60"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="240" gid="3" x="479" y="1013" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="60"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="241" gid="3" x="717" y="936" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="60"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="242" gid="3" x="698" y="271" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="60"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="243" gid="3" x="488" y="198" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="60"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="244" gid="10" x="796" y="-381" width="200" height="200">
+   <properties>
+    <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
+     <properties>
+      <property name="command" value="{&quot;gui_main_command&quot;: {&quot;text&quot;: &quot;Explosion&quot;}}"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="245" gid="3" x="888" y="338" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="60"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="246" gid="3" x="975" y="503" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="60"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="247" gid="3" x="907" y="724" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="60"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="248" gid="3" x="539" y="932" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="60"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="249" gid="3" x="777" y="855" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="60"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="250" gid="3" x="758" y="190" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="60"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="251" gid="3" x="548" y="117" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="60"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="252" gid="3" x="917" y="435" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="60"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="253" gid="3" x="1004" y="600" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="60"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="254" gid="3" x="936" y="821" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="60"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="255" gid="3" x="568" y="1029" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="60"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="256" gid="3" x="806" y="952" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="60"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="257" gid="3" x="787" y="287" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="60"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="258" gid="3" x="577" y="214" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="60"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="267" gid="11" x="420" y="1080" width="1080" height="140" rotation="270"/>
+ </objectgroup>
+ <objectgroup id="11" name="level3" visible="0" locked="1">
+  <properties>
+   <property name="exclude" type="bool" value="true"/>
+  </properties>
+  <object id="269" gid="1" x="134" y="589" width="64" height="64">
+   <properties>
+    <property name="shooter_controller" type="class" propertytype="shooter_controller">
+     <properties>
+      <property name="bullet_prefab_id" value="bullet_pistol_explosion"/>
+      <property name="bullet_speed" type="float" value="4000"/>
+      <property name="burst_count" type="int" value="4"/>
+      <property name="burst_rate" type="float" value="0.8"/>
+      <property name="damage" type="float" value="40"/>
+      <property name="fire_rate" type="float" value="0.2"/>
+      <property name="is_auto_shoot" type="bool" value="true"/>
+      <property name="spread" type="float" value="32"/>
+      <property name="spread_angle" type="float" value="20"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="270" gid="3" x="828" y="419" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="271" gid="3" x="915" y="584" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="272" gid="3" x="847" y="805" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="273" gid="3" x="479" y="1013" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="274" gid="3" x="717" y="936" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="275" gid="3" x="698" y="271" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="276" gid="3" x="488" y="198" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="277" gid="10" x="796" y="-381" width="200" height="200">
+   <properties>
+    <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
+     <properties>
+      <property name="command" value="{&quot;gui_main_command&quot;: {&quot;text&quot;: &quot;More&quot;}}"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="278" gid="3" x="888" y="338" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="279" gid="3" x="975" y="503" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="280" gid="3" x="907" y="724" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="281" gid="3" x="539" y="932" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="282" gid="3" x="777" y="855" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="283" gid="3" x="758" y="190" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="284" gid="3" x="548" y="117" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="285" gid="3" x="917" y="435" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="286" gid="3" x="1004" y="600" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="287" gid="3" x="936" y="821" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="288" gid="3" x="568" y="1029" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="289" gid="3" x="806" y="952" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="290" gid="3" x="787" y="287" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="291" gid="3" x="577" y="214" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="292" gid="11" x="420" y="1080" width="1080" height="140" rotation="270"/>
+  <object id="293" gid="3" x="591" y="437" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="294" gid="3" x="678" y="602" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="295" gid="3" x="610" y="823" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="296" gid="3" x="651" y="356" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="297" gid="3" x="738" y="521" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="298" gid="3" x="670" y="742" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="299" gid="3" x="680" y="453" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="300" gid="3" x="767" y="618" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="301" gid="3" x="699" y="839" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="302" gid="3" x="467" y="621" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="303" gid="3" x="527" y="540" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="304" gid="3" x="556" y="637" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="305" gid="3" x="438" y="377" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="306" gid="3" x="498" y="296" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="307" gid="3" x="527" y="393" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="308" gid="3" x="427" y="809" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="309" gid="3" x="487" y="728" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="310" gid="3" x="516" y="825" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="12" name="level4" visible="0" locked="1">
+  <properties>
+   <property name="exclude" type="bool" value="true"/>
+  </properties>
+  <object id="311" gid="1" x="134" y="589" width="64" height="64">
+   <properties>
+    <property name="shooter_controller" type="class" propertytype="shooter_controller">
+     <properties>
+      <property name="bullet_prefab_id" value="bullet_pistol_explosion"/>
+      <property name="bullet_speed" type="float" value="3000"/>
+      <property name="burst_count" type="int" value="10"/>
+      <property name="burst_rate" type="float" value="0.4"/>
+      <property name="damage" type="float" value="40"/>
+      <property name="fire_rate" type="float" value="0.1"/>
+      <property name="is_auto_shoot" type="bool" value="true"/>
+      <property name="spread" type="float" value="32"/>
+      <property name="spread_angle" type="float" value="25"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="315" gid="3" x="594" y="716" width="315" height="315">
+   <properties>
+    <property name="game_object" type="class" propertytype="game_object">
+     <properties>
+      <property name="factory_url" value="/spawner/spawner#enemy_big"/>
+     </properties>
+    </property>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="1000"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="319" gid="10" x="796" y="-381" width="200" height="200">
+   <properties>
+    <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
+     <properties>
+      <property name="command" value="{&quot;gui_main_command&quot;: {&quot;text&quot;: &quot;Boss&quot;}}"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="334" gid="11" x="420" y="1080" width="1080" height="140" rotation="270"/>
+ </objectgroup>
+ <objectgroup id="8" name="level5" visible="0" locked="1">
+  <properties>
+   <property name="exclude" type="bool" value="true"/>
+  </properties>
+  <object id="146" gid="1" x="518" y="966" width="64" height="64">
+   <properties>
+    <property name="shooter_controller" type="class" propertytype="shooter_controller">
+     <properties>
+      <property name="bullet_prefab_id" value="bullet_arcade"/>
+      <property name="bullet_speed" type="float" value="1500"/>
+      <property name="burst_count" type="int" value="3"/>
+      <property name="burst_rate" type="float" value="0.5"/>
+      <property name="damage" type="float" value="100"/>
+      <property name="fire_rate" type="float" value="0.3"/>
+      <property name="is_auto_shoot" type="bool" value="true"/>
+      <property name="spread" type="float" value="32"/>
+      <property name="spread_angle" type="float" value="0"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="153" gid="9" x="420" y="540" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="154" gid="9" x="540" y="420" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="155" gid="9" x="480" y="600" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="156" gid="9" x="660" y="420" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="157" gid="9" x="540" y="540" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="158" gid="9" x="360" y="480" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="159" gid="9" x="480" y="480" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="160" gid="9" x="600" y="480" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="161" gid="9" x="300" y="420" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="162" gid="9" x="420" y="420" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="163" gid="9" x="480" y="360" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="164" gid="9" x="600" y="360" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="165" gid="9" x="240" y="360" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="166" gid="9" x="360" y="360" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="167" gid="9" x="720" y="360" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="168" gid="9" x="420" y="300" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="169" gid="9" x="540" y="300" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="170" gid="9" x="180" y="300" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="171" gid="9" x="300" y="300" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="172" gid="9" x="660" y="300" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="173" gid="9" x="360" y="240" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="174" gid="9" x="480" y="240" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="175" gid="9" x="120" y="240" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="176" gid="9" x="240" y="240" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="177" gid="9" x="600" y="240" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="178" gid="9" x="840" y="240" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="179" gid="9" x="780" y="300" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="180" gid="9" x="720" y="240" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="200"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="234" gid="10" x="510" y="-441" width="200" height="200">
+   <properties>
+    <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
+     <properties>
+      <property name="command" value="{&quot;gui_main_command&quot;: {&quot;text&quot;: &quot;Arcanoid?&quot;}}"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="353" gid="11" x="-2" y="881" width="1080" height="140"/>
+ </objectgroup>
+ <objectgroup id="13" name="level6" visible="0" locked="1">
+  <properties>
+   <property name="exclude" type="bool" value="true"/>
+  </properties>
+  <object id="354" gid="1" x="518" y="966" width="64" height="64">
+   <properties>
+    <property name="shooter_controller" type="class" propertytype="shooter_controller">
+     <properties>
+      <property name="bullet_prefab_id" value="bullet_sniper"/>
+      <property name="bullet_speed" type="float" value="2500"/>
+      <property name="burst_count" type="int" value="6"/>
+      <property name="burst_rate" type="float" value="0.4"/>
+      <property name="damage" type="float" value="100"/>
+      <property name="fire_rate" type="float" value="0.15"/>
+      <property name="is_auto_shoot" type="bool" value="true"/>
+      <property name="spread" type="float" value="32"/>
+      <property name="spread_angle" type="float" value="0"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="355" gid="9" x="420" y="540" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="356" gid="9" x="540" y="420" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="357" gid="9" x="480" y="600" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="358" gid="9" x="660" y="420" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="359" gid="9" x="540" y="540" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="360" gid="9" x="360" y="480" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="361" gid="9" x="480" y="480" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="362" gid="9" x="600" y="480" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="363" gid="9" x="300" y="420" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="364" gid="9" x="420" y="420" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="365" gid="9" x="480" y="360" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="366" gid="9" x="600" y="360" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="367" gid="9" x="240" y="360" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="368" gid="9" x="360" y="360" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="369" gid="9" x="720" y="360" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="370" gid="9" x="420" y="300" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="371" gid="9" x="540" y="300" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="372" gid="9" x="180" y="300" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="373" gid="9" x="300" y="300" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="374" gid="9" x="660" y="300" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="375" gid="9" x="360" y="240" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="376" gid="9" x="480" y="240" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="377" gid="9" x="120" y="240" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="378" gid="9" x="240" y="240" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="379" gid="9" x="600" y="240" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="380" gid="9" x="840" y="240" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="381" gid="9" x="780" y="300" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="382" gid="9" x="720" y="240" width="128" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="383" gid="10" x="510" y="-441" width="200" height="200">
+   <properties>
+    <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
+     <properties>
+      <property name="command" value="{&quot;gui_main_command&quot;: {&quot;text&quot;: &quot;+ Explosion&quot;}}"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="384" gid="11" x="-2" y="881" width="1080" height="140"/>
+ </objectgroup>
+ <objectgroup id="14" name="level7" visible="0" locked="1">
+  <properties>
+   <property name="exclude" type="bool" value="true"/>
+  </properties>
+  <object id="385" gid="1" x="518" y="966" width="64" height="64">
+   <properties>
+    <property name="shooter_controller" type="class" propertytype="shooter_controller">
+     <properties>
+      <property name="bullet_prefab_id" value="bullet_sniper"/>
+      <property name="bullet_speed" type="float" value="4000"/>
+      <property name="burst_count" type="int" value="20"/>
+      <property name="burst_rate" type="float" value="0.4"/>
+      <property name="damage" type="float" value="100"/>
+      <property name="fire_rate" type="float" value="0.08"/>
+      <property name="is_auto_shoot" type="bool" value="true"/>
+      <property name="spread" type="float" value="32"/>
+      <property name="spread_angle" type="float" value="20"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="414" gid="10" x="510" y="-441" width="200" height="200">
+   <properties>
+    <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
+     <properties>
+      <property name="command" value="{&quot;gui_main_command&quot;: {&quot;text&quot;: &quot;Bad Day&quot;}}"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="415" gid="11" x="-2" y="881" width="1080" height="140"/>
+  <object id="417" gid="3" x="120" y="180" width="64" height="64"/>
+  <object id="419" gid="3" x="240" y="180" width="64" height="64"/>
+  <object id="420" gid="3" x="180" y="180" width="64" height="64"/>
+  <object id="421" gid="3" x="300" y="180" width="64" height="64"/>
+  <object id="422" gid="3" x="360" y="180" width="64" height="64"/>
+  <object id="423" gid="3" x="480" y="180" width="64" height="64"/>
+  <object id="424" gid="3" x="420" y="180" width="64" height="64"/>
+  <object id="425" gid="3" x="540" y="180" width="64" height="64"/>
+  <object id="426" gid="3" x="600" y="180" width="64" height="64"/>
+  <object id="427" gid="3" x="660" y="180" width="64" height="64"/>
+  <object id="428" gid="3" x="720" y="180" width="64" height="64"/>
+  <object id="429" gid="3" x="780" y="180" width="64" height="64"/>
+  <object id="430" gid="3" x="840" y="180" width="64" height="64"/>
+  <object id="431" gid="3" x="900" y="180" width="64" height="64"/>
+  <object id="433" gid="3" x="120" y="240" width="64" height="64"/>
+  <object id="434" gid="3" x="240" y="240" width="64" height="64"/>
+  <object id="435" gid="3" x="180" y="240" width="64" height="64"/>
+  <object id="436" gid="3" x="300" y="240" width="64" height="64"/>
+  <object id="437" gid="3" x="360" y="240" width="64" height="64"/>
+  <object id="438" gid="3" x="480" y="240" width="64" height="64"/>
+  <object id="439" gid="3" x="420" y="240" width="64" height="64"/>
+  <object id="440" gid="3" x="540" y="240" width="64" height="64"/>
+  <object id="441" gid="3" x="600" y="240" width="64" height="64"/>
+  <object id="442" gid="3" x="660" y="240" width="64" height="64"/>
+  <object id="443" gid="3" x="720" y="240" width="64" height="64"/>
+  <object id="444" gid="3" x="780" y="240" width="64" height="64"/>
+  <object id="445" gid="3" x="840" y="240" width="64" height="64"/>
+  <object id="446" gid="3" x="900" y="240" width="64" height="64"/>
+  <object id="447" gid="3" x="120" y="300" width="64" height="64"/>
+  <object id="448" gid="3" x="240" y="300" width="64" height="64"/>
+  <object id="449" gid="3" x="180" y="300" width="64" height="64"/>
+  <object id="450" gid="3" x="300" y="300" width="64" height="64"/>
+  <object id="451" gid="3" x="360" y="300" width="64" height="64"/>
+  <object id="452" gid="3" x="480" y="300" width="64" height="64"/>
+  <object id="453" gid="3" x="420" y="300" width="64" height="64"/>
+  <object id="454" gid="3" x="540" y="300" width="64" height="64"/>
+  <object id="455" gid="3" x="600" y="300" width="64" height="64"/>
+  <object id="456" gid="3" x="660" y="300" width="64" height="64"/>
+  <object id="457" gid="3" x="720" y="300" width="64" height="64"/>
+  <object id="458" gid="3" x="780" y="300" width="64" height="64"/>
+  <object id="459" gid="3" x="840" y="300" width="64" height="64"/>
+  <object id="460" gid="3" x="900" y="300" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup id="15" name="level8" visible="0" locked="1">
+  <properties>
+   <property name="exclude" type="bool" value="true"/>
+  </properties>
+  <object id="461" gid="1" x="518" y="966" width="64" height="64">
+   <properties>
+    <property name="shooter_controller" type="class" propertytype="shooter_controller">
+     <properties>
+      <property name="bullet_prefab_id" value="bullet_sniper"/>
+      <property name="bullet_speed" type="float" value="5000"/>
+      <property name="burst_count" type="int" value="40"/>
+      <property name="burst_rate" type="float" value="0.4"/>
+      <property name="damage" type="float" value="100"/>
+      <property name="fire_rate" type="float" value="0.04"/>
+      <property name="is_auto_shoot" type="bool" value="true"/>
+      <property name="spread" type="float" value="32"/>
+      <property name="spread_angle" type="float" value="25"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="462" gid="10" x="510" y="-441" width="200" height="200">
+   <properties>
+    <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
+     <properties>
+      <property name="command" value="{&quot;gui_main_command&quot;: {&quot;text&quot;: &quot;Can More?&quot;}}"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="463" gid="11" x="-2" y="881" width="1080" height="140"/>
+  <object id="464" gid="3" x="120" y="180" width="64" height="64"/>
+  <object id="465" gid="3" x="240" y="180" width="64" height="64"/>
+  <object id="466" gid="3" x="180" y="180" width="64" height="64"/>
+  <object id="467" gid="3" x="300" y="180" width="64" height="64"/>
+  <object id="468" gid="3" x="360" y="180" width="64" height="64"/>
+  <object id="469" gid="3" x="480" y="180" width="64" height="64"/>
+  <object id="470" gid="3" x="420" y="180" width="64" height="64"/>
+  <object id="471" gid="3" x="540" y="180" width="64" height="64"/>
+  <object id="472" gid="3" x="600" y="180" width="64" height="64"/>
+  <object id="473" gid="3" x="660" y="180" width="64" height="64"/>
+  <object id="474" gid="3" x="720" y="180" width="64" height="64"/>
+  <object id="475" gid="3" x="780" y="180" width="64" height="64"/>
+  <object id="476" gid="3" x="840" y="180" width="64" height="64"/>
+  <object id="477" gid="3" x="900" y="180" width="64" height="64"/>
+  <object id="478" gid="3" x="120" y="240" width="64" height="64"/>
+  <object id="479" gid="3" x="240" y="240" width="64" height="64"/>
+  <object id="480" gid="3" x="180" y="240" width="64" height="64"/>
+  <object id="481" gid="3" x="300" y="240" width="64" height="64"/>
+  <object id="482" gid="3" x="360" y="240" width="64" height="64"/>
+  <object id="483" gid="3" x="480" y="240" width="64" height="64"/>
+  <object id="484" gid="3" x="420" y="240" width="64" height="64"/>
+  <object id="485" gid="3" x="540" y="240" width="64" height="64"/>
+  <object id="486" gid="3" x="600" y="240" width="64" height="64"/>
+  <object id="487" gid="3" x="660" y="240" width="64" height="64"/>
+  <object id="488" gid="3" x="720" y="240" width="64" height="64"/>
+  <object id="489" gid="3" x="780" y="240" width="64" height="64"/>
+  <object id="490" gid="3" x="840" y="240" width="64" height="64"/>
+  <object id="491" gid="3" x="900" y="240" width="64" height="64"/>
+  <object id="492" gid="3" x="120" y="300" width="64" height="64"/>
+  <object id="493" gid="3" x="240" y="300" width="64" height="64"/>
+  <object id="494" gid="3" x="180" y="300" width="64" height="64"/>
+  <object id="495" gid="3" x="300" y="300" width="64" height="64"/>
+  <object id="496" gid="3" x="360" y="300" width="64" height="64"/>
+  <object id="497" gid="3" x="480" y="300" width="64" height="64"/>
+  <object id="498" gid="3" x="420" y="300" width="64" height="64"/>
+  <object id="499" gid="3" x="540" y="300" width="64" height="64"/>
+  <object id="500" gid="3" x="600" y="300" width="64" height="64"/>
+  <object id="501" gid="3" x="660" y="300" width="64" height="64"/>
+  <object id="502" gid="3" x="720" y="300" width="64" height="64"/>
+  <object id="503" gid="3" x="780" y="300" width="64" height="64"/>
+  <object id="504" gid="3" x="840" y="300" width="64" height="64"/>
+  <object id="505" gid="3" x="900" y="300" width="64" height="64"/>
+  <object id="506" gid="3" x="120" y="360" width="64" height="64"/>
+  <object id="507" gid="3" x="240" y="360" width="64" height="64"/>
+  <object id="508" gid="3" x="180" y="360" width="64" height="64"/>
+  <object id="509" gid="3" x="300" y="360" width="64" height="64"/>
+  <object id="510" gid="3" x="360" y="360" width="64" height="64"/>
+  <object id="511" gid="3" x="480" y="360" width="64" height="64"/>
+  <object id="512" gid="3" x="420" y="360" width="64" height="64"/>
+  <object id="513" gid="3" x="540" y="360" width="64" height="64"/>
+  <object id="514" gid="3" x="600" y="360" width="64" height="64"/>
+  <object id="515" gid="3" x="660" y="360" width="64" height="64"/>
+  <object id="516" gid="3" x="720" y="360" width="64" height="64"/>
+  <object id="517" gid="3" x="780" y="360" width="64" height="64"/>
+  <object id="518" gid="3" x="840" y="360" width="64" height="64"/>
+  <object id="519" gid="3" x="900" y="360" width="64" height="64"/>
+  <object id="520" gid="3" x="120" y="420" width="64" height="64"/>
+  <object id="521" gid="3" x="240" y="420" width="64" height="64"/>
+  <object id="522" gid="3" x="180" y="420" width="64" height="64"/>
+  <object id="523" gid="3" x="300" y="420" width="64" height="64"/>
+  <object id="524" gid="3" x="360" y="420" width="64" height="64"/>
+  <object id="525" gid="3" x="480" y="420" width="64" height="64"/>
+  <object id="526" gid="3" x="420" y="420" width="64" height="64"/>
+  <object id="527" gid="3" x="540" y="420" width="64" height="64"/>
+  <object id="528" gid="3" x="600" y="420" width="64" height="64"/>
+  <object id="529" gid="3" x="660" y="420" width="64" height="64"/>
+  <object id="530" gid="3" x="720" y="420" width="64" height="64"/>
+  <object id="531" gid="3" x="780" y="420" width="64" height="64"/>
+  <object id="532" gid="3" x="840" y="420" width="64" height="64"/>
+  <object id="533" gid="3" x="900" y="420" width="64" height="64"/>
+  <object id="534" gid="3" x="120" y="480" width="64" height="64"/>
+  <object id="535" gid="3" x="240" y="480" width="64" height="64"/>
+  <object id="536" gid="3" x="180" y="480" width="64" height="64"/>
+  <object id="537" gid="3" x="300" y="480" width="64" height="64"/>
+  <object id="538" gid="3" x="360" y="480" width="64" height="64"/>
+  <object id="539" gid="3" x="480" y="480" width="64" height="64"/>
+  <object id="540" gid="3" x="420" y="480" width="64" height="64"/>
+  <object id="541" gid="3" x="540" y="480" width="64" height="64"/>
+  <object id="542" gid="3" x="600" y="480" width="64" height="64"/>
+  <object id="543" gid="3" x="660" y="480" width="64" height="64"/>
+  <object id="544" gid="3" x="720" y="480" width="64" height="64"/>
+  <object id="545" gid="3" x="780" y="480" width="64" height="64"/>
+  <object id="546" gid="3" x="840" y="480" width="64" height="64"/>
+  <object id="547" gid="3" x="900" y="480" width="64" height="64"/>
+  <object id="548" gid="3" x="120" y="540" width="64" height="64"/>
+  <object id="549" gid="3" x="240" y="540" width="64" height="64"/>
+  <object id="550" gid="3" x="180" y="540" width="64" height="64"/>
+  <object id="551" gid="3" x="300" y="540" width="64" height="64"/>
+  <object id="552" gid="3" x="360" y="540" width="64" height="64"/>
+  <object id="553" gid="3" x="480" y="540" width="64" height="64"/>
+  <object id="554" gid="3" x="420" y="540" width="64" height="64"/>
+  <object id="555" gid="3" x="540" y="540" width="64" height="64"/>
+  <object id="556" gid="3" x="600" y="540" width="64" height="64"/>
+  <object id="557" gid="3" x="660" y="540" width="64" height="64"/>
+  <object id="558" gid="3" x="720" y="540" width="64" height="64"/>
+  <object id="559" gid="3" x="780" y="540" width="64" height="64"/>
+  <object id="560" gid="3" x="840" y="540" width="64" height="64"/>
+  <object id="561" gid="3" x="900" y="540" width="64" height="64"/>
+  <object id="562" gid="3" x="120" y="600" width="64" height="64"/>
+  <object id="563" gid="3" x="240" y="600" width="64" height="64"/>
+  <object id="564" gid="3" x="180" y="600" width="64" height="64"/>
+  <object id="565" gid="3" x="300" y="600" width="64" height="64"/>
+  <object id="566" gid="3" x="360" y="600" width="64" height="64"/>
+  <object id="567" gid="3" x="480" y="600" width="64" height="64"/>
+  <object id="568" gid="3" x="420" y="600" width="64" height="64"/>
+  <object id="569" gid="3" x="540" y="600" width="64" height="64"/>
+  <object id="570" gid="3" x="600" y="600" width="64" height="64"/>
+  <object id="571" gid="3" x="660" y="600" width="64" height="64"/>
+  <object id="572" gid="3" x="720" y="600" width="64" height="64"/>
+  <object id="573" gid="3" x="780" y="600" width="64" height="64"/>
+  <object id="574" gid="3" x="840" y="600" width="64" height="64"/>
+  <object id="575" gid="3" x="900" y="600" width="64" height="64"/>
+  <object id="576" gid="3" x="120" y="660" width="64" height="64"/>
+  <object id="577" gid="3" x="240" y="660" width="64" height="64"/>
+  <object id="578" gid="3" x="180" y="660" width="64" height="64"/>
+  <object id="579" gid="3" x="300" y="660" width="64" height="64"/>
+  <object id="580" gid="3" x="360" y="660" width="64" height="64"/>
+  <object id="581" gid="3" x="480" y="660" width="64" height="64"/>
+  <object id="582" gid="3" x="420" y="660" width="64" height="64"/>
+  <object id="583" gid="3" x="540" y="660" width="64" height="64"/>
+  <object id="584" gid="3" x="600" y="660" width="64" height="64"/>
+  <object id="585" gid="3" x="660" y="660" width="64" height="64"/>
+  <object id="586" gid="3" x="720" y="660" width="64" height="64"/>
+  <object id="587" gid="3" x="780" y="660" width="64" height="64"/>
+  <object id="588" gid="3" x="840" y="660" width="64" height="64"/>
+  <object id="589" gid="3" x="900" y="660" width="64" height="64"/>
+  <object id="590" gid="3" x="60" y="180" width="64" height="64"/>
+  <object id="591" gid="3" x="60" y="240" width="64" height="64"/>
+  <object id="592" gid="3" x="60" y="300" width="64" height="64"/>
+  <object id="593" gid="3" x="60" y="360" width="64" height="64"/>
+  <object id="594" gid="3" x="60" y="420" width="64" height="64"/>
+  <object id="595" gid="3" x="60" y="480" width="64" height="64"/>
+  <object id="596" gid="3" x="60" y="540" width="64" height="64"/>
+  <object id="597" gid="3" x="60" y="600" width="64" height="64"/>
+  <object id="598" gid="3" x="60" y="660" width="64" height="64"/>
+  <object id="599" gid="3" x="960" y="180" width="64" height="64"/>
+  <object id="600" gid="3" x="960" y="240" width="64" height="64"/>
+  <object id="601" gid="3" x="960" y="300" width="64" height="64"/>
+  <object id="602" gid="3" x="960" y="360" width="64" height="64"/>
+  <object id="603" gid="3" x="960" y="420" width="64" height="64"/>
+  <object id="604" gid="3" x="960" y="480" width="64" height="64"/>
+  <object id="605" gid="3" x="960" y="540" width="64" height="64"/>
+  <object id="606" gid="3" x="960" y="600" width="64" height="64"/>
+  <object id="607" gid="3" x="960" y="660" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup id="16" name="level9" visible="0" locked="1">
+  <properties>
+   <property name="exclude" type="bool" value="true"/>
+  </properties>
+  <object id="608" gid="1" x="518" y="966" width="64" height="64">
+   <properties>
+    <property name="shooter_controller" type="class" propertytype="shooter_controller">
+     <properties>
+      <property name="bullet_prefab_id" value="bullet_rocket"/>
+      <property name="bullet_speed" type="float" value="500"/>
+      <property name="burst_count" type="int" value="1"/>
+      <property name="burst_rate" type="float" value="0.7"/>
+      <property name="damage" type="float" value="100"/>
+      <property name="fire_rate" type="float" value="0.7"/>
+      <property name="is_auto_shoot" type="bool" value="true"/>
+      <property name="spread" type="float" value="32"/>
+      <property name="spread_angle" type="float" value="10"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="609" gid="10" x="510" y="-441" width="200" height="200">
+   <properties>
+    <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
+     <properties>
+      <property name="command" value="{&quot;gui_main_command&quot;: {&quot;text&quot;: &quot;Rocket&quot;}}"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="610" gid="11" x="-2" y="881" width="1080" height="140"/>
+  <object id="611" gid="3" x="120" y="180" width="64" height="64"/>
+  <object id="612" gid="3" x="240" y="180" width="64" height="64"/>
+  <object id="613" gid="3" x="180" y="180" width="64" height="64"/>
+  <object id="614" gid="3" x="300" y="180" width="64" height="64"/>
+  <object id="615" gid="3" x="360" y="180" width="64" height="64"/>
+  <object id="616" gid="3" x="480" y="180" width="64" height="64"/>
+  <object id="617" gid="3" x="420" y="180" width="64" height="64"/>
+  <object id="618" gid="3" x="540" y="180" width="64" height="64"/>
+  <object id="619" gid="3" x="600" y="180" width="64" height="64"/>
+  <object id="620" gid="3" x="660" y="180" width="64" height="64"/>
+  <object id="621" gid="3" x="720" y="180" width="64" height="64"/>
+  <object id="622" gid="3" x="780" y="180" width="64" height="64"/>
+  <object id="623" gid="3" x="840" y="180" width="64" height="64"/>
+  <object id="624" gid="3" x="900" y="180" width="64" height="64"/>
+  <object id="625" gid="3" x="120" y="240" width="64" height="64"/>
+  <object id="626" gid="3" x="240" y="240" width="64" height="64"/>
+  <object id="627" gid="3" x="180" y="240" width="64" height="64"/>
+  <object id="628" gid="3" x="300" y="240" width="64" height="64"/>
+  <object id="629" gid="3" x="360" y="240" width="64" height="64"/>
+  <object id="630" gid="3" x="480" y="240" width="64" height="64"/>
+  <object id="631" gid="3" x="420" y="240" width="64" height="64"/>
+  <object id="632" gid="3" x="540" y="240" width="64" height="64"/>
+  <object id="633" gid="3" x="600" y="240" width="64" height="64"/>
+  <object id="634" gid="3" x="660" y="240" width="64" height="64"/>
+  <object id="635" gid="3" x="720" y="240" width="64" height="64"/>
+  <object id="636" gid="3" x="780" y="240" width="64" height="64"/>
+  <object id="637" gid="3" x="840" y="240" width="64" height="64"/>
+  <object id="638" gid="3" x="900" y="240" width="64" height="64"/>
+  <object id="639" gid="3" x="120" y="300" width="64" height="64"/>
+  <object id="640" gid="3" x="240" y="300" width="64" height="64"/>
+  <object id="641" gid="3" x="180" y="300" width="64" height="64"/>
+  <object id="642" gid="3" x="300" y="300" width="64" height="64"/>
+  <object id="643" gid="3" x="360" y="300" width="64" height="64"/>
+  <object id="644" gid="3" x="480" y="300" width="64" height="64"/>
+  <object id="645" gid="3" x="420" y="300" width="64" height="64"/>
+  <object id="646" gid="3" x="540" y="300" width="64" height="64"/>
+  <object id="647" gid="3" x="600" y="300" width="64" height="64"/>
+  <object id="648" gid="3" x="660" y="300" width="64" height="64"/>
+  <object id="649" gid="3" x="720" y="300" width="64" height="64"/>
+  <object id="650" gid="3" x="780" y="300" width="64" height="64"/>
+  <object id="651" gid="3" x="840" y="300" width="64" height="64"/>
+  <object id="652" gid="3" x="900" y="300" width="64" height="64"/>
+  <object id="737" gid="3" x="60" y="180" width="64" height="64"/>
+  <object id="738" gid="3" x="60" y="240" width="64" height="64"/>
+  <object id="739" gid="3" x="60" y="300" width="64" height="64"/>
+  <object id="746" gid="3" x="960" y="180" width="64" height="64"/>
+  <object id="747" gid="3" x="960" y="240" width="64" height="64"/>
+  <object id="748" gid="3" x="960" y="300" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup id="17" name="level10" visible="0" locked="1">
+  <properties>
+   <property name="exclude" type="bool" value="true"/>
+  </properties>
+  <object id="755" gid="1" x="520" y="600" width="64" height="64">
+   <properties>
+    <property name="shooter_controller" type="class" propertytype="shooter_controller">
+     <properties>
+      <property name="bullet_prefab_id" value="bullet_rocket"/>
+      <property name="bullet_speed" type="float" value="500"/>
+      <property name="burst_count" type="int" value="1"/>
+      <property name="burst_rate" type="float" value="0.1"/>
+      <property name="damage" type="float" value="100"/>
+      <property name="fire_rate" type="float" value="0.1"/>
+      <property name="is_auto_shoot" type="bool" value="true"/>
+      <property name="spread" type="float" value="32"/>
+      <property name="spread_angle" type="float" value="10"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="756" gid="10" x="510" y="-441" width="200" height="200">
+   <properties>
+    <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
+     <properties>
+      <property name="command" value="{&quot;gui_main_command&quot;: {&quot;text&quot;: &quot;No Chances&quot;}}"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="758" gid="3" x="120" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="759" gid="3" x="240" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="760" gid="3" x="180" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="761" gid="3" x="300" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="762" gid="3" x="360" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="763" gid="3" x="480" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="764" gid="3" x="420" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="765" gid="3" x="540" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="766" gid="3" x="600" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="767" gid="3" x="660" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="768" gid="3" x="720" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="769" gid="3" x="780" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="770" gid="3" x="840" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="771" gid="3" x="900" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="772" gid="3" x="120" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="773" gid="3" x="240" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="774" gid="3" x="180" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="775" gid="3" x="300" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="776" gid="3" x="360" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="777" gid="3" x="480" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="778" gid="3" x="420" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="779" gid="3" x="540" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="780" gid="3" x="600" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="781" gid="3" x="660" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="782" gid="3" x="720" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="783" gid="3" x="780" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="784" gid="3" x="840" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="785" gid="3" x="900" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="786" gid="3" x="120" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="787" gid="3" x="240" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="788" gid="3" x="180" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="789" gid="3" x="300" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="790" gid="3" x="360" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="791" gid="3" x="480" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="792" gid="3" x="420" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="793" gid="3" x="540" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="794" gid="3" x="600" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="795" gid="3" x="660" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="796" gid="3" x="720" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="797" gid="3" x="780" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="798" gid="3" x="840" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="799" gid="3" x="900" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="800" gid="3" x="60" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="801" gid="3" x="60" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="802" gid="3" x="60" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="803" gid="3" x="960" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="804" gid="3" x="960" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="805" gid="3" x="960" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="806" gid="3" x="120" y="900" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="807" gid="3" x="240" y="900" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="808" gid="3" x="180" y="900" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="809" gid="3" x="300" y="900" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="810" gid="3" x="360" y="900" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="811" gid="3" x="480" y="900" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="812" gid="3" x="420" y="900" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="813" gid="3" x="540" y="900" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="814" gid="3" x="600" y="900" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="815" gid="3" x="660" y="900" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="816" gid="3" x="720" y="900" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="817" gid="3" x="780" y="900" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="818" gid="3" x="840" y="900" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="819" gid="3" x="900" y="900" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="820" gid="3" x="120" y="960" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="821" gid="3" x="240" y="960" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="822" gid="3" x="180" y="960" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="823" gid="3" x="300" y="960" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="824" gid="3" x="360" y="960" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="825" gid="3" x="480" y="960" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="826" gid="3" x="420" y="960" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="827" gid="3" x="540" y="960" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="828" gid="3" x="600" y="960" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="829" gid="3" x="660" y="960" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="830" gid="3" x="720" y="960" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="831" gid="3" x="780" y="960" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="832" gid="3" x="840" y="960" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="833" gid="3" x="900" y="960" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="834" gid="3" x="120" y="1020" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="835" gid="3" x="240" y="1020" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="836" gid="3" x="180" y="1020" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="837" gid="3" x="300" y="1020" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="838" gid="3" x="360" y="1020" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="839" gid="3" x="480" y="1020" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="840" gid="3" x="420" y="1020" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="841" gid="3" x="540" y="1020" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="842" gid="3" x="600" y="1020" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="843" gid="3" x="660" y="1020" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="844" gid="3" x="720" y="1020" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="845" gid="3" x="780" y="1020" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="846" gid="3" x="840" y="1020" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="847" gid="3" x="900" y="1020" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="848" gid="3" x="60" y="900" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="849" gid="3" x="60" y="960" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="850" gid="3" x="60" y="1020" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="851" gid="3" x="960" y="900" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="852" gid="3" x="960" y="960" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="853" gid="3" x="960" y="1020" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="854" gid="3" x="120" y="360" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="855" gid="3" x="180" y="360" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="856" gid="3" x="120" y="420" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="857" gid="3" x="180" y="420" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="858" gid="3" x="120" y="480" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="859" gid="3" x="180" y="480" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="860" gid="3" x="60" y="360" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="861" gid="3" x="60" y="420" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="862" gid="3" x="60" y="480" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="863" gid="3" x="120" y="540" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="864" gid="3" x="180" y="540" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="865" gid="3" x="120" y="600" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="866" gid="3" x="180" y="600" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="867" gid="3" x="120" y="660" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="868" gid="3" x="180" y="660" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="869" gid="3" x="60" y="540" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="870" gid="3" x="60" y="600" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="871" gid="3" x="60" y="660" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="872" gid="3" x="120" y="720" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="873" gid="3" x="180" y="720" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="874" gid="3" x="120" y="780" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="875" gid="3" x="180" y="780" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="876" gid="3" x="120" y="840" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="877" gid="3" x="180" y="840" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="878" gid="3" x="60" y="720" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="879" gid="3" x="60" y="780" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="880" gid="3" x="60" y="840" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="881" gid="3" x="900" y="540" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="882" gid="3" x="960" y="540" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="883" gid="3" x="900" y="600" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="884" gid="3" x="960" y="600" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="885" gid="3" x="900" y="660" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="886" gid="3" x="960" y="660" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="887" gid="3" x="840" y="540" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="888" gid="3" x="840" y="600" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="889" gid="3" x="840" y="660" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="890" gid="3" x="900" y="720" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="891" gid="3" x="960" y="720" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="892" gid="3" x="900" y="780" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="893" gid="3" x="960" y="780" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="894" gid="3" x="900" y="840" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="895" gid="3" x="960" y="840" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="896" gid="3" x="840" y="720" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="897" gid="3" x="840" y="780" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="898" gid="3" x="840" y="840" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="899" gid="3" x="900" y="360" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="900" gid="3" x="960" y="360" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="901" gid="3" x="900" y="420" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="902" gid="3" x="960" y="420" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="903" gid="3" x="900" y="480" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="904" gid="3" x="960" y="480" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="905" gid="3" x="840" y="360" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="906" gid="3" x="840" y="420" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="907" gid="3" x="840" y="480" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="80"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="18" name="level11" visible="0" locked="1">
+  <properties>
+   <property name="exclude" type="bool" value="true"/>
+  </properties>
+  <object id="908" gid="1" x="63" y="544" width="64" height="64">
+   <properties>
+    <property name="shooter_controller" type="class" propertytype="shooter_controller">
+     <properties>
+      <property name="bullet_prefab_id" value="bullet_sniper"/>
+      <property name="bullet_speed" type="float" value="4000"/>
+      <property name="burst_count" type="int" value="1"/>
+      <property name="burst_rate" type="float" value="0.2"/>
+      <property name="damage" type="float" value="100"/>
+      <property name="fire_rate" type="float" value="0.2"/>
+      <property name="is_auto_shoot" type="bool" value="true"/>
+      <property name="spread" type="float" value="32"/>
+      <property name="spread_angle" type="float" value="15"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="909" gid="10" x="510" y="-441" width="200" height="200">
+   <properties>
+    <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
+     <properties>
+      <property name="command" value="{&quot;gui_main_command&quot;: {&quot;text&quot;: &quot;Ambush&quot;}}"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1060" gid="3" x="376" y="680" width="315" height="315">
+   <properties>
+    <property name="game_object" type="class" propertytype="game_object">
+     <properties>
+      <property name="factory_url" value="/spawner/spawner#enemy_big"/>
+     </properties>
+    </property>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="4000"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1061" gid="11" x="-4" y="931" width="1080" height="140"/>
+  <object id="1062" gid="11" x="-4" y="250" width="1080" height="140"/>
+  <object id="1063" gid="11" x="128" y="-2" width="1080" height="140" rotation="90"/>
+  <object id="1064" gid="11" x="821" y="2" width="1080" height="140" rotation="90"/>
+  <object id="1065" gid="1" x="499" y="110" width="64" height="64">
+   <properties>
+    <property name="shooter_controller" type="class" propertytype="shooter_controller">
+     <properties>
+      <property name="bullet_prefab_id" value="bullet_sniper"/>
+      <property name="bullet_speed" type="float" value="4000"/>
+      <property name="burst_count" type="int" value="1"/>
+      <property name="burst_rate" type="float" value="0.15"/>
+      <property name="damage" type="float" value="100"/>
+      <property name="fire_rate" type="float" value="0.2"/>
+      <property name="is_auto_shoot" type="bool" value="true"/>
+      <property name="spread" type="float" value="32"/>
+      <property name="spread_angle" type="float" value="15"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1066" gid="1" x="966" y="546" width="64" height="64">
+   <properties>
+    <property name="shooter_controller" type="class" propertytype="shooter_controller">
+     <properties>
+      <property name="bullet_prefab_id" value="bullet_sniper"/>
+      <property name="bullet_speed" type="float" value="4000"/>
+      <property name="burst_count" type="int" value="1"/>
+      <property name="burst_rate" type="float" value="0.25"/>
+      <property name="damage" type="float" value="100"/>
+      <property name="fire_rate" type="float" value="0.2"/>
+      <property name="is_auto_shoot" type="bool" value="true"/>
+      <property name="spread" type="float" value="32"/>
+      <property name="spread_angle" type="float" value="15"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1067" gid="1" x="506" y="1017" width="64" height="64">
+   <properties>
+    <property name="shooter_controller" type="class" propertytype="shooter_controller">
+     <properties>
+      <property name="bullet_prefab_id" value="bullet_sniper"/>
+      <property name="bullet_speed" type="float" value="4000"/>
+      <property name="burst_count" type="int" value="1"/>
+      <property name="burst_rate" type="float" value="0.1"/>
+      <property name="damage" type="float" value="100"/>
+      <property name="fire_rate" type="float" value="0.2"/>
+      <property name="is_auto_shoot" type="bool" value="true"/>
+      <property name="spread" type="float" value="32"/>
+      <property name="spread_angle" type="float" value="15"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="19" name="level12" visible="0" locked="1">
+  <properties>
+   <property name="exclude" type="bool" value="true"/>
+  </properties>
+  <object id="1068" gid="1" x="63" y="544" width="64" height="64">
+   <properties>
+    <property name="shooter_controller" type="class" propertytype="shooter_controller">
+     <properties>
+      <property name="bullet_prefab_id" value="bullet_rocket_small"/>
+      <property name="bullet_speed" type="float" value="100"/>
+      <property name="burst_count" type="int" value="1"/>
+      <property name="burst_rate" type="float" value="0.25"/>
+      <property name="damage" type="float" value="100"/>
+      <property name="fire_rate" type="float" value="0.25"/>
+      <property name="is_auto_shoot" type="bool" value="true"/>
+      <property name="spread" type="float" value="32"/>
+      <property name="spread_angle" type="float" value="15"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1069" gid="10" x="510" y="-441" width="200" height="200">
+   <properties>
+    <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
+     <properties>
+      <property name="command" value="{&quot;gui_main_command&quot;: {&quot;text&quot;: &quot;Mini Rockets&quot;}}"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1070" gid="3" x="376" y="680" width="315" height="315">
+   <properties>
+    <property name="game_object" type="class" propertytype="game_object">
+     <properties>
+      <property name="factory_url" value="/spawner/spawner#enemy_big"/>
+     </properties>
+    </property>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="1000"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1071" gid="11" x="-4" y="931" width="1080" height="140"/>
+  <object id="1072" gid="11" x="-4" y="250" width="1080" height="140"/>
+  <object id="1073" gid="11" x="128" y="-2" width="1080" height="140" rotation="90"/>
+  <object id="1074" gid="11" x="821" y="2" width="1080" height="140" rotation="90"/>
+  <object id="1076" gid="1" x="966" y="546" width="64" height="64">
+   <properties>
+    <property name="shooter_controller" type="class" propertytype="shooter_controller">
+     <properties>
+      <property name="bullet_prefab_id" value="bullet_rocket_small"/>
+      <property name="bullet_speed" type="float" value="100"/>
+      <property name="burst_count" type="int" value="1"/>
+      <property name="burst_rate" type="float" value="0.25"/>
+      <property name="damage" type="float" value="100"/>
+      <property name="fire_rate" type="float" value="0.25"/>
+      <property name="is_auto_shoot" type="bool" value="true"/>
+      <property name="spread" type="float" value="32"/>
+      <property name="spread_angle" type="float" value="15"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="20" name="level13" visible="0" locked="1">
+  <properties>
+   <property name="exclude" type="bool" value="true"/>
+  </properties>
+  <object id="1078" gid="1" x="192" y="951" width="64" height="64">
+   <properties>
+    <property name="shooter_controller" type="class" propertytype="shooter_controller">
+     <properties>
+      <property name="bullet_prefab_id" value="bullet_shotgun"/>
+      <property name="bullet_speed" type="float" value="3000"/>
+      <property name="bullets_per_shoot" type="int" value="12"/>
+      <property name="burst_count" type="int" value="1"/>
+      <property name="burst_rate" type="float" value="0.4"/>
+      <property name="damage" type="float" value="100"/>
+      <property name="fire_rate" type="float" value="0.1"/>
+      <property name="is_auto_shoot" type="bool" value="true"/>
+      <property name="spread" type="float" value="32"/>
+      <property name="spread_angle" type="float" value="45"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1079" gid="10" x="510" y="-441" width="200" height="200">
+   <properties>
+    <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
+     <properties>
+      <property name="command" value="{&quot;gui_main_command&quot;: {&quot;text&quot;: &quot;Shotgun&quot;}}"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1080" gid="3" x="300" y="600" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1086" gid="3" x="360" y="600" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1087" gid="3" x="300" y="540" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1088" gid="3" x="360" y="540" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1093" gid="3" x="420" y="600" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1094" gid="3" x="480" y="600" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1095" gid="3" x="420" y="540" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1096" gid="3" x="480" y="540" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1101" gid="3" x="660" y="600" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1102" gid="3" x="720" y="600" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1103" gid="3" x="660" y="540" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1104" gid="3" x="720" y="540" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1105" gid="3" x="540" y="600" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1106" gid="3" x="600" y="600" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1107" gid="3" x="540" y="540" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1108" gid="3" x="600" y="540" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1109" gid="3" x="300" y="480" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1110" gid="3" x="360" y="480" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1111" gid="3" x="300" y="420" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1112" gid="3" x="360" y="420" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1113" gid="3" x="420" y="480" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1114" gid="3" x="480" y="480" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1115" gid="3" x="420" y="420" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1116" gid="3" x="480" y="420" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1117" gid="3" x="660" y="480" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1118" gid="3" x="720" y="480" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1119" gid="3" x="660" y="420" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1120" gid="3" x="720" y="420" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1121" gid="3" x="540" y="480" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1122" gid="3" x="600" y="480" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1123" gid="3" x="540" y="420" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1124" gid="3" x="600" y="420" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1125" gid="3" x="300" y="360" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1126" gid="3" x="360" y="360" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1127" gid="3" x="300" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1128" gid="3" x="360" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1129" gid="3" x="420" y="360" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1130" gid="3" x="480" y="360" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1131" gid="3" x="420" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1132" gid="3" x="480" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1133" gid="3" x="660" y="360" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1134" gid="3" x="720" y="360" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1135" gid="3" x="660" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1136" gid="3" x="720" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1137" gid="3" x="540" y="360" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1138" gid="3" x="600" y="360" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1139" gid="3" x="540" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1140" gid="3" x="600" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1141" gid="3" x="300" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1142" gid="3" x="360" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1143" gid="3" x="300" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1144" gid="3" x="360" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1145" gid="3" x="420" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1146" gid="3" x="480" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1147" gid="3" x="420" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1148" gid="3" x="480" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1149" gid="3" x="660" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1150" gid="3" x="720" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1151" gid="3" x="660" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1152" gid="3" x="720" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1153" gid="3" x="540" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1154" gid="3" x="600" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1155" gid="3" x="540" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1156" gid="3" x="600" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="21" name="level14" visible="0" locked="1">
+  <properties>
+   <property name="exclude" type="bool" value="true"/>
+  </properties>
+  <object id="1157" gid="1" x="819" y="944" width="64" height="64">
+   <properties>
+    <property name="shooter_controller" type="class" propertytype="shooter_controller">
+     <properties>
+      <property name="bullet_prefab_id" value="bullet_sniper"/>
+      <property name="bullet_speed" type="float" value="3500"/>
+      <property name="bullets_per_shoot" type="int" value="8"/>
+      <property name="burst_count" type="int" value="1"/>
+      <property name="burst_rate" type="float" value="0.4"/>
+      <property name="damage" type="float" value="100"/>
+      <property name="fire_rate" type="float" value="0.1"/>
+      <property name="is_auto_shoot" type="bool" value="true"/>
+      <property name="spread" type="float" value="32"/>
+      <property name="spread_angle" type="float" value="45"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1158" gid="10" x="510" y="-441" width="200" height="200">
+   <properties>
+    <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
+     <properties>
+      <property name="command" value="{&quot;gui_main_command&quot;: {&quot;text&quot;: &quot;Hellgun&quot;}}"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1159" gid="3" x="300" y="600" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1160" gid="3" x="360" y="600" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1161" gid="3" x="300" y="540" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1162" gid="3" x="360" y="540" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1163" gid="3" x="420" y="600" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1164" gid="3" x="480" y="600" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1165" gid="3" x="420" y="540" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1166" gid="3" x="480" y="540" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1167" gid="3" x="660" y="600" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1168" gid="3" x="720" y="600" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1169" gid="3" x="660" y="540" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1170" gid="3" x="720" y="540" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1171" gid="3" x="540" y="600" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1172" gid="3" x="600" y="600" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1173" gid="3" x="540" y="540" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1174" gid="3" x="600" y="540" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1175" gid="3" x="300" y="480" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1176" gid="3" x="360" y="480" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1177" gid="3" x="300" y="420" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1178" gid="3" x="360" y="420" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1179" gid="3" x="420" y="480" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1180" gid="3" x="480" y="480" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1181" gid="3" x="420" y="420" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1182" gid="3" x="480" y="420" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1183" gid="3" x="660" y="480" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1184" gid="3" x="720" y="480" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1185" gid="3" x="660" y="420" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1186" gid="3" x="720" y="420" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1187" gid="3" x="540" y="480" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1188" gid="3" x="600" y="480" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1189" gid="3" x="540" y="420" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1190" gid="3" x="600" y="420" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1191" gid="3" x="300" y="360" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1192" gid="3" x="360" y="360" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1193" gid="3" x="300" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1194" gid="3" x="360" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1195" gid="3" x="420" y="360" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1196" gid="3" x="480" y="360" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1197" gid="3" x="420" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1198" gid="3" x="480" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1199" gid="3" x="660" y="360" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1200" gid="3" x="720" y="360" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1201" gid="3" x="660" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1202" gid="3" x="720" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1203" gid="3" x="540" y="360" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1204" gid="3" x="600" y="360" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1205" gid="3" x="540" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1206" gid="3" x="600" y="300" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1207" gid="3" x="300" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1208" gid="3" x="360" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1209" gid="3" x="300" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1210" gid="3" x="360" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1211" gid="3" x="420" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1212" gid="3" x="480" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1213" gid="3" x="420" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1214" gid="3" x="480" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1215" gid="3" x="660" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1216" gid="3" x="720" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1217" gid="3" x="660" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1218" gid="3" x="720" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1219" gid="3" x="540" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1220" gid="3" x="600" y="240" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1221" gid="3" x="540" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="1222" gid="3" x="600" y="180" width="64" height="64">
+   <properties>
+    <property name="health" type="class" propertytype="health">
+     <properties>
+      <property name="health" type="float" value="100"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="5" name="system" visible="0" locked="1">
+  <object id="48" name="camera" x="-440" y="0" width="1920" height="1080">
+   <properties>
+    <property name="camera" type="class" propertytype="camera">
+     <properties>
+      <property name="camera_url" value="/offset#camera"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="83" name="debug" class="debug" x="3" y="1081">
+   <point/>
+  </object>
+  <object id="84" name="gui_main" class="gui_main" x="21" y="1096">
+   <point/>
+  </object>
+ </objectgroup>
+</map>

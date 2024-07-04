@@ -1,0 +1,17 @@
+/.internal
+/build
+.externalToolBuilders
+.DS_Store
+Thumbs.db
+.lock-wscript
+*.pyc
+.project
+.cproject
+builtins
+deployer_version_settings.txt
+
+.cache_deployer
+dist
+manifest.private.der
+manifest.public.der
+deployer_build_stats.csv
