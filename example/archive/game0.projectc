@@ -6,8 +6,8 @@ compress_archive = 1
 publisher = Insality
 developer = Insality
 custom_resources = /resources
-commit_sha = ddfa95e9aee67019b4207a9ba72f52d8bd37efba
-build_date = 2024-07-04T16:57:44Z
+commit_sha = e0b8b11e098aa3ce596a97f5486967c9711d9acb
+build_date = 2024-07-04T19:03:32Z
 title_as_file_name = ShootingCircles
 
 [display]
@@ -52,7 +52,7 @@ velocity_threshold = 1
 max_fixed_timesteps = 2
 
 [bootstrap]
-main_collection = /test/test.collectionc
+main_collection = /loader/loader.collectionc
 render = /builtins/render/default.renderc
 
 [graphics]
