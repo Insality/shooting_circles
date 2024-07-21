@@ -2,7 +2,6 @@ name: "particle"
 tags: "tile"
 vertex_program: "/builtins/materials/particlefx.vp"
 fragment_program: "/builtins/materials/particlefx.fp"
-vertex_space: VERTEX_SPACE_WORLD
 vertex_constants {
   name: "view_proj"
   type: CONSTANT_TYPE_VIEWPROJ
@@ -17,4 +16,3 @@ fragment_constants {
     w: 1.0
   }
 }
-max_page_count: 0
