@@ -40,8 +40,7 @@ function M:onAdd(entity)
 	local p = entity.panthera
 	p.detached_animations = {}
 
-	local get_node = M.get_node_fn(nil, entity.game_object.object)
-	local animation_state = panthera.create_go(p.animation_path, get_node)
+	local animation_state = panthera.create_go(p.animation_path, nil, entity.game_object.object)
 
 	if animation_state then
 		p.animation_state = animation_state
