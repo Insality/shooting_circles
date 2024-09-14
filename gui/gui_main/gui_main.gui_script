@@ -55,14 +55,8 @@ function init(self)
 	self.button_right = gui.get_node("button_right/root")
 
 	self.gui_main_animation = panthera.create_gui(GUI_MAIN_ANIMATION) --[[@as panthera.animation.state]]
-
-	self.button_left_animation = panthera.create_gui(BUTTON_ANIMATION, function(node_id)
-		return gui.get_node("button_left/" .. node_id)
-	end) --[[@as panthera.animation.state]]
-
-	self.button_right_animation = panthera.create_gui(BUTTON_ANIMATION, function(node_id)
-		return gui.get_node("button_right/" .. node_id)
-	end) --[[@as panthera.animation.state]]
+	self.button_left_animation = panthera.create_gui(BUTTON_ANIMATION, "button_left") --[[@as panthera.animation.state]]
+	self.button_right_animation = panthera.create_gui(BUTTON_ANIMATION, "button_right") --[[@as panthera.animation.state]]
 
 	self.is_running = false
 	self.current_timer = 0

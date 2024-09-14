@@ -50,7 +50,7 @@ To create a new system, I use the `system_*` template located in `/decore/templa
 
 ## Decore
 
-**Decore** is a library that manages data collections for ECS and allows the creation of entities from prefabs.
+**[Decore](https://github.com/Insality/decore)** is a library that manages data collections for ECS and allows the creation of entities from prefabs.
 
 - All game components are described in the `resources/components.json` file. Decore uses this file to create components by their prefab_id and fill default values for components.
 - Entities that are described manually (not in Tiled Editor) are placed in `resources/entities.json`. Items like bullets and different utility entities are easily described in this file rather than creating entities in a Tiled tileset.
@@ -59,7 +59,7 @@ To create a new system, I use the `system_*` template located in `/decore/templa
 
 ## Detiled
 
-**Detiled** is a library that converts Tiled maps and tilesets to Decore entities. It allows setting up components, entities, and worlds from the Tiled map editor.
+**[Detiled](https://github.com/Insality/detiled)** is a library that converts Tiled maps and tilesets to Decore entities. It allows setting up components, entities, and worlds from the Tiled map editor.
 
 - Rotation and scale changes for entities are supported. However, if an entity has a physics body, the scale should be uniform, as the physics body will be scaled by the same value as the entity.
 
