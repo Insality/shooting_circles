@@ -110,7 +110,7 @@ function M:set_progress(entity, animation_id, progress)
 	local p = entity.panthera
 	assert(p, "Entity doesn't have panthera component")
 
-	if not decore.is_alive(self, entity) then
+	if not decore.is_alive(self.panthera, entity) then
 		return
 	end
 

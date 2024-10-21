@@ -164,18 +164,9 @@ function M:move_to(position_x, position_y, size_x, size_y, animate_time)
 		size_y = size_y + (entity.camera.offset_size or 0)
 	end
 
-	---@type component.transform_command
-	local transform_command = {
-		entity = entity,
-		position_x = position_x,
-		position_y = position_y,
-		size_x = size_x,
-		size_y = size_y,
-		animate_time = animate_time,
-		easing = go.EASING_OUTSINE
-	}
-	print("transform_command", transform_command)
-	self.world:addEntity({ transform_command = transform_command })
+	self.world.transform_command:set_position(entity, position_x, position_y, nil)
+	self.world.transform_command:set_size(entity, size_x, size_y, nil)
+	self.world.transform_command:set_animate_time(entity, animate_time, go.EASING_OUTSINE)
 end
 
 

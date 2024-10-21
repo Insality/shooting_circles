@@ -139,12 +139,7 @@ end
 ---@param entity entity
 ---@param damage number
 function M:apply_damage(entity, damage)
-	---@type component.health_command
-	local command = {
-		entity = entity,
-		damage = damage,
-	}
-	self.world:addEntity({ health_command = command })
+	self.world.health_command:apply_damage(entity, damage)
 end
 
 

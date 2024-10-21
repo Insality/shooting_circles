@@ -1,18 +1,7 @@
 local ecs = require("decore.ecs")
 local decore = require("decore.decore")
 
----@class entity
----@field health_circle_visual_command component.health_circle_visual_command|nil
-
----@class entity.health_circle_visual_command: entity
----@field health_circle_visual_command component.health_circle_visual_command
-
----@class component.health_circle_visual_command
----@field sprite_url string
----@field health_color string
-
 ---@class system.health_circle_visual_command: system
----@field entities entity.health_circle_visual_command[]
 ---@field health_circle_visual system.health_circle_visual
 local M = {}
 
@@ -34,7 +23,6 @@ end
 
 ---@param health_event event.health_event
 function M:process_health_event(health_event)
-
 	local entity = health_event.entity
 	if entity.health_circle_visual and health_event.damage then
 		local progress = entity.health.current_health / entity.health.health
