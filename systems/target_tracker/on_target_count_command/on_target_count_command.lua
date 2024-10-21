@@ -1,4 +1,4 @@
-local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 
 ---@class entity
 ---@field on_target_count_command component.on_target_count_command|nil
@@ -18,29 +18,25 @@ local M = {}
 ---@static
 ---@return system.on_target_count_command
 function M.create_system(on_target_count)
-	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAny("on_target_count_command", "target_tracker_event")
+	local system = setmetatable(decore.ecs.system(), { __index = M })
+	system.filter = decore.ecs.requireAny("on_target_count_command")
 	system.on_target_count = on_target_count
 
 	return system
 end
 
 
----@param entity entity.on_target_count_command
-function M:onAdd(entity)
-	local target_tracker_event = entity.target_tracker_event
-	if target_tracker_event then
-		self:process_target_tracker_event(target_tracker_event)
-	end
+function M:postWrap()
+	decore.queue:process("target_tracker_event", self.process_target_tracker_event, self)
 end
 
 
----@param target_tracker_event component.target_tracker_event
-function M:process_target_tracker_event(target_tracker_event)
+---@param amount event.target_tracker_event
+function M:process_target_tracker_event(amount)
 	for _, entity in ipairs(self.entities) do
 		local command = entity.on_target_count_command
 		if command then
-			if target_tracker_event.target_count == command.amount then
+			if amount == command.amount then
 				local data = json.decode(entity.on_target_count_command.command)
 				self.world:addEntity(data)
 			end

@@ -1,4 +1,4 @@
-local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 
 ---@class entity
 ---@field transform_command component.transform_command|nil
@@ -31,8 +31,8 @@ local M = {}
 ---@static
 ---@return system.transform_command
 function M.create_system(transform)
-	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAny("transform_command")
+	local system = setmetatable(decore.ecs.system(), { __index = M })
+	system.filter = decore.ecs.requireAny("transform_command")
 	system.transform = transform
 	system.id = "transform_command"
 
@@ -76,8 +76,8 @@ function M:process_command(command)
 	local is_any_changed = is_position_changed or is_scale_changed or is_rotation_changed or is_size_changed
 
 	if is_any_changed then
-		---@type entity.transform_event
-		local transform_event = { transform_event = {
+		---@type event.transform_event
+		local transform_event = {
 			entity = entity,
 			is_position_changed = is_position_changed,
 			is_scale_changed = is_scale_changed,
@@ -85,9 +85,8 @@ function M:process_command(command)
 			is_rotation_changed = is_rotation_changed,
 			animate_time = command.animate_time,
 			easing = command.easing
-		}}
-
-		self.world:addEntity(transform_event)
+		}
+		decore.queue:push("transform_event", transform_event)
 	end
 end
 

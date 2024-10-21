@@ -1,6 +1,4 @@
-local ecs = require("decore.ecs")
-
-local target_tracker_event = require("systems.target_tracker.target_tracker_event")
+local decore = require("decore.decore")
 
 ---@class entity
 ---@field target_tracker component.target_tracker|nil
@@ -10,38 +8,32 @@ local target_tracker_event = require("systems.target_tracker.target_tracker_even
 
 ---@class component.target_tracker
 
+---@class event.target_tracker_event: number
+
 ---@class system.target_tracker: system
 ---@field entities entity.target_tracker[]
 local M = {}
 
 
 ---@static
----@return system.target_tracker, system.target_tracker_event
+---@return system.target_tracker
 function M.create_system()
-	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAll("target")
+	local system = setmetatable(decore.ecs.system(), { __index = M })
+	system.filter = decore.ecs.requireAll("target")
 
-	return system, target_tracker_event.create_system()
+	return system
 end
 
 
 ---@param entity entity.target_tracker
 function M:onAdd(entity)
-	---@type component.target_tracker_event
-	local target_tracker_event = {
-		target_count = #self.entities,
-	}
-	self.world:addEntity({ target_tracker_event = target_tracker_event })
+	decore.queue:push("target_tracker_event", #self.entities)
 end
 
 
 ---@param entity entity.target_tracker
 function M:onRemove(entity)
-	---@type component.target_tracker_event
-	local target_tracker_event = {
-		target_count = #self.entities,
-	}
-	self.world:addEntity({ target_tracker_event = target_tracker_event })
+	decore.queue:push("target_tracker_event", #self.entities)
 end
 
 

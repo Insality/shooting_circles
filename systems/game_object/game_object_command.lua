@@ -64,7 +64,7 @@ function M:process_command(command)
 end
 
 
----@param transform_event component.transform_event
+---@param transform_event event.transform_event
 function M:process_transform_event(transform_event)
 	local target_entity = transform_event.entity
 	local game_object = target_entity.game_object

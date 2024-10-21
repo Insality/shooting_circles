@@ -1,4 +1,4 @@
-local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 
 local physics_command = require("systems.physics.physics_command")
 
@@ -25,8 +25,8 @@ local TEMP_VECTOR = vmath.vector3()
 ---@static
 ---@return system.physics, system.physics_command
 function M.create_system()
-	local system = setmetatable(ecs.processingSystem(), { __index = M })
-	system.filter = ecs.requireAll("physics", "game_object", "transform")
+	local system = setmetatable(decore.ecs.processingSystem(), { __index = M })
+	system.filter = decore.ecs.requireAll("physics", "game_object", "transform")
 	system.id = "physics"
 
 	return system, physics_command.create_system(system)
@@ -66,12 +66,11 @@ function M:process(entity, dt)
 	if position.x ~= transform.position_x or position.y ~= transform.position_y then
 		transform.position_x = position.x
 		transform.position_y = position.y
-		---@type component.transform_event
-		local transform_event = {
+
+		decore.queue:push("transform_event", {
 			entity = entity,
 			is_position_changed = true
-		}
-		self.world:addEntity({ transform_event = transform_event })
+		})
 	end
 
 	local velocity = b2d.body.get_linear_velocity(body)
