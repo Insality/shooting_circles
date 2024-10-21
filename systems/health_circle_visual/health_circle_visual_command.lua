@@ -38,21 +38,8 @@ function M:process_health_event(health_event)
 	local entity = health_event.entity
 	if entity.health_circle_visual and health_event.damage then
 		local progress = entity.health.current_health / entity.health.health
-		---@type component.panthera_command
-		local panthera_command = {
-			entity = entity,
-			animation_id = "health",
-			progress = progress,
-		}
-		self.world:addEntity({ panthera_command = panthera_command })
-
-		---@type component.panthera_command
-		local panthera_command = {
-			entity = entity,
-			detached = true,
-			animation_id = "on_damage",
-		}
-		self.world:addEntity({ panthera_command = panthera_command })
+		self.world.panthera_command:set_progress(entity, "health", progress)
+		self.world.panthera_command:play_detached(entity, "on_damage")
 
 		-- Spawn damage number particle
 		local et = entity.transform or {}
