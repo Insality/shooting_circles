@@ -30,6 +30,16 @@ function M:onAddToWorld()
 	physics.set_listener(function(_, event_id, event)
 		M.physics_world_listener(self, event_id, event)
 	end)
+
+	self.world.queue:set_merge_policy("collision_event", function(events, new_event)
+		for index = #events, 1, -1 do
+			local event = events[index]
+			if event.entity == new_event.entity and event.other == new_event.other then
+				return true
+			end
+		end
+		return false
+	end)
 end
 
 

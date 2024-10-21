@@ -33,8 +33,8 @@ function M:process_collision_event(collision_event)
 	local entity = collision_event.entity
 	local on_collision_remove = entity.on_collision_remove
 	if on_collision_remove then
-		b2d.body.set_linear_velocity(entity.physics.box2d_body, VECTOR_ZERO)
-		b2d.body.set_awake(entity.physics.box2d_body, false)
+		--b2d.body.set_linear_velocity(entity.physics.box2d_body, VECTOR_ZERO)
+		--b2d.body.set_awake(entity.physics.box2d_body, false)
 		self.world:removeEntity(entity)
 	end
 end
