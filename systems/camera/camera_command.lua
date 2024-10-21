@@ -1,32 +1,9 @@
 local ecs = require("decore.ecs")
-local decore = require("decore.decore")
 
----@class entity
----@field camera_command component.camera_command|nil
-
----@class entity.camera_command: entity
----@field camera_command component.camera_command
-
----@class component.camera_command
----@field borders vector4|nil @Borders of camera visible area vmath.vector4(left, right, top, bottom)
----@field follow_to_name string|nil @Name of entity to follow
----@field position_x number|nil @Position x in pixels
----@field position_y number|nil @Position y in pixels
----@field size_x number|nil @Size x in pixels
----@field size_y number|nil @Size y in pixels
----@field animate_time number|nil @If true will animate the transform over time
----@field offset_x number|nil @Offset x in pixels for camera
----@field offset_y number|nil @Offset y in pixels for camera
----@field offset_size number|nil @Offset zoom for camera
----@field temporary boolean|nil @If true the next camera command will reset the camera to the previous state
----@field shake component.camera_command.shake|nil @Shake camera
-
----@class component.camera_command.shake
----@field power number @Power of shake
----@field time number @Time of shake
+---@class world
+---@field camera_command system.camera_command
 
 ---@class system.camera_command: system
----@field entities entity.camera_command[]
 ---@field camera system.camera|nil @Current camera system
 ---@field previous_camera_state table<string, any>|nil @Previous camera state
 local M = {}
@@ -35,27 +12,22 @@ local M = {}
 ---@return system.camera_command
 function M.create_system(camera_system)
 	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAny("camera_command")
 	system.id = "camera_command"
-
 	system.camera = camera_system
-	system.previous_camera_state = nil
 
 	return system
 end
 
 
----@param entity entity.camera_command
-function M:onAdd(entity)
-	if not self.camera or not self.camera.camera then
-		return
-	end
+---@private
+function M:onAddToWorld()
+	self.world.camera_command = self
+end
 
-	local command = entity.camera_command
-	if self.camera and command then
-		self:process_command(command)
-		self.world:removeEntity(entity)
-	end
+
+---@private
+function M:onRemoveFromWorld()
+	self.world.camera_command = nil
 end
 
 
@@ -85,46 +57,21 @@ function M:process_transform_event(transform_event)
 end
 
 
----@param command component.camera_command
-function M:process_command(command)
-	local camera = self.camera.camera --[[@as entity.camera]]
-	if not camera then
-		return
-	end
+---@param power number
+---@param time number
+function M:shake(power, time)
+	self.camera.shake_power = power
+	self.camera.shake_time = time
+end
 
-	if command.shake then
-		--self.camera:shake(command.shake.power, command.shake.time)
-		self.camera.shake_power = math.max(self.camera.shake_power, command.shake.power)
-		self.camera.shake_time = math.max(self.camera.shake_time, command.shake.time)
-	end
 
-	---Set camera borders, can be false
-	if command.borders ~= nil then
-		self.borders = command.borders
-	end
+function M:set_borders(borders)
+	self.borders = borders
+end
 
-	if command.temporary then
-		self.previous_camera_state = {
-			position_x = camera.transform.position_x,
-			position_y = camera.transform.position_y,
-			size_x = camera.transform.size_x,
-			size_y = camera.transform.size_y,
-			animate_time = command.animate_time
-		}
-	end
 
-	local state = self.previous_camera_state
-	if not command.temporary and state then
-		--self:move_to(state.position_x, state.position_y, state.size_x, state.size_y, state.animate_time)
-		self.previous_camera_state = nil
-	end
-
-	if command.follow_to_name and command.follow_to_name ~= "" then
-		local follow_entity = decore.get_entities_with_name(self.world, command.follow_to_name)[1] --[[@as entity.transform]]
-		if follow_entity then
-			self:move_to_entity(self.camera.camera, follow_entity)
-		end
-	end
+function M:reset_borders()
+	self.borders = nil
 end
 
 
@@ -168,7 +115,6 @@ function M:move_to(position_x, position_y, size_x, size_y, animate_time)
 	self.world.transform_command:set_size(entity, size_x, size_y, nil)
 	self.world.transform_command:set_animate_time(entity, animate_time, go.EASING_OUTSINE)
 end
-
 
 
 return M

@@ -98,14 +98,8 @@ function M:process_collision_event(collision_event)
 			power = 10
 			time = 0.6
 		end
-		---@type component.camera_command
-		local camera_command = {
-			shake = {
-				power = shake_power,
-				time = time,
-			}
-		}
-		self.world:addEntity({ camera_command = camera_command })
+
+		self.world.camera_command:shake(shake_power, time)
 
 		local explosion_entity = decore.create_entity(explosion.spawn_entity or "explosion")
 		if explosion_entity then

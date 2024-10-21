@@ -56,8 +56,24 @@ function M:apply_input(entity, action_id, action)
 	local command_data = entity.on_key_released.key_to_command
 	local key_id = self.hash_to_string[action_id]
 	if command_data[key_id] and action.released then
-		local new_command = sys.deserialize(sys.serialize(command_data[key_id]))
-		self.world:addEntity(new_command)
+		local command_data = command_data[key_id]
+		local command = command_data[1]
+		local func = command_data[2]
+		local args = {}
+		for i = 3, #command_data do
+			table.insert(args, command_data[i])
+		end
+
+		if not self.world[command] then
+			print("Command not found: " .. command)
+			return
+		end
+		if not self.world[command][func] then
+			print("Function not found: " .. func)
+			return
+		end
+
+		self.world[command][func](self.world[command], command, unpack(args))
 	end
 end
 

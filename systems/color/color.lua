@@ -1,7 +1,5 @@
 local ecs = require("decore.ecs")
 
-local color_command = require("systems.color.color_command")
-
 ---@class entity
 ---@field color component.color|nil
 
@@ -24,13 +22,13 @@ local M = {}
 
 
 ---@static
----@return system.color, system.color_command
+---@return system.color
 function M.create_system()
 	local system = setmetatable(ecs.system(), { __index = M })
 	system.filter = ecs.requireAll("color", "game_object")
 	system.id = "color"
 
-	return system, color_command.create_system(system)
+	return system
 end
 
 
