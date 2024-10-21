@@ -1,17 +1,6 @@
 local decore = require("decore.decore")
 
----@class entity
----@field game_object_command component.game_object_command|nil
-
----@class entity.game_object_command: entity
----@field game_object_command component.game_object_command
-
----@class component.game_object_command
----@field entity entity|nil
----@field enabled boolean|nil
-
 ---@class system.game_object_command: system
----@field entities entity.game_object_command[]
 ---@field game_object system.game_object
 local M = {}
 
@@ -21,7 +10,6 @@ local TEMP_VECTOR = vmath.vector3()
 ---@return system.game_object_command
 function M.create_system(game_object)
 	local system = setmetatable(decore.ecs.system(), { __index = M })
-	system.filter = decore.ecs.requireAny("game_object_command")
 	system.id = "game_object_command"
 	system.game_object = game_object
 
@@ -29,38 +17,8 @@ function M.create_system(game_object)
 end
 
 
----@param entity entity.game_object_command
-function M:onAdd(entity)
-	local command = entity.game_object_command
-	if command then
-		self:process_command(command)
-	end
-
-	self.world:removeEntity(entity)
-end
-
-
 function M:postWrap()
 	self.world.queue:process("transform_event", self.process_transform_event, self)
-end
-
-
----@param command component.game_object_command
-function M:process_command(command)
-	local entity = command.entity
-	if not entity then
-		return
-	end
-
-	if command.enabled ~= nil then
-		for _, game_object in pairs(entity.game_object.object) do
-			if command.enabled then
-				msg.post(game_object, "enable")
-			else
-				msg.post(game_object, "disable")
-			end
-		end
-	end
 end
 
 

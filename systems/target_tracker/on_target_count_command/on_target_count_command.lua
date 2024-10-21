@@ -38,7 +38,7 @@ function M:process_target_tracker_event(amount)
 		if command then
 			if amount == command.amount then
 				local data = json.decode(entity.on_target_count_command.command)
-				self.world:addEntity(data)
+				decore.call_command(self.world, data)
 			end
 		end
 	end

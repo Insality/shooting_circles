@@ -1,4 +1,4 @@
-local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 
 ---@class entity
 ---@field on_spawn_command component.on_spawn_command|nil
@@ -17,8 +17,8 @@ local M = {}
 ---@static
 ---@return system.on_spawn_command
 function M.create_system()
-	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAny("on_spawn_command")
+	local system = setmetatable(decore.ecs.system(), { __index = M })
+	system.filter = decore.ecs.requireAny("on_spawn_command")
 
 	return system
 end
@@ -37,7 +37,7 @@ end
 function M:process_command(command)
 	if command.command then
 		local data = json.decode(command.command)
-		self.world:addEntity(data)
+		decore.call_command(self.world, data)
 	end
 end
 

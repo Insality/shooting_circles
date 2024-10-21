@@ -1,4 +1,4 @@
-local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 
 local on_key_released_command = require("systems.on_key_released.on_key_released_command")
 
@@ -21,8 +21,8 @@ local M = {}
 ---@static
 ---@return system.on_key_released, system.on_key_released_command
 function M.create_system()
-	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAll("on_key_released")
+	local system = setmetatable(decore.ecs.system(), { __index = M })
+	system.filter = decore.ecs.requireAll("on_key_released")
 	system.id = "on_key_released"
 
 	system.hash_to_string = {}
@@ -56,24 +56,7 @@ function M:apply_input(entity, action_id, action)
 	local command_data = entity.on_key_released.key_to_command
 	local key_id = self.hash_to_string[action_id]
 	if command_data[key_id] and action.released then
-		local command_data = command_data[key_id]
-		local command = command_data[1]
-		local func = command_data[2]
-		local args = {}
-		for i = 3, #command_data do
-			table.insert(args, command_data[i])
-		end
-
-		if not self.world[command] then
-			print("Command not found: " .. command)
-			return
-		end
-		if not self.world[command][func] then
-			print("Function not found: " .. func)
-			return
-		end
-
-		self.world[command][func](self.world[command], command, unpack(args))
+		decore.call_command(self.world, command_data[key_id])
 	end
 end
 

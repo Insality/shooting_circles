@@ -3,19 +3,7 @@ local ecs = require("decore.ecs")
 ---@class world
 ---@field physics_command system.physics_command
 
----@class entity
----@field physics_command component.physics_command|nil
-
----@class entity.physics_command: entity
----@field physics_command component.physics_command
-
----@class component.physics_command
----@field entity entity
----@field force_x number|nil
----@field force_y number|nil
-
 ---@class system.physics_command: system
----@field entities entity.physics_command[]
 ---@field physics system.physics
 local M = {}
 

@@ -3,10 +3,10 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "tilesets/shooting_circle.tsx",
+    "activeFile": "maps/game.tmx",
     "expandedProjectPaths": [
-        ".",
         "maps",
+        ".",
         "tilesets"
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -24,11 +24,11 @@
             "expandedObjectLayers": [
                 20
             ],
-            "scale": 0.426,
+            "scale": 0.42,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 491.7840375586855,
-                "y": 505.8685446009389
+                "x": 895.2380952380952,
+                "y": -279.7619047619048
             }
         },
         "maps/loader.tmx": {
@@ -46,7 +46,7 @@
         "tilesets/shooting_circle.tsx": {
             "dynamicWrapping": true,
             "scaleInDock": 0.1194,
-            "scaleInEditor": 0.1398
+            "scaleInEditor": 0.13
         }
     },
     "last.exportedFilePath": "/Users/insality/code/defold/shooting_circles/resources/tilesets",
