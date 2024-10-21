@@ -12,7 +12,7 @@ local M = {}
 ---@return system.death, system.death_command
 function M.create_system()
 	local system = setmetatable(ecs.system(), { __index = M })
-	
+
 	return system, death_command.create_system(system)
 end
 

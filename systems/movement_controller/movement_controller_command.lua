@@ -1,16 +1,6 @@
 local decore = require("decore.decore")
 
----@class entity
----@field movement_controller_command component.movement_controller_command|nil
-
----@class entity.movement_controller_command: entity
----@field movement_controller_command component.movement_controller_command
-
----@class component.movement_controller_command
----@field entity entity|nil
-
 ---@class system.movement_controller_command: system
----@field entities entity.movement_controller_command[]
 ---@field movement_controller system.movement_controller
 local M = {}
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.9" tiledversion="2022.09.22" name="shooting_circle" class="shooting_circle" tilewidth="1080" tileheight="200" tilecount="9" columns="0">
  <editorsettings>
-  <export target="../../../resources/tilesets/shooting_circle.json" format="json"/>
+  <export target="../../resources/tilesets/shooting_circle.json" format="json"/>
  </editorsettings>
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0" class="player">
@@ -156,12 +156,12 @@
   <properties>
    <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
     <properties>
-     <property name="command" value="{&quot;gui_main_command&quot;: {&quot;text&quot;: &quot;Shoot&quot;}}"/>
+     <property name="command" value="[&quot;gui_main_command&quot;, &quot;set_text&quot;, &quot;Shoot&quot;]"/>
     </properties>
    </property>
    <property name="on_target_count_command" type="class" propertytype="on_target_count_command">
     <properties>
-     <property name="command" value="{&quot;gui_main_command&quot;: {&quot;level_complete&quot;: true}}"/>
+     <property name="command" value="[&quot;gui_main_command&quot;, &quot;level_complete&quot;, true]"/>
     </properties>
    </property>
   </properties>

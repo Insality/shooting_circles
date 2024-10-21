@@ -36,13 +36,7 @@ function M:apply_explosion(entity, position_x, position_y, power)
 	force_x = force_x / distance * power
 	force_y = force_y / distance * power
 
-	---@type component.physics_command
-	local physics_command = {
-		entity = entity,
-		force_x = force_x,
-		force_y = force_y,
-	}
-	self.world:addEntity({ physics_command = physics_command })
+	self.world.physics_command:add_force(entity, force_x, force_y)
 end
 
 

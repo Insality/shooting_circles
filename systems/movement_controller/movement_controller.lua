@@ -38,14 +38,9 @@ function M:process(entity, dt)
 	local movement_y = movement_controller.movement_y
 
 	if movement_x ~= 0 or movement_y ~= 0 then
-		---@type component.physics_command
-		local physics_command = {
-			entity = entity,
-		}
-		physics_command.force_x = movement_x * speed * dt * 60
-		physics_command.force_y = movement_y * speed * dt * 60
-
-		self.world:addEntity({ physics_command = physics_command })
+		local force_x = movement_x * speed * dt * 60
+		local force_y = movement_y * speed * dt * 60
+		self.world.physics_command:add_force(entity, force_x, force_y)
 	end
 end
 

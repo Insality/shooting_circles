@@ -59,6 +59,8 @@ function M:onAddToWorld()
 				compare_event.is_scale_changed = compare_event.is_scale_changed or event.is_scale_changed
 				compare_event.is_rotation_changed = compare_event.is_rotation_changed or event.is_rotation_changed
 				compare_event.is_size_changed = compare_event.is_size_changed or event.is_size_changed
+				compare_event.animate_time = event.animate_time or compare_event.animate_time
+				compare_event.easing = event.easing or compare_event.easing
 
 				return true
 			end

@@ -33,12 +33,7 @@ function M:process_collision_event(collision_event)
 	local on_collision_damage = entity.on_collision_damage
 	local other = collision_event.other
 	if on_collision_damage and other and other.health then
-		---@type component.health_command
-		local command = {
-			entity = other,
-			damage = on_collision_damage.damage
-		}
-		self.world:addEntity({ health_command = command })
+		self.world.health_command:apply_damage(other, on_collision_damage.damage)
 	end
 end
 

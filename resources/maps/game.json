@@ -506,7 +506,7 @@
                          "type":"class",
                          "value":
                             {
-                             "command":"{\"gui_main_command\": {\"text\": \"Explosion\"}}"
+                             "command":"[\"gui_main_command\", \"set_text\",  \"Explosion\"]"
                             }
                         }],
                  "rotation":0,
@@ -1049,7 +1049,7 @@
                          "type":"class",
                          "value":
                             {
-                             "command":"{\"gui_main_command\": {\"text\": \"More\"}}"
+                             "command":"[\"gui_main_command\", \"set_text\",  \"More\"]"
                             }
                         }],
                  "rotation":0,
@@ -1866,7 +1866,7 @@
                          "type":"class",
                          "value":
                             {
-                             "command":"{\"gui_main_command\": {\"text\": \"Boss\"}}"
+                             "command":"[\"gui_main_command\", \"set_text\",  \"Boss\"]"
                             }
                         }],
                  "rotation":0,
@@ -2563,7 +2563,7 @@
                          "type":"class",
                          "value":
                             {
-                             "command":"{\"gui_main_command\": {\"text\": \"Arcanoid?\"}}"
+                             "command":"[\"gui_main_command\", \"set_text\",  \"Arcanoid?\" ]"
                             }
                         }],
                  "rotation":0,
@@ -3260,7 +3260,7 @@
                          "type":"class",
                          "value":
                             {
-                             "command":"{\"gui_main_command\": {\"text\": \"+ Explosion\"}}"
+                             "command":"[\"gui_main_command\", \"set_text\",  \"+ Explosion\"]"
                             }
                         }],
                  "rotation":0,
@@ -3341,7 +3341,7 @@
                          "type":"class",
                          "value":
                             {
-                             "command":"{\"gui_main_command\": {\"text\": \"Bad Day\"}}"
+                             "command":"[\"gui_main_command\", \"set_text\",  \"Bad Day\"]"
                             }
                         }],
                  "rotation":0,
@@ -3927,7 +3927,7 @@
                          "type":"class",
                          "value":
                             {
-                             "command":"{\"gui_main_command\": {\"text\": \"Can More?\"}}"
+                             "command":"[\"gui_main_command\", \"set_text\",  \"Can More?\"]"
                             }
                         }],
                  "rotation":0,
@@ -5740,7 +5740,7 @@
                          "type":"class",
                          "value":
                             {
-                             "command":"{\"gui_main_command\": {\"text\": \"Rocket\"}}"
+                             "command":"[\"gui_main_command\", \"set_text\",  \"Rocket\"]"
                             }
                         }],
                  "rotation":0,
@@ -6398,7 +6398,7 @@
                          "type":"class",
                          "value":
                             {
-                             "command":"{\"gui_main_command\": {\"text\": \"No Chances\"}}"
+                             "command":"[\"gui_main_command\", \"set_text\",  \"No Chances\"]"
                             }
                         }],
                  "rotation":0,
@@ -9771,7 +9771,7 @@
                          "type":"class",
                          "value":
                             {
-                             "command":"{\"gui_main_command\": {\"text\": \"Ambush\"}}"
+                             "command":"[\"gui_main_command\", \"set_text\",  \"Ambush\"]"
                             }
                         }],
                  "rotation":0,
@@ -10009,7 +10009,7 @@
                          "type":"class",
                          "value":
                             {
-                             "command":"{\"gui_main_command\": {\"text\": \"Mini Rockets\"}}"
+                             "command":"[\"gui_main_command\", \"set_text\",  \"Mini Rockets\"]"
                             }
                         }],
                  "rotation":0,
@@ -10188,7 +10188,7 @@
                          "type":"class",
                          "value":
                             {
-                             "command":"{\"gui_main_command\": {\"text\": \"Shotgun\"}}"
+                             "command":"[\"gui_main_command\", \"set_text\", \"Shotgun\" ]"
                             }
                         }],
                  "rotation":0,
@@ -11668,7 +11668,7 @@
                          "type":"class",
                          "value":
                             {
-                             "command":"{\"gui_main_command\": {\"text\": \"Hellgun\"}}"
+                             "command":"[\"gui_main_command\", \"set_text\",  \"Hellgun\"]"
                             }
                         }],
                  "rotation":0,

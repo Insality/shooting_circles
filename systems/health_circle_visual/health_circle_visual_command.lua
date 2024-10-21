@@ -1,18 +1,7 @@
 local ecs = require("decore.ecs")
 local decore = require("decore.decore")
 
----@class entity
----@field health_circle_visual_command component.health_circle_visual_command|nil
-
----@class entity.health_circle_visual_command: entity
----@field health_circle_visual_command component.health_circle_visual_command
-
----@class component.health_circle_visual_command
----@field sprite_url string
----@field health_color string
-
 ---@class system.health_circle_visual_command: system
----@field entities entity.health_circle_visual_command[]
 ---@field health_circle_visual system.health_circle_visual
 local M = {}
 
@@ -34,25 +23,11 @@ end
 
 ---@param health_event event.health_event
 function M:process_health_event(health_event)
-
 	local entity = health_event.entity
 	if entity.health_circle_visual and health_event.damage then
 		local progress = entity.health.current_health / entity.health.health
-		---@type component.panthera_command
-		local panthera_command = {
-			entity = entity,
-			animation_id = "health",
-			progress = progress,
-		}
-		self.world:addEntity({ panthera_command = panthera_command })
-
-		---@type component.panthera_command
-		local panthera_command = {
-			entity = entity,
-			detached = true,
-			animation_id = "on_damage",
-		}
-		self.world:addEntity({ panthera_command = panthera_command })
+		self.world.panthera_command:set_progress(entity, "health", progress)
+		self.world.panthera_command:play_detached(entity, "on_damage")
 
 		-- Spawn damage number particle
 		local et = entity.transform or {}

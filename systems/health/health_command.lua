@@ -1,17 +1,9 @@
 local ecs = require("decore.ecs")
 
----@class entity
----@field health_command component.health_command|nil
-
----@class entity.health_command: entity
----@field health_command component.health_command
-
----@class component.health_command
----@field entity entity
----@field damage number|nil
+---@class world
+---@field health_command system.health_command
 
 ---@class system.health_command: system
----@field entities entity.health_command[]
 ---@field health system.health
 local M = {}
 
@@ -27,21 +19,25 @@ function M.create_system(health)
 end
 
 
----@param entity entity.health_command
-function M:onAdd(entity)
-	local command = entity.health_command
-	if command then
-		self:process_command(command)
-		self.world:removeEntity(entity)
-	end
+---@private
+function M:onAddToWorld()
+	self.world.health_command = self
 end
 
 
----@param command component.health_command
-function M:process_command(command)
-	if command.damage then
-		self.health:apply_damage(command.entity, command.damage)
-	end
+---@private
+function M:onRemoveFromWorld()
+	self.world.health_command = nil
+end
+
+
+---@param entity entity
+---@param damage number
+function M:apply_damage(entity, damage)
+	assert(entity.health, "Entity does not have a health_command component.")
+	---@cast entity entity.health
+
+	self.health:apply_damage(entity, damage)
 end
 
 
