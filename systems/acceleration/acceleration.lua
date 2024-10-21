@@ -38,14 +38,7 @@ function M:process(entity, dt)
 	local force_x = velocity_x * acceleration * dt
 	local force_y = velocity_y * acceleration * dt
 
-	-- Add force to the physics system
-	---@type component.physics_command
-	local physics_command = {
-		entity = entity,
-		force_x = force_x,
-		force_y = force_y
-	}
-	self.world:addEntity({ physics_command = physics_command })
+	self.world.physics_command:add_force(entity, force_x, force_y)
 end
 
 
