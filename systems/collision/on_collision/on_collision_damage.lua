@@ -1,4 +1,4 @@
-local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 
 ---@class entity
 ---@field on_collision_damage component.on_collision_damage|nil
@@ -17,24 +17,17 @@ local M = {}
 ---@static
 ---@return system.on_collision_damage
 function M.create_system()
-	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAny("collision_event")
-
+	local system = setmetatable(decore.ecs.system(), { __index = M })
 	return system
 end
 
 
----@param entity entity.on_collision_damage
-function M:onAdd(entity)
-	local collision_event = entity.collision_event
-	if collision_event then
-		self:process_collision_event(collision_event)
-		self.world:removeEntity(entity)
-	end
+function M:postWrap()
+	decore.queue:process("collision_event", self.process_collision_event, self)
 end
 
 
----@param collision_event component.collision_event
+---@param collision_event event.collision_event
 function M:process_collision_event(collision_event)
 	local entity = collision_event.entity
 	local on_collision_damage = entity.on_collision_damage

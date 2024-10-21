@@ -1,7 +1,10 @@
-local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 
-local collision_event = require("systems.collision.collision_event")
-
+---@class event.collision_event
+---@field entity entity
+---@field other entity
+---@field trigger_event physics.collision.trigger_event|nil
+---@field collision_event physics.collision.collision_event|nil
 
 ---@class system.collision: system
 ---@field root_to_entity table<url, entity>
@@ -10,16 +13,16 @@ local M = {}
 
 
 ---@static
----@return system.collision, system.collision_event
+---@return system.collision
 function M.create_system()
-	local system = setmetatable(ecs.processingSystem(), { __index = M })
-	system.filter = ecs.requireAll("game_object")
+	local system = setmetatable(decore.ecs.processingSystem(), { __index = M })
+	system.filter = decore.ecs.requireAll("game_object")
 	system.id = "collision"
 
 	system.root_to_entity = {}
 	system.collided_this_frame = {}
 
-	return system, collision_event.create_system()
+	return system
 end
 
 
@@ -105,13 +108,13 @@ function M.physics_world_listener(self, event, data)
 
 		local is_source_collided = self.collided_this_frame[entity_source] and self.collided_this_frame[entity_source][entity_target]
 		if entity_source and entity_source.collision and not is_source_collided then
-			---@type component.collision_event
-			local command = {
+			---@type event.collision_event
+			local collision_event = {
 				entity = entity_source,
 				other = entity_target,
 				collision_event = event_data
 			}
-			self.world:addEntity({ collision_event = command })
+			decore.queue:push("collision_event", collision_event)
 			if entity_target then
 				self.collided_this_frame[entity_source] = self.collided_this_frame[entity_source] or {}
 				self.collided_this_frame[entity_source][entity_target] = true
@@ -125,13 +128,13 @@ function M.physics_world_listener(self, event, data)
 
 		local is_target_collided = self.collided_this_frame[entity_target] and self.collided_this_frame[entity_target][entity_source]
 		if entity_target and entity_target.collision and not is_target_collided then
-			---@type component.collision_event
-			local command = {
+			---@type event.collision_event
+			local collision_event = {
 				entity = entity_target,
 				other = entity_source,
 				collision_event = event_data
 			}
-			self.world:addEntity({ collision_event = command })
+			decore.queue:push("collision_event", collision_event)
 			if entity_source then
 				self.collided_this_frame[entity_target] = self.collided_this_frame[entity_target] or {}
 				self.collided_this_frame[entity_target][entity_source] = true
@@ -150,23 +153,23 @@ function M.physics_world_listener(self, event, data)
 		local entity_target = self.root_to_entity[event_data.b.id]
 
 		if entity_source and entity_source.collision then
-			---@type component.collision_event
-			local command = {
+			---@type event.collision_event
+			local collision_event = {
 				entity = entity_source,
 				other = entity_target,
 				trigger_event = event_data
 			}
-			self.world:addEntity({ collision_event = command })
+			decore.queue:push("collision_event", collision_event)
 		end
 
 		if entity_target and entity_target.collision then
-			---@type component.collision_event
-			local command = {
+			---@type event.collision_event
+			local collision_event = {
 				entity = entity_target,
 				other = entity_source,
 				trigger_event = event_data
 			}
-			self.world:addEntity({ collision_event = command })
+			decore.queue:push("collision_event", collision_event)
 		end
 	elseif event == RAY_CAST_RESPONSE then
 		-- Handle raycast hit data

@@ -1,4 +1,3 @@
-local ecs = require("decore.ecs")
 local decore = require("decore.decore")
 
 ---@class entity
@@ -22,8 +21,8 @@ local M = {}
 ---@static
 ---@return system.on_collision_explosion
 function M.create_system()
-	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAny("collision_event", "physics")
+	local system = setmetatable(decore.ecs.system(), { __index = M })
+	system.filter = decore.ecs.requireAny("physics")
 	system.physic_entities = {}
 
 	return system
@@ -32,18 +31,17 @@ end
 
 ---@param entity entity.on_collision_explosion
 function M:onAdd(entity)
-	local collision_event = entity.collision_event
-	if collision_event then
-		self:process_collision_event(collision_event)
-		self.world:removeEntity(entity)
-	end
-
 	-- This is attempt to split logic here and don't make second system file...
 	-- So here is a list of entities with physics component
 	local physics = entity.physics
 	if physics then
 		table.insert(self.physic_entities, entity)
 	end
+end
+
+
+function M:postWrap()
+	decore.queue:process("collision_event", self.process_collision_event, self)
 end
 
 
@@ -60,7 +58,7 @@ function M:onRemove(entity)
 end
 
 
----@param collision_event component.collision_event
+---@param collision_event event.collision_event
 function M:process_collision_event(collision_event)
 	local entity = collision_event.entity
 

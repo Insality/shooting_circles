@@ -1,4 +1,4 @@
-local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 
 ---@class entity
 ---@field game_object_command component.game_object_command|nil
@@ -20,8 +20,8 @@ local TEMP_VECTOR = vmath.vector3()
 ---@static
 ---@return system.game_object_command
 function M.create_system(game_object)
-	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAny("game_object_command", "transform_event")
+	local system = setmetatable(decore.ecs.system(), { __index = M })
+	system.filter = decore.ecs.requireAny("game_object_command")
 	system.id = "game_object_command"
 	system.game_object = game_object
 
@@ -29,19 +29,19 @@ function M.create_system(game_object)
 end
 
 
----@param entity entity.game_object_command|entity.transform_event
+---@param entity entity.game_object_command
 function M:onAdd(entity)
 	local command = entity.game_object_command
 	if command then
 		self:process_command(command)
 	end
 
-	local transform_event = entity.transform_event
-	if transform_event and self.game_object.indices[transform_event.entity] then
-		self:process_transform_event(transform_event)
-	end
-
 	self.world:removeEntity(entity)
+end
+
+
+function M:postWrap()
+	decore.queue:process("transform_event", self.process_transform_event, self)
 end
 
 

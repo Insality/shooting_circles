@@ -35,7 +35,7 @@ local M = {}
 ---@return system.camera_command
 function M.create_system(camera_system)
 	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAny("camera_command", "window_event", "transform_event")
+	system.filter = ecs.requireAny("camera_command")
 	system.id = "camera_command"
 
 	system.camera = camera_system
@@ -51,28 +51,36 @@ function M:onAdd(entity)
 		return
 	end
 
-	local window_event = entity.window_event
-	if window_event then
-		if window_event.is_resized then
-			self.camera:update_camera_position(self.camera.camera)
-			self.camera:update_camera_zoom(self.camera.camera)
-		end
-	end
-
-	local transform_event = entity.transform_event
-	if transform_event then
-		if transform_event.is_position_changed then
-			self.camera:update_camera_position(self.camera.camera, transform_event.animate_time, transform_event.easing)
-		end
-		if transform_event.is_size_changed then
-			self.camera:update_camera_zoom(self.camera.camera, transform_event.animate_time, transform_event.easing)
-		end
-	end
-
 	local command = entity.camera_command
 	if self.camera and command then
 		self:process_command(command)
 		self.world:removeEntity(entity)
+	end
+end
+
+
+function M:postWrap()
+	decore.queue:process("window_event", self.process_window_event, self)
+	decore.queue:process("transform_event", self.process_transform_event, self)
+end
+
+
+---@param window_event event.window_event
+function M:process_window_event(window_event)
+	if window_event.is_resized then
+		self.camera:update_camera_position(self.camera.camera)
+		self.camera:update_camera_zoom(self.camera.camera)
+	end
+end
+
+
+---@param transform_event event.transform_event
+function M:process_transform_event(transform_event)
+	if transform_event.is_position_changed then
+		self.camera:update_camera_position(self.camera.camera, transform_event.animate_time, transform_event.easing)
+	end
+	if transform_event.is_size_changed then
+		self.camera:update_camera_zoom(self.camera.camera, transform_event.animate_time, transform_event.easing)
 	end
 end
 

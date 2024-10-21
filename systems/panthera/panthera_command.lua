@@ -1,4 +1,4 @@
-local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 local panthera = require("panthera.panthera")
 
 ---@class entity
@@ -23,8 +23,8 @@ local M = {}
 ---@static
 ---@return system.panthera_command
 function M.create_system(panthera)
-	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAny("panthera_command", "window_event")
+	local system = setmetatable(decore.ecs.system(), { __index = M })
+	system.filter = decore.ecs.requireAny( "panthera_command" )
 	system.id = "panthera_command"
 
 	system.panthera = panthera
@@ -40,14 +40,20 @@ function M:onAdd(entity)
 		self:process_command(command)
 	end
 
-	local window_event = entity.window_event
-	if window_event then
-		if window_event.is_focus_gained then
-			panthera.reload_animation()
-		end
-	end
-
 	self.world:removeEntity(entity)
+end
+
+
+function M:postWrap()
+	decore.queue:process("window_event", self.process_window_event, self)
+end
+
+
+---@param window_event event.window_event
+function M:process_window_event(window_event)
+	if window_event.is_focus_gained then
+		panthera.reload_animation()
+	end
 end
 
 
