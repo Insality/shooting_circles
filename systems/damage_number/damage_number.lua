@@ -8,9 +8,7 @@ local ecs = require("decore.ecs")
 ---@field game_object component.game_object
 ---@field transform component.transform
 
----@class component.damage_number
----@field damage number
----@field label_url url
+---@class component.damage_number: number
 
 ---@class system.damage_number: system
 ---@field entities entity.damage_number[]
@@ -37,8 +35,8 @@ function M:onAdd(entity)
 	local height = math.random(50, 100)
 
 	-- Set damage text
-	entity.damage_number.label_url = self:get_component_url(entity.game_object.object, "/root#label")
-	label.set_text(entity.damage_number.label_url, tostring(entity.damage_number.damage))
+	local label_url = self:get_component_url(entity.game_object.object, "/root#label")
+	label.set_text(label_url, tostring(entity.damage_number))
 	local root = entity.game_object.root
 
 	local t = entity.transform
@@ -64,8 +62,8 @@ function M:onAdd(entity)
 		go.animate(root, "scale.y", go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_INSINE, time_2, 0)
 	end)
 
-	go.animate(entity.damage_number.label_url, "color.w", go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_OUTSINE, time_2 + time_1)
-	go.animate(entity.damage_number.label_url, "outline.w", go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_OUTSINE, time_2 + time_1)
+	go.animate(label_url, "color.w", go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_OUTSINE, time_2 + time_1)
+	go.animate(label_url, "outline.w", go.PLAYBACK_ONCE_FORWARD, 0, go.EASING_OUTSINE, time_2 + time_1)
 end
 
 

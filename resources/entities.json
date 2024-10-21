@@ -24,9 +24,7 @@
 			"game_object": {
 				"factory_url": "/spawner/spawner#damage_number"
 			},
-			"damage_number": {
-				"amount": 1
-			}
+			"damage_number": 1
 		},
 
 		"bullet_sniper": {
