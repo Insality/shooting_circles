@@ -48,12 +48,10 @@ function M:process_command(command)
 		entity.color.color = color
 		entity.color_command = nil
 
-		---@type component.color_event
-		local color_event = {
+		self.world.queue:push("color_event", {
 			entity = entity,
 			color = color,
-		}
-		self.world:addEntity({ color_event = color_event })
+		})
 	end
 end
 
