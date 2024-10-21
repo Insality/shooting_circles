@@ -27,13 +27,13 @@ end
 
 ---@param entity entity.target_tracker
 function M:onAdd(entity)
-	decore.queue:push("target_tracker_event", #self.entities)
+	self.world.queue:push("target_tracker_event", #self.entities)
 end
 
 
 ---@param entity entity.target_tracker
 function M:onRemove(entity)
-	decore.queue:push("target_tracker_event", #self.entities)
+	self.world.queue:push("target_tracker_event", #self.entities)
 end
 
 

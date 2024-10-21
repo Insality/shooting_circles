@@ -1,5 +1,4 @@
 local ecs = require("decore.ecs")
-local decore = require("decore.decore")
 
 ---@class system.queue: system
 local M = {}
@@ -16,7 +15,7 @@ end
 
 
 function M:postWrap()
-	decore.queue:stash_to_events()
+	self.world.queue:stash_to_events()
 end
 
 

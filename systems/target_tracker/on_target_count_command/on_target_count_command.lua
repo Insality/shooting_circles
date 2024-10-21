@@ -27,7 +27,7 @@ end
 
 
 function M:postWrap()
-	decore.queue:process("target_tracker_event", self.process_target_tracker_event, self)
+	self.world.queue:process("target_tracker_event", self.process_target_tracker_event, self)
 end
 
 

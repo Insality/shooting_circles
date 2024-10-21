@@ -26,7 +26,7 @@ end
 
 
 function M:postWrap()
-	decore.queue:process("health_event", self.process_health_event, self)
+	self.world.queue:process("health_event", self.process_health_event, self)
 end
 
 

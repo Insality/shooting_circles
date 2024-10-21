@@ -1,9 +1,9 @@
 local log = require("log.log")
-local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 
 local system_queue = require("systems.queue.queue")
 local system_debug = require("systems.debug.debug")
-local system_window_event = require("systems.window.window_event")
+local system_window_event = require("systems.window_event.window_event")
 local system_transform = require("systems.transform.transform")
 local system_game_object = require("systems.game_object.game_object")
 local system_color = require("systems.color.color")
@@ -91,7 +91,7 @@ end
 
 ---@param self scene.game
 function init(self)
-	self.world = ecs.world()
+	self.world = decore.world()
 
 	load_systems(self.world)
 	load_level(self, "game")
@@ -121,13 +121,8 @@ end
 
 ---@param self scene.game
 ---@param action_id hash
----@param action table
+---@param action action
 function on_input(self, action_id, action)
-	---@type component.input_event
-	local input_event = {
-		action_id = action_id,
-		action = action,
-	}
-
-	self.world:addEntity({ input_event = input_event })
+	action.action_id = action_id
+	self.world.queue:push("input_event", action)
 end

@@ -45,7 +45,7 @@ end
 
 
 function M:postWrap()
-	decore.queue:process("window_event", self.process_window_event, self)
+	self.world.queue:process("window_event", self.process_window_event, self)
 end
 
 

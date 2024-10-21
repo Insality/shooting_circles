@@ -86,7 +86,7 @@ function M:process_command(command)
 			animate_time = command.animate_time,
 			easing = command.easing
 		}
-		decore.queue:push("transform_event", transform_event)
+		self.world.queue:push("transform_event", transform_event)
 	end
 end
 

@@ -44,7 +44,7 @@ function M:apply_damage(entity, damage)
 	local health = entity.health
 	if health then
 		health.current_health = math.max(0, health.current_health - damage)
-		decore.queue:push("health_event", { entity = entity, damage = damage })
+		self.world.queue:push("health_event", { entity = entity, damage = damage })
 	end
 end
 

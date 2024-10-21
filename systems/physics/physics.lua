@@ -67,7 +67,7 @@ function M:process(entity, dt)
 		transform.position_x = position.x
 		transform.position_y = position.y
 
-		decore.queue:push("transform_event", {
+		self.world.queue:push("transform_event", {
 			entity = entity,
 			is_position_changed = true
 		})

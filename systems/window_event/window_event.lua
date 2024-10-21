@@ -39,7 +39,7 @@ function M:on_window_event(event)
 		is_focus_lost = event == window.WINDOW_EVENT_FOCUS_LOST,
 		is_resized = event == window.WINDOW_EVENT_RESIZED,
 	}
-	decore.queue:push("window_event", window_event)
+	self.world.queue:push("window_event", window_event)
 end
 
 

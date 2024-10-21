@@ -24,7 +24,7 @@ end
 
 
 function M:postWrap()
-	decore.queue:process("collision_event", self.process_collision_event, self)
+	self.world.queue:process("collision_event", self.process_collision_event, self)
 end
 
 

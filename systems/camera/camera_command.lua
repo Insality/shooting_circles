@@ -60,8 +60,8 @@ end
 
 
 function M:postWrap()
-	decore.queue:process("window_event", self.process_window_event, self)
-	decore.queue:process("transform_event", self.process_transform_event, self)
+	self.world.queue:process("window_event", self.process_window_event, self)
+	self.world.queue:process("transform_event", self.process_transform_event, self)
 end
 
 

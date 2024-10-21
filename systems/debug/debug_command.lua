@@ -8,6 +8,7 @@ local ecs = require("decore.ecs")
 
 ---@class component.debug_command
 ---@field toggle_profiler boolean|nil
+---@field toggle_memory_record boolean|nil
 ---@field restart boolean|nil
 ---@field reset_game boolean|nil
 
@@ -46,6 +47,12 @@ function M:process_command(entity, command)
 	if command.toggle_profiler then
 		for _, e in ipairs(self.debug.entities) do
 			self.debug:toggle_profiler(e)
+		end
+	end
+
+	if command.toggle_memory_record then
+		for _, e in ipairs(self.debug.entities) do
+			self.debug:toggle_memory_record(e)
 		end
 	end
 
