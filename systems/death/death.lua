@@ -1,19 +1,30 @@
 local ecs = require("decore.ecs")
 
-local death_command = require("systems.death.death_command")
-
----@class entity
-
 ---@class system.death: system
 local M = {}
 
 
 ---@static
----@return system.death, system.death_command
+---@return system.death
 function M.create_system()
-	local system = setmetatable(ecs.system(), { __index = M })
+	return setmetatable(ecs.system(), { __index = M })
+end
 
-	return system, death_command.create_system(system)
+
+function M:postWrap()
+	self.world.queue:process("health_event", self.process_health_event, self)
+end
+
+
+---@param health_event event.health_event
+function M:process_health_event(health_event)
+	if not health_event.damage then
+		return
+	end
+
+	if health_event.entity.health.current_health == 0 then
+		self.world:removeEntity(health_event.entity)
+	end
 end
 
 

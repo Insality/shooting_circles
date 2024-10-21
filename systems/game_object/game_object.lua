@@ -1,7 +1,5 @@
 local ecs = require("decore.ecs")
 
-local game_object_command = require("systems.game_object.game_object_command")
-
 ---@class entity
 ---@field hidden boolean|nil
 ---@field game_object component.game_object|nil
@@ -26,14 +24,19 @@ local ROOT_URL = hash("/root")
 
 
 ---@static
----@return system.game_object, system.game_object_command
+---@return system.game_object
 function M.create_system()
 	---@type system.game_object
 	local system = setmetatable(ecs.system(), { __index = M })
 	system.filter = ecs.requireAll("game_object", "transform", ecs.rejectAll("hidden"))
 	system.id = "game_object"
 
-	return system, game_object_command.create_system(system)
+	return system
+end
+
+
+function M:postWrap()
+	self.world.queue:process("transform_event", self.process_transform_event, self)
 end
 
 
@@ -84,6 +87,32 @@ function M:onRemove(entity)
 		end)
 	end
 end
+
+
+---@param transform_event event.transform_event
+function M:process_transform_event(transform_event)
+	local target_entity = transform_event.entity
+	local game_object = target_entity.game_object
+	if not game_object or target_entity.physics then
+		return
+	end
+
+	local root = target_entity.game_object.root
+	if root and transform_event.is_position_changed then
+		TEMP_VECTOR.x = target_entity.transform.position_x
+		TEMP_VECTOR.y = target_entity.transform.position_y
+		TEMP_VECTOR.z = target_entity.transform.position_z
+
+		local animate_time = transform_event.animate_time
+		if animate_time then
+			local easing = transform_event.easing or go.EASING_LINEAR
+			go.animate(target_entity.game_object.root, "position", go.PLAYBACK_ONCE_FORWARD, TEMP_VECTOR, easing, animate_time)
+		else
+			go.set_position(TEMP_VECTOR, root)
+		end
+	end
+end
+
 
 
 ---@param entity entity.game_object
