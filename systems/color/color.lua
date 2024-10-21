@@ -1,7 +1,6 @@
 local ecs = require("decore.ecs")
 
 local color_command = require("systems.color.color_command")
-local color_event = require("systems.color.color_event")
 
 ---@class entity
 ---@field color component.color|nil
@@ -15,19 +14,23 @@ local color_event = require("systems.color.color_event")
 ---@field color vector4|nil
 ---@field sprite_url string @"/root#sprite" or "/root#sprite,/root#sprite2"
 
+---@class event.color_event
+---@field entity entity
+---@field color vector4
+
 ---@class system.color: system
 ---@field entities entity.color[]
 local M = {}
 
 
 ---@static
----@return system.color, system.color_command, system.color_event
+---@return system.color, system.color_command
 function M.create_system()
 	local system = setmetatable(ecs.system(), { __index = M })
 	system.filter = ecs.requireAll("color", "game_object")
 	system.id = "color"
 
-	return system, color_command.create_system(system), color_event.create_system()
+	return system, color_command.create_system(system)
 end
 
 

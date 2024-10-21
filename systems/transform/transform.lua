@@ -1,4 +1,4 @@
-local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 
 local transform_command = require("systems.transform.transform_command")
 
@@ -39,11 +39,33 @@ local M = {}
 ---@static
 ---@return system.transform, system.transform_command
 function M.create_system()
-	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAll("transform")
+	local system = setmetatable(decore.ecs.system(), { __index = M })
+	system.filter = decore.ecs.requireAll("transform")
 	system.id = "transform"
 
 	return system, transform_command.create_system(system)
+end
+
+
+function M:onAddToWorld()
+	self.world.queue:set_merge_policy("transform_event", function(events, event)
+		---@cast events event.transform_event[]
+		---@cast event event.transform_event
+
+		for index = #events, 1, -1 do
+			local compare_event = events[index]
+			if compare_event.entity == event.entity then
+				compare_event.is_position_changed = compare_event.is_position_changed or event.is_position_changed
+				compare_event.is_scale_changed = compare_event.is_scale_changed or event.is_scale_changed
+				compare_event.is_rotation_changed = compare_event.is_rotation_changed or event.is_rotation_changed
+				compare_event.is_size_changed = compare_event.is_size_changed or event.is_size_changed
+
+				return true
+			end
+		end
+
+		return false
+	end)
 end
 
 
