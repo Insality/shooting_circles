@@ -1,7 +1,8 @@
 ---Download Defold annotations from here: https://github.com/astrochili/defold-annotations/releases/
 
 ---@class entity
----@field id number @Unique entity id, autofilled by decore.create_entity
+---@field parent_prefab_id string|nil The parent prefab_id, used for prefab inheritance
+---@field id number|nil @Unique entity id, autofilled by decore.create_entity
 ---@field name string|nil @The entity name
 ---@field prefab_id string|nil @The entity id from decore collections, autofilled by decore.create_entity
 ---@field pack_id string|nil @The entity id from decore collections, autofilled by decore.create_entity
@@ -106,14 +107,6 @@
 ---@class decore.world.instance
 ---@field included_worlds decore.world.instance_id[]|nil
 ---@field entities decore.entities_pack_data.instance[]
-
----Logger interface
----@class decore.logger
----@field trace fun(logger: decore.logger, message: string, data: any|nil)
----@field debug fun(logger: decore.logger, message: string, data: any|nil)
----@field info fun(logger: decore.logger, message: string, data: any|nil)
----@field warn fun(logger: decore.logger, message: string, data: any|nil)
----@field error fun(logger: decore.logger, message: string, data: any|nil)
 
 
 

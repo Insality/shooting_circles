@@ -1,0 +1,62 @@
+---@class event.queue
+---@field events table<string, table> The current list of events
+---@field stash table<string, table> The list of events to be processed after :stash_to_events() is called
+local M = {}
+
+
+---Creates a new event queue.
+---@return event.queue
+function M.create()
+	local instance = {
+		events = {},
+		stash = {},
+	}
+
+	return setmetatable(instance, { __index = M })
+end
+
+
+---Pushes an event onto the queue, triggering it and processing the queue of callbacks.
+---@param event_name string The name of the event to push onto the queue.
+---@param data any The data to pass to the event and its associated callbacks.
+function M:push(event_name, data)
+	self.stash[event_name] = self.stash[event_name] or {}
+	table.insert(self.stash[event_name], data)
+end
+
+
+---Processes a specified event, executing the callback function with the provided context.
+---@param event_name string The name of the event to process.
+---@param callback fun(...) The callback function to execute.
+---@param context any|nil The context in which to execute the callback.
+function M:process(event_name, callback, context)
+	local event_data = self.events[event_name]
+	if not event_data then
+		return
+	end
+
+	if context then
+		for i = 1, #event_data do
+			callback(context, event_data[i])
+		end
+	else
+		for i = 1, #event_data do
+			callback(event_data[i])
+		end
+	end
+end
+
+
+function M:clear_events()
+	self.events = {}
+end
+
+
+function M:stash_to_events()
+	self.events = self.stash
+	self.stash = {}
+end
+
+
+local global_queue = M.create()
+return global_queue

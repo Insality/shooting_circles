@@ -2,6 +2,14 @@ local TYPE_STRING = "string"
 
 local M = {}
 
+---Logger interface
+---@class decore.logger
+---@field trace fun(logger: decore.logger, message: string, data: any|nil)
+---@field debug fun(logger: decore.logger, message: string, data: any|nil)
+---@field info fun(logger: decore.logger, message: string, data: any|nil)
+---@field warn fun(logger: decore.logger, message: string, data: any|nil)
+---@field error fun(logger: decore.logger, message: string, data: any|nil)
+
 --- Use empty function to save a bit of memory
 local EMPTY_FUNCTION = function(_, message, context) end
 
@@ -15,7 +23,13 @@ M.empty_logger = {
 }
 
 ---@type decore.logger
-M.logger = M.empty_logger
+M.logger = {
+	trace = function(_, msg) print("TRACE: " .. msg) end,
+	debug = function(_, msg, data) pprint("DEBUG: " .. msg, data) end,
+	info = function(_, msg, data) pprint("INFO: " .. msg, data) end,
+	warn = function(_, msg, data) pprint("WARN: " .. msg, data) end,
+	error = function(_, msg, data) pprint("ERROR: " .. msg, data) end
+}
 
 
 ---Split string by separator
@@ -76,21 +90,21 @@ function M.load_json(json_path)
 end
 
 
----@param data_or_path table|string
+---@param config_or_path table|string
 ---@return table|nil
-function M.get_data_if_path(data_or_path)
-	if type(data_or_path) == TYPE_STRING then
-		local entities_path = data_or_path --[[@as string]]
+function M.load_config(config_or_path)
+	if type(config_or_path) == TYPE_STRING then
+		local entities_path = config_or_path --[[@as string]]
 		local entities_data = M.load_json(entities_path)
 		if not entities_data then
-			M.logger:error("Can't load entities pack", data_or_path)
+			M.logger:error("Can't load entities pack", config_or_path)
 			return nil
 		end
 
 		return entities_data
 	end
 
-	return data_or_path --[[@as table]]
+	return config_or_path --[[@as table]]
 end
 
 
@@ -107,32 +121,6 @@ function M.remove_by_value(t, v)
 	end
 
 	return false
-end
-
-
----@param world world
----@param component_id string
----@param component_value any
----@return entity[]
-function M.find_entities_by_component_value(world, component_id, component_value)
-	local entities = {}
-
-	for index = 1, #world.entities do
-		local entity = world.entities[index]
-		if entity[component_id] and entity[component_id] == component_value then
-			table.insert(entities, entity)
-		end
-	end
-
-	for index = 1, #world.entitiesToChange do
-		local entity = world.entitiesToChange[index]
-
-		if entity[component_id] and entity[component_id] == component_value then
-			table.insert(entities, entity)
-		end
-	end
-
-	return entities
 end
 
 

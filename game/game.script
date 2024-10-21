@@ -1,6 +1,7 @@
 local log = require("log.log")
 local ecs = require("decore.ecs")
 
+local system_queue = require("systems.queue.queue")
 local system_debug = require("systems.debug.debug")
 local system_window_event = require("systems.window.window_event")
 local system_transform = require("systems.transform.transform")
@@ -40,6 +41,7 @@ local logger = log.get_logger("scene.game")
 
 ---@param world world
 local function load_systems(world)
+	world:add(system_queue.create_system())
 	world:add(system_debug.create_system())
 	world:add(system_window_event.create_system())
 	world:add(system_input.create_system())

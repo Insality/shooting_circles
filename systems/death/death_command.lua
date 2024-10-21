@@ -1,4 +1,5 @@
 local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 
 ---@class entity
 ---@field death_command component.death_command|nil
@@ -18,23 +19,18 @@ local M = {}
 ---@return system.death_command
 function M.create_system(death)
 	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAny("health_event")
 	system.death = death
 
 	return system
 end
 
 
----@param entity entity.death_command
-function M:onAdd(entity)
-	local health_event = entity.health_event
-	if health_event then
-		self:process_health_event(health_event)
-	end
+function M:postWrap()
+	decore.queue:process("health_event", self.process_health_event, self)
 end
 
 
----@param health_event component.health_event
+---@param health_event event.health_event
 function M:process_health_event(health_event)
 	if health_event.damage then
 		if health_event.entity.health.current_health == 0 then

@@ -21,24 +21,20 @@ local M = {}
 ---@return system.health_circle_visual_command
 function M.create_system(health_circle_visual)
 	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAny("health_event")
 	system.health_circle_visual = health_circle_visual
 
 	return system
 end
 
 
----@param entity entity.health_circle_visual_command
-function M:onAdd(entity)
-	local health_event = entity.health_event
-	if health_event then
-		self:process_health_event(health_event)
-	end
+function M:postWrap()
+	decore.queue:process("health_event", self.process_health_event, self)
 end
 
 
----@param health_event component.health_event
+---@param health_event event.health_event
 function M:process_health_event(health_event)
+
 	local entity = health_event.entity
 	if entity.health_circle_visual and health_event.damage then
 		local progress = entity.health.current_health / entity.health.health
@@ -59,20 +55,18 @@ function M:process_health_event(health_event)
 		self.world:addEntity({ panthera_command = panthera_command })
 
 		-- Spawn damage number particle
-		local damage_number_entity = decore.create_entity("damage_number")
-		if damage_number_entity then
-			local t = damage_number_entity.transform
-			local et = entity.transform
-			if et then
-				t.position_x = et.position_x
-				t.position_y = et.position_y + et.size_y/2
-				t.position_z = et.position_z
-			end
-
-			damage_number_entity.damage_number.damage = math.abs(health_event.damage)
-
-			self.world:addEntity(damage_number_entity)
-		end
+		local et = entity.transform or {}
+		local damage_number_entity = decore.create_entity("damage_number", nil, {
+			transform = {
+				position_x = et.position_x,
+				position_y = et.position_y + et.size_y/2,
+				position_z = et.position_z,
+			},
+			damage_number = {
+				damage = math.abs(health_event.damage),
+			},
+		})
+		self.world:addEntity(damage_number_entity)
 	end
 end
 

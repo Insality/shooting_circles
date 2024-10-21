@@ -1,13 +1,14 @@
 local decore_data = require("decore.decore_data")
 local decore_internal = require("decore.decore_internal")
 
+local TYPE_TABLE = "table"
+local IS_PREHASH_ENTITIES_ID = sys.get_config_int("decore.is_prehash", 0) == 1
 
 ---@class decore
 local M = {}
-local TYPE_TABLE = "table"
 
 
----@param logger_instance decore.logger|nil
+---@param logger_instance decore.logger|table|nil
 function M.set_logger(logger_instance)
 	decore_internal.logger = logger_instance or decore_internal.empty_logger
 end
@@ -27,33 +28,40 @@ end
 ---@param entities_data_or_path decore.entities_pack_data|string
 ---@return boolean
 function M.register_entities(entities_data_or_path)
-	local entities_pack_data = decore_internal.get_data_if_path(entities_data_or_path)
+	local entities_pack_data = decore_internal.load_config(entities_data_or_path)
 	if not entities_pack_data then
 		return false
+	end
+
+	if IS_PREHASH_ENTITIES_ID then
+		for prefab_id, entity_data in pairs(entities_pack_data.entities) do
+			entities_pack_data.entities[hash(prefab_id)] = entity_data
+		end
 	end
 
 	local pack_id = entities_pack_data.pack_id
 
 	if not decore_data.entities[pack_id] then
 		decore_data.entities[pack_id] = entities_pack_data.entities
-
-		for prefab_id, entity_data in pairs(entities_pack_data.entities) do
-			entity_data.prefab_id = prefab_id
-			entity_data.pack_id = pack_id
-		end
-
 		table.insert(decore_data.entities_order, pack_id)
 	else
-		-- Merge entities, if exists - override
+		-- Merge entities, if conflict - throw error
 		for prefab_id, entity_data in pairs(entities_pack_data.entities) do
-			decore_data.entities[pack_id][prefab_id] = entity_data
+			if not decore_data.entities[pack_id][prefab_id] then
+				decore_data.entities[pack_id][prefab_id] = entity_data
 
-			entity_data.prefab_id = prefab_id
-			entity_data.pack_id = pack_id
+				entity_data.prefab_id = prefab_id
+				entity_data.pack_id = pack_id
+			else
+				decore_internal.logger:error("Entity with the same id already exists in the pack", {
+					pack_id = pack_id,
+					prefab_id = prefab_id,
+				})
+			end
 		end
 	end
 
-	decore_internal.logger:debug("Registered entities pack id", pack_id)
+	decore_internal.logger:debug("Load entities pack id", pack_id)
 	return true
 end
 
@@ -74,7 +82,7 @@ end
 
 
 ---Create entity instance from prefab
----@param prefab_id string
+---@param prefab_id string|hash
 ---@param pack_id string|nil
 ---@return entity|nil
 function M.create_entity(prefab_id, pack_id)
@@ -84,7 +92,16 @@ function M.create_entity(prefab_id, pack_id)
 
 		local prefab = entities_pack[prefab_id]
 		if prefab and (not pack_id or pack_id == check_pack_id) then
-			local entity = {}
+			local entity
+
+			-- Use parent entity as template
+			if prefab.parent_prefab_id then
+				local parent_entity = M.create_entity(prefab.parent_prefab_id)
+				if parent_entity then
+					entity = parent_entity
+				end
+			end
+			entity = entity or {}
 
 			for component_id, prefab_data in pairs(prefab) do
 				M.apply_component(entity, component_id, prefab_data)
@@ -106,8 +123,10 @@ end
 ---Register component to decore components
 ---@param component_id string
 ---@param component_data any
----@param pack_id string
+---@param pack_id string|nil @default "decore"
 function M.register_component(component_id, component_data, pack_id)
+	pack_id = pack_id or "decore"
+
 	if not decore_data.components[pack_id] then
 		decore_data.components[pack_id] = {}
 		table.insert(decore_data.components_order, pack_id)
@@ -118,31 +137,30 @@ end
 
 
 ---Register components pack to decore components
----@param components_data_or_path decore.components_pack_data|string
+---@param components_data_or_path decore.components_pack_data|string @if string, load data from JSON file from custom resources
 ---@return boolean
 function M.register_components(components_data_or_path)
-	local components_pack_data = decore_internal.get_data_if_path(components_data_or_path)
+	local components_pack_data = decore_internal.load_config(components_data_or_path)
 	if not components_pack_data then
 		return false
 	end
 
 	local pack_id = components_pack_data.pack_id
 
-	if not decore_data.components[pack_id] then
-		decore_data.components[pack_id] = components_pack_data.components
-		table.insert(decore_data.components_order, pack_id)
-	else
-		-- Merge components, if exists - override
-		for component_id, component_data in pairs(components_pack_data.components) do
-			decore_data.components[pack_id][component_id] = component_data
-		end
+	if decore_data.components[pack_id] then
+		decore_internal.logger:info("The components pack with the same id already loaded", pack_id)
+		return false
 	end
 
-	decore_internal.logger:debug("Registered components pack id", pack_id)
+	decore_data.components[pack_id] = components_pack_data.components
+	table.insert(decore_data.components_order, pack_id)
+
+	decore_internal.logger:debug("Load components pack id", pack_id)
 	return true
 end
 
 
+---Unload components pack from decore components
 ---@param pack_id string
 function M.unregister_components(pack_id)
 	if not decore_data.components[pack_id] then
@@ -157,9 +175,10 @@ function M.unregister_components(pack_id)
 end
 
 
+---Return new component instance from prefab
 ---@param component_id string
----@param component_pack_id string|nil
----@return any
+---@param component_pack_id string|nil @if nil, use first found from latest loaded pack
+---@return any|nil @return nil if component not found
 function M.create_component(component_id, component_pack_id)
 	for index = #decore_data.components_order, 1, -1 do
 		local pack_id = decore_data.components_order[index]
@@ -175,10 +194,11 @@ function M.create_component(component_id, component_pack_id)
 		end
 	end
 
-	decore_internal.logger:error("No component with id", {
+	decore_internal.logger:error("No component_id in components data", {
 		component_id = component_id,
 		component_pack_id = component_pack_id
 	})
+	decore_internal.logger:debug("Traceback", debug.traceback())
 
 	return nil
 end
@@ -190,9 +210,11 @@ end
 ---To refresh system filters, call world:addEntity(entity) after this function
 ---@param entity entity
 ---@param component_id string
----@param component_data any
+---@param component_data any|nil @if nil, create component with default values
 ---@return entity
 function M.apply_component(entity, component_id, component_data)
+	component_data = component_data or {}
+
 	if not entity[component_id] then
 		-- Create default component with default values if not exists
 		entity[component_id] = M.create_component(component_id)
@@ -225,7 +247,7 @@ end
 ---@param world_data_or_path decore.worlds_pack_data|string
 ---@return boolean, string|nil
 function M.register_worlds(world_data_or_path)
-	local world_pack_data = decore_internal.get_data_if_path(world_data_or_path)
+	local world_pack_data = decore_internal.load_config(world_data_or_path)
 	if not world_pack_data then
 		return false
 	end
@@ -324,91 +346,88 @@ end
 
 
 ---@param world world
----@param world_id string
----@param world_pack_id string|nil
----@param offset_x number|nil
----@param offset_y number|nil
-function M.spawn_world(world, world_id, world_pack_id, offset_x, offset_y)
-	local entities = M.create_world(world_id, world_pack_id)
-	if not entities then
-		return
-	end
-
-	offset_x = offset_x or 0
-	offset_y = offset_y or 0
-
-	for index = 1, #entities do
-		local new_entity = entities[index]
-
-		if new_entity.transform then
-			new_entity.transform.position_x = new_entity.transform.position_x + offset_x
-			new_entity.transform.position_y = new_entity.transform.position_y + offset_y
-		end
-
-		world:addEntity(new_entity)
-	end
-end
-
-
----@param world world
 ---@param id number
 ---@return entity|nil
 function M.get_entity_by_id(world, id)
-	return decore_internal.find_entities_by_component_value(world, "id", id)[1]
+	return M.find_entities_by_component_value(world, "id", id)[1]
 end
 
 
----Return all entities with component name equal to entity_name
+---Return all entities with component_id equal to component_value or all entities with component_id if component_value is nil.
+---It looks for component_id in entity and entityToChange tables
 ---@param world world
----@param entity_name string
+---@param component_id string
+---@param component_value any|nil @if nil, return all entities with component_id
 ---@return entity[]
-function M.get_entities_with_name(world, entity_name)
-	return decore_internal.find_entities_by_component_value(world, "name", entity_name)
+function M.find_entities_by_component_value(world, component_id, component_value)
+	local entities = {}
+
+	for index = 1, #world.entities do
+		local entity = world.entities[index]
+		if entity[component_id] and (not component_value or entity[component_id] == component_value) then
+			table.insert(entities, entity)
+		end
+	end
+
+	for index = 1, #world.entitiesToChange do
+		local entity = world.entitiesToChange[index]
+		if entity[component_id] and (not component_value or entity[component_id] == component_value) then
+			table.insert(entities, entity)
+		end
+	end
+
+	return entities
 end
 
 
----Return all entities with component tiled_id equal to entity_name
----@param world world
----@param tiled_id number
----@return entity[]
-function M.get_entities_with_tiled_id(world, tiled_id)
-	return decore_internal.find_entities_by_component_value(world, "tiled_id", tiled_id)
+---Return if entity is alive in the system
+---@param system system
+---@param entity entity
+function M.is_alive(system, entity)
+	return system.indices[entity] ~= nil
 end
 
 
----Return all entities which is instance of prefab_id
----It should have a prefab_id component with value equal to prefab_id
----@param world world
----@param prefab_id string
----@return entity[]
-function M.get_entities_by_prefab_id(world, prefab_id)
-	return decore_internal.find_entities_by_component_value(world, "prefab_id", prefab_id)
+---Unload all entities, components and worlds
+---Useful for tests
+---@return nil
+function M.unload_all()
+	decore_data.entities = {}
+	decore_data.entities_order = {}
+
+	decore_data.components = {}
+	decore_data.components_order = {}
+
+	decore_data.worlds = {}
+	decore_data.worlds_order = {}
 end
 
 
 ---Log all loaded packs for entities, components and worlds
 function M.print_loaded_packs_debug_info()
-	decore_internal.logger:debug("Entities packs:")
+	local logger = decore_internal.logger
+
+	logger:debug("Entities packs:")
 	for _, pack_id in ipairs(decore_data.entities_order) do
-		decore_internal.logger:debug(" - " .. pack_id)
+		logger:debug(" - " .. pack_id)
 		for prefab_id, _ in pairs(decore_data.entities[pack_id]) do
-			decore_internal.logger:debug("   - " .. prefab_id)
+			logger:debug("   - " .. prefab_id)
 		end
 	end
 
-	decore_internal.logger:debug("Components packs:")
+	logger:debug("Components packs:")
 	for _, pack_id in ipairs(decore_data.components_order) do
-		decore_internal.logger:debug(" - " .. pack_id)
+		logger:debug(" - " .. pack_id)
 		for component_id, _ in pairs(decore_data.components[pack_id]) do
-			decore_internal.logger:debug("   - " .. component_id)
+			logger:debug("   - " .. component_id)
 		end
 	end
 
-	decore_internal.logger:debug("Worlds packs:")
+	logger:debug("Worlds packs:")
 	for _, pack_id in ipairs(decore_data.worlds_order) do
-		decore_internal.logger:debug(" - " .. pack_id)
+		logger:debug(" - " .. pack_id)
 		for world_id, _ in pairs(decore_data.worlds[pack_id]) do
-			decore_internal.logger:debug("   - " .. world_id)
+			logger:debug("   - " .. world_id)
 		end
 	end
 end
