@@ -13,8 +13,7 @@ local decore = require("decore.decore")
 ---@field spawn_entity string|nil
 
 ---@class system.on_collision_explosion: system
----@field entities entity.on_collision_explosion[]
----@field physic_entities entity.physics[]
+---@field entities entity.physics[]
 local M = {}
 
 
@@ -23,20 +22,8 @@ local M = {}
 function M.create_system()
 	local system = setmetatable(decore.ecs.system(), { __index = M })
 	system.filter = decore.ecs.requireAny("physics")
-	system.physic_entities = {}
 
 	return system
-end
-
-
----@param entity entity.on_collision_explosion
-function M:onAdd(entity)
-	-- This is attempt to split logic here and don't make second system file...
-	-- So here is a list of entities with physics component
-	local physics = entity.physics
-	if physics then
-		table.insert(self.physic_entities, entity)
-	end
 end
 
 
@@ -48,9 +35,9 @@ end
 function M:onRemove(entity)
 	local physics = entity.physics
 	if physics then
-		for index = 1, #self.physic_entities do
-			if self.physic_entities[index] == entity then
-				table.remove(self.physic_entities, index)
+		for index = 1, #self.entities do
+			if self.entities[index] == entity then
+				table.remove(self.entities, index)
 				break
 			end
 		end
@@ -70,8 +57,8 @@ function M:process_collision_event(collision_event)
 		local position_y = entity.transform.position_y
 
 		-- Take all entities with movement and set velocity from explosion position
-		for index = 1, #self.physic_entities do
-			local target_entity = self.physic_entities[index]
+		for index = 1, #self.entities do
+			local target_entity = self.entities[index]
 			local target_x = target_entity.transform.position_x
 			local target_y = target_entity.transform.position_y
 			local distance = math.sqrt((target_x - position_x) ^ 2 + (target_y - position_y) ^ 2)
@@ -83,7 +70,7 @@ function M:process_collision_event(collision_event)
 
 				local damage = math.ceil(explosion.damage * koef)
 				if damage > 0 and target_entity.health then
-					self:apply_damage(target_entity, damage)
+					self.world.health_command:apply_damage(entity, damage)
 				end
 			end
 		end
@@ -127,13 +114,6 @@ function M:apply_explosion_force(entity, position_x, position_y, power)
 	force_y = force_y / distance * power
 
 	self.world.physics_command:add_force(entity, force_x, force_y)
-end
-
-
----@param entity entity
----@param damage number
-function M:apply_damage(entity, damage)
-	self.world.health_command:apply_damage(entity, damage)
 end
 
 
