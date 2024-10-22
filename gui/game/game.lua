@@ -7,11 +7,7 @@ local animation_button = require("gui.ui_button.ui_button_panthera")
 ---@class gui.game: druid.component
 ---@field druid druid_instance
 ---@field root node
----@field text_time druid.text
----@field text_separator druid.text
 ---@field text_timer druid.text
----@field text_level druid.text
----@field text_separator1 druid.text
 ---@field text_current_level druid.text
 local M = component.create("game")
 
@@ -24,7 +20,7 @@ function M:init(template, nodes)
 	self.current_timer = 0
 	self.is_running = false
 
-	self.text_time = self.druid:new_text("text_time")
+	self.text_timer = self.druid:new_text("text_timer")
 	self.text_current_level = self.druid:new_text("text_current_level")
 
 	self.button_left = self.druid:new_button("button_left/root")
@@ -45,7 +41,7 @@ function M:init(template, nodes)
 		panthera.play(self.button_right_animation, "click")
 	end)
 
-	self.animation = panthera.create_gui(animation, self:get_template(), nodes)
+	self.animation = panthera.create_gui(animation)
 end
 
 

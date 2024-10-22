@@ -34,14 +34,16 @@ end
 
 function M:set_text(text)
 	for _, entity in ipairs(self.gui_main.entities) do
-		entity.gui_main.bindings.show_text:trigger(text)
+		local component = entity.gui_main.component
+		component:set_text(text)
 	end
 end
 
 
 function M:level_complete()
 	for _, entity in ipairs(self.gui_main.entities) do
-		entity.gui_main.bindings.level_completed:trigger()
+		local component = entity.gui_main.component
+		component:level_completed()
 	end
 end
 

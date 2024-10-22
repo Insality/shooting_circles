@@ -1,7 +1,7 @@
 local bindings = require("gui.bindings")
 local ecs = require("decore.ecs")
 
-local gui_main_command = require("gui.gui_main.gui_main_command")
+local gui_main_command = require("gui.game.game_system_command")
 
 ---@class entity
 ---@field gui_main component.gui_main|nil
@@ -11,7 +11,7 @@ local gui_main_command = require("gui.gui_main.gui_main_command")
 ---@field game_object component.game_object
 
 ---@class component.gui_main
----@field bindings gui.main.bindings
+---@field component gui.game
 ---@field current_level_index number
 
 ---@class system.gui_main: system
@@ -48,12 +48,10 @@ end
 
 ---@param entity entity.gui_main
 function M:onAdd(entity)
-	entity.gui_main.bindings = bindings.get(entity.game_object.root) --[[@as gui.main.bindings]]
-	local gui_bindings = entity.gui_main.bindings
+	entity.gui_main.component = bindings.get_widget(entity.game_object.root) --[[@as gui.game]]
 
-	entity.gui_main.current_level_index = 1
-
-	gui_bindings.on_left:subscribe(function()
+	local component = entity.gui_main.component
+	component.button_left.on_click:subscribe(function()
 		local prev_index = entity.gui_main.current_level_index - 1
 		if prev_index < 1 then
 			prev_index = #LEVELS
@@ -62,7 +60,7 @@ function M:onAdd(entity)
 		self:spawn_world(LEVELS[prev_index])
 	end)
 
-	gui_bindings.on_right:subscribe(function()
+	component.button_right.on_click:subscribe(function()
 		local next_index = entity.gui_main.current_level_index + 1
 		if next_index > #LEVELS then
 			next_index = 1
@@ -70,6 +68,8 @@ function M:onAdd(entity)
 		entity.gui_main.current_level_index = next_index
 		self:spawn_world(LEVELS[next_index])
 	end)
+
+	entity.gui_main.current_level_index = 1
 
 	self:spawn_world(LEVELS[entity.gui_main.current_level_index])
 end

@@ -29,7 +29,7 @@ local system_target_tracker = require("systems.target_tracker.target_tracker")
 local system_on_target_count_command = require("systems.target_tracker.on_target_count_command.on_target_count_command")
 local system_on_spawn_command = require("systems.on_spawn_command.on_spawn_command")
 local system_play_fx_on_remove = require("systems.play_fx_on_remove.play_fx_on_remove")
-local system_gui_main_menu = require("gui.gui_main.gui_main")
+local system_gui_game = require("gui.game.game_system")
 
 local logger = log.get_logger("scene.game")
 
@@ -67,7 +67,7 @@ local function load_systems(world)
 	world:add(system_on_spawn_command.create_system())
 	world:add(system_transform.create_system())
 	world:add(system_play_fx_on_remove.create_system())
-	world:add(system_gui_main_menu.create_system())
+	world:add(system_gui_game.create_system())
 
 	world:refresh()
 end
