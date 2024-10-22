@@ -48,28 +48,12 @@ end
 
 ---@param entity entity.gui_main
 function M:onAdd(entity)
+	entity.gui_main.current_level_index = 1
 	entity.gui_main.component = bindings.get_widget(entity.game_object.root) --[[@as gui.game]]
 
 	local component = entity.gui_main.component
-	component.button_left.on_click:subscribe(function()
-		local prev_index = entity.gui_main.current_level_index - 1
-		if prev_index < 1 then
-			prev_index = #LEVELS
-		end
-		entity.gui_main.current_level_index = prev_index
-		self:spawn_world(LEVELS[prev_index])
-	end)
-
-	component.button_right.on_click:subscribe(function()
-		local next_index = entity.gui_main.current_level_index + 1
-		if next_index > #LEVELS then
-			next_index = 1
-		end
-		entity.gui_main.current_level_index = next_index
-		self:spawn_world(LEVELS[next_index])
-	end)
-
-	entity.gui_main.current_level_index = 1
+	component.button_left.on_click:subscribe(function() self:on_click_button(entity, -1) end)
+	component.button_right.on_click:subscribe(function() self:on_click_button(entity, 1) end)
 
 	self:spawn_world(LEVELS[entity.gui_main.current_level_index])
 end
@@ -77,6 +61,20 @@ end
 
 function M:spawn_world(world_id)
 	self.world.level_loader_command:load_world(world_id, nil, 0, 0, "level")
+end
+
+
+function M:on_click_button(entity, direction)
+	local index = entity.gui_main.current_level_index + direction
+	if index < 1 then
+		index = #LEVELS
+	end
+	if index > #LEVELS then
+		index = 1
+	end
+
+	entity.gui_main.current_level_index = index
+	self:spawn_world(LEVELS[index])
 end
 
 

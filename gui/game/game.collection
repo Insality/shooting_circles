@@ -1,9 +1,9 @@
-name: "gui_main"
+name: "game"
 scale_along_z: 0
 embedded_instances {
   id: "root"
   data: "components {\n"
-  "  id: \"gui_main\"\n"
+  "  id: \"game\"\n"
   "  component: \"/gui/game/game.gui\"\n"
   "}\n"
   ""
