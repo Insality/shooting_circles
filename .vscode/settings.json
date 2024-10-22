@@ -80,7 +80,8 @@
 		"utf8",
 		"clipboard",
 		"spine",
-		"init"
+		"init",
+		"editor"
 	],
 
 	"Lua.workspace.ignoreDir": [

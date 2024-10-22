@@ -4,7 +4,14 @@ local M = {}
 
 local EMPTY_FUNCTION = function(self, message, context) end
 
----@type logger|nil
+---@class detiled.logger
+---@field trace fun(self: detiled.logger, message: string, context: any)
+---@field debug fun(self: detiled.logger, message: string, context: any)
+---@field info fun(self: detiled.logger, message: string, context: any)
+---@field warn fun(self: detiled.logger, message: string, context: any)
+---@field error fun(self: detiled.logger, message: string, context: any)
+
+---@type detiled.logger|nil
 M.logger = {
 	trace = EMPTY_FUNCTION,
 	debug = EMPTY_FUNCTION,
