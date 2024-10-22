@@ -1,8 +1,6 @@
 local ecs = require("decore.ecs")
 local log = require("log.log")
 
-local logger = log.get_logger("system.debug")
-
 local system_debug_command = require("systems.debug.debug_command")
 
 ---@class entity
@@ -49,7 +47,7 @@ function M:toggle_profiler(entity)
 		d.profiler_mode = nil
 	end
 
-	logger:info("Profiler is active: " .. tostring(d.is_profiler_active))
+	log:info("Profiler is active: " .. tostring(d.is_profiler_active))
 end
 
 
@@ -60,17 +58,19 @@ function M:toggle_memory_record(entity)
 	if d.timer_memory_record then
 		timer.cancel(d.timer_memory_record)
 		d.timer_memory_record = nil
-		logger:info("Memory record stopped")
+		log:info("Memory record stopped")
+		collectgarbage("restart")
+		collectgarbage("collect")
 	else
 		collectgarbage("collect")
 		collectgarbage("stop")
 		local memory = collectgarbage("count")
 		d.timer_memory_record = timer.delay(1, true, function()
 			local new_memory = collectgarbage("count")
-			logger:info("Memory: " .. new_memory - memory)
+			log:info("Memory: " .. new_memory - memory)
 			memory = new_memory
 		end)
-		logger:info("Memory record started")
+		log:info("Memory record started")
 	end
 end
 

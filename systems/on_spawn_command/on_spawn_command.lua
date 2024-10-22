@@ -19,6 +19,7 @@ local M = {}
 function M.create_system()
 	local system = setmetatable(decore.ecs.system(), { __index = M })
 	system.filter = decore.ecs.requireAny("on_spawn_command")
+	system.id = "on_spawn_command"
 
 	return system
 end

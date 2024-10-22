@@ -20,6 +20,7 @@ local M = {}
 function M.create_system()
 	local system = setmetatable(decore.ecs.system(), { __index = M })
 	system.filter = decore.ecs.requireAll("target")
+	system.id = "target_tracker"
 
 	return system
 end

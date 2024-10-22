@@ -97,7 +97,7 @@ function M.load_config(config_or_path)
 		local entities_path = config_or_path --[[@as string]]
 		local entities_data = M.load_json(entities_path)
 		if not entities_data then
-			M.logger:error("Can't load entities pack", config_or_path)
+			M.logger:error("Can't load config at path", config_or_path)
 			return nil
 		end
 

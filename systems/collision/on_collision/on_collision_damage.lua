@@ -18,6 +18,9 @@ local M = {}
 ---@return system.on_collision_damage
 function M.create_system()
 	local system = setmetatable(decore.ecs.system(), { __index = M })
+	system.filter = decore.ecs.requireAll("on_collision_damage")
+	system.id = "on_collision_damage"
+
 	return system
 end
 
@@ -30,10 +33,14 @@ end
 ---@param collision_event event.collision_event
 function M:process_collision_event(collision_event)
 	local entity = collision_event.entity
-	local on_collision_damage = entity.on_collision_damage
+	if not decore.is_alive(self, entity) then
+		return
+	end
+
+	local damage = entity.on_collision_damage.damage
 	local other = collision_event.other
-	if on_collision_damage and other and other.health then
-		self.world.health_command:apply_damage(other, on_collision_damage.damage)
+	if other and other.health then
+		self.world.health_command:apply_damage(other, damage)
 	end
 end
 

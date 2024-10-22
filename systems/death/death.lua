@@ -18,10 +18,6 @@ end
 
 ---@param health_event event.health_event
 function M:process_health_event(health_event)
-	if not health_event.damage then
-		return
-	end
-
 	if health_event.entity.health.current_health == 0 then
 		self.world:removeEntity(health_event.entity)
 	end

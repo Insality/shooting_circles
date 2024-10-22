@@ -61,11 +61,16 @@ function M:process(entity, dt)
 		return
 	end
 
+	-- Is it faster?
 	local position = b2d.body.get_position(body)
+	local position_x = position.x
+	local position_y = position.y
+	--local position_x = go.get(entity.game_object.root, "position.x")
+	--local position_y = go.get(entity.game_object.root, "position.y")
 	local transform = entity.transform
-	if position.x ~= transform.position_x or position.y ~= transform.position_y then
-		transform.position_x = position.x
-		transform.position_y = position.y
+	if position_x ~= transform.position_x or position_y ~= transform.position_y then
+		transform.position_x = position_x
+		transform.position_y = position_y
 
 		self.world.queue:push("transform_event", {
 			entity = entity,
@@ -83,12 +88,11 @@ end
 ---@param force_x number
 ---@param force_y number
 function M:add_force(entity, force_x, force_y)
-	if not self.indices[entity] then
+	if not decore.is_alive(self, entity) then
 		return
 	end
 
 	local body = entity.physics.box2d_body
-
 	TEMP_VECTOR.x = force_x or 0
 	TEMP_VECTOR.y = force_y or 0
 	TEMP_VECTOR.z = 0

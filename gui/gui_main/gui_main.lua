@@ -40,6 +40,7 @@ local LEVELS = {
 function M.create_system()
 	local system = setmetatable(ecs.system(), { __index = M })
 	system.filter = ecs.requireAll("gui_main", "game_object")
+	system.id = "gui_main"
 
 	return system, gui_main_command.create_system(system)
 end

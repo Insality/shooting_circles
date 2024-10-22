@@ -1,16 +1,5 @@
 local ecs = require("decore.ecs")
 
-local ACTION_ID_TO_SIDE = {
-	[hash("key_w")] = { y = 1 },
-	[hash("key_s")] = { y = -1 },
-	[hash("key_a")] = { x = -1 },
-	[hash("key_d")] = { x = 1 },
-	[hash("key_up")] = { y = 1 },
-	[hash("key_down")] = { y = -1 },
-	[hash("key_left")] = { x = -1 },
-	[hash("key_right")] = { x = 1 },
-}
-
 ---@class entity
 ---@field movement_controller component.movement_controller|nil
 
@@ -27,6 +16,16 @@ local ACTION_ID_TO_SIDE = {
 ---@field entities entity.movement_controller[]
 local M = {}
 
+local ACTION_ID_TO_SIDE = {
+	[hash("key_w")] = { y = 1 },
+	[hash("key_s")] = { y = -1 },
+	[hash("key_a")] = { x = -1 },
+	[hash("key_d")] = { x = 1 },
+	[hash("key_up")] = { y = 1 },
+	[hash("key_down")] = { y = -1 },
+	[hash("key_left")] = { x = -1 },
+	[hash("key_right")] = { x = 1 },
+}
 
 ---@static
 ---@return system.movement_controller

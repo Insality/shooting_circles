@@ -63,6 +63,33 @@ function M:onAddToWorld()
 end
 
 
+
+function M:postWrap()
+	self.world.queue:process("window_event", self.process_window_event, self)
+	self.world.queue:process("transform_event", self.process_transform_event, self)
+end
+
+
+---@param window_event event.window_event
+function M:process_window_event(window_event)
+	if window_event.is_resized then
+		self:update_camera_position(self.camera)
+		self:update_camera_zoom(self.camera)
+	end
+end
+
+
+---@param transform_event event.transform_event
+function M:process_transform_event(transform_event)
+	if transform_event.is_position_changed then
+		self:update_camera_position(self.camera, transform_event.animate_time, transform_event.easing)
+	end
+	if transform_event.is_size_changed then
+		self:update_camera_zoom(self.camera, transform_event.animate_time, transform_event.easing)
+	end
+end
+
+
 ---@param entity entity.camera
 function M:onAdd(entity)
 	local camera_entity = entity --[[@as entity.camera]]

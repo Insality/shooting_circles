@@ -1,7 +1,7 @@
 ---@class queue
 ---@field events table<string, table> The current list of events
 ---@field stash table<string, table> The list of events to be processed after :stash_to_events() is called
----@field merge_callbacks table<string, fun(events: any[], new_event: any):boolean> The merge policy for events
+---@field merge_callbacks table<string, fun(events: any[], new_event: any):boolean> The merge policy for events. If the merge policy returns true, the events are merged and not will be added as new event
 local M = {}
 
 
@@ -73,6 +73,11 @@ end
 function M:stash_to_events()
 	self.events = self.stash
 	self.stash = {}
+end
+
+
+function M:get_events(event_name)
+	return self.events[event_name]
 end
 
 

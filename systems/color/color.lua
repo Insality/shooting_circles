@@ -12,10 +12,6 @@ local ecs = require("decore.ecs")
 ---@field color vector4|nil
 ---@field sprite_url string @"/root#sprite" or "/root#sprite,/root#sprite2"
 
----@class event.color_event
----@field entity entity
----@field color vector4
-
 ---@class system.color: system
 ---@field entities entity.color[]
 local M = {}

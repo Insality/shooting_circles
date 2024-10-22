@@ -1,7 +1,6 @@
 local log = require("log.log")
 local decore = require("decore.decore")
 
-local system_queue = require("systems.queue.queue")
 local system_debug = require("systems.debug.debug")
 local system_window_event = require("systems.window_event.window_event")
 local system_transform = require("systems.transform.transform")
@@ -40,7 +39,6 @@ local logger = log.get_logger("scene.game")
 
 ---@param world world
 local function load_systems(world)
-	world:add(system_queue.create_system())
 	world:add(system_debug.create_system())
 	world:add(system_window_event.create_system())
 	world:add(system_input.create_system())
@@ -76,21 +74,14 @@ end
 
 
 ---@param self scene.game
----@param world_id string
-local function load_level(self, world_id)
-	self.world.level_loader_command:load_world(world_id)
-end
-
-
----@param self scene.game
 function init(self)
 	self.world = decore.world()
 
 	load_systems(self.world)
-	load_level(self, "game")
+	self.world.level_loader_command:load_world("game")
 
 	-- Uncomment for adjust game time speed
-	--msg.post("loader:/game#collectionproxy", "set_time_step", {factor = 0.5, mode = 0})
+	--msg.post("loader:/system#game_proxy", "set_time_step", {factor = 0.25, mode = 0})
 
 	timer.delay(1, true, function()
 		logger:debug("Entities count:", #self.world.entities)
@@ -115,7 +106,7 @@ end
 ---@param self scene.game
 ---@param action_id hash
 ---@param action action
+---@return boolean
 function on_input(self, action_id, action)
-	action.action_id = action_id
-	self.world.queue:push("input_event", action)
+	return decore.on_input(self.world, action_id, action)
 end

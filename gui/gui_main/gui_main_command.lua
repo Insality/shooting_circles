@@ -13,6 +13,7 @@ local M = {}
 function M.create_system(gui_main)
 	local system = setmetatable(ecs.system(), { __index = M })
 	system.filter = ecs.requireAny("gui_main_command")
+	system.id = "gui_main_command"
 	system.gui_main = gui_main
 
 	return system

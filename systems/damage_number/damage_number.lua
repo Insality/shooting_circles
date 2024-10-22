@@ -1,14 +1,12 @@
 local ecs = require("decore.ecs")
 
 ---@class entity
----@field damage_number component.damage_number|nil
+---@field damage_number number|nil
 
 ---@class entity.damage_number: entity
----@field damage_number component.damage_number
+---@field damage_number number
 ---@field game_object component.game_object
 ---@field transform component.transform
-
----@class component.damage_number: number
 
 ---@class system.damage_number: system
 ---@field entities entity.damage_number[]
