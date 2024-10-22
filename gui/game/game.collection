@@ -4,7 +4,7 @@ embedded_instances {
   id: "root"
   data: "components {\n"
   "  id: \"gui_main\"\n"
-  "  component: \"/gui/gui_main/gui_main.gui\"\n"
+  "  component: \"/gui/game/game.gui\"\n"
   "}\n"
   ""
 }

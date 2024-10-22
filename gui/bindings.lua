@@ -1,34 +1,46 @@
--- Global module for pass GUI binding events from GUI to the game logic
+local event = require("event.event")
 
 local M = {}
+local WRAPPED_WIDGETS = {}
 
-M.CROSS_CONTEXT_DATA = {}
 
-
----@param data any
----@return any @data
-function M.set(data)
+---Set a widget to the current game object. The game object can acquire the widget by calling `bindings.get_widget`
+---It wraps only top level functions, so no access to nested widgets
+---@param widget druid.component
+function M.set_widget(widget)
 	local object = msg.url()
 	object.fragment = nil
 
-	M.CROSS_CONTEXT_DATA[object.socket] = M.CROSS_CONTEXT_DATA[object.socket] or {}
-	M.CROSS_CONTEXT_DATA[object.socket][object.path] = data
+	-- Make a copy of the widget with all functions wrapped in events
+	-- It makes available to call gui functions from game objects
+	local wrapped_widget = setmetatable({}, { __index = widget })
+	local parent_table = getmetatable(widget).__index
 
-	return data
+	-- Go through all functions and wrap them in events
+	for key, value in pairs(parent_table) do
+		if type(value) == "function" then
+			wrapped_widget[key] = event.create(function(_, ...)
+				return value(widget, ...)
+			end)
+		end
+	end
+
+	WRAPPED_WIDGETS[object.socket] = WRAPPED_WIDGETS[object.socket] or {}
+	WRAPPED_WIDGETS[object.socket][object.path] = wrapped_widget
 end
 
 
 ---@param object_url string|userdata|url @root object
----@return table<string, event>|nil
-function M.get(object_url)
+---@return druid.component|nil
+function M.get_widget(object_url)
 	object_url = msg.url(object_url --[[@as string]])
 
-	local socket_events = M.CROSS_CONTEXT_DATA[object_url.socket]
-	if not socket_events then
+	local socket_widgets = WRAPPED_WIDGETS[object_url.socket]
+	if not socket_widgets then
 		return nil
 	end
 
-	return socket_events[object_url.path]
+	return socket_widgets[object_url.path]
 end
 
 

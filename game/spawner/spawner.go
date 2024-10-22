@@ -49,7 +49,7 @@ embedded_components {
 embedded_components {
   id: "gui_main"
   type: "collectionfactory"
-  data: "prototype: \"/gui/gui_main/gui_main.collection\"\n"
+  data: "prototype: \"/gui/game/game.collection\"\n"
   ""
 }
 embedded_components {

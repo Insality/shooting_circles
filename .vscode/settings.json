@@ -87,5 +87,9 @@
 		".vscode",
 		"decore/templates",
 	],
-	"Lua.runtime.version": "Lua 5.1"
+	"Lua.runtime.version": "Lua 5.1",
+	"Lua.workspace.library": [
+		"~/Library/Application Support/Code/User/globalStorage/astronachos.defold",
+		"~/Library/Application Support/Code/User/workspaceStorage/831f85adac6d5374f31927986734e233/astronachos.defold"
+	]
 }

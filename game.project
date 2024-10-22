@@ -1,5 +1,5 @@
 [bootstrap]
-main_collection = /loader/loader.collectionc
+main_collection = /gui/game/game.collectionc
 render = /builtins/render/default.renderc
 
 [script]

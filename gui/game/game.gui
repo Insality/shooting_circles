@@ -1,4 +1,4 @@
-script: "/gui/gui_main/gui_main.gui_script"
+script: "/gui/game/game.gui_script"
 fonts {
   name: "text"
   font: "/assets/fonts/text.font"
@@ -48,7 +48,7 @@ nodes {
   parent: "E_Anchor"
   layer: "game"
   inherit_alpha: true
-  template: "/gui/gui_main/button.gui"
+  template: "/gui/ui_button/ui_button.gui"
 }
 nodes {
   color {
@@ -104,7 +104,7 @@ nodes {
   parent: "W_Anchor"
   layer: "game"
   inherit_alpha: true
-  template: "/gui/gui_main/button.gui"
+  template: "/gui/ui_button/ui_button.gui"
 }
 nodes {
   scale {

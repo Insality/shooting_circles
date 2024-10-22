@@ -28,7 +28,7 @@ return function()
 
 	describe("System Health", function()
 		---@type world
-		local world = {}
+		local world
 		before(function()
 			system_health = require("systems.health.health")
 
@@ -40,7 +40,7 @@ return function()
 			---@type entity
 			local entity = { health = { health = 100 } }
 			world:add(entity)
-			world:update()
+			world:update(0)
 
 			assert(entity.health.current_health == 100)
 		end)
