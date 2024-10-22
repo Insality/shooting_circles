@@ -1,7 +1,6 @@
 local ecs = require("decore.ecs")
 
 local health_command = require("systems.health.health_command")
-local health_event = require("systems.health.health_event")
 
 ---@class entity
 ---@field health component.health|nil
@@ -13,18 +12,40 @@ local health_event = require("systems.health.health_event")
 ---@field health number
 ---@field current_health number|nil
 
+---@class event.health_event
+---@field entity entity
+---@field damage number
+
 ---@class system.health: system
 ---@field entities entity.health[]
 local M = {}
 
 
 ---@static
----@return system.health, system.health_command, system.health_event
+---@return system.health, system.health_command
 function M.create_system()
 	local system = setmetatable(ecs.system(), { __index = M })
 	system.filter = ecs.requireAll("health")
 
-	return system, health_command.create_system(system), health_event.create_system()
+	return system, health_command.create_system(system)
+end
+
+
+function M:onAddToWorld()
+	self.world.queue:set_merge_policy("health_event", function(events, event)
+		---@cast events event.health_event[]
+		---@cast event event.health_event
+
+		for index = #events, 1, -1 do
+			local compare_event = events[index]
+			if compare_event.entity == event.entity then
+				compare_event.damage = compare_event.damage + event.damage
+				return true
+			end
+		end
+
+		return false
+	end)
 end
 
 
@@ -38,16 +59,8 @@ end
 ---@param entity entity.health
 function M:apply_damage(entity, damage)
 	local health = entity.health
-	if health then
-		health.current_health = math.max(0, health.current_health - damage)
-
-		---@type component.health_event
-		local event = {
-			entity = entity,
-			damage = damage,
-		}
-		self.world:addEntity({ health_event = event })
-	end
+	health.current_health = math.max(0, health.current_health - damage)
+	self.world.queue:push("health_event", { entity = entity, damage = damage })
 end
 
 

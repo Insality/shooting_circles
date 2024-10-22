@@ -1,8 +1,8 @@
 local log = require("log.log")
-local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 
 local system_debug = require("systems.debug.debug")
-local system_window_event = require("systems.window.window_event")
+local system_window_event = require("systems.window_event.window_event")
 local system_transform = require("systems.transform.transform")
 local system_game_object = require("systems.game_object.game_object")
 local system_color = require("systems.color.color")
@@ -17,7 +17,6 @@ local system_physics_movement = require("systems.physics_movement.physics_moveme
 local system_movement_controller = require("systems.movement_controller.movement_controller")
 local system_shooter_controller = require("systems.shooter_controller.shooter_controller")
 local system_remove_with_delay = require("systems.remove_with_delay.remove_with_delay")
-local system_explosion = require("systems.explosion.explosion")
 local system_collision = require("systems.collision.collision")
 local on_collision_remove = require("systems.collision.on_collision.on_collision_remove")
 local on_collision_explosion = require("systems.collision.on_collision.on_collision_explosion")
@@ -59,7 +58,6 @@ local function load_systems(world)
 	world:add(system_camera.create_system())
 	world:add(system_health.create_system())
 	world:add(system_death.create_system())
-	world:add(system_explosion.create_system())
 	world:add(system_level_loader.create_system())
 	world:add(system_remove_with_delay.create_system())
 	world:add(system_health_circle_visual.create_system())
@@ -70,32 +68,20 @@ local function load_systems(world)
 	world:add(system_transform.create_system())
 	world:add(system_play_fx_on_remove.create_system())
 	world:add(system_gui_main_menu.create_system())
-end
 
-
----@param self scene.game
----@param world_id string
-local function load_level(self, world_id)
-	---@type component.level_loader_command
-	local level_loader_command = {
-		world_id = world_id
-	}
-	self.world:addEntity({ level_loader_command = level_loader_command })
-
-	-- Call refresh to apply changes immediately
-	self.world:refresh()
+	world:refresh()
 end
 
 
 ---@param self scene.game
 function init(self)
-	self.world = ecs.world()
+	self.world = decore.world()
 
 	load_systems(self.world)
-	load_level(self, "game")
+	self.world.level_loader_command:load_world("game")
 
 	-- Uncomment for adjust game time speed
-	--msg.post("loader:/game#collectionproxy", "set_time_step", {factor = 0.5, mode = 0})
+	--msg.post("loader:/system#game_proxy", "set_time_step", {factor = 0.25, mode = 0})
 
 	timer.delay(1, true, function()
 		logger:debug("Entities count:", #self.world.entities)
@@ -119,13 +105,8 @@ end
 
 ---@param self scene.game
 ---@param action_id hash
----@param action table
+---@param action action
+---@return boolean
 function on_input(self, action_id, action)
-	---@type component.input_event
-	local input_event = {
-		action_id = action_id,
-		action = action,
-	}
-
-	self.world:addEntity({ input_event = input_event })
+	return decore.on_input(self.world, action_id, action)
 end

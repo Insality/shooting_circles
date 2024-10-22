@@ -20,6 +20,7 @@ local M = {}
 function M.create_system()
 	local system = setmetatable(ecs.system(), { __index = M })
 	system.filter = ecs.requireAll("play_fx_on_remove", "game_object")
+	system.id = "play_fx_on_remove"
 
 	return system
 end

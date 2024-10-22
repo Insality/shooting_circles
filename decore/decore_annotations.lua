@@ -1,7 +1,11 @@
 ---Download Defold annotations from here: https://github.com/astrochili/defold-annotations/releases/
 
+---@class action
+---@field action_id hash|nil
+
 ---@class entity
----@field id number @Unique entity id, autofilled by decore.create_entity
+---@field parent_prefab_id string|nil The parent prefab_id, used for prefab inheritance
+---@field id number|nil @Unique entity id, autofilled by decore.create_entity
 ---@field name string|nil @The entity name
 ---@field prefab_id string|nil @The entity id from decore collections, autofilled by decore.create_entity
 ---@field pack_id string|nil @The entity id from decore collections, autofilled by decore.create_entity
@@ -60,10 +64,10 @@
 ---@field rejectAll fun(...) @Returns a filter function that rejects all of the specified components
 ---@field rejectAny fun(...) @Returns a filter function that rejects any of the specified components
 ---@field filter fun(pattern: string) @Returns a filter function that matches the specified pattern
----@field system fun(table: system) @Creates a new system
----@field processingSystem fun(table: system) @Creates a new processing system
----@field sortedSystem fun(table: system) @Creates a new sorted system
----@field sortedProcessingSystem fun(table: system) @Creates a new sorted processing system
+---@field system fun(table: system|nil) @Creates a new system
+---@field processingSystem fun(table: system|nil) @Creates a new processing system
+---@field sortedSystem fun(table: system|nil) @Creates a new sorted system
+---@field sortedProcessingSystem fun(table: system|nil) @Creates a new sorted processing system
 ---@field world fun(...) @Creates a new world
 ---@field addEntity fun(world: world, entity: entity): entity @Adds an entity to the world
 ---@field addSystem fun(world: world, system: system): system @Adds a system to the world
@@ -106,14 +110,6 @@
 ---@class decore.world.instance
 ---@field included_worlds decore.world.instance_id[]|nil
 ---@field entities decore.entities_pack_data.instance[]
-
----Logger interface
----@class decore.logger
----@field trace fun(logger: decore.logger, message: string, data: any|nil)
----@field debug fun(logger: decore.logger, message: string, data: any|nil)
----@field info fun(logger: decore.logger, message: string, data: any|nil)
----@field warn fun(logger: decore.logger, message: string, data: any|nil)
----@field error fun(logger: decore.logger, message: string, data: any|nil)
 
 
 

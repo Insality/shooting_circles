@@ -1,9 +1,6 @@
 local ecs = require("decore.ecs")
 local decore = require("decore.decore")
 
-local shooter_controller_command = require("systems.shooter_controller.shooter_controller_command")
-local camera = require("systems.camera.camera")
-
 local logger = decore.get_logger("shooter_controller")
 
 ---@class entity
@@ -31,14 +28,57 @@ local logger = decore.get_logger("shooter_controller")
 ---@field entities entity.shooter_controller[]
 local M = {}
 
+local HASH_TOUCH = hash("touch")
+local HASH_SPACE = hash("key_space")
 
 ---@static
----@return system.shooter_controller, system.shooter_controller_command
+---@return system.shooter_controller
 function M.create_system()
 	local system = setmetatable(ecs.processingSystem(), { __index = M })
 	system.filter = ecs.requireAll("shooter_controller")
 
-	return system, shooter_controller_command.create_system(system)
+	return system
+end
+
+
+
+function M:postWrap()
+	self.world.queue:process("input_event", self.process_input_event, self)
+end
+
+
+---@param input_event event.input_event
+function M:process_input_event(input_event)
+	for _, entity in ipairs(self.entities) do
+		self:apply_input_event(entity, input_event)
+	end
+end
+
+
+---@param entity entity.shooter_controller
+---@param input_event event.input_event
+function M:apply_input_event(entity, input_event)
+	local action_id = input_event.action_id
+	local action = input_event
+	local sc = entity.shooter_controller
+
+	if action.screen_x and action.screen_y then
+		sc.last_screen_x = action.screen_x
+		sc.last_screen_y = action.screen_y
+	end
+
+	if action_id == HASH_TOUCH or action_id == HASH_SPACE then
+		if action.pressed then
+			sc.burst_count_current = 0
+			self:shoot_at(entity, sc.last_screen_x, sc.last_screen_y)
+		else
+			if sc.is_auto_shoot then
+				if sc.fire_rate_timer == 0 then
+					self:shoot_at(entity, sc.last_screen_x, sc.last_screen_y)
+				end
+			end
+		end
+	end
 end
 
 
@@ -72,7 +112,7 @@ function M:shoot_at(entity, screen_x, screen_y)
 
 		local speed = entity.shooter_controller.bullet_speed
 		local spread_angle = entity.shooter_controller.spread_angle
-		local world_x, world_y = camera.screen_to_world(screen_x, screen_y)
+		local world_x, world_y = self.world.camera_command:screen_to_world(screen_x, screen_y)
 
 		local velocity_x = world_x - entity.transform.position_x
 		local velocity_y = world_y - entity.transform.position_y
@@ -99,6 +139,8 @@ function M:shoot_at(entity, screen_x, screen_y)
 end
 
 
+---@param entity entity.shooter_controller
+---@param dt number
 function M:process(entity, dt)
 	local shooter_controller = entity.shooter_controller
 	if shooter_controller.fire_rate_timer > 0 then

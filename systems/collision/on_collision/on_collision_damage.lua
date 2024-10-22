@@ -1,4 +1,4 @@
-local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 
 ---@class entity
 ---@field on_collision_damage component.on_collision_damage|nil
@@ -17,35 +17,30 @@ local M = {}
 ---@static
 ---@return system.on_collision_damage
 function M.create_system()
-	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAny("collision_event")
+	local system = setmetatable(decore.ecs.system(), { __index = M })
+	system.filter = decore.ecs.requireAll("on_collision_damage")
+	system.id = "on_collision_damage"
 
 	return system
 end
 
 
----@param entity entity.on_collision_damage
-function M:onAdd(entity)
-	local collision_event = entity.collision_event
-	if collision_event then
-		self:process_collision_event(collision_event)
-		self.world:removeEntity(entity)
-	end
+function M:postWrap()
+	self.world.queue:process("collision_event", self.process_collision_event, self)
 end
 
 
----@param collision_event component.collision_event
+---@param collision_event event.collision_event
 function M:process_collision_event(collision_event)
 	local entity = collision_event.entity
-	local on_collision_damage = entity.on_collision_damage
+	if not decore.is_alive(self, entity) then
+		return
+	end
+
+	local damage = entity.on_collision_damage.damage
 	local other = collision_event.other
-	if on_collision_damage and other and other.health then
-		---@type component.health_command
-		local command = {
-			entity = other,
-			damage = on_collision_damage.damage
-		}
-		self.world:addEntity({ health_command = command })
+	if other and other.health then
+		self.world.health_command:apply_damage(other, damage)
 	end
 end
 

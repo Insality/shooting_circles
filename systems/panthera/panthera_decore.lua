@@ -35,6 +35,12 @@ function M.create_system()
 end
 
 
+---@private
+function M:postWrap()
+	self.world.queue:process("window_event", self.process_window_event, self)
+end
+
+
 ---@param entity entity.panthera
 function M:onAdd(entity)
 	local p = entity.panthera
@@ -74,35 +80,11 @@ function M:onRemove(entity)
 end
 
 
----@param template string|nil
----@param nodes table<string|hash, string|hash>|nil
----@return function(node_id: string): hash|url
-function M.get_node_fn(template, nodes)
-	return function(node_id)
-		if template then
-			node_id = template .. "/" .. node_id
-		end
-
-		local split_index = string.find(node_id, "#")
-		if split_index then
-			local object_id = string.sub(node_id, 1, split_index - 1)
-			local fragment_id = string.sub(node_id, split_index + 1)
-
-			---@type string|hash
-			local object_path = hash("/" .. object_id)
-			if nodes then
-				object_path = nodes[object_path]
-			end
-
-			return msg.url(nil, object_path, fragment_id)
-		end
-
-		local object_path = hash("/" .. node_id)
-		if nodes then
-			object_path = nodes[object_path]
-		end
-
-		return object_path
+---@private
+---@param window_event event.window_event
+function M:process_window_event(window_event)
+	if window_event.is_focus_gained then
+		panthera.reload_animation()
 	end
 end
 

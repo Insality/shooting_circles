@@ -1,0 +1,35 @@
+local ecs = require("decore.ecs")
+
+---@class world
+---@field TEMPLATE_command system.TEMPLATE_command
+
+---@class system.TEMPLATE_command: system
+---@field TEMPLATE system.TEMPLATE
+local M = {}
+
+
+---@static
+---@return system.TEMPLATE_command
+function M.create_system(TEMPLATE)
+	local system = setmetatable(ecs.system(), { __index = M })
+	system.TEMPLATE = TEMPLATE
+	system.id = "TEMPLATE_command"
+
+	return system
+end
+
+
+---@private
+function M:onAddToWorld()
+	self.world.TEMPLATE_command = self
+end
+
+
+---@private
+function M:onRemoveFromWorld()
+	self.world.TEMPLATE_command = nil
+end
+
+
+
+return M

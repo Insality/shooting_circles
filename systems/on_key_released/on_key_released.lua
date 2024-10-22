@@ -1,6 +1,4 @@
-local ecs = require("decore.ecs")
-
-local on_key_released_command = require("systems.on_key_released.on_key_released_command")
+local decore = require("decore.decore")
 
 ---@class entity
 ---@field on_key_released component.on_key_released|nil
@@ -19,15 +17,20 @@ local M = {}
 
 
 ---@static
----@return system.on_key_released, system.on_key_released_command
+---@return system.on_key_released
 function M.create_system()
-	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAll("on_key_released")
+	local system = setmetatable(decore.ecs.system(), { __index = M })
+	system.filter = decore.ecs.requireAll("on_key_released")
 	system.id = "on_key_released"
 
 	system.hash_to_string = {}
 
-	return system, on_key_released_command.create_system(system)
+	return system
+end
+
+
+function M:postWrap()
+	self.world.queue:process("input_event", self.process_input_event, self)
 end
 
 
@@ -51,13 +54,22 @@ function M:onAdd(entity)
 end
 
 
+---@param input_event event.input_event
+function M:process_input_event(input_event)
+	local entities = self.entities
+	for index = 1, #entities do
+		local entity = entities[index]
+		self:apply_input(entity, input_event.action_id, input_event)
+	end
+end
+
+
 ---@param entity entity.on_key_released
 function M:apply_input(entity, action_id, action)
 	local command_data = entity.on_key_released.key_to_command
 	local key_id = self.hash_to_string[action_id]
 	if command_data[key_id] and action.released then
-		local new_command = sys.deserialize(sys.serialize(command_data[key_id]))
-		self.world:addEntity(new_command)
+		decore.call_command(self.world, command_data[key_id])
 	end
 end
 

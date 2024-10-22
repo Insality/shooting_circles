@@ -1,4 +1,4 @@
-local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 
 ---@param world world
 ---@param component_name string
@@ -27,11 +27,12 @@ return function()
 	local system_health
 
 	describe("System Health", function()
+		---@type world
 		local world = {}
 		before(function()
 			system_health = require("systems.health.health")
 
-			world = ecs.world()
+			world = decore.world()
 			world:add(system_health.create_system())
 		end)
 
@@ -47,28 +48,29 @@ return function()
 		it("Should catch health command", function()
 			---@type entity
 			local entity = { health = { health = 100 } }
-			world:add(entity)
-			world:update()
+			world:addEntity(entity)
+			world:refresh()
 
-			world:addEntity({ health_command = { entity = entity, damage = 10 } })
-			world:update()
-
+			world.health_command:apply_damage(entity, 10)
 			assert(entity.health.current_health == 90)
 		end)
 
 		it("Should produce health_event", function()
 			---@type entity
 			local entity = { health = { health = 100 } }
-			world:add(entity)
-			world:update()
+			world:addEntity(entity)
+			world:refresh()
 
-			world:addEntity({ health_command = { entity = entity, damage = 10 } })
-			world:update()
+			world.health_command:apply_damage(entity, 10)
 
-			local event_entity = get_entity_with_component(world, "health_event")
-			assert(event_entity)
-			assert(event_entity.health_event.entity == entity)
-			assert(event_entity.health_event.damage == 10)
+			world.queue:stash_to_events()
+			assert(world.queue:get_events("health_event"))
+			assert(#world.queue:get_events("health_event") == 1)
+
+			world.queue:process("health_event", function(event)
+				assert(event.entity == entity)
+				assert(event.damage == 10)
+			end)
 		end)
 	end)
 end

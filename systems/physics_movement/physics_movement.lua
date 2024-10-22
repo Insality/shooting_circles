@@ -1,7 +1,5 @@
 local ecs = require("decore.ecs")
 
-local physics_movement_command = require("systems.physics_movement.physics_movement_command")
-
 local TEMP_APPLY_FORCE = {
 	force = vmath.vector3(),
 	position = vmath.vector3()
@@ -26,13 +24,13 @@ local M = {}
 
 
 ---@static
----@return system.physics_movement, system.physics_movement_command
+---@return system.physics_movement
 function M.create_system()
 	local system = setmetatable(ecs.processingSystem(), { __index = M })
 	system.filter = ecs.requireAll("physics_movement", "game_object")
 	system.id = "physics_movement"
 
-	return system, physics_movement_command.create_system(system)
+	return system
 end
 
 

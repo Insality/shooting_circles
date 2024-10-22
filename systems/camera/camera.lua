@@ -63,6 +63,33 @@ function M:onAddToWorld()
 end
 
 
+
+function M:postWrap()
+	self.world.queue:process("window_event", self.process_window_event, self)
+	self.world.queue:process("transform_event", self.process_transform_event, self)
+end
+
+
+---@param window_event event.window_event
+function M:process_window_event(window_event)
+	if window_event.is_resized then
+		self:update_camera_position(self.camera)
+		self:update_camera_zoom(self.camera)
+	end
+end
+
+
+---@param transform_event event.transform_event
+function M:process_transform_event(transform_event)
+	if transform_event.is_position_changed then
+		self:update_camera_position(self.camera, transform_event.animate_time, transform_event.easing)
+	end
+	if transform_event.is_size_changed then
+		self:update_camera_zoom(self.camera, transform_event.animate_time, transform_event.easing)
+	end
+end
+
+
 ---@param entity entity.camera
 function M:onAdd(entity)
 	local camera_entity = entity --[[@as entity.camera]]
@@ -100,22 +127,13 @@ function M:replace_camera(entity)
 	entity.transform.size_x = self.camera.transform.size_x
 	entity.transform.size_y = self.camera.transform.size_y
 
-	-- Move to the new position
-	---@type component.transform_command
-	local transform_command = {
-		entity = entity,
-		animate_time = 0.9,
-		easing = go.EASING_OUTSINE,
-		position_x = position_x,
-		position_y = position_y,
-		size_x = size_x,
-		size_y = size_y
-	}
-
 	-- Replace Camera entity
 	self.world:removeEntity(self.camera)
 	self.world:addEntity(entity)
-	self.world:addEntity({ transform_command = transform_command })
+
+	self.world.transform_command:set_position(entity, position_x, position_y, nil)
+	self.world.transform_command:set_size(entity, size_x, size_y, nil)
+	self.world.transform_command:set_animate_time(entity, 0.9, go.EASING_OUTSINE)
 end
 
 

@@ -315,7 +315,7 @@
                  "type":"class",
                  "value":
                     {
-                     "command":"{\"gui_main_command\": {\"text\": \"Shoot\"}}"
+                     "command":"[\"gui_main_command\", \"set_text\", \"Shoot\"]"
                     }
                 }, 
                 {
@@ -324,7 +324,7 @@
                  "type":"class",
                  "value":
                     {
-                     "command":"{\"gui_main_command\": {\"level_complete\": true}}"
+                     "command":"[\"gui_main_command\", \"level_complete\", true]"
                     }
                 }]
         }, 
