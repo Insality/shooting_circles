@@ -125,6 +125,7 @@ function M.physics_world_listener(self, event, data)
 				collision_event = event_data
 			}
 			self.world.queue:push("collision_event", collision_event)
+
 			if entity_target then
 				self.collided_this_frame[entity_source] = self.collided_this_frame[entity_source] or {}
 				self.collided_this_frame[entity_source][entity_target] = true

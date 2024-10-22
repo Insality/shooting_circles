@@ -40,6 +40,7 @@ local LEVELS = {
 function M.create_system()
 	local system = setmetatable(ecs.system(), { __index = M })
 	system.filter = ecs.requireAll("gui_main", "game_object")
+	system.id = "gui_main"
 
 	return system, gui_main_command.create_system(system)
 end
@@ -75,12 +76,7 @@ end
 
 
 function M:spawn_world(world_id)
-	---@type component.level_loader_command
-	local level_loader_command = {
-		world_id = world_id,
-		slot_id = "level"
-	}
-	self.world:addEntity({ level_loader_command = level_loader_command })
+	self.world.level_loader_command:load_world(world_id, nil, 0, 0, "level")
 end
 
 

@@ -1,5 +1,4 @@
 local ecs = require("decore.ecs")
-local decore = require("decore.decore")
 
 local health_command = require("systems.health.health_command")
 
@@ -29,6 +28,24 @@ function M.create_system()
 	system.filter = ecs.requireAll("health")
 
 	return system, health_command.create_system(system)
+end
+
+
+function M:onAddToWorld()
+	self.world.queue:set_merge_policy("health_event", function(events, event)
+		---@cast events event.health_event[]
+		---@cast event event.health_event
+
+		for index = #events, 1, -1 do
+			local compare_event = events[index]
+			if compare_event.entity == event.entity then
+				compare_event.damage = compare_event.damage + event.damage
+				return true
+			end
+		end
+
+		return false
+	end)
 end
 
 

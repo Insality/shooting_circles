@@ -48,26 +48,7 @@ end
 
 
 function M:onAddToWorld()
-	self.world.queue:set_merge_policy("transform_event", function(events, event)
-		---@cast events event.transform_event[]
-		---@cast event event.transform_event
-
-		for index = #events, 1, -1 do
-			local compare_event = events[index]
-			if compare_event.entity == event.entity then
-				compare_event.is_position_changed = compare_event.is_position_changed or event.is_position_changed
-				compare_event.is_scale_changed = compare_event.is_scale_changed or event.is_scale_changed
-				compare_event.is_rotation_changed = compare_event.is_rotation_changed or event.is_rotation_changed
-				compare_event.is_size_changed = compare_event.is_size_changed or event.is_size_changed
-				compare_event.animate_time = event.animate_time or compare_event.animate_time
-				compare_event.easing = event.easing or compare_event.easing
-
-				return true
-			end
-		end
-
-		return false
-	end)
+	self.world.queue:set_merge_policy("transform_event", self.event_merge_policy)
 end
 
 
@@ -97,6 +78,27 @@ function M.is_overlap(entity1, entity2)
 	local left2, right2, top2, bottom2 = M.get_transform_borders(entity2)
 
 	return left1 < right2 and right1 > left2 and top1 > bottom2 and bottom1 < top2
+end
+
+
+---@param events event.transform_event[]
+---@param event event.transform_event
+function M.event_merge_policy(events, event)
+	for index = #events, 1, -1 do
+		local compare_event = events[index]
+		if compare_event.entity == event.entity then
+			compare_event.is_position_changed = compare_event.is_position_changed or event.is_position_changed
+			compare_event.is_scale_changed = compare_event.is_scale_changed or event.is_scale_changed
+			compare_event.is_rotation_changed = compare_event.is_rotation_changed or event.is_rotation_changed
+			compare_event.is_size_changed = compare_event.is_size_changed or event.is_size_changed
+			compare_event.animate_time = event.animate_time or compare_event.animate_time
+			compare_event.easing = event.easing or compare_event.easing
+
+			return true
+		end
+	end
+
+	return false
 end
 
 

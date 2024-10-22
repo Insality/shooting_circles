@@ -21,6 +21,7 @@ function M.create_system(on_target_count)
 	local system = setmetatable(decore.ecs.system(), { __index = M })
 	system.filter = decore.ecs.requireAny("on_target_count_command")
 	system.on_target_count = on_target_count
+	system.id = "on_target_count_command"
 
 	return system
 end
@@ -36,7 +37,7 @@ function M:process_target_tracker_event(amount)
 	for _, entity in ipairs(self.entities) do
 		local command = entity.on_target_count_command
 		if command then
-			if amount == command.amount then
+			if command.amount == amount then
 				local data = json.decode(entity.on_target_count_command.command)
 				decore.call_command(self.world, data)
 			end

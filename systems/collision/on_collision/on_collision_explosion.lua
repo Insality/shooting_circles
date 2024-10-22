@@ -32,19 +32,6 @@ function M:postWrap()
 end
 
 
-function M:onRemove(entity)
-	local physics = entity.physics
-	if physics then
-		for index = 1, #self.entities do
-			if self.entities[index] == entity then
-				table.remove(self.entities, index)
-				break
-			end
-		end
-	end
-end
-
-
 ---@param collision_event event.collision_event
 function M:process_collision_event(collision_event)
 	local entity = collision_event.entity
@@ -70,7 +57,7 @@ function M:process_collision_event(collision_event)
 
 				local damage = math.ceil(explosion.damage * koef)
 				if damage > 0 and target_entity.health then
-					self.world.health_command:apply_damage(entity, damage)
+					self.world.health_command:apply_damage(target_entity, damage)
 				end
 			end
 		end

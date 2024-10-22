@@ -6,20 +6,14 @@ local decore = require("decore.decore")
 ---@class entity.on_collision_remove: entity
 ---@field on_collision_remove boolean
 
----@class component.on_collision_remove: boolean
-
 ---@class system.on_collision_remove: system
 ---@field entities entity.on_collision_remove[]
 local M = {}
 
-local VECTOR_ZERO = vmath.vector3(0)
-
-
 ---@static
 ---@return system.on_collision_remove
 function M.create_system()
-	local system = setmetatable(decore.ecs.system(), { __index = M })
-	return system
+	return setmetatable(decore.ecs.system(), { __index = M })
 end
 
 

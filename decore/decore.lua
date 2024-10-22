@@ -2,6 +2,8 @@ local queue = require("decore.queue")
 local decore_data = require("decore.decore_data")
 local decore_internal = require("decore.decore_internal")
 
+local system_queue = require("decore.system.queue")
+
 local TYPE_TABLE = "table"
 local IS_PREHASH_ENTITIES_ID = sys.get_config_int("decore.is_prehash", 0) == 1
 
@@ -15,11 +17,29 @@ local M = {
 }
 
 
+---Create a new world instance
+---@return world
 function M.world()
+	---@type world
 	local world = M.ecs.world()
 	world.queue = queue.create()
 
+	-- Always included systems
+	world:addSystem(system_queue.create_system())
+
 	return world
+end
+
+
+---Add input event to the world queue
+---@param world world
+---@param action_id hash
+---@param action action
+---@return boolean
+function M.on_input(world, action_id, action)
+	action.action_id = action_id
+	world.queue:push("input_event", action)
+	return false
 end
 
 
@@ -458,9 +478,9 @@ function M.print_loaded_packs_debug_info()
 end
 
 
----Call command from table
+---Call command from params array
 ---@param world world
----@param command any[]
+---@param command any[] Example: {"system_name", "function_name", "arg1", "arg2", ...}
 function M.call_command(world, command)
 	local system_command = world[command[1]]
 	if not system_command then

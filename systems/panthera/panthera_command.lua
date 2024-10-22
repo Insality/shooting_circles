@@ -13,18 +13,10 @@ local M = {}
 function M.create_system(panthera)
 	local system = setmetatable(decore.ecs.system(), { __index = M })
 	system.id = "panthera_command"
-
 	system.panthera = panthera
 
 	return system
 end
-
-
----@private
-function M:postWrap()
-	self.world.queue:process("window_event", self.process_window_event, self)
-end
-
 
 ---@private
 function M:onAddToWorld()
@@ -38,41 +30,15 @@ function M:onRemoveFromWorld()
 end
 
 
----@private
----@param window_event event.window_event
-function M:process_window_event(window_event)
-	if window_event.is_focus_gained then
-		panthera.reload_animation()
-	end
-end
-
-
 ---@param entity entity
+---@param animation_state panthera.animation.state
 ---@param animation_id string
----@param speed number|nil
----@param is_loop boolean|nil
-function M:play_detached(entity, animation_id, speed, is_loop)
-	local p = entity.panthera
-	assert(p, "Entity doesn't have panthera component")
-
+function M:play_state(entity, animation_state, animation_id)
 	if not decore.is_alive(self, entity) then
 		return
 	end
 
-	local animation_state = panthera.clone_state(p.animation_state)
-
-	panthera.play(animation_state, animation_id, {
-		is_loop = is_loop or false,
-		speed = speed or 1,
-		callback = function(animation_path)
-			for index = 1, #p.detached_animations do
-				if p.detached_animations[index] == animation_state then
-					table.remove(p.detached_animations, index)
-					break
-				end
-			end
-		end
-	})
+	panthera.play(animation_state, animation_id)
 end
 
 

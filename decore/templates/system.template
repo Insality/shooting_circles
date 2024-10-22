@@ -24,19 +24,4 @@ function M.create_system()
 end
 
 
----@param entity entity.TEMPLATE
-function M:onAdd(entity)
-end
-
-
----@param entity entity.TEMPLATE
-function M:onRemove(entity)
-end
-
-
----@param dt number
-function M:update(dt)
-end
-
-
 return M

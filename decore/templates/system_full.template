@@ -26,16 +26,25 @@ function M.create_system()
 end
 
 
+---@private
+function M:postWrap()
+	--self.world.queue:process("transform_event", self.process_transform_event, self)
+end
+
+
+---@private
 ---@param entity entity.TEMPLATE
 function M:onAdd(entity)
 end
 
 
+---@private
 ---@param entity entity.TEMPLATE
 function M:onRemove(entity)
 end
 
 
+---@private
 ---@param dt number
 function M:update(dt)
 end

@@ -1,7 +1,5 @@
 local decore = require("decore.decore")
 
-local on_key_released_command = require("systems.on_key_released.on_key_released_command")
-
 ---@class entity
 ---@field on_key_released component.on_key_released|nil
 
@@ -19,7 +17,7 @@ local M = {}
 
 
 ---@static
----@return system.on_key_released, system.on_key_released_command
+---@return system.on_key_released
 function M.create_system()
 	local system = setmetatable(decore.ecs.system(), { __index = M })
 	system.filter = decore.ecs.requireAll("on_key_released")
@@ -27,7 +25,12 @@ function M.create_system()
 
 	system.hash_to_string = {}
 
-	return system, on_key_released_command.create_system(system)
+	return system
+end
+
+
+function M:postWrap()
+	self.world.queue:process("input_event", self.process_input_event, self)
 end
 
 
@@ -47,6 +50,16 @@ function M:onAdd(entity)
 				self.hash_to_string[hash_id] = key_id
 			end
 		end
+	end
+end
+
+
+---@param input_event event.input_event
+function M:process_input_event(input_event)
+	local entities = self.entities
+	for index = 1, #entities do
+		local entity = entities[index]
+		self:apply_input(entity, input_event.action_id, input_event)
 	end
 end
 

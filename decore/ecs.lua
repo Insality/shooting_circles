@@ -764,7 +764,6 @@ function tiny.update(world, dt, filter)
 	for i = 1, #systems do
 		local system = systems[i]
 		if system.active and ((not filter) or filter(world, system)) then
-
 			-- Update Systems that have an update method (most Systems)
 			local update = system.update
 			if update then
@@ -788,6 +787,7 @@ function tiny.update(world, dt, filter)
 	-- Iterate through Systems IN ORDER AGAIN
 	for i = 1, #systems do
 		local system = systems[i]
+
 		local postWrap = system.postWrap
 		if postWrap and system.active and
 			((not filter) or filter(world, system)) then
