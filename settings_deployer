@@ -2,7 +2,7 @@
 # https://github.com/Insality/defold-deployer
 
 # You can point bob version for project in format "filename:sha"
-bob_sha="180:9141d9d3605e3f5d51c71293116d769da2613d39"
+bob_sha="194:512763fd375633fd67197225e61fe90a5929166b"
 
 # Select Defold channel. Values: stable, beta, alpha
 bob_channel="stable"

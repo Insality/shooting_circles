@@ -1,13 +1,13 @@
 [project]
 title = Shooting Circles
-version = 0.0.1
+version = 0.0.25
 write_log = 0
 compress_archive = 1
 publisher = Insality
 developer = Insality
 custom_resources = /resources
-commit_sha = e0b8b11e098aa3ce596a97f5486967c9711d9acb
-build_date = 2024-07-04T19:03:32Z
+commit_sha = e971d4c30c42d6e64af4bbfd5f5a71440125da79
+build_date = 2024-10-22T16:47:41Z
 title_as_file_name = ShootingCircles
 
 [display]
@@ -130,9 +130,9 @@ default_language = en
 localizations = en
 
 [android]
-version_code = 1
+version_code = 25
 minimum_sdk_version = 19
-target_sdk_version = 33
+target_sdk_version = 34
 package = com.example.todo
 gcm_sender_id = 
 manifest = /builtins/manifests/android/AndroidManifest.xml
@@ -142,6 +142,7 @@ immersive_mode = 0
 display_cutout = 1
 debuggable = 0
 proguard = 
+extract_native_libs = 1
 
 [osx]
 app_icon = 
@@ -198,6 +199,7 @@ sleep_between_server_updates = 0
 [liveupdate]
 settings = /liveupdate.settings
 enabled = 1
+mount_on_start = 1
 
 [tilemap]
 max_count = 0
@@ -206,6 +208,7 @@ max_tile_count = 0
 [engine]
 run_while_iconified = 0
 fixed_update_frequency = 60
+max_time_step = 0.5
 
 [safearea]
 resize_game_view = 0
