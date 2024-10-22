@@ -70,20 +70,15 @@ local function load_systems(world)
 	world:add(system_transform.create_system())
 	world:add(system_play_fx_on_remove.create_system())
 	world:add(system_gui_main_menu.create_system())
+
+	world:refresh()
 end
 
 
 ---@param self scene.game
 ---@param world_id string
 local function load_level(self, world_id)
-	---@type component.level_loader_command
-	local level_loader_command = {
-		world_id = world_id
-	}
-	self.world:addEntity({ level_loader_command = level_loader_command })
-
-	-- Call refresh to apply changes immediately
-	self.world:refresh()
+	self.world.level_loader_command:load_world(world_id)
 end
 
 

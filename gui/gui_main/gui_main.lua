@@ -75,12 +75,7 @@ end
 
 
 function M:spawn_world(world_id)
-	---@type component.level_loader_command
-	local level_loader_command = {
-		world_id = world_id,
-		slot_id = "level"
-	}
-	self.world:addEntity({ level_loader_command = level_loader_command })
+	self.world.level_loader_command:load_world(world_id, nil, 0, 0, "level")
 end
 
 
