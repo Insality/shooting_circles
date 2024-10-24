@@ -1,7 +1,7 @@
 local druid = require("druid.druid")
-local game = require("gui.game.game")
-
 local bindings = require("gui.bindings")
+
+local game = require("gui.game.game")
 
 
 ---@class script.game

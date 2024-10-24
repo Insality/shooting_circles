@@ -10,7 +10,7 @@ local M = {}
 ---@static
 ---@return system.input
 function M.create_system()
-	local system = setmetatable(ecs.processingSystem(), { __index = M })
+	local system = setmetatable(ecs.system(), { __index = M })
 	system.id = "input"
 
 	return system
