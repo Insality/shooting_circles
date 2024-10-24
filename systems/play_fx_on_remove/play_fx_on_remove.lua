@@ -1,4 +1,4 @@
-local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 
 ---@class entity
 ---@field play_fx_on_remove component.play_fx_on_remove|nil
@@ -9,6 +9,9 @@ local ecs = require("decore.ecs")
 
 ---@class component.play_fx_on_remove
 ---@field fx_url string
+decore.register_component("play_fx_on_remove", {
+	fx_url = ""
+})
 
 ---@class system.play_fx_on_remove: system
 ---@field entities entity.play_fx_on_remove[]
@@ -18,8 +21,8 @@ local M = {}
 ---@static
 ---@return system.play_fx_on_remove
 function M.create_system()
-	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAll("play_fx_on_remove", "game_object")
+	local system = setmetatable(decore.ecs.system(), { __index = M })
+	system.filter = decore.ecs.requireAll("play_fx_on_remove", "game_object")
 	system.id = "play_fx_on_remove"
 
 	return system

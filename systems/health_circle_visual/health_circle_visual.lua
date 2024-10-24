@@ -10,6 +10,7 @@ local panthera = require("panthera.panthera")
 
 ---@class component.health_circle_visual
 ---@field on_damage_animation panthera.animation.state
+decore.register_component("health_circle_visual")
 
 ---@class system.health_circle_visual: system
 ---@field entities entity.health_circle_visual[]

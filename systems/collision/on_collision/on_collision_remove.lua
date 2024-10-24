@@ -5,6 +5,7 @@ local decore = require("decore.decore")
 
 ---@class entity.on_collision_remove: entity
 ---@field on_collision_remove boolean
+decore.register_component("on_collision_remove")
 
 ---@class system.on_collision_remove: system
 ---@field entities entity.on_collision_remove[]

@@ -1,8 +1,8 @@
-local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 
 ---@class entity
----@field hidden boolean|nil
 ---@field game_object component.game_object|nil
+---@field hidden boolean|nil
 
 ---@class entity.game_object: entity
 ---@field game_object component.game_object
@@ -15,6 +15,11 @@ local ecs = require("decore.ecs")
 ---@field object table<string|hash, string|hash>
 ---@field is_slice9 boolean|nil
 ---@field remove_delay number|nil
+decore.register_component("game_object", {
+	factory_url = "",
+})
+decore.register_component("hidden", false)
+
 
 ---@class system.game_object: system
 local M = {}
@@ -26,9 +31,8 @@ local ROOT_URL = hash("/root")
 ---@static
 ---@return system.game_object
 function M.create_system()
-	---@type system.game_object
-	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAll("game_object", "transform", ecs.rejectAll("hidden"))
+	local system = setmetatable(decore.ecs.system(), { __index = M })
+	system.filter = decore.ecs.requireAll("game_object", "transform", decore.ecs.rejectAll("hidden"))
 	system.id = "game_object"
 
 	return system

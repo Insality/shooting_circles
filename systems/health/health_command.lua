@@ -3,7 +3,7 @@ local ecs = require("decore.ecs")
 ---@class world
 ---@field health_command system.health_command
 
----@class system.health_command: system
+---@class system.health_command: system_command
 ---@field health system.health
 local M = {}
 

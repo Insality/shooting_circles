@@ -3,7 +3,7 @@ local ecs = require("decore.ecs")
 ---@class world
 ---@field TEMPLATE_command system.TEMPLATE_command
 
----@class system.TEMPLATE_command: system
+---@class system.TEMPLATE_command: system_command
 ---@field TEMPLATE system.TEMPLATE
 local M = {}
 
@@ -12,8 +12,8 @@ local M = {}
 ---@return system.TEMPLATE_command
 function M.create_system(TEMPLATE)
 	local system = setmetatable(ecs.system(), { __index = M })
-	system.TEMPLATE = TEMPLATE
 	system.id = "TEMPLATE_command"
+	system.TEMPLATE = TEMPLATE
 
 	return system
 end

@@ -1,4 +1,4 @@
-local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 
 ---@class entity
 ---@field acceleration component.acceleration|nil
@@ -10,6 +10,9 @@ local ecs = require("decore.ecs")
 
 ---@class component.acceleration
 ---@field value number
+decore.register_component("acceleration", {
+	value = 0
+})
 
 ---@class system.acceleration: system
 ---@field entities entity.acceleration[]
@@ -19,8 +22,8 @@ local M = {}
 ---@static
 ---@return system.acceleration
 function M.create_system()
-	local system = setmetatable(ecs.processingSystem(), { __index = M })
-	system.filter = ecs.requireAll("acceleration", "physics", "game_object")
+	local system = setmetatable(decore.ecs.processingSystem(), { __index = M })
+	system.filter = decore.ecs.requireAll("acceleration", "physics", "game_object")
 
 	return system
 end

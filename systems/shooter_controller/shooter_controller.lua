@@ -1,4 +1,3 @@
-local ecs = require("decore.ecs")
 local decore = require("decore.decore")
 
 local logger = decore.get_logger("shooter_controller")
@@ -23,6 +22,21 @@ local logger = decore.get_logger("shooter_controller")
 ---@field last_screen_x number
 ---@field last_screen_y number
 ---@field bullets_per_shoot number
+decore.register_component("shooter_controller", {
+	bullet_prefab_id = "",
+	bullet_speed = 0,
+	damage = 0,
+	spread_angle = 0,
+	is_auto_shoot = false,
+	fire_rate = 0,
+	fire_rate_timer = 0,
+	burst_count = 0,
+	burst_count_current = 0,
+	burst_rate = 0,
+	last_screen_x = 0,
+	last_screen_y = 0,
+	bullets_per_shoot = 1,
+})
 
 ---@class system.shooter_controller: system
 ---@field entities entity.shooter_controller[]
@@ -34,12 +48,11 @@ local HASH_SPACE = hash("key_space")
 ---@static
 ---@return system.shooter_controller
 function M.create_system()
-	local system = setmetatable(ecs.processingSystem(), { __index = M })
-	system.filter = ecs.requireAll("shooter_controller")
+	local system = setmetatable(decore.ecs.processingSystem(), { __index = M })
+	system.filter = decore.ecs.requireAll("shooter_controller")
 
 	return system
 end
-
 
 
 function M:postWrap()

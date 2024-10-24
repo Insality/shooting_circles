@@ -6,11 +6,8 @@
 ---@class entity
 ---@field parent_prefab_id string|nil The parent prefab_id, used for prefab inheritance
 ---@field id number|nil @Unique entity id, autofilled by decore.create_entity
----@field name string|nil @The entity name
 ---@field prefab_id string|nil @The entity id from decore collections, autofilled by decore.create_entity
 ---@field pack_id string|nil @The entity id from decore collections, autofilled by decore.create_entity
----@field tiled_id number|nil @The entity id from Tiled, autofilled by decore.create_entity
----@field layer_id number|nil @The layer name from Tiled, autofilled by decore.create_entity
 
 ---@class system
 ---@field id string|number|nil
@@ -35,6 +32,9 @@
 ---@field process fun(entity:entity, dt:number)|nil
 ---@field postProcess fun(dt:number)|nil
 ---@field compare fun(e1:entity, e2:entity)|nil
+
+---@class system_command
+---@field world world
 
 ---@class world
 ---@field entities entity[]

@@ -1,4 +1,3 @@
-local ecs = require("decore.ecs")
 local events = require("event.events")
 local decore = require("decore.decore")
 
@@ -15,7 +14,7 @@ local M = {}
 ---@static
 ---@return system.window_event
 function M.create_system()
-	local system = setmetatable(ecs.system(), { __index = M })
+	local system = setmetatable(decore.ecs.system(), { __index = M })
 	system.id = "window_event"
 
 	return system

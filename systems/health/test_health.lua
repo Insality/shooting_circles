@@ -1,28 +1,5 @@
 local decore = require("decore.decore")
 
----@param world world
----@param component_name string
----@return entity|nil
-local function get_entity_with_component(world, component_name)
-	local entities = world.entities
-	for _, entity in ipairs(entities) do
-		if entity[component_name] then
-			return entity
-		end
-	end
-
-	-- We trying to look also in entities which will be changed in this frame
-	local entities2c = world.entitiesToChange
-	for _, entity in ipairs(entities2c) do
-		if entity[component_name] then
-			return entity
-		end
-	end
-
-	return nil
-end
-
-
 return function()
 	local system_health
 

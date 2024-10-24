@@ -1,4 +1,4 @@
-local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 
 local camera_command = require("systems.camera.camera_command")
 
@@ -21,6 +21,9 @@ local TEMP_VECTOR = vmath.vector3()
 ---@field offset_x number|nil
 ---@field offset_y number|nil
 ---@field offset_size number|nil
+decore.register_component("camera", {
+	camera_url = "",
+})
 
 ---@class system.camera: system
 ---@field entities (entity.camera)[]
@@ -40,8 +43,8 @@ M.CURRENT_CAMERA = nil
 ---@static
 ---@return system.camera, system.camera_command
 function M.create_system()
-	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAll("camera")
+	local system = setmetatable(decore.ecs.system(), { __index = M })
+	system.filter = decore.ecs.requireAll("camera")
 	system.id = "camera"
 
 	system.interval = 0.03

@@ -5,6 +5,7 @@ local decore = require("decore.decore")
 
 ---@class entity.on_spawn_command: entity
 ---@field on_spawn_command component.on_spawn_command
+decore.register_component("on_spawn_command")
 
 ---@class component.on_spawn_command
 ---@field command string

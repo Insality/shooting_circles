@@ -1,4 +1,4 @@
-local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 local panthera = require("panthera.panthera")
 
 local panthera_command = require("systems.panthera.panthera_command")
@@ -19,6 +19,9 @@ local panthera_command = require("systems.panthera.panthera_command")
 ---@field is_loop boolean|nil
 ---@field play_on_start boolean|nil
 ---@field detached_animations panthera.animation.state[]
+decore.register_component("panthera", {
+	animation_path = "",
+})
 
 ---@class system.panthera: system
 ---@field entities entity.panthera[]
@@ -27,8 +30,8 @@ local M = {}
 ---@static
 ---@return system.panthera, system.panthera_command
 function M.create_system()
-	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAll("panthera", "game_object", ecs.rejectAll("hidden"))
+	local system = setmetatable(decore.ecs.system(), { __index = M })
+	system.filter = decore.ecs.requireAll("panthera", "game_object", decore.ecs.rejectAll("hidden"))
 	system.id = "panthera"
 
 	return system, panthera_command.create_system(system)

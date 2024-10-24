@@ -7,8 +7,9 @@ local decore = require("decore.decore")
 ---@field on_key_released component.on_key_released
 
 ---@class component.on_key_released
----@field key_to_command_json string @JSON string table<key_id, table<component_id: component_data>>. Will override key_to_command if exists
----@field key_to_command table<string, table<string, table>> @ table<key_id, table<component_id: component_data>>.
+---@field key_to_command_json string|nil @JSON string table<key_id, table<component_id: component_data>>. Will override key_to_command if exists
+---@field key_to_command table<string, table<string, table>>|nil @ table<key_id, table<component_id: component_data>>.
+decore.register_component("on_key_released")
 
 ---@class system.on_key_released: system
 ---@field entities entity.on_key_released[]

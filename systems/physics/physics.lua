@@ -1,5 +1,4 @@
 local decore = require("decore.decore")
-
 local physics_command = require("systems.physics.physics_command")
 
 ---@class entity
@@ -15,6 +14,10 @@ local physics_command = require("systems.physics.physics_command")
 ---@field collisionobject_url url
 ---@field velocity_x number
 ---@field velocity_y number
+decore.register_component("physics", {
+	velocity_x = 0,
+	velocity_y = 0,
+})
 
 ---@class system.physics: system
 ---@field entities entity.physics[]
@@ -85,8 +88,8 @@ end
 
 
 ---@param entity entity.physics
----@param force_x number
----@param force_y number
+---@param force_x number|nil
+---@param force_y number|nil
 function M:add_force(entity, force_x, force_y)
 	if not decore.is_alive(self, entity) then
 		return
@@ -95,7 +98,6 @@ function M:add_force(entity, force_x, force_y)
 	local body = entity.physics.box2d_body
 	TEMP_VECTOR.x = force_x or 0
 	TEMP_VECTOR.y = force_y or 0
-	TEMP_VECTOR.z = 0
 	b2d.body.apply_force_to_center(body, TEMP_VECTOR)
 end
 

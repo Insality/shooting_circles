@@ -3,7 +3,7 @@ local ecs = require("decore.ecs")
 ---@class world
 ---@field camera_command system.camera_command
 
----@class system.camera_command: system
+---@class system.camera_command: system_command
 ---@field camera system.camera|nil @Current camera system
 ---@field previous_camera_state table<string, any>|nil @Previous camera state
 local M = {}

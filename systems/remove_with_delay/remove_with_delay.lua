@@ -9,6 +9,9 @@ local decore = require("decore.decore")
 ---@class component.remove_with_delay
 ---@field delay number
 ---@field timer_id hash|nil
+decore.register_component("remove_with_delay", {
+	delay = 0
+})
 
 ---@class system.remove_with_delay: system
 ---@field entities entity.remove_with_delay[]

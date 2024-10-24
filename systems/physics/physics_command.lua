@@ -3,7 +3,7 @@ local ecs = require("decore.ecs")
 ---@class world
 ---@field physics_command system.physics_command
 
----@class system.physics_command: system
+---@class system.physics_command: system_command
 ---@field physics system.physics
 local M = {}
 

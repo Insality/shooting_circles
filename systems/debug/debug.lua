@@ -1,4 +1,4 @@
-local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 local log = require("log.log")
 
 local system_debug_command = require("systems.debug.debug_command")
@@ -11,8 +11,13 @@ local system_debug_command = require("systems.debug.debug_command")
 
 ---@class component.debug
 ---@field is_profiler_active boolean
----@field profiler_mode userdata
----@field timer_memory_record hash
+---@field profiler_mode userdata|nil
+---@field timer_memory_record hash|nil
+decore.register_component("debug", {
+	is_profiler_active = false,
+	profiler_mode = nil,
+	timer_memory_record = nil,
+})
 
 ---@class system.debug: system
 ---@field entities entity.debug[]
@@ -22,8 +27,8 @@ local M = {}
 ---@static
 ---@return system.debug, system.debug_command
 function M.create_system()
-	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAny("debug")
+	local system = setmetatable(decore.ecs.system(), { __index = M })
+	system.filter = decore.ecs.requireAny("debug")
 	system.id = "debug"
 
 	return system, system_debug_command.create_system(system)

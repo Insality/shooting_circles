@@ -1,4 +1,4 @@
-local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 
 local health_command = require("systems.health.health_command")
 
@@ -11,6 +11,9 @@ local health_command = require("systems.health.health_command")
 ---@class component.health
 ---@field health number
 ---@field current_health number|nil
+decore.register_component("health", {
+	health = 0,
+})
 
 ---@class event.health_event
 ---@field entity entity
@@ -24,8 +27,8 @@ local M = {}
 ---@static
 ---@return system.health, system.health_command
 function M.create_system()
-	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAll("health")
+	local system = setmetatable(decore.ecs.system(), { __index = M })
+	system.filter = decore.ecs.requireAll("health")
 
 	return system, health_command.create_system(system)
 end

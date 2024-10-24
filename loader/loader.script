@@ -22,7 +22,7 @@ end
 
 ---@param self scene.loader
 local function init_logger(self)
-	event.set_logger(log.get_logger("event"))
+	event.set_logger(log.get_logger("event") --[[@as event.logger]])
 	decore.set_logger(log.get_logger("decore"))
 	detiled.set_logger(log.get_logger("detiled"))
 	panthera.set_logger(log.get_logger("panthera"))
@@ -31,13 +31,15 @@ end
 
 ---@param self scene.loader
 local function init_decore(self)
-	decore.register_components("/resources/components.json")
+	decore.init()
 	decore.register_entities("/resources/entities.json")
 end
 
 
 ---@param self scene.loader
 local function init_detiled(self)
+	detiled.init()
+
 	local entities_packs_data = detiled.get_entities_packs_data("/resources/tilesets_list.json")
 	if entities_packs_data then
 		for _, pack_data in ipairs(entities_packs_data) do

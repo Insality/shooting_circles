@@ -9,6 +9,9 @@ local decore = require("decore.decore")
 ---@class component.on_target_count_command
 ---@field amount number
 ---@field command string
+decore.register_component("on_target_count_command", {
+	amount = 0,
+})
 
 ---@class system.on_target_count_command: system
 ---@field entities entity.on_target_count_command[]

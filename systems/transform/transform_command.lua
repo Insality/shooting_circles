@@ -3,7 +3,7 @@ local decore = require("decore.decore")
 ---@class world
 ---@field transform_command system.transform_command
 
----@class system.transform_command: system
+---@class system.transform_command: system_command
 ---@field transform system.transform
 local M = {}
 

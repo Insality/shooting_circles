@@ -1,4 +1,4 @@
-local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 
 ---@class entity
 ---@field damage_number number|nil
@@ -8,6 +8,12 @@ local ecs = require("decore.ecs")
 ---@field game_object component.game_object
 ---@field transform component.transform
 
+---@class component.damage_number
+---@field damage_number number
+decore.register_component("damage_number", {
+	damage_number = 0,
+})
+
 ---@class system.damage_number: system
 ---@field entities entity.damage_number[]
 local M = {}
@@ -16,8 +22,8 @@ local M = {}
 ---@static
 ---@return system.damage_number
 function M.create_system()
-	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAll("damage_number", "game_object")
+	local system = setmetatable(decore.ecs.system(), { __index = M })
+	system.filter = decore.ecs.requireAll("damage_number", "game_object")
 	system.id = "damage_number"
 
 	return system
@@ -100,7 +106,6 @@ function M.split(s, sep)
 	end
 	return t
 end
-
 
 
 return M

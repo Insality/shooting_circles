@@ -1,5 +1,5 @@
 local bindings = require("gui.bindings")
-local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 
 local gui_main_command = require("gui.game.game_system_command")
 
@@ -13,6 +13,7 @@ local gui_main_command = require("gui.game.game_system_command")
 ---@class component.gui_main
 ---@field component gui.game
 ---@field current_level_index number
+decore.register_component("gui_main")
 
 ---@class system.gui_main: system
 ---@field entities entity.gui_main[]
@@ -38,8 +39,8 @@ local LEVELS = {
 ---@static
 ---@return system.gui_main, system.gui_main_command
 function M.create_system()
-	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAll("gui_main", "game_object")
+	local system = setmetatable(decore.ecs.system(), { __index = M })
+	system.filter = decore.ecs.requireAll("gui_main", "game_object")
 	system.id = "gui_main"
 
 	return system, gui_main_command.create_system(system)

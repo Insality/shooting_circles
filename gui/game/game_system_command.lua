@@ -3,7 +3,7 @@ local ecs = require("decore.ecs")
 ---@class world
 ---@field gui_main_command system.gui_main_command
 
----@class system.gui_main_command: system
+---@class system.gui_main_command: system_command
 ---@field gui_main system.gui_main
 local M = {}
 

@@ -1,4 +1,4 @@
-local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 
 ---@class entity
 ---@field color component.color|nil
@@ -11,6 +11,10 @@ local ecs = require("decore.ecs")
 ---@field hex_color string
 ---@field color vector4|nil
 ---@field sprite_url string @"/root#sprite" or "/root#sprite,/root#sprite2"
+decore.register_component("color", {
+	hex_color = "",
+	sprite_url = "",
+})
 
 ---@class system.color: system
 ---@field entities entity.color[]
@@ -20,8 +24,8 @@ local M = {}
 ---@static
 ---@return system.color
 function M.create_system()
-	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAll("color", "game_object")
+	local system = setmetatable(decore.ecs.system(), { __index = M })
+	system.filter = decore.ecs.requireAll("color", "game_object")
 	system.id = "color"
 
 	return system

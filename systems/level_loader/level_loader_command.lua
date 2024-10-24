@@ -3,7 +3,7 @@ local ecs = require("decore.ecs")
 ---@class world
 ---@field level_loader_command system.level_loader_command
 
----@class system.level_loader_command: system
+---@class system.level_loader_command: system_command
 ---@field level_loader system.level_loader
 local M = {}
 
@@ -19,11 +19,13 @@ function M.create_system(level_loader)
 end
 
 
+---@private
 function M:onAddToWorld()
 	self.world.level_loader_command = self
 end
 
 
+---@private
 function M:onRemoveFromWorld()
 	self.world.level_loader_command = nil
 end

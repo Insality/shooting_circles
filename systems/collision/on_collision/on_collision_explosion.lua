@@ -11,6 +11,11 @@ local decore = require("decore.decore")
 ---@field distance number
 ---@field damage number
 ---@field spawn_entity string|nil
+decore.register_component("on_collision_explosion", {
+	power = 0,
+	distance = 0,
+	damage = 0,
+})
 
 ---@class system.on_collision_explosion: system
 ---@field entities entity.physics[]

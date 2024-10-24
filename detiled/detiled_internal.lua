@@ -2,6 +2,7 @@ local LOADED_TILESETS = {}
 
 local M = {}
 
+local TYPE_TABLE = "table"
 local EMPTY_FUNCTION = function(self, message, context) end
 
 ---@class detiled.logger
@@ -215,6 +216,34 @@ function M.get_components_property(components)
 	end
 
 	return parsed_components
+end
+
+
+--- Merge one table into another recursively
+---@param t1 table
+---@param t2 any
+function M.merge_tables(t1, t2)
+	for k, v in pairs(t2) do
+		if type(v) == "table" and type(t1[k]) == "table" then
+			M.merge_tables(t1[k], v)
+		else
+			t1[k] = v
+		end
+	end
+end
+
+
+---@param entity entity
+---@param components table<string, any>
+function M.apply_components(entity, components)
+	for component_id, component_data in pairs(components) do
+		if type(component_data) == TYPE_TABLE then
+			entity[component_id] = entity[component_id] or {}
+			M.merge_tables(entity[component_id], component_data)
+		else
+			entity[component_id] = component_data
+		end
+	end
 end
 
 

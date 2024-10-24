@@ -1,5 +1,7 @@
 local decore = require("decore.decore")
 
+decore.register_component("collision")
+
 ---@class event.collision_event
 ---@field entity entity
 ---@field other entity

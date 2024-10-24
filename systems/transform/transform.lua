@@ -17,11 +17,19 @@ local transform_command = require("systems.transform.transform_command")
 ---@field position_z number
 ---@field size_x number
 ---@field size_y number
----@field size_z number
 ---@field scale_x number
 ---@field scale_y number
----@field scale_z number
 ---@field rotation number
+decore.register_component("transform", {
+	position_x = 0,
+	position_y = 0,
+	position_z = 0,
+	size_x = 1,
+	size_y = 1,
+	scale_x = 1,
+	scale_y = 1,
+	rotation = 0,
+})
 
 ---@class event.transform_event
 ---@field entity entity @The entity that was changed.
@@ -35,6 +43,7 @@ local transform_command = require("systems.transform.transform_command")
 ---@class system.transform: system
 ---@field entities entity.transform[]
 local M = {}
+
 
 ---@static
 ---@return system.transform, system.transform_command

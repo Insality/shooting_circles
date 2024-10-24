@@ -4,7 +4,7 @@ local panthera = require("panthera.panthera")
 ---@class world
 ---@field panthera_command system.panthera_command
 
----@class system.panthera_command: system
+---@class system.panthera_command: system_command
 ---@field panthera system.panthera
 local M = {}
 
@@ -34,7 +34,7 @@ end
 ---@param animation_state panthera.animation.state
 ---@param animation_id string
 function M:play_state(entity, animation_state, animation_id)
-	if not decore.is_alive(self, entity) then
+	if not decore.is_alive(self.panthera, entity) then
 		return
 	end
 
@@ -50,7 +50,7 @@ function M:play(entity, animation_id, speed, is_loop)
 	local p = entity.panthera
 	assert(p, "Entity doesn't have panthera component")
 
-	if not decore.is_alive(self, entity) then
+	if not decore.is_alive(self.panthera, entity) then
 		return
 	end
 

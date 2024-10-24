@@ -3,7 +3,7 @@ local ecs = require("decore.ecs")
 ---@class world
 ---@field debug_command system.debug_command|nil
 
----@class system.debug_command: system
+---@class system.debug_command: system_command
 ---@field debug system.debug
 local M = {}
 
@@ -53,7 +53,6 @@ function M:restart()
 		msg.post("@system:", "reboot")
 	end
 end
-
 
 
 return M

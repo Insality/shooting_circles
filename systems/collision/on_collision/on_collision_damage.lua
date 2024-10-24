@@ -8,6 +8,9 @@ local decore = require("decore.decore")
 
 ---@class component.on_collision_damage
 ---@field damage number
+decore.register_component("on_collision_damage", {
+	damage = 0
+})
 
 ---@class system.on_collision_damage: system
 ---@field entities entity.on_collision_damage[]

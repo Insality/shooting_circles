@@ -1,4 +1,4 @@
-local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 
 ---@class entity
 ---@field movement_controller component.movement_controller|nil
@@ -11,6 +11,11 @@ local ecs = require("decore.ecs")
 ---@field speed number
 ---@field movement_x number @Runtime
 ---@field movement_y number @Runtime
+decore.register_component("movement_controller", {
+	speed = 1,
+	movement_x = 0,
+	movement_y = 0,
+})
 
 ---@class system.movement_controller: system
 ---@field entities entity.movement_controller[]
@@ -30,8 +35,8 @@ local ACTION_ID_TO_SIDE = {
 ---@static
 ---@return system.movement_controller
 function M.create_system()
-	local system = setmetatable(ecs.processingSystem(), { __index = M })
-	system.filter = ecs.requireAll("movement_controller", "physics")
+	local system = setmetatable(decore.ecs.processingSystem(), { __index = M })
+	system.filter = decore.ecs.requireAll("movement_controller", "physics")
 	system.id = "movement_controller"
 
 	return system
