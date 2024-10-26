@@ -60,11 +60,6 @@ function M:onAdd(entity)
 end
 
 
-function M:spawn_world(world_id)
-	self.world.level_loader_command:load_world(world_id, nil, 0, 0, "level")
-end
-
-
 function M:on_click_button(entity, direction)
 	local index = entity.game_gui.current_level_index + direction
 	if index < 1 then
@@ -76,6 +71,11 @@ function M:on_click_button(entity, direction)
 
 	entity.game_gui.current_level_index = index
 	self:spawn_world(LEVELS[index])
+end
+
+
+function M:spawn_world(world_id)
+	self.world.level_loader_command:load_world(world_id, nil, 0, 0, "level")
 end
 
 

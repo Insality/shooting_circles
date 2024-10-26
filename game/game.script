@@ -14,7 +14,6 @@ local system_level_loader = require("systems.level_loader.level_loader")
 local system_panthera = require("systems.panthera.panthera_decore")
 local system_physics = require("systems.physics.physics")
 local system_acceleration = require("systems.acceleration.acceleration")
-local system_physics_movement = require("systems.physics_movement.physics_movement")
 local system_movement_controller = require("systems.movement_controller.movement_controller")
 local system_shooter_controller = require("systems.shooter_controller.shooter_controller")
 local system_remove_with_delay = require("systems.remove_with_delay.remove_with_delay")
@@ -44,7 +43,6 @@ local function load_systems(world)
 	world:add(system_window_event.create_system())
 	world:add(system_input.create_system())
 	world:add(system_on_key_released.create_system())
-	world:add(system_physics_movement.create_system())
 	world:add(system_movement_controller.create_system())
 	world:add(system_shooter_controller.create_system())
 	world:add(system_game_object.create_system())
@@ -76,8 +74,16 @@ end
 
 ---@param self scene.game
 local function load_entities(self)
+	-- Get entities in Decode prefabs from tiled Tileset
+	-- It grabs each entity "Class" field and make a entitiy from their properties
+	-- All this entities always have transform field
 	decore.register_entities("tiled", detiled.get_entities_from_tileset("/resources/tilesets/shooting_circle.json"))
 
+	-- We can describe entities right here or separate them into different files for your convenience
+	-- Here we use a separate file for each entity type for bullets
+	decore.register_entities("bullets", require("systems.shooter_controller.entities_bullets"))
+
+	-- We can describe entities right here
 	decore.register_entities("game", {
 		["debug"] = require("systems.debug.entity_debug"),
 		["game_gui"] = require("gui.game.entity_game_gui"),
@@ -85,12 +91,15 @@ local function load_entities(self)
 		["explosion"] = require("game.objects.explosion.entity_explosion")
 	})
 
-	decore.register_entities("bullets", require("systems.shooter_controller.entities_bullets"))
 end
 
 
 ---@param self scene.game
 local function load_worlds(self)
+	-- Worlds usually a list of entities, but Decore add a "included worlds" to make a composition layer if required
+	-- The detiled.get_world_from_tiled_map function returns a list of entities from the Tiled map
+	-- But `get_worlds_from_tiled_map` also adds a each layer as a separate world, allows more flexibility
+	-- Here works the `layer.exclude` and in this projects it used as a "level" layer to spawn the exact level buy layer name
 	decore.register_worlds(detiled.get_worlds_from_tiled_map("game", "/resources/maps/game.json"), "game")
 end
 

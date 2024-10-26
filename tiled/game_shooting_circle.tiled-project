@@ -318,24 +318,6 @@
         },
         {
             "color": "#ffa0a0a4",
-            "id": 16,
-            "members": [
-            ],
-            "name": "physics_movement",
-            "type": "class",
-            "useAs": [
-                "property",
-                "map",
-                "layer",
-                "object",
-                "tile",
-                "tileset",
-                "wangcolor",
-                "wangset"
-            ]
-        },
-        {
-            "color": "#ffa0a0a4",
             "id": 28,
             "members": [
                 {

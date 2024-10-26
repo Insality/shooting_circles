@@ -12,7 +12,6 @@ local M = {}
 ---@return system.physics_command
 function M.create_system(physics)
 	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAny("physics_command")
 	system.physics = physics
 	system.id = "physics_command"
 
