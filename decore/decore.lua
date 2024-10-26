@@ -160,47 +160,54 @@ function M.unregister_entities(pack_id)
 end
 
 
+function M.get_entity(prefab_id, pack_id)
+	for index = #decore_data.entities_order, 1, -1 do
+		local check_pack_id = decore_data.entities_order[index]
+		local entities_pack = decore_data.entities[check_pack_id]
+
+		local entity = entities_pack[prefab_id]
+		if entity and (not pack_id or pack_id == check_pack_id) then
+			return entity
+		end
+	end
+
+	return nil
+end
+
+
 ---Create entity instance from prefab
 ---@param prefab_id string|hash
 ---@param pack_id string|nil
 ---@param data table|nil @additional data to merge with prefab
 ---@return entity
 function M.create_entity(prefab_id, pack_id, data)
-	for index = #decore_data.entities_order, 1, -1 do
-		local check_pack_id = decore_data.entities_order[index]
-		local entities_pack = decore_data.entities[check_pack_id]
+	local prefab = M.get_entity(prefab_id, pack_id)
+	if not prefab then
+		decore_internal.logger:warn("No entity with id", {
+			prefab_id = prefab_id,
+			pack_id = pack_id,
+		})
 
-		local prefab = entities_pack[prefab_id]
-		if prefab and (not pack_id or pack_id == check_pack_id) then
-			local entity
-
-			-- Use parent entity as template
-			if prefab.parent_prefab_id then
-				local parent_entity = M.create_entity(prefab.parent_prefab_id)
-				if parent_entity then
-					entity = parent_entity
-				end
-			end
-			entity = entity or {}
-
-			for component_id, prefab_data in pairs(prefab) do
-				M.apply_component(entity, component_id, prefab_data)
-			end
-
-			if data then
-				M.apply_components(entity, data)
-			end
-
-			return entity
+		local entity = {}
+		if data then
+			M.apply_components(entity, data)
 		end
+
+		return entity
 	end
 
-	decore_internal.logger:warn("No entity with id", {
-		prefab_id = prefab_id,
-		pack_id = pack_id,
-	})
+	local entity
+	-- Use parent entity as template
+	if prefab.parent_prefab_id then
+		local parent_entity = M.create_entity(prefab.parent_prefab_id)
+		if parent_entity then
+			entity = parent_entity
+		end
+	end
+	entity = entity or {}
 
-	local entity = {}
+	M.apply_components(entity, prefab)
+
 	if data then
 		M.apply_components(entity, data)
 	end
@@ -377,86 +384,96 @@ function M.unregister_worlds(pack_id)
 end
 
 
+function M.get_world(world_id, pack_id)
+	for index = #decore_data.worlds_order, 1, -1 do
+		local check_pack_id = decore_data.worlds_order[index]
+		local worlds_pack = decore_data.worlds[check_pack_id]
+
+		local world = worlds_pack[world_id]
+		if world and (not pack_id or pack_id == check_pack_id) then
+			return world
+		end
+	end
+
+	return nil
+end
+
+
 ---Create entity instances from world prefab
 ---@param world_id string
 ---@param world_pack_id string|nil @if nil, use first found from latest loaded pack
 ---@return entity[]|nil
 function M.create_world(world_id, world_pack_id)
-	for index = #decore_data.worlds_order, 1, -1 do
-		local pack_id = decore_data.worlds_order[index]
-		local worlds_pack = decore_data.worlds[pack_id]
+	local world = M.get_world(world_id, world_pack_id)
+	if not world then
+		decore_internal.logger:error("No world with id", {
+			world_id = world_id,
+			pack_id = world_pack_id,
+		})
 
-		local prefab = worlds_pack[world_id]
-		if worlds_pack[world_id] and (not world_pack_id or (world_pack_id == pack_id)) then
-			local entities = {}
+		return nil
+	end
 
-			-- Create all template entities
-			if prefab.included_worlds then
-				for world_index = 1, #prefab.included_worlds do
-					local world_instance = prefab.included_worlds[world_index]
-					local world_entities = M.create_world(world_instance.world_id, world_instance.pack_id)
-					if world_entities then
-						for _, entity in ipairs(world_entities) do
-							table.insert(entities, entity)
-						end
-					end
+	local entities = {}
+
+	-- Create all template entities
+	if world.included_worlds then
+		for world_index = 1, #world.included_worlds do
+			local world_instance = world.included_worlds[world_index]
+			local world_entities = M.create_world(world_instance.world_id, world_instance.pack_id)
+			if world_entities then
+				for _, entity in ipairs(world_entities) do
+					table.insert(entities, entity)
 				end
 			end
-
-			if prefab.entities then
-				for entity_index = 1, #prefab.entities do
-					local entity_info = prefab.entities[entity_index]
-
-					local entity
-					if entity_info.prefab_id and entity_info.prefab_id ~= "" then
-						-- Create entity from decore entities
-						entity = M.create_entity(entity_info.prefab_id, entity_info.pack_id)
-					else
-						-- Create empty entity
-						entity = {}
-					end
-
-					if entity then
-						local components = entity_info.components
-						if components then
-							M.apply_components(entity, components)
-						end
-
-						table.insert(entities, entity)
-					end
-
-					-- Entities can spawn a world
-					-- TODO: Add parent relations
-					local world_prefab_id = entity.world_prefab_id
-					if world_prefab_id then
-						local child_entities = M.create_world(world_prefab_id)
-						if child_entities then
-							for _, child_entity in ipairs(child_entities) do
-								child_entity.tiled_id = entity.tiled_id .. ":" .. child_entity.tiled_id
-								child_entity.transform.position_x = child_entity.transform.position_x + entity.transform.position_x - entity.transform.size_x/2
-								child_entity.transform.position_y = child_entity.transform.position_y + entity.transform.position_y - entity.transform.size_y/2
-
-								table.insert(entities, child_entity)
-							end
-						else
-							decore_internal.logger:error("Failed to create world prefab", {
-								world_prefab_id = world_prefab_id,
-							})
-						end
-					end
-				end
-			end
-
-			return entities
 		end
 	end
 
-	decore_internal.logger:error("No world with id", {
-		world_id = world_id,
-		world_pack_id = world_pack_id,
-	})
+	if world.entities then
+		for entity_index = 1, #world.entities do
+			local entity_info = world.entities[entity_index]
 
-	return nil
+			local entity
+			if entity_info.prefab_id and entity_info.prefab_id ~= "" then
+				-- Create entity from decore entities
+				entity = M.create_entity(entity_info.prefab_id, entity_info.pack_id)
+			else
+				-- Create empty entity
+				entity = {}
+			end
+
+			if entity then
+				local components = entity_info.components
+				if components then
+					M.apply_components(entity, components)
+				end
+
+				table.insert(entities, entity)
+			end
+
+			-- Entities can spawn a world
+			-- TODO: Add parent relations
+			local world_prefab_id = entity.world_prefab_id
+			if world_prefab_id then
+				local child_entities = M.create_world(world_prefab_id)
+				if child_entities then
+					for _, child_entity in ipairs(child_entities) do
+						child_entity.tiled_id = entity.tiled_id .. ":" .. child_entity.tiled_id
+						child_entity.transform.position_x = child_entity.transform.position_x + entity.transform.position_x - entity.transform.size_x/2
+						child_entity.transform.position_y = child_entity.transform.position_y + entity.transform.position_y - entity.transform.size_y/2
+
+						table.insert(entities, child_entity)
+					end
+				else
+					decore_internal.logger:error("Failed to create world prefab", {
+						world_prefab_id = world_prefab_id,
+					})
+				end
+			end
+		end
+	end
+
+	return entities
 end
 
 

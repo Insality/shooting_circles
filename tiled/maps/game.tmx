@@ -6,7 +6,7 @@
  <tileset firstgid="1" source="../tilesets/shooting_circle.tsx"/>
  <objectgroup id="4" name="background" locked="1">
   <properties>
-   <property name="position_z" type="float" value="-10"/>
+   <property name="position_z" type="float" value="-20"/>
   </properties>
   <object id="41" gid="5" x="0" y="1080" width="1080" height="1080"/>
   <object id="42" gid="6" x="-221" y="10" width="1454" height="363.5"/>
@@ -14,7 +14,7 @@
   <object id="44" gid="6" x="-350" y="-86" width="1454" height="363.5" rotation="90"/>
   <object id="45" gid="6" x="1070" y="-86" width="1454" height="363.5" rotation="90"/>
  </objectgroup>
- <objectgroup id="9" name="level1">
+ <objectgroup id="9" name="level1" visible="0">
   <properties>
    <property name="exclude" type="bool" value="true"/>
   </properties>
@@ -3030,7 +3030,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="18" name="level11" visible="0" locked="1">
+ <objectgroup id="18" name="level11" locked="1">
   <properties>
    <property name="exclude" type="bool" value="true"/>
   </properties>

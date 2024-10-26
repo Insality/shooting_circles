@@ -1,4 +1,5 @@
 local TYPE_STRING = "string"
+local TYPE_TABLE = "table"
 
 local M = {}
 
@@ -53,7 +54,7 @@ end
 function M.deepcopy(orig)
 	local copy = orig
 
-	if type(orig) == "table" then
+	if type(orig) == TYPE_TABLE then
 		-- It's faster than copying or JSON serialization
 		copy = sys.deserialize(sys.serialize(orig))
 	end
@@ -67,7 +68,7 @@ end
 ---@param t2 any
 function M.merge_tables(t1, t2)
 	for k, v in pairs(t2) do
-		if type(v) == "table" and type(t1[k]) == "table" then
+		if type(v) == TYPE_TABLE and type(t1[k]) == TYPE_TABLE then
 			M.merge_tables(t1[k], v)
 		else
 			t1[k] = v
