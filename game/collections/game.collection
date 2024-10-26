@@ -1,6 +1,0 @@
-name: "game"
-collection_instances {
-  id: "game"
-  collection: "/gui/game/game.collection"
-}
-scale_along_z: 0

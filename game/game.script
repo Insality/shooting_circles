@@ -1,7 +1,6 @@
 local log = require("log.log")
 local decore = require("decore.decore")
 local events = require("event.events")
-local detiled = require("detiled.detiled")
 
 local system_debug = require("systems.debug.debug")
 local system_window_event = require("systems.window_event.window_event")
@@ -75,11 +74,6 @@ end
 
 ---@param self scene.game
 local function load_entities(self)
-	-- Get entities in Decode prefabs from tiled Tileset
-	-- It grabs each entity "Class" field and make a entitiy from their properties
-	-- All this entities always have transform field
-	decore.register_entities("tiled", detiled.get_entities_from_tileset("/resources/tilesets/shooting_circle.json"))
-
 	-- We can describe entities right here or separate them into different files for your convenience
 	-- Here we use a separate file for each entity type for bullets
 	decore.register_entities("bullets", require("systems.shooter_controller.entities_bullets"))
@@ -93,19 +87,8 @@ local function load_entities(self)
 		["damage_number"] = require("systems.damage_number.entity_damage_number"),
 		["explosion"] = require("game.objects.explosion.entity_explosion")
 	})
-
+	decore.register_entities("game", require("game.objects.enemy.entities_enemies"))
 end
-
-
----@param self scene.game
-local function load_worlds(self)
-	-- Worlds usually a list of entities, but Decore add a "included worlds" to make a composition layer if required
-	-- The detiled.get_world_from_tiled_map function returns a list of entities from the Tiled map
-	-- But `get_worlds_from_tiled_map` also adds a each layer as a separate world, allows more flexibility
-	-- Here works the `layer.exclude` and in this projects it used as a "level" layer to spawn the exact level buy layer name
-	decore.register_worlds(detiled.get_worlds_from_tiled_map("game", "/resources/maps/game.json"), "game")
-end
-
 
 
 local function create_entity(self, entity)
@@ -117,7 +100,6 @@ function init(self)
 	self.world = decore.world()
 	load_systems(self.world)
 	load_entities(self)
-	load_worlds(self)
 	events.subscribe("create_entity", create_entity, self)
 	decore.print_loaded_packs_debug_info()
 
