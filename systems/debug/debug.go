@@ -1,6 +1,6 @@
 components {
   id: "entity"
-  component: "/game/entity.script"
+  component: "/decore/entity.script"
   properties {
     id: "prefab_id"
     value: "debug"

@@ -91,7 +91,7 @@ embedded_instances {
   id: "on_spawn_command"
   data: "components {\n"
   "  id: \"entity\"\n"
-  "  component: \"/game/entity.script\"\n"
+  "  component: \"/decore/entity.script\"\n"
   "  properties {\n"
   "    id: \"prefab_id\"\n"
   "    value: \"on_spawn_command\"\n"
@@ -130,4 +130,12 @@ embedded_instances {
     x: 92.0
     y: 2978.0
   }
+}
+embedded_instances {
+  id: "system"
+  data: "components {\n"
+  "  id: \"level_sniper\"\n"
+  "  component: \"/game/levels/level_sniper.script\"\n"
+  "}\n"
+  ""
 }

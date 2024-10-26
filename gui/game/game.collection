@@ -8,7 +8,7 @@ embedded_instances {
   "}\n"
   "components {\n"
   "  id: \"entity\"\n"
-  "  component: \"/game/entity.script\"\n"
+  "  component: \"/decore/entity.script\"\n"
   "  properties {\n"
   "    id: \"prefab_id\"\n"
   "    value: \"game_gui\"\n"

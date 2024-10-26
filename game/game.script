@@ -46,6 +46,7 @@ local function load_systems(world)
 	world:add(system_on_key_released.create_system())
 	world:add(system_movement_controller.create_system())
 	world:add(system_shooter_controller.create_system())
+	world:add(system_play_fx_on_remove.create_system())
 	world:add(system_game_object.create_system())
 	world:add(system_collision.create_system())
 	world:add(on_collision_explosion.create_system())
@@ -67,7 +68,6 @@ local function load_systems(world)
 	world:add(system_on_target_count_command.create_system())
 	world:add(system_on_spawn_command.create_system())
 	world:add(system_transform.create_system())
-	world:add(system_play_fx_on_remove.create_system())
 	world:add(system_gui_game.create_system())
 
 	world:refresh()
@@ -99,12 +99,19 @@ local function create_entity(self, entity)
 	self.world:addEntity(entity)
 end
 
+
+local function destroy_entity(self, entity)
+	self.world:removeEntity(entity)
+end
+
+
 ---@param self scene.game
 function init(self)
 	self.world = decore.world()
 	load_systems(self.world)
 	load_entities(self)
 	events.subscribe("create_entity", create_entity, self)
+	events.subscribe("destroy_entity", destroy_entity, self)
 	decore.print_loaded_packs_debug_info()
 
 	--self.world.level_loader_command:load_world("game")

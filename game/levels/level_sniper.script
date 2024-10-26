@@ -1,0 +1,10 @@
+local panthera = require("panthera.panthera")
+local animation = require("game.levels.level_sniper_panthera")
+
+function init(self)
+	self.animation = panthera.create_go(animation)
+	panthera.play(self.animation, "level", {
+		is_skip_init = true,
+		is_loop = true
+	})
+end

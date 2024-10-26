@@ -4,7 +4,7 @@ embedded_instances {
   id: "root"
   data: "components {\n"
   "  id: \"entity\"\n"
-  "  component: \"/game/entity.script\"\n"
+  "  component: \"/decore/entity.script\"\n"
   "  properties {\n"
   "    id: \"prefab_id\"\n"
   "    value: \"player\"\n"

@@ -30,6 +30,11 @@ function init(self)
 end
 
 
+function final(self)
+	events.trigger("destroy_entity", self.entity)
+end
+
+
 function on_message(self, message_id, message)
 	if message_id == MSG_INIT_ENTITY then
 		self.entity = decore.create_entity(self.prefab_id)

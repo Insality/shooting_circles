@@ -40,6 +40,7 @@ function M:onAdd(entity)
 		command.command = label.get_text(label_url)
 		-- Trim
 		command.command = command.command:match("^%s*(.-)%s*$")
+		self:process_command(command)
 	end
 end
 
