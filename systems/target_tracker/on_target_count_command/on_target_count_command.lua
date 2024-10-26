@@ -42,8 +42,6 @@ function M:onAdd(entity)
 		-- Trim
 		command.command = command.command:match("^%s*(.-)%s*$")
 	end
-
-	pprint(entity)
 end
 
 
@@ -57,10 +55,8 @@ function M:process_target_tracker_event(amount)
 	for _, entity in ipairs(self.entities) do
 		local command = entity.on_target_count_command
 		if command then
-			pprint(command, amount)
 			if command.amount == amount then
 				local data = json.decode(entity.on_target_count_command.command)
-				pprint(data)
 				decore.call_command(self.world, data)
 			end
 		end

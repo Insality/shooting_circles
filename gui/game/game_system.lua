@@ -20,20 +20,8 @@ decore.register_component("game_gui")
 local M = {}
 
 local LEVELS = {
-	"game.level1",
-	"game.level2",
-	"game.level3",
-	"game.level4",
-	"game.level5",
-	"game.level6",
-	"game.level7",
-	"game.level8",
-	"game.level9",
-	"game.level10",
-	"game.level11",
-	"game.level12",
-	"game.level13",
-	"game.level14",
+	"/worlds#level_barrage",
+	"/worlds#level_sniper"
 }
 
 ---@static
@@ -42,6 +30,7 @@ function M.create_system()
 	local system = setmetatable(decore.ecs.system(), { __index = M })
 	system.filter = decore.ecs.requireAll("game_gui", "game_object")
 	system.id = "game_gui"
+	system.prev_level = nil
 
 	return system, game_gui_command.create_system(system)
 end
@@ -56,7 +45,7 @@ function M:onAdd(entity)
 	component.button_left.on_click:subscribe(function() self:on_click_button(entity, -1) end)
 	component.button_right.on_click:subscribe(function() self:on_click_button(entity, 1) end)
 
-	--self:spawn_world(LEVELS[entity.game_gui.current_level_index])
+	self:spawn_world(LEVELS[entity.game_gui.current_level_index])
 end
 
 
@@ -70,12 +59,24 @@ function M:on_click_button(entity, direction)
 	end
 
 	entity.game_gui.current_level_index = index
-	--self:spawn_world(LEVELS[index])
+	self:spawn_world(LEVELS[index])
 end
 
 
-function M:spawn_world(world_id)
-	self.world.level_loader_command:load_world(world_id, nil, 0, 0, "level")
+function M:spawn_world(world_url)
+	if self.prev_level then
+		self.world:removeEntity(self.prev_level)
+		self.prev_level = nil
+	end
+
+	local entity_load_scene = decore.create_entity(nil, nil, {
+		transform = {},
+		game_object = {
+			factory_url = world_url
+		}
+	})
+	self.world:addEntity(entity_load_scene)
+	self.prev_level = entity_load_scene
 end
 
 

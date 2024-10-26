@@ -1,0 +1,89 @@
+name: "level_sniper"
+collection_instances {
+  id: "player"
+  collection: "/game/objects/player/player.collection"
+  position {
+    x: 4.0
+    y: -416.0
+  }
+  instance_properties {
+    id: "root"
+    properties {
+      id: "component_shooter_controller"
+      properties {
+        id: "bullet_speed"
+        value: "5000.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+      properties {
+        id: "bullet_per_shoot"
+        value: "1.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+      properties {
+        id: "burst_rate"
+        value: "1.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+      properties {
+        id: "fire_rate"
+        value: "1.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+      properties {
+        id: "is_auto_shoot"
+        value: "false"
+        type: PROPERTY_TYPE_BOOLEAN
+      }
+      properties {
+        id: "damage"
+        value: "500.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+      properties {
+        id: "spread_angle"
+        value: "90.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+    }
+  }
+}
+collection_instances {
+  id: "background"
+  collection: "/game/objects/background/background.collection"
+  position {
+    z: -1.0
+  }
+  instance_properties {
+    id: "root"
+    properties {
+      id: "entity"
+      properties {
+        id: "size_x"
+        value: "1080.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+      properties {
+        id: "size_y"
+        value: "1080.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+    }
+  }
+}
+collection_instances {
+  id: "enemy"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: 4.0
+    y: 459.0
+  }
+}
+collection_instances {
+  id: "pit"
+  collection: "/game/objects/pit/pit.collection"
+  position {
+    y: -265.0
+  }
+}
+scale_along_z: 0

@@ -1,1 +1,3 @@
 /dist
+/.cache_deployer
+/.github

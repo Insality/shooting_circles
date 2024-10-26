@@ -1,8 +1,0 @@
-local panthera = require("panthera.panthera")
-local animation = require("game.collections.test_panthera")
-
-function init(self)
-	print(msg.url())
-	self.animation = panthera.create_go(animation)
-	panthera.play(self.animation, "idle")
-end

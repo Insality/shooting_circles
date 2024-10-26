@@ -131,3 +131,4 @@ include_dirs = decore,detiled
 
 [decore]
 is_prehash = 1
+

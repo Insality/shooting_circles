@@ -22,6 +22,7 @@ decore.register_component("hidden", false)
 
 
 ---@class system.game_object: system
+---@field root_to_entity table<string|hash, entity>
 local M = {}
 
 local TEMP_VECTOR = vmath.vector3()
@@ -34,6 +35,7 @@ function M.create_system()
 	local system = setmetatable(decore.ecs.system(), { __index = M })
 	system.filter = decore.ecs.requireAll("game_object", "transform", decore.ecs.rejectAll("hidden"))
 	system.id = "game_object"
+	system.root_to_entity = {}
 
 	return system
 end
@@ -48,6 +50,7 @@ end
 function M:onAdd(entity)
 	local is_already_exists = entity.game_object.root or entity.game_object.object
 	if is_already_exists then
+		self.root_to_entity[entity.game_object.root] = entity
 		return
 	end
 
@@ -77,6 +80,7 @@ function M:onAdd(entity)
 		end
 
 		go.set(root, "euler.z", entity.transform.rotation)
+		self.root_to_entity[root] = entity
 	end
 end
 
@@ -86,15 +90,32 @@ function M:onRemove(entity)
 	local remove_delay = entity.game_object.remove_delay
 
 	if not remove_delay then
-		for _, object in pairs(entity.game_object.object) do
-			go.delete(object)
-		end
+		self:remove_entity(entity)
 	else
 		timer.delay(remove_delay, false, function()
-			for _, object in pairs(entity.game_object.object) do
-				go.delete(object)
-			end
+			self:remove_entity(entity)
 		end)
+	end
+end
+
+
+---@param entity entity.game_object
+function M:remove_entity(entity)
+	if entity.game_object.root then
+		self.root_to_entity[entity.game_object.root] = nil
+	end
+
+	if entity.game_object.object then
+		for _, object in pairs(entity.game_object.object) do
+			local related_entity = self.root_to_entity[object]
+			if related_entity then
+				self.world:removeEntity(related_entity)
+			else
+				if go.exists(object) then
+					go.delete(object)
+				end
+			end
+		end
 	end
 end
 

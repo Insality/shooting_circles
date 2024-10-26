@@ -11,6 +11,7 @@ local system_camera = require("systems.camera.camera")
 local system_input = require("systems.input.input")
 local system_on_key_released = require("systems.on_key_released.on_key_released")
 local system_level_loader = require("systems.level_loader.level_loader")
+local system_collectionproxy = require("systems.collectionproxy.collectionproxy")
 local system_panthera = require("systems.panthera.panthera_decore")
 local system_physics = require("systems.physics.physics")
 local system_acceleration = require("systems.acceleration.acceleration")
@@ -58,6 +59,7 @@ local function load_systems(world)
 	world:add(system_health.create_system())
 	world:add(system_death.create_system())
 	world:add(system_level_loader.create_system())
+	world:add(system_collectionproxy.create_system())
 	world:add(system_remove_with_delay.create_system())
 	world:add(system_health_circle_visual.create_system())
 	world:add(system_damage_number.create_system())
@@ -106,15 +108,6 @@ function init(self)
 
 	--self.world.level_loader_command:load_world("game")
 	--self.world.level_loader_command:load_scene("game")
-	---@type entity
-	local load_scene_test = {
-		transform = {},
-		game_object = {
-			factory_url = "/worlds#test",
-		},
-	}
-	local e = decore.create_entity(nil, nil, load_scene_test)
-	self.world:addEntity(e)
 
 	-- Uncomment for adjust game time speed
 	--msg.post("loader:/system#game_proxy", "set_time_step", {factor = 0.25, mode = 0})
@@ -146,4 +139,9 @@ end
 ---@return boolean
 function on_input(self, action_id, action)
 	return decore.on_input(self.world, action_id, action)
+end
+
+
+function on_message(self, message_id, message, sender)
+	decore.on_message(self.world, message_id, message, sender)
 end

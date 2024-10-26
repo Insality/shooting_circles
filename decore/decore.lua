@@ -106,6 +106,15 @@ function M.on_input(world, action_id, action)
 end
 
 
+function M.on_message(world, message_id, message, sender)
+	world.queue:push("on_message", {
+		message_id = message_id,
+		message = message,
+		sender = sender,
+	})
+end
+
+
 ---Register entity to decore entities
 ---@param entity_id string
 ---@param entity_data table
@@ -179,7 +188,7 @@ end
 
 
 ---Create entity instance from prefab
----@param prefab_id string|hash
+---@param prefab_id string|hash|nil
 ---@param pack_id string|nil
 ---@param data table|nil @additional data to merge with prefab
 ---@return entity
