@@ -56,7 +56,7 @@ function M:onAdd(entity)
 	component.button_left.on_click:subscribe(function() self:on_click_button(entity, -1) end)
 	component.button_right.on_click:subscribe(function() self:on_click_button(entity, 1) end)
 
-	self:spawn_world(LEVELS[entity.game_gui.current_level_index])
+	--self:spawn_world(LEVELS[entity.game_gui.current_level_index])
 end
 
 
@@ -70,7 +70,7 @@ function M:on_click_button(entity, direction)
 	end
 
 	entity.game_gui.current_level_index = index
-	self:spawn_world(LEVELS[index])
+	--self:spawn_world(LEVELS[index])
 end
 
 

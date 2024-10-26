@@ -85,7 +85,8 @@ local function load_entities(self)
 		["debug"] = require("systems.debug.entity_debug"),
 		["game_gui"] = require("gui.game.entity_game_gui"),
 		["damage_number"] = require("systems.damage_number.entity_damage_number"),
-		["explosion"] = require("game.objects.explosion.entity_explosion")
+		["explosion"] = require("game.objects.explosion.entity_explosion"),
+		["on_target_command"] = require("systems.target_tracker.entity_on_target_command")
 	})
 	decore.register_entities("game", require("game.objects.enemy.entities_enemies"))
 end

@@ -1,11 +1,8 @@
 local panthera = require("panthera.panthera")
 local animation = require("game.collections.test_panthera")
-local adapter_go = require("panthera.adapters.adapter_go")
 
 function init(self)
 	print(msg.url())
-	self.animation = panthera.create(animation, adapter_go, function(node)
-		return go.get_id(node)
-	end)
+	self.animation = panthera.create_go(animation)
 	panthera.play(self.animation, "idle")
 end

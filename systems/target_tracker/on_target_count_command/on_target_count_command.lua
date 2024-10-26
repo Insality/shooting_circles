@@ -1,4 +1,5 @@
 local decore = require("decore.decore")
+local decore_internal = require("decore.decore_internal")
 
 ---@class entity
 ---@field on_target_count_command component.on_target_count_command|nil
@@ -9,6 +10,7 @@ local decore = require("decore.decore")
 ---@class component.on_target_count_command
 ---@field amount number
 ---@field command string
+---@field command_label boolean
 decore.register_component("on_target_count_command", {
 	amount = 0,
 })
@@ -30,6 +32,21 @@ function M.create_system(on_target_count)
 end
 
 
+---@param entity entity.on_target_count_command
+function M:onAdd(entity)
+	local command = entity.on_target_count_command
+	if command.command_label and entity.game_object then
+		local root = entity.game_object.root
+		local label_url = msg.url(nil, root, "label")
+		command.command = label.get_text(label_url)
+		-- Trim
+		command.command = command.command:match("^%s*(.-)%s*$")
+	end
+
+	pprint(entity)
+end
+
+
 function M:postWrap()
 	self.world.queue:process("target_tracker_event", self.process_target_tracker_event, self)
 end
@@ -40,8 +57,10 @@ function M:process_target_tracker_event(amount)
 	for _, entity in ipairs(self.entities) do
 		local command = entity.on_target_count_command
 		if command then
+			pprint(command, amount)
 			if command.amount == amount then
 				local data = json.decode(entity.on_target_count_command.command)
+				pprint(data)
 				decore.call_command(self.world, data)
 			end
 		end

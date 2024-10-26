@@ -22,7 +22,6 @@ function init(self)
 	self.components = {
 		game_object = {
 			root = go.get_id(),
-			-- objects are all list of objects. Here is a root we got:  hash: [/root] = hash: [/collection20/root]
 		}
 	}
 

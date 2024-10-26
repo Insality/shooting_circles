@@ -13,6 +13,37 @@ embedded_instances {
   ""
 }
 embedded_instances {
+  id: "sound"
+  data: "embedded_components {\n"
+  "  id: \"laser_shoot\"\n"
+  "  type: \"sound\"\n"
+  "  data: \"sound: \\\"/assets/sounds/laser_shoot.wav\\\"\\n"
+  "group: \\\"sound\\\"\\n"
+  "gain: 30.0\\n"
+  "\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"explosion\"\n"
+  "  type: \"sound\"\n"
+  "  data: \"sound: \\\"/assets/sounds/explosion.wav\\\"\\n"
+  "group: \\\"sound\\\"\\n"
+  "gain: 30.0\\n"
+  "\"\n"
+  "}\n"
+  ""
+}
+embedded_instances {
+  id: "worlds"
+  data: "embedded_components {\n"
+  "  id: \"test\"\n"
+  "  type: \"collectionfactory\"\n"
+  "  data: \"prototype: \\\"/game/collections/test.collection\\\"\\n"
+  "load_dynamically: true\\n"
+  "\"\n"
+  "}\n"
+  ""
+}
+embedded_instances {
   id: "camera"
   children: "offset"
   data: "components {\n"
@@ -40,26 +71,6 @@ embedded_instances {
   }
 }
 embedded_instances {
-  id: "sound"
-  data: "embedded_components {\n"
-  "  id: \"laser_shoot\"\n"
-  "  type: \"sound\"\n"
-  "  data: \"sound: \\\"/assets/sounds/laser_shoot.wav\\\"\\n"
-  "group: \\\"sound\\\"\\n"
-  "gain: 30.0\\n"
-  "\"\n"
-  "}\n"
-  "embedded_components {\n"
-  "  id: \"explosion\"\n"
-  "  type: \"sound\"\n"
-  "  data: \"sound: \\\"/assets/sounds/explosion.wav\\\"\\n"
-  "group: \\\"sound\\\"\\n"
-  "gain: 30.0\\n"
-  "\"\n"
-  "}\n"
-  ""
-}
-embedded_instances {
   id: "offset"
   data: "embedded_components {\n"
   "  id: \"camera\"\n"
@@ -69,17 +80,6 @@ embedded_instances {
   "near_z: -100.0\\n"
   "far_z: 100.0\\n"
   "orthographic_projection: 1\\n"
-  "\"\n"
-  "}\n"
-  ""
-}
-embedded_instances {
-  id: "worlds"
-  data: "embedded_components {\n"
-  "  id: \"test\"\n"
-  "  type: \"collectionfactory\"\n"
-  "  data: \"prototype: \\\"/game/collections/test.collection\\\"\\n"
-  "load_dynamically: true\\n"
   "\"\n"
   "}\n"
   ""
