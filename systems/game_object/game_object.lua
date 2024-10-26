@@ -46,32 +46,38 @@ end
 
 ---@param entity entity.game_object
 function M:onAdd(entity)
+	local is_already_exists = entity.game_object.root or entity.game_object.object
+	if is_already_exists then
+		return
+	end
+
 	local object = self:create_object(entity)
 	local root = object[ROOT_URL]
-
 	entity.game_object.root = root
 	entity.game_object.object = object
 
-	if entity.game_object.is_slice9 then
-		TEMP_VECTOR.x = entity.transform.size_x
-		TEMP_VECTOR.y = entity.transform.size_y
-		TEMP_VECTOR.z = 0
-		local sprite_url = msg.url(nil, root, "sprite")
-		go.set(sprite_url, "size", TEMP_VECTOR)
+	if root then
+		if entity.game_object.is_slice9 then
+			TEMP_VECTOR.x = entity.transform.size_x
+			TEMP_VECTOR.y = entity.transform.size_y
+			TEMP_VECTOR.z = 0
+			local sprite_url = msg.url(nil, root, "sprite")
+			go.set(sprite_url, "size", TEMP_VECTOR)
 
-		-- Set scale to initial 1
-		TEMP_VECTOR.x = 1
-		TEMP_VECTOR.y = 1
-		TEMP_VECTOR.z = 1
-		go.set(root, "scale", TEMP_VECTOR)
-	else
-		TEMP_VECTOR.x = entity.transform.scale_x
-		TEMP_VECTOR.y = entity.transform.scale_y
-		TEMP_VECTOR.z = entity.transform.scale_x -- X to keep uniform for physics
-		go.set(root, "scale", TEMP_VECTOR)
+			-- Set scale to initial 1
+			TEMP_VECTOR.x = 1
+			TEMP_VECTOR.y = 1
+			TEMP_VECTOR.z = 1
+			go.set(root, "scale", TEMP_VECTOR)
+		else
+			TEMP_VECTOR.x = entity.transform.scale_x
+			TEMP_VECTOR.y = entity.transform.scale_y
+			TEMP_VECTOR.z = entity.transform.scale_x -- X to keep uniform for physics
+			go.set(root, "scale", TEMP_VECTOR)
+		end
+
+		go.set(root, "euler.z", entity.transform.rotation)
 	end
-
-	go.set(root, "euler.z", entity.transform.rotation)
 end
 
 

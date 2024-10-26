@@ -75,7 +75,11 @@ end
 
 ---@param window_event event.window_event
 function M:process_window_event(window_event)
-	if window_event.is_resized then
+	if not self.camera then
+		return
+	end
+
+	if window_event.is_resized and self.camera then
 		self:update_camera_position(self.camera)
 		self:update_camera_zoom(self.camera)
 	end
@@ -84,6 +88,10 @@ end
 
 ---@param transform_event event.transform_event
 function M:process_transform_event(transform_event)
+	if not self.camera then
+		return
+	end
+
 	if transform_event.is_position_changed then
 		self:update_camera_position(self.camera, transform_event.animate_time, transform_event.easing)
 	end

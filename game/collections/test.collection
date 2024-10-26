@@ -1,0 +1,10 @@
+name: "text"
+collection_instances {
+  id: "player"
+  collection: "/game/objects/player/player.collection"
+  position {
+    x: 10.0
+    y: 15.0
+  }
+}
+scale_along_z: 0

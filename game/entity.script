@@ -1,0 +1,75 @@
+go.property("prefab_id", hash(""))
+go.property("size_x", 16)
+go.property("size_y", 16)
+go.property("components_to_register", 0) -- autocounter
+
+local events = require("event.events")
+local decore = require("decore.decore")
+
+local MSG_SET_COMPONENT = hash("set_component")
+local MSG_INIT_ENTITY = hash("init_entity")
+local MSG_ADD_ENTITY = hash("add_entity")
+
+local POSITION_X = hash("position.x")
+local POSITION_Y = hash("position.y")
+local POSITION_Z = hash("position.z")
+local SCALE_X = hash("scale.x")
+local SCALE_Y = hash("scale.y")
+local SCALE_Z = hash("scale.z")
+local ROTATION = hash("euler.z")
+
+function init(self)
+	self.components = {
+		game_object = {
+			root = go.get_id()
+		}
+	}
+
+	pprint("Init entity", self.components, self.prefab_id)
+	pprint(msg.url(), go.get_id())
+	msg.post(".", MSG_INIT_ENTITY)
+	msg.post(".", MSG_ADD_ENTITY)
+end
+
+
+function on_message(self, message_id, message)
+	if message_id == MSG_INIT_ENTITY then
+		self.entity = decore.create_entity(self.prefab_id)
+		pprint("Init entity", self.entity, self.prefab_id)
+
+		local world_position = go.get_world_position()
+		self.components["transform"] = {
+			position_x = world_position.x,
+			position_y = world_position.y,
+			position_z = world_position.z,
+			scale_x = go.get(".", SCALE_X),
+			scale_y = go.get(".", SCALE_Y),
+			scale_z = go.get(".", SCALE_Z),
+			size_x = self.size_x,
+			size_y = self.size_y,
+			rotation = go.get(".", ROTATION)
+		}
+	end
+
+	if message_id == MSG_SET_COMPONENT then
+		self.components[message.id] = message.data
+		self.components_to_register = self.components_to_register - 1
+		if self.components_to_register == 0 then
+			msg.post(".", MSG_ADD_ENTITY)
+		end
+	end
+
+	if message_id == MSG_ADD_ENTITY then
+		if self.components_to_register > 0 then
+			return
+		end
+
+		for k, v in pairs(self.components) do
+			decore.apply_component(self.entity, k, v)
+		end
+
+		pprint("create_entity", self.entity)
+		events.trigger("create_entity", self.entity)
+		--go.delete(".", true)
+	end
+end

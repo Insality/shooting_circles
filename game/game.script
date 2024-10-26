@@ -1,5 +1,6 @@
 local log = require("log.log")
 local decore = require("decore.decore")
+local events = require("event.events")
 local detiled = require("detiled.detiled")
 
 local system_debug = require("systems.debug.debug")
@@ -85,6 +86,8 @@ local function load_entities(self)
 
 	-- We can describe entities right here
 	decore.register_entities("game", {
+		["player"] = require("game.objects.player.entity_player"),
+		["camera"] = require("game.objects.entity_camera"),
 		["debug"] = require("systems.debug.entity_debug"),
 		["game_gui"] = require("gui.game.entity_game_gui"),
 		["damage_number"] = require("systems.damage_number.entity_damage_number"),
@@ -104,15 +107,31 @@ local function load_worlds(self)
 end
 
 
+
+local function create_entity(self, entity)
+	self.world:addEntity(entity)
+end
+
 ---@param self scene.game
 function init(self)
 	self.world = decore.world()
 	load_systems(self.world)
 	load_entities(self)
 	load_worlds(self)
+	events.subscribe("create_entity", create_entity, self)
 	decore.print_loaded_packs_debug_info()
 
-	self.world.level_loader_command:load_world("game")
+	--self.world.level_loader_command:load_world("game")
+	--self.world.level_loader_command:load_scene("game")
+	---@type entity
+	local load_scene_test = {
+		transform = {},
+		game_object = {
+			factory_url = "/worlds#test",
+		},
+	}
+	local e = decore.create_entity(nil, nil, load_scene_test)
+	self.world:addEntity(e)
 
 	-- Uncomment for adjust game time speed
 	--msg.post("loader:/system#game_proxy", "set_time_step", {factor = 0.25, mode = 0})
@@ -125,6 +144,7 @@ end
 
 ---@param self scene.game
 function final(self)
+	events.unsubscribe("create_entity", create_entity, self)
 	self.world:clearEntities()
 	self.world:clearSystems()
 end

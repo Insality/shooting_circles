@@ -184,13 +184,17 @@ end
 ---@param data table|nil @additional data to merge with prefab
 ---@return entity
 function M.create_entity(prefab_id, pack_id, data)
-	local prefab = M.get_entity(prefab_id, pack_id)
-	if not prefab then
-		decore_internal.logger:warn("No entity with id", {
+	local prefab = prefab_id and M.get_entity(prefab_id, pack_id)
+
+	if prefab_id and not prefab then
+		decore_internal.logger:error("The entity_id not registered", {
 			prefab_id = prefab_id,
 			pack_id = pack_id,
 		})
+		return {}
+	end
 
+	if not prefab then
 		local entity = {}
 		if data then
 			M.apply_components(entity, data)

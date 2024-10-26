@@ -51,13 +51,19 @@ end
 
 ---@param entity entity
 function M:onAdd(entity)
-	self.root_to_entity[entity.game_object.root] = entity
+	local root = entity.game_object.root
+	if root then
+		self.root_to_entity[root] = entity
+	end
 end
 
 
 ---@param entity entity
 function M:onRemove(entity)
-	self.root_to_entity[entity.game_object.root] = nil
+	local root = entity.game_object.root
+	if root then
+		self.root_to_entity[root] = nil
+	end
 end
 
 
