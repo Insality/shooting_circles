@@ -1,22 +1,22 @@
 local bindings = require("gui.bindings")
 local decore = require("decore.decore")
 
-local gui_main_command = require("gui.game.game_system_command")
+local game_gui_command = require("gui.game.game_system_command")
 
 ---@class entity
----@field gui_main component.gui_main|nil
+---@field game_gui component.game_gui|nil
 
----@class entity.gui_main: entity
----@field gui_main component.gui_main
+---@class entity.game_gui: entity
+---@field game_gui component.game_gui
 ---@field game_object component.game_object
 
----@class component.gui_main
+---@class component.game_gui
 ---@field component gui.game
 ---@field current_level_index number
-decore.register_component("gui_main")
+decore.register_component("game_gui")
 
----@class system.gui_main: system
----@field entities entity.gui_main[]
+---@class system.game_gui: system
+---@field entities entity.game_gui[]
 local M = {}
 
 local LEVELS = {
@@ -37,26 +37,26 @@ local LEVELS = {
 }
 
 ---@static
----@return system.gui_main, system.gui_main_command
+---@return system.game_gui, system.game_gui_command
 function M.create_system()
 	local system = setmetatable(decore.ecs.system(), { __index = M })
-	system.filter = decore.ecs.requireAll("gui_main", "game_object")
-	system.id = "gui_main"
+	system.filter = decore.ecs.requireAll("game_gui", "game_object")
+	system.id = "game_gui"
 
-	return system, gui_main_command.create_system(system)
+	return system, game_gui_command.create_system(system)
 end
 
 
----@param entity entity.gui_main
+---@param entity entity.game_gui
 function M:onAdd(entity)
-	entity.gui_main.current_level_index = 1
-	entity.gui_main.component = bindings.get_widget(entity.game_object.root) --[[@as gui.game]]
+	entity.game_gui.current_level_index = 1
+	entity.game_gui.component = bindings.get_widget(entity.game_object.root) --[[@as gui.game]]
 
-	local component = entity.gui_main.component
+	local component = entity.game_gui.component
 	component.button_left.on_click:subscribe(function() self:on_click_button(entity, -1) end)
 	component.button_right.on_click:subscribe(function() self:on_click_button(entity, 1) end)
 
-	self:spawn_world(LEVELS[entity.gui_main.current_level_index])
+	self:spawn_world(LEVELS[entity.game_gui.current_level_index])
 end
 
 
@@ -66,7 +66,7 @@ end
 
 
 function M:on_click_button(entity, direction)
-	local index = entity.gui_main.current_level_index + direction
+	local index = entity.game_gui.current_level_index + direction
 	if index < 1 then
 		index = #LEVELS
 	end
@@ -74,7 +74,7 @@ function M:on_click_button(entity, direction)
 		index = 1
 	end
 
-	entity.gui_main.current_level_index = index
+	entity.game_gui.current_level_index = index
 	self:spawn_world(LEVELS[index])
 end
 

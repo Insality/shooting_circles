@@ -80,13 +80,14 @@ local function load_entities(self)
 
 	decore.register_entities("game", {
 		["debug"] = require("systems.debug.entity_debug"),
+		["game_gui"] = require("gui.game.entity_game_gui")
 	})
 end
 
 
 ---@param self scene.game
 local function load_worlds(self)
-	decore.register_world("game", detiled.get_world_from_tiled_map("/resources/maps/game.json"))
+	decore.register_worlds(detiled.get_worlds_from_tiled_map("game", "/resources/maps/game.json"), "game")
 end
 
 

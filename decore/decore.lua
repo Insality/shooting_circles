@@ -349,16 +349,11 @@ function M.register_world(world_id, world_data, pack_id)
 end
 
 
----@param world_data_or_path decore.worlds_pack_data|string
+---@param worlds table<string, decore.world.instance>
+---@param pack_id string
 ---@return boolean, string|nil
-function M.register_worlds(world_data_or_path)
-	local world_pack_data = decore_internal.load_config(world_data_or_path)
-	if not world_pack_data then
-		return false
-	end
-
-	local pack_id = world_pack_data.pack_id
-	for world_id, world_data in pairs(world_pack_data.worlds) do
+function M.register_worlds(worlds, pack_id)
+	for world_id, world_data in pairs(worlds) do
 		M.register_world(world_id, world_data, pack_id)
 	end
 

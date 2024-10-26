@@ -4425,7 +4425,7 @@
   <object id="83" name="debug" class="debug" x="3" y="1081">
    <point/>
   </object>
-  <object id="84" name="gui_main" class="gui_main" x="21" y="1096">
+  <object id="84" name="game_gui" class="game_gui" x="21" y="1096">
    <point/>
   </object>
  </objectgroup>

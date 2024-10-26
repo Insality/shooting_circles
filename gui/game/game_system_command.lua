@@ -1,20 +1,20 @@
 local ecs = require("decore.ecs")
 
 ---@class world
----@field gui_main_command system.gui_main_command
+---@field game_gui_command system.game_gui_command
 
----@class system.gui_main_command: system_command
----@field gui_main system.gui_main
+---@class system.game_gui_command: system_command
+---@field game_gui system.game_gui
 local M = {}
 
 
 ---@static
----@return system.gui_main_command
-function M.create_system(gui_main)
+---@return system.game_gui_command
+function M.create_system(game_gui)
 	local system = setmetatable(ecs.system(), { __index = M })
-	system.filter = ecs.requireAny("gui_main_command")
-	system.id = "gui_main_command"
-	system.gui_main = gui_main
+	system.filter = ecs.requireAny("game_gui_command")
+	system.id = "game_gui_command"
+	system.game_gui = game_gui
 
 	return system
 end
@@ -22,27 +22,27 @@ end
 
 ---@private
 function M:onAddToWorld()
-	self.world.gui_main_command = self
+	self.world.game_gui_command = self
 end
 
 
 ---@private
 function M:onRemoveFromWorld()
-	self.world.gui_main_command = nil
+	self.world.game_gui_command = nil
 end
 
 
 function M:set_text(text)
-	for _, entity in ipairs(self.gui_main.entities) do
-		local component = entity.gui_main.component
+	for _, entity in ipairs(self.game_gui.entities) do
+		local component = entity.game_gui.component
 		component:set_text(text)
 	end
 end
 
 
 function M:level_complete()
-	for _, entity in ipairs(self.gui_main.entities) do
-		local component = entity.gui_main.component
+	for _, entity in ipairs(self.game_gui.entities) do
+		local component = entity.game_gui.component
 		component:level_completed()
 	end
 end

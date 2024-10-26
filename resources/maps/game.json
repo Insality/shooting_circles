@@ -13138,10 +13138,10 @@
                  "y":1081
                 }, 
                 {
-                 "class":"gui_main",
+                 "class":"game_gui",
                  "height":0,
                  "id":84,
-                 "name":"gui_main",
+                 "name":"game_gui",
                  "point":true,
                  "rotation":0,
                  "visible":true,

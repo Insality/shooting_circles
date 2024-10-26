@@ -1,11 +1,11 @@
 {
 	"pack_id": "core",
 	"entities": {
-		"gui_main": {
+		"game_gui": {
 			"game_object": {
-				"factory_url": "/spawner/spawner#gui_main"
+				"factory_url": "/spawner/spawner#game_gui"
 			},
-			"gui_main": {}
+			"game_gui": {}
 		},
 
 		"damage_number": {
