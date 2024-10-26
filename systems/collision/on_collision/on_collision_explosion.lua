@@ -25,7 +25,9 @@ local M = {}
 ---@static
 ---@return system.on_collision_explosion
 function M.create_system()
-	return decore.system(M, "on_collision_explosion", { "physics" })
+	local system = decore.system(M, "on_collision_explosion", { "physics" })
+	system.play_sound_timer = 0
+	return system
 end
 
 
@@ -64,9 +66,12 @@ function M:process_collision_event(collision_event)
 			end
 		end
 
-		sound.play("/sound#explosion", {
-			speed = 0.95 + math.random() * 0.1,
-		})
+		if self.play_sound_timer == 0 then
+			sound.play("/sound#explosion", {
+				speed = 0.95 + math.random() * 0.1,
+			})
+			self.play_sound_timer = 0.1
+		end
 
 		local shake_power = 4
 		local time = 0.4
@@ -103,6 +108,13 @@ function M:apply_explosion_force(entity, position_x, position_y, power)
 	force_y = force_y / distance * power
 
 	self.world.physics_command:add_force(entity, force_x, force_y)
+end
+
+
+function M:update(dt)
+	if self.play_sound_timer > 0 then
+		self.play_sound_timer = math.max(self.play_sound_timer - dt, 0)
+	end
 end
 
 

@@ -38,7 +38,7 @@ end
 
 ---@param entity entity.game_gui
 function M:onAdd(entity)
-	entity.game_gui.current_level_index = 1
+	entity.game_gui.current_level_index = 2
 	entity.game_gui.component = bindings.get_widget(entity.game_object.root) --[[@as gui.game]]
 
 	local component = entity.game_gui.component

@@ -112,7 +112,9 @@ function M:remove_entity(entity)
 				self.world:removeEntity(related_entity)
 			else
 				if go.exists(object) then
-					go.delete(object)
+					go.delete(object, false)
+				else
+					print("False deletion", entity)
 				end
 			end
 		end

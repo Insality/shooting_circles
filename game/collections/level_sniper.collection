@@ -87,3 +87,47 @@ collection_instances {
   }
 }
 scale_along_z: 0
+embedded_instances {
+  id: "on_spawn_command"
+  data: "components {\n"
+  "  id: \"entity\"\n"
+  "  component: \"/game/entity.script\"\n"
+  "  properties {\n"
+  "    id: \"prefab_id\"\n"
+  "    value: \"on_spawn_command\"\n"
+  "    type: PROPERTY_TYPE_HASH\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"label\"\n"
+  "  type: \"label\"\n"
+  "  data: \"size {\\n"
+  "  x: 900.0\\n"
+  "  y: 100.0\\n"
+  "}\\n"
+  "outline {\\n"
+  "  w: 0.0\\n"
+  "}\\n"
+  "shadow {\\n"
+  "  w: 0.0\\n"
+  "}\\n"
+  "pivot: PIVOT_W\\n"
+  "text: \\\"[\\\\\\\"game_gui_command\\\\\\\", \\\\\\\"set_text\\\\\\\", \\\\\\\"sniper\\\\\\\"]\\\\n"
+  "\\\"\\n"
+  "  \\\"\\\\n"
+  "\\\"\\n"
+  "  \\\"\\\"\\n"
+  "font: \\\"/druid/fonts/text_regular.font\\\"\\n"
+  "material: \\\"/builtins/fonts/label-df.material\\\"\\n"
+  "\"\n"
+  "  scale {\n"
+  "    x: 2.0\n"
+  "    y: 2.0\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 92.0
+    y: 2978.0
+  }
+}

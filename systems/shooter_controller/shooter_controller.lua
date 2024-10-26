@@ -48,8 +48,9 @@ local HASH_SPACE = hash("key_space")
 ---@static
 ---@return system.shooter_controller
 function M.create_system()
-	local system = setmetatable(decore.ecs.processingSystem(), { __index = M })
+	local system = setmetatable(decore.ecs.system(), { __index = M })
 	system.filter = decore.ecs.requireAll("shooter_controller")
+	system.play_sound_timer = 0
 
 	return system
 end
@@ -146,9 +147,12 @@ function M:shoot_at(entity, screen_x, screen_y)
 		self.world:addEntity(bullet_entity)
 	end
 
-	sound.play("/sound#laser_shoot", {
-		speed = 0.9 + math.random() * 0.2,
-	})
+	if self.play_sound_timer == 0 then
+		sound.play("/sound#laser_shoot", {
+			speed = 0.9 + math.random() * 0.2,
+		})
+		self.play_sound_timer = 0.09
+	end
 end
 
 
@@ -158,6 +162,17 @@ function M:process(entity, dt)
 	local shooter_controller = entity.shooter_controller
 	if shooter_controller.fire_rate_timer > 0 then
 		shooter_controller.fire_rate_timer = math.max(shooter_controller.fire_rate_timer - dt, 0)
+	end
+end
+
+
+function M:update(dt)
+	if self.play_sound_timer > 0 then
+		self.play_sound_timer = math.max(self.play_sound_timer - dt, 0)
+	end
+
+	for _, entity in ipairs(self.entities) do
+		self:process(entity, dt)
 	end
 end
 

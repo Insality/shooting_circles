@@ -123,7 +123,7 @@ max_count = 0
 launch_screen = /builtins/manifests/ios/LaunchScreen.storyboardc
 pre_renderered_icons = 0
 bundle_identifier = example.unnamed
-bundle_name = 
+bundle_name =
 infoplist = /builtins/manifests/ios/Info.plist
 privacymanifest = /builtins/manifests/ios/PrivacyInfo.xcprivacy
 default_language = en
@@ -134,28 +134,28 @@ version_code = 25
 minimum_sdk_version = 19
 target_sdk_version = 34
 package = com.example.todo
-gcm_sender_id = 
+gcm_sender_id =
 manifest = /builtins/manifests/android/AndroidManifest.xml
 iap_provider = GooglePlay
 input_method = HiddenInputField
 immersive_mode = 0
 display_cutout = 1
 debuggable = 0
-proguard = 
+proguard =
 extract_native_libs = 1
 
 [osx]
-app_icon = 
+app_icon =
 infoplist = /builtins/manifests/osx/Info.plist
 privacymanifest = /builtins/manifests/osx/PrivacyInfo.xcprivacy
 bundle_identifier = example.unnamed
-bundle_name = 
+bundle_name =
 bundle_version = 1
 default_language = en
 localizations = en
 
 [windows]
-app_icon = 
+app_icon =
 
 [html5]
 custom_heap_size = 0
@@ -163,7 +163,7 @@ heap_size = 256
 htmlfile = /builtins/manifests/web/engine_template.html
 cssfile = /builtins/manifests/web/light_theme.css
 archive_location_prefix = archive
-archive_location_suffix = 
+archive_location_suffix =
 engine_arguments = --verify-graphics-calls=false
 wasm_streaming = 0
 show_fullscreen_button = 0
@@ -178,12 +178,12 @@ max_particle_count = 2048
 
 [network]
 http_timeout = 10.0
-ssl_certificates = 
+ssl_certificates =
 http_thread_count = 2
 http_cache_enabled = 1
 
 [library]
-include_dirs = decore,detiled
+include_dirs = decore
 
 [script]
 shared_state = 1

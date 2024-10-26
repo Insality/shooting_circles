@@ -57,13 +57,6 @@ To create a new system, I use the `system_*` template located in `/decore/templa
 - Other prefabs can be registered in place from your lua tables.
 
 
-## Detiled
-
-**[Detiled](https://github.com/Insality/detiled)** is a library that converts Tiled maps and tilesets to Decore entities. It allows setting up components, entities, and worlds from the Tiled map editor.
-
-- Rotation and scale changes for entities are supported. However, if an entity has a physics body, the scale should be uniform, as the physics body will be scaled by the same value as the entity.
-
-
 ## Tiled
 
 To view the [Tiled](https://www.mapeditor.org/) project, open `tiled/game_shooting_circle.tiled-project`.
