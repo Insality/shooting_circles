@@ -12,7 +12,7 @@ local decore = require("decore.decore")
 ---@class component.game_object
 ---@field factory_url string
 ---@field root string|hash|url
----@field object table<string|hash, string|hash>
+---@field object table<string|hash, string|hash|url>
 ---@field is_slice9 boolean|nil
 ---@field remove_delay number|nil
 decore.register_component("game_object", {

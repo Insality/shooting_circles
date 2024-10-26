@@ -186,7 +186,7 @@ end
 function M.create_entity(prefab_id, pack_id, data)
 	local prefab = prefab_id and M.get_entity(prefab_id, pack_id)
 
-	if prefab_id and not prefab then
+	if (prefab_id and prefab_id ~= hash("")) and not prefab then
 		decore_internal.logger:error("The entity_id not registered", {
 			prefab_id = prefab_id,
 			pack_id = pack_id,

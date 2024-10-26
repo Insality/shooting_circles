@@ -57,10 +57,12 @@ function M:apply_color(entity, color, sprite_url)
 
 		local splitted = M.split(target, "#")
 		local object_id, component_id = splitted[1], splitted[2] or "sprite"
+		local hashed_object_id = hash(object_id)
 
 		local object = entity.game_object.object
-		if object and object[object_id] then
-			local sprite_url = msg.url(nil, object[object_id], component_id)
+		if object and object[hashed_object_id] then
+			local sprite_url = msg.url(object[hashed_object_id])
+			sprite_url.fragment = component_id
 			go.set(sprite_url, "color", color) -- vertex attribute
 		end
 	end

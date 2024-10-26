@@ -1,10 +1,13 @@
 return {
 	color = {
-		hex_color = "95C8E2",
+		hex_color = "#95C8E2",
 		sprite_url = "/root#sprite"
 	},
 	game_object = {
-		factory_url = "/spawner/spawner#player"
+		factory_url = "/spawner/spawner#player",
+		object = {
+			["root"] = true,
+		}
 	},
 	movement_controller = {
 		speed = 4000

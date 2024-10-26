@@ -21,12 +21,11 @@ local ROTATION = hash("euler.z")
 function init(self)
 	self.components = {
 		game_object = {
-			root = go.get_id()
+			root = go.get_id(),
+			-- objects are all list of objects. Here is a root we got:  hash: [/root] = hash: [/collection20/root]
 		}
 	}
 
-	pprint("Init entity", self.components, self.prefab_id)
-	pprint(msg.url(), go.get_id())
 	msg.post(".", MSG_INIT_ENTITY)
 	msg.post(".", MSG_ADD_ENTITY)
 end
@@ -35,7 +34,6 @@ end
 function on_message(self, message_id, message)
 	if message_id == MSG_INIT_ENTITY then
 		self.entity = decore.create_entity(self.prefab_id)
-		pprint("Init entity", self.entity, self.prefab_id)
 
 		local world_position = go.get_world_position()
 		self.components["transform"] = {
@@ -68,8 +66,16 @@ function on_message(self, message_id, message)
 			decore.apply_component(self.entity, k, v)
 		end
 
-		pprint("create_entity", self.entity)
+		-- Try pick objects
+		local object = self.entity.game_object.object
+		if object then
+			local new_objects = {}
+			for object_path in pairs(object) do
+				new_objects[hash("/" .. object_path)] = go.get_id(object_path)
+			end
+			self.entity.game_object.object = new_objects
+		end
+
 		events.trigger("create_entity", self.entity)
-		--go.delete(".", true)
 	end
 end

@@ -1,0 +1,29 @@
+go.property("bullet_prefab_id", hash(""))
+go.property("bullet_speed", 2000)
+go.property("bullet_per_shoot", 1)
+go.property("burst_count", 0)
+go.property("burst_rate", 0)
+go.property("fire_rate", 0)
+go.property("is_auto_shoot", false)
+go.property("damage", 1)
+go.property("spread_angle", 0)
+
+function init(self)
+	local entity_count = go.get("#entity", "components_to_register")
+	go.set("#entity", "components_to_register", entity_count + 1)
+
+	msg.post(".", "set_component", {
+		id = "shooter_controller",
+		data = {
+			bullet_prefab_id = self.bullet_prefab_id,
+			bullet_speed = self.bullet_speed,
+			bullet_per_shoot = self.bullet_per_shoot,
+			burst_count = self.burst_count,
+			burst_rate = self.burst_rate,
+			fire_rate = self.fire_rate,
+			is_auto_shoot = self.is_auto_shoot,
+			damage = self.damage,
+			spread_angle = self.spread_angle,
+		}
+	})
+end
