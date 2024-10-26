@@ -189,7 +189,7 @@
    <properties>
     <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
      <properties>
-      <property name="command" value="[&quot;gui_main_command&quot;, &quot;set_text&quot;,  &quot;Explosion&quot;]"/>
+      <property name="command" value="[&quot;game_gui_command&quot;, &quot;set_text&quot;,  &quot;Explosion&quot;]"/>
      </properties>
     </property>
    </properties>
@@ -410,7 +410,7 @@
    <properties>
     <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
      <properties>
-      <property name="command" value="[&quot;gui_main_command&quot;, &quot;set_text&quot;,  &quot;More&quot;]"/>
+      <property name="command" value="[&quot;game_gui_command&quot;, &quot;set_text&quot;,  &quot;More&quot;]"/>
      </properties>
     </property>
    </properties>
@@ -744,7 +744,7 @@
    <properties>
     <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
      <properties>
-      <property name="command" value="[&quot;gui_main_command&quot;, &quot;set_text&quot;,  &quot;Boss&quot;]"/>
+      <property name="command" value="[&quot;game_gui_command&quot;, &quot;set_text&quot;,  &quot;Boss&quot;]"/>
      </properties>
     </property>
    </properties>
@@ -1028,7 +1028,7 @@
    <properties>
     <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
      <properties>
-      <property name="command" value="[&quot;gui_main_command&quot;, &quot;set_text&quot;,  &quot;Arcanoid?&quot; ]"/>
+      <property name="command" value="[&quot;game_gui_command&quot;, &quot;set_text&quot;,  &quot;Arcanoid?&quot; ]"/>
      </properties>
     </property>
    </properties>
@@ -1312,7 +1312,7 @@
    <properties>
     <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
      <properties>
-      <property name="command" value="[&quot;gui_main_command&quot;, &quot;set_text&quot;,  &quot;+ Explosion&quot;]"/>
+      <property name="command" value="[&quot;game_gui_command&quot;, &quot;set_text&quot;,  &quot;+ Explosion&quot;]"/>
      </properties>
     </property>
    </properties>
@@ -1344,7 +1344,7 @@
    <properties>
     <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
      <properties>
-      <property name="command" value="[&quot;gui_main_command&quot;, &quot;set_text&quot;,  &quot;Bad Day&quot;]"/>
+      <property name="command" value="[&quot;game_gui_command&quot;, &quot;set_text&quot;,  &quot;Bad Day&quot;]"/>
      </properties>
     </property>
    </properties>
@@ -1418,7 +1418,7 @@
    <properties>
     <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
      <properties>
-      <property name="command" value="[&quot;gui_main_command&quot;, &quot;set_text&quot;,  &quot;Can More?&quot;]"/>
+      <property name="command" value="[&quot;game_gui_command&quot;, &quot;set_text&quot;,  &quot;Can More?&quot;]"/>
      </properties>
     </property>
    </properties>
@@ -1594,7 +1594,7 @@
    <properties>
     <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
      <properties>
-      <property name="command" value="[&quot;gui_main_command&quot;, &quot;set_text&quot;,  &quot;Rocket&quot;]"/>
+      <property name="command" value="[&quot;game_gui_command&quot;, &quot;set_text&quot;,  &quot;Rocket&quot;]"/>
      </properties>
     </property>
    </properties>
@@ -1674,7 +1674,7 @@
    <properties>
     <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
      <properties>
-      <property name="command" value="[&quot;gui_main_command&quot;, &quot;set_text&quot;,  &quot;No Chances&quot;]"/>
+      <property name="command" value="[&quot;game_gui_command&quot;, &quot;set_text&quot;,  &quot;No Chances&quot;]"/>
      </properties>
     </property>
    </properties>
@@ -3055,7 +3055,7 @@
    <properties>
     <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
      <properties>
-      <property name="command" value="[&quot;gui_main_command&quot;, &quot;set_text&quot;,  &quot;Ambush&quot;]"/>
+      <property name="command" value="[&quot;game_gui_command&quot;, &quot;set_text&quot;,  &quot;Ambush&quot;]"/>
      </properties>
     </property>
    </properties>
@@ -3155,7 +3155,7 @@
    <properties>
     <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
      <properties>
-      <property name="command" value="[&quot;gui_main_command&quot;, &quot;set_text&quot;,  &quot;Mini Rockets&quot;]"/>
+      <property name="command" value="[&quot;game_gui_command&quot;, &quot;set_text&quot;,  &quot;Mini Rockets&quot;]"/>
      </properties>
     </property>
    </properties>
@@ -3222,7 +3222,7 @@
    <properties>
     <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
      <properties>
-      <property name="command" value="[&quot;gui_main_command&quot;, &quot;set_text&quot;, &quot;Shotgun&quot; ]"/>
+      <property name="command" value="[&quot;game_gui_command&quot;, &quot;set_text&quot;, &quot;Shotgun&quot; ]"/>
      </properties>
     </property>
    </properties>
@@ -3830,7 +3830,7 @@
    <properties>
     <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
      <properties>
-      <property name="command" value="[&quot;gui_main_command&quot;, &quot;set_text&quot;,  &quot;Hellgun&quot;]"/>
+      <property name="command" value="[&quot;game_gui_command&quot;, &quot;set_text&quot;,  &quot;Hellgun&quot;]"/>
      </properties>
     </property>
    </properties>

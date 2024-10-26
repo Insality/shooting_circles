@@ -24,9 +24,11 @@ function M:init(template, nodes)
 	self.text_current_level = self.druid:new_text("text_current_level")
 
 	self.button_left = self.druid:new_button("button_left/root")
+		:set_key_trigger("key_left")
 		:set_style(nil)
 
 	self.button_right = self.druid:new_button("button_right/root")
+		:set_key_trigger("key_right")
 		:set_style(nil)
 
 	self.button_left_animation = panthera.create_gui(animation_button, "button_left", nodes)

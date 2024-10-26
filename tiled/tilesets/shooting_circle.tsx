@@ -156,12 +156,12 @@
   <properties>
    <property name="on_spawn_command" type="class" propertytype="on_spawn_command">
     <properties>
-     <property name="command" value="[&quot;gui_main_command&quot;, &quot;set_text&quot;, &quot;Shoot&quot;]"/>
+     <property name="command" value="[&quot;game_gui_command&quot;, &quot;set_text&quot;, &quot;Shoot&quot;]"/>
     </properties>
    </property>
    <property name="on_target_count_command" type="class" propertytype="on_target_count_command">
     <properties>
-     <property name="command" value="[&quot;gui_main_command&quot;, &quot;level_complete&quot;, true]"/>
+     <property name="command" value="[&quot;game_gui_command&quot;, &quot;level_complete&quot;, true]"/>
     </properties>
    </property>
   </properties>

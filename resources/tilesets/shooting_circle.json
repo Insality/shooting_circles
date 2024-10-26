@@ -29,7 +29,7 @@
                      "hex_color":"95C8E2",
                      "sprite_url":"\/root#sprite"
                     }
-                }, 
+                },
                 {
                  "name":"game_object",
                  "propertytype":"game_object",
@@ -38,7 +38,7 @@
                     {
                      "factory_url":"\/spawner\/spawner#player"
                     }
-                }, 
+                },
                 {
                  "name":"movement_controller",
                  "propertytype":"movement_controller",
@@ -47,7 +47,7 @@
                     {
                      "speed":4000
                     }
-                }, 
+                },
                 {
                  "name":"physics",
                  "propertytype":"physics",
@@ -56,7 +56,7 @@
                     {
 
                     }
-                }, 
+                },
                 {
                  "name":"shooter_controller",
                  "propertytype":"shooter_controller",
@@ -74,7 +74,7 @@
                      "spread_angle":14
                     }
                 }]
-        }, 
+        },
         {
          "class":"enemy",
          "id":2,
@@ -91,7 +91,7 @@
                      "hex_color":"612C2C",
                      "sprite_url":"\/root#sprite"
                     }
-                }, 
+                },
                 {
                  "name":"game_object",
                  "propertytype":"game_object",
@@ -100,7 +100,7 @@
                     {
                      "factory_url":"\/spawner\/spawner#enemy"
                     }
-                }, 
+                },
                 {
                  "name":"health",
                  "propertytype":"health",
@@ -109,7 +109,7 @@
                     {
                      "health":20
                     }
-                }, 
+                },
                 {
                  "name":"health_circle_visual",
                  "propertytype":"health_circle_visual",
@@ -118,7 +118,7 @@
                     {
 
                     }
-                }, 
+                },
                 {
                  "name":"panthera",
                  "propertytype":"panthera",
@@ -127,7 +127,7 @@
                     {
                      "animation_path":"\/resources\/animations\/health_visual_circle.json"
                     }
-                }, 
+                },
                 {
                  "name":"physics",
                  "propertytype":"physics",
@@ -136,7 +136,7 @@
                     {
 
                     }
-                }, 
+                },
                 {
                  "name":"play_fx_on_remove",
                  "propertytype":"play_fx_on_remove",
@@ -145,13 +145,13 @@
                     {
                      "fx_url":"explosion_enemy"
                     }
-                }, 
+                },
                 {
                  "name":"target",
                  "type":"bool",
                  "value":true
                 }]
-        }, 
+        },
         {
          "class":"arena_background",
          "id":4,
@@ -169,7 +169,7 @@
                      "is_slice9":true
                     }
                 }]
-        }, 
+        },
         {
          "class":"wall",
          "id":5,
@@ -187,7 +187,7 @@
                      "is_slice9":false
                     }
                 }]
-        }, 
+        },
         {
          "class":"pit",
          "id":6,
@@ -204,7 +204,7 @@
                      "hex_color":"612C2C",
                      "sprite_url":"\/root#sprite"
                     }
-                }, 
+                },
                 {
                  "name":"game_object",
                  "propertytype":"game_object",
@@ -215,7 +215,7 @@
                      "is_slice9":true
                     }
                 }]
-        }, 
+        },
         {
          "class":"wall_pit",
          "id":7,
@@ -233,7 +233,7 @@
                      "is_slice9":false
                     }
                 }]
-        }, 
+        },
         {
          "class":"enemy_rectangle",
          "id":8,
@@ -250,7 +250,7 @@
                      "hex_color":"612C2C",
                      "sprite_url":"\/root#sprite"
                     }
-                }, 
+                },
                 {
                  "name":"game_object",
                  "propertytype":"game_object",
@@ -259,7 +259,7 @@
                     {
                      "factory_url":"\/spawner\/spawner#enemy_rectangle"
                     }
-                }, 
+                },
                 {
                  "name":"health",
                  "propertytype":"health",
@@ -268,7 +268,7 @@
                     {
                      "health":400
                     }
-                }, 
+                },
                 {
                  "name":"health_circle_visual",
                  "propertytype":"health_circle_visual",
@@ -277,7 +277,7 @@
                     {
 
                     }
-                }, 
+                },
                 {
                  "name":"panthera",
                  "propertytype":"panthera",
@@ -286,7 +286,7 @@
                     {
                      "animation_path":"\/resources\/animations\/health_visual_rectangle.json"
                     }
-                }, 
+                },
                 {
                  "name":"physics",
                  "propertytype":"physics",
@@ -295,13 +295,13 @@
                     {
 
                     }
-                }, 
+                },
                 {
                  "name":"target",
                  "type":"bool",
                  "value":true
                 }]
-        }, 
+        },
         {
          "class":"level_controller",
          "id":9,
@@ -315,19 +315,19 @@
                  "type":"class",
                  "value":
                     {
-                     "command":"[\"gui_main_command\", \"set_text\", \"Shoot\"]"
+                     "command":"[\"game_gui_command\", \"set_text\", \"Shoot\"]"
                     }
-                }, 
+                },
                 {
                  "name":"on_target_count_command",
                  "propertytype":"on_target_count_command",
                  "type":"class",
                  "value":
                     {
-                     "command":"[\"gui_main_command\", \"level_complete\", true]"
+                     "command":"[\"game_gui_command\", \"level_complete\", true]"
                     }
                 }]
-        }, 
+        },
         {
          "class":"pit",
          "id":10,
