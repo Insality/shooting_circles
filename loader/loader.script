@@ -22,7 +22,7 @@ end
 
 ---@param self scene.loader
 local function init_logger(self)
-	event.set_logger(log.get_logger("event") --[[@as event.logger]])
+	event.set_logger(log.get_logger("event"))
 	decore.set_logger(log.get_logger("decore"))
 	detiled.set_logger(log.get_logger("detiled"))
 	panthera.set_logger(log.get_logger("panthera"))

@@ -103,43 +103,41 @@ function M.on_input(world, action_id, action)
 end
 
 
+---Register entity to decore entities
+---@param entity_id string
+---@param entity_data table
+---@param pack_id string|nil @default "decore"
+function M.register_entity(entity_id, entity_data, pack_id)
+	pack_id = pack_id or "decore"
+
+	if not decore_data.entities[pack_id] then
+		decore_data.entities[pack_id] = {}
+		table.insert(decore_data.entities_order, pack_id)
+	end
+
+	decore_data.entities[pack_id][entity_id] = entity_data or {}
+
+	entity_data.prefab_id = entity_id
+	entity_data.pack_id = pack_id
+end
+
+
 ---Add entities pack to decore entities
 ---If entities pack with same id already loaded, do nothing.
 ---If the same id is used in different packs, the last one will be used in M.create_entity
----@param entities_data_or_path decore.entities_pack_data|string
+---@param pack_id string
+---@param entities table<string, table>
 ---@return boolean
-function M.register_entities(entities_data_or_path)
-	local entities_pack_data = decore_internal.load_config(entities_data_or_path)
-	if not entities_pack_data then
-		return false
-	end
-
+function M.register_entities(pack_id, entities)
 	if IS_PREHASH_ENTITIES_ID then
-		for prefab_id, entity_data in pairs(entities_pack_data.entities) do
-			entities_pack_data.entities[hash(prefab_id)] = entity_data
+		for prefab_id, entity_data in pairs(entities) do
+			entities[hash(prefab_id)] = entity_data
 		end
 	end
 
-	local pack_id = entities_pack_data.pack_id
-
-	if not decore_data.entities[pack_id] then
-		decore_data.entities[pack_id] = entities_pack_data.entities
-		table.insert(decore_data.entities_order, pack_id)
-	else
-		-- Merge entities, if conflict - throw error
-		for prefab_id, entity_data in pairs(entities_pack_data.entities) do
-			if not decore_data.entities[pack_id][prefab_id] then
-				decore_data.entities[pack_id][prefab_id] = entity_data
-
-				entity_data.prefab_id = prefab_id
-				entity_data.pack_id = pack_id
-			else
-				decore_internal.logger:error("Entity with the same id already exists in the pack", {
-					pack_id = pack_id,
-					prefab_id = prefab_id,
-				})
-			end
-		end
+	-- Merge entities, if conflict - throw error
+	for prefab_id, entity_data in pairs(entities) do
+		M.register_entity(prefab_id, entity_data, pack_id)
 	end
 
 	decore_internal.logger:debug("Load entities pack id", pack_id)
@@ -336,6 +334,21 @@ function M.apply_components(entity, components)
 end
 
 
+---@param world_id string
+---@param world_data decore.world.instance
+---@param pack_id string|nil @default "decore"
+function M.register_world(world_id, world_data, pack_id)
+	pack_id = pack_id or "decore"
+
+	if not decore_data.worlds[pack_id] then
+		decore_data.worlds[pack_id] = {}
+		table.insert(decore_data.worlds_order, pack_id)
+	end
+
+	decore_data.worlds[pack_id][world_id] = world_data or {}
+end
+
+
 ---@param world_data_or_path decore.worlds_pack_data|string
 ---@return boolean, string|nil
 function M.register_worlds(world_data_or_path)
@@ -345,14 +358,9 @@ function M.register_worlds(world_data_or_path)
 	end
 
 	local pack_id = world_pack_data.pack_id
-
-	if decore_data.worlds[pack_id] then
-		decore_internal.logger:info("The world pack with the same id already loaded", pack_id)
-		return false, "The world pack with the same id already loaded"
+	for world_id, world_data in pairs(world_pack_data.worlds) do
+		M.register_world(world_id, world_data, pack_id)
 	end
-
-	decore_data.worlds[pack_id] = world_pack_data.worlds
-	table.insert(decore_data.worlds_order, pack_id)
 
 	decore_internal.logger:debug("Load worlds pack id", pack_id)
 
@@ -420,6 +428,26 @@ function M.create_world(world_id, world_pack_id)
 						end
 
 						table.insert(entities, entity)
+					end
+
+					-- Entities can spawn a world
+					-- TODO: Add parent relations
+					local world_prefab_id = entity.world_prefab_id
+					if world_prefab_id then
+						local child_entities = M.create_world(world_prefab_id)
+						if child_entities then
+							for _, child_entity in ipairs(child_entities) do
+								child_entity.tiled_id = entity.tiled_id .. ":" .. child_entity.tiled_id
+								child_entity.transform.position_x = child_entity.transform.position_x + entity.transform.position_x - entity.transform.size_x/2
+								child_entity.transform.position_y = child_entity.transform.position_y + entity.transform.position_y - entity.transform.size_y/2
+
+								table.insert(entities, child_entity)
+							end
+						else
+							decore_internal.logger:error("Failed to create world prefab", {
+								world_prefab_id = world_prefab_id,
+							})
+						end
 					end
 				end
 			end

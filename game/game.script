@@ -73,11 +73,21 @@ local function load_systems(world)
 end
 
 
+local function load_entities(self)
+end
+
+
+local function load_worlds(self)
+end
+
+
 ---@param self scene.game
 function init(self)
 	self.world = decore.world()
 
 	load_systems(self.world)
+	load_entities(self)
+	load_worlds(self)
 	self.world.level_loader_command:load_world("game")
 
 	-- Uncomment for adjust game time speed

@@ -21,6 +21,14 @@ M.logger = {
 	error = EMPTY_FUNCTION,
 }
 
+M.empty_logger = {
+	trace = EMPTY_FUNCTION,
+	debug = EMPTY_FUNCTION,
+	info = EMPTY_FUNCTION,
+	warn = EMPTY_FUNCTION,
+	error = EMPTY_FUNCTION,
+}
+
 
 ---Split string by separator
 ---@param s string
@@ -77,6 +85,25 @@ function M.load_json(json_path)
 	end
 
 	return json.decode(resource)
+end
+
+
+---@generic T
+---@param config_or_path T|table|string
+---@return T|table|nil
+function M.load_config(config_or_path)
+	if type(config_or_path) == "string" then
+		local entities_path = config_or_path --[[@as string]]
+		local entities_data = M.load_json(entities_path)
+		if not entities_data then
+			M.logger:error("Can't load config at path", config_or_path)
+			return nil
+		end
+
+		return entities_data
+	end
+
+	return config_or_path --[[@as table]]
 end
 
 
@@ -146,7 +173,8 @@ end
 ---@param tile_global_id number
 ---@return detiled.tileset.tile|nil, detiled.tileset|nil
 function M.get_tile_by_gid(map, tile_global_id)
-	for tileset_index = 1, #map.tilesets do
+	-- TODO: is always tilesest goes in sorted order?
+	for tileset_index = #map.tilesets, 1, -1 do
 		local tileset = map.tilesets[tileset_index]
 		local first_gid = tileset.firstgid
 		if tile_global_id >= first_gid then

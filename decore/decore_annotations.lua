@@ -8,6 +8,7 @@
 ---@field id number|nil @Unique entity id, autofilled by decore.create_entity
 ---@field prefab_id string|nil @The entity id from decore collections, autofilled by decore.create_entity
 ---@field pack_id string|nil @The entity id from decore collections, autofilled by decore.create_entity
+---@field world_prefab_id string|nil @The world to spawn on entity creation
 
 ---@class system
 ---@field id string|number|nil
@@ -58,30 +59,30 @@
 ---@field systemsToAdd system[]
 ---@field systemsToRemove system[]
 
----@class tiny_ecs @Tiny ECS module
----@field requireAll fun(...) @Returns a filter function that requires all of the specified components
----@field requireAny fun(...) @Returns a filter function that requires any of the specified components
----@field rejectAll fun(...) @Returns a filter function that rejects all of the specified components
----@field rejectAny fun(...) @Returns a filter function that rejects any of the specified components
----@field filter fun(pattern: string) @Returns a filter function that matches the specified pattern
----@field system fun(table: system|nil) @Creates a new system
----@field processingSystem fun(table: system|nil) @Creates a new processing system
----@field sortedSystem fun(table: system|nil) @Creates a new sorted system
----@field sortedProcessingSystem fun(table: system|nil) @Creates a new sorted processing system
----@field world fun(...) @Creates a new world
----@field addEntity fun(world: world, entity: entity): entity @Adds an entity to the world
----@field addSystem fun(world: world, system: system): system @Adds a system to the world
----@field add fun(world: world, ...) @Adds entities to the world
----@field removeEntity fun(world: world, entity: entity): entity @Removes an entity from the world
----@field removeSystem fun(world: world, system: system): system @Removes a system from the world
----@field remove fun(world: world, ...) @Removes entities from the world
----@field refresh fun(world: world) @Refreshes the world
----@field update fun(world: world, dt: number, filter: fun()|nil) @Updates the world
----@field clearEntities fun(world: world) @Clears all entities from the world
----@field clearSystems fun(world: world) @Clears all systems from the world
----@field getEntityCount fun(world: world) @Returns the number of entities in the world
----@field getSystemCount fun(world: world) @Returns the number of systems in the world
----@field setSystemIndex fun(world: world) @Sets the index of a system in the world
+---@class tiny_ecs Tiny ECS module
+---@field requireAll fun(...) Returns a filter function that requires all of the specified components
+---@field requireAny fun(...) Returns a filter function that requires any of the specified components
+---@field rejectAll fun(...) Returns a filter function that rejects all of the specified components
+---@field rejectAny fun(...) Returns a filter function that rejects any of the specified components
+---@field filter fun(pattern: string) Returns a filter function that matches the specified pattern
+---@field system fun(table: system|nil) Creates a new system
+---@field processingSystem fun(table: system|nil) Creates a new processing system
+---@field sortedSystem fun(table: system|nil) Creates a new sorted system
+---@field sortedProcessingSystem fun(table: system|nil) Creates a new sorted processing system
+---@field world fun(...) Creates a new world
+---@field addEntity fun(world: world, entity: entity): entity Adds an entity to the world
+---@field addSystem fun(world: world, system: system): system Adds a system to the world
+---@field add fun(world: world, ...) Adds entities to the world
+---@field removeEntity fun(world: world, entity: entity): entity Removes an entity from the world
+---@field removeSystem fun(world: world, system: system): system Removes a system from the world
+---@field remove fun(world: world, ...) Removes entities from the world
+---@field refresh fun(world: world) Refreshes the world
+---@field update fun(world: world, dt: number, filter: fun()|nil) Updates the world
+---@field clearEntities fun(world: world) Clears all entities from the world
+---@field clearSystems fun(world: world) Clears all systems from the world
+---@field getEntityCount fun(world: world) Returns the number of entities in the world
+---@field getSystemCount fun(world: world) Returns the number of systems in the world
+---@field setSystemIndex fun(world: world) Sets the index of a system in the world
 
 --- JSON file scheme for entities data
 ---@class decore.entities_pack_data

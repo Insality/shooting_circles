@@ -2,8 +2,8 @@
 
 ---@class entity
 ---@field name string|nil @The entity name
----@field tiled_id number|nil @The entity id from Tiled, autofilled by decore.create_entity
----@field layer_id number|nil @The layer name from Tiled, autofilled by decore.create_entity
+---@field tiled_id string|nil @The entity id from Tiled, autofilled by decore.create_entity
+---@field layer_id string|nil @The layer name from Tiled, autofilled by decore.create_entity
 
 ---@class detiled.tileset
 ---@field class string

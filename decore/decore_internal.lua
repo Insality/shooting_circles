@@ -90,8 +90,9 @@ function M.load_json(json_path)
 end
 
 
----@param config_or_path table|string
----@return table|nil
+---@generic T
+---@param config_or_path T|table|string
+---@return T|table|nil
 function M.load_config(config_or_path)
 	if type(config_or_path) == TYPE_STRING then
 		local entities_path = config_or_path --[[@as string]]
