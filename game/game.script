@@ -1,5 +1,6 @@
 local log = require("log.log")
 local decore = require("decore.decore")
+local detiled= require("detiled.detiled")
 
 local system_debug = require("systems.debug.debug")
 local system_window_event = require("systems.window_event.window_event")
@@ -73,21 +74,30 @@ local function load_systems(world)
 end
 
 
+---@param self scene.game
 local function load_entities(self)
+	decore.register_entities("tiled", detiled.get_entities_from_tileset("/resources/tilesets/shooting_circle.json"))
+
+	decore.register_entities("game", {
+		["debug"] = require("systems.debug.entity_debug"),
+	})
 end
 
 
+---@param self scene.game
 local function load_worlds(self)
+	decore.register_world("game", detiled.get_world_from_tiled_map("/resources/maps/game.json"))
 end
 
 
 ---@param self scene.game
 function init(self)
 	self.world = decore.world()
-
 	load_systems(self.world)
 	load_entities(self)
 	load_worlds(self)
+	decore.print_loaded_packs_debug_info()
+
 	self.world.level_loader_command:load_world("game")
 
 	-- Uncomment for adjust game time speed

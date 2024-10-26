@@ -32,29 +32,12 @@ end
 ---@param self scene.loader
 local function init_decore(self)
 	decore.init()
-	decore.register_entities("/resources/entities.json")
 end
 
 
 ---@param self scene.loader
 local function init_detiled(self)
 	detiled.init()
-
-	local entities_packs_data = detiled.get_entities_packs_data("/resources/tilesets_list.json")
-	if entities_packs_data then
-		for _, pack_data in ipairs(entities_packs_data) do
-			decore.register_entities(pack_data)
-		end
-	end
-
-	local worlds_packs_data = detiled.get_worlds_packs_data("/resources/maps_list.json")
-	if worlds_packs_data then
-		for _, pack_data in ipairs(worlds_packs_data) do
-			decore.register_worlds(pack_data)
-		end
-	end
-
-	decore.print_loaded_packs_debug_info()
 end
 
 
