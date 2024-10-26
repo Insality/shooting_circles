@@ -161,6 +161,7 @@ return {
 			factory_url = "/spawner/spawner#bullet"
 		},
 		physics = {},
+		collision = true,
 		on_collision_remove = true,
 		on_collision_damage = {
 			damage = 10
