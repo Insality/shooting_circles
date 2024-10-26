@@ -24,6 +24,7 @@ function M.init()
 			id = "",
 			prefab_id = false,
 			pack_id = false,
+			parent_prefab_id = false,
 		}
 	})
 end

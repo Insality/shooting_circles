@@ -2614,7 +2614,7 @@
                          "type":"class",
                          "value":
                             {
-                             "bullet_prefab_id":"bullet_sniper",
+                             "bullet_prefab_id":"bullet_arcade_explosion",
                              "bullet_speed":2500,
                              "burst_count":6,
                              "burst_rate":0.4,
@@ -3289,7 +3289,7 @@
                  "value":true
                 }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -9957,7 +9957,7 @@
                  "value":true
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 

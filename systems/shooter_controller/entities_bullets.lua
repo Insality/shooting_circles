@@ -49,6 +49,17 @@ return {
 			delay = 3
 		}
 	},
+	["bullet_arcade_explosion"] = {
+		parent_prefab_id = "bullet_arcade",
+		on_collision_explosion = {
+			power = 10000,
+			damage = 20,
+			distance = 256
+		},
+		remove_with_delay = {
+			delay = 1.5
+		},
+	},
 	["bullet_pistol"] = {
 		transform = {},
 		color = {

@@ -1035,7 +1035,7 @@
   </object>
   <object id="353" gid="11" x="-2" y="881" width="1080" height="140"/>
  </objectgroup>
- <objectgroup id="13" name="level6" visible="0" locked="1">
+ <objectgroup id="13" name="level6" locked="1">
   <properties>
    <property name="exclude" type="bool" value="true"/>
   </properties>
@@ -1043,7 +1043,7 @@
    <properties>
     <property name="shooter_controller" type="class" propertytype="shooter_controller">
      <properties>
-      <property name="bullet_prefab_id" value="bullet_sniper"/>
+      <property name="bullet_prefab_id" value="bullet_arcade_explosion"/>
       <property name="bullet_speed" type="float" value="2500"/>
       <property name="burst_count" type="int" value="6"/>
       <property name="burst_rate" type="float" value="0.4"/>
@@ -3030,7 +3030,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="18" name="level11" locked="1">
+ <objectgroup id="18" name="level11" visible="0" locked="1">
   <properties>
    <property name="exclude" type="bool" value="true"/>
   </properties>
