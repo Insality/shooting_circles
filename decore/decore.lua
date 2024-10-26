@@ -47,10 +47,12 @@ end
 ---@generic T
 ---@param system_module T
 ---@param system_id string
+---@param require_all_filters string[]|nil
 ---@return T
-function M.system(system_module, system_id)
+function M.system(system_module, system_id, require_all_filters)
 	local system = setmetatable(M.ecs.system(), { __index = system_module })
 	system.id = system_id
+	system.filter = require_all_filters and M.ecs.requireAll(unpack(require_all_filters))
 
 	return system
 end

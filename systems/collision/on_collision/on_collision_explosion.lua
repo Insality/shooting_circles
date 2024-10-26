@@ -25,10 +25,7 @@ local M = {}
 ---@static
 ---@return system.on_collision_explosion
 function M.create_system()
-	local system = setmetatable(decore.ecs.system(), { __index = M })
-	system.filter = decore.ecs.requireAny("physics")
-
-	return system
+	return decore.system(M, "on_collision_explosion", { "physics" })
 end
 
 

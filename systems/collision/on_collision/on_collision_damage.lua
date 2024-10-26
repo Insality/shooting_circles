@@ -20,11 +20,7 @@ local M = {}
 ---@static
 ---@return system.on_collision_damage
 function M.create_system()
-	local system = setmetatable(decore.ecs.system(), { __index = M })
-	system.filter = decore.ecs.requireAll("on_collision_damage")
-	system.id = "on_collision_damage"
-
-	return system
+	return decore.system(M, "on_collision_damage", { "on_collision_damage" })
 end
 
 

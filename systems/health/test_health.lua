@@ -1,11 +1,10 @@
 local decore = require("decore.decore")
 
 return function()
-	local system_health
-
 	describe("System Health", function()
-		---@type world
-		local world
+		local world ---@type world
+		local system_health ---@type system.health
+
 		before(function()
 			system_health = require("systems.health.health")
 
@@ -41,6 +40,7 @@ return function()
 			world.health_command:apply_damage(entity, 10)
 
 			world.queue:stash_to_events()
+
 			assert(world.queue:get_events("health_event"))
 			assert(#world.queue:get_events("health_event") == 1)
 

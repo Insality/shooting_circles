@@ -68,6 +68,10 @@ end
 ---@param entity entity.on_key_released
 function M:apply_input(entity, action_id, action)
 	local command_data = entity.on_key_released.key_to_command
+	if not command_data then
+		return
+	end
+
 	local key_id = self.hash_to_string[action_id]
 	if command_data[key_id] and action.released then
 		decore.call_command(self.world, command_data[key_id])

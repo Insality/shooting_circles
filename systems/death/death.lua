@@ -1,4 +1,4 @@
-local ecs = require("decore.ecs")
+local decore = require("decore.decore")
 
 ---@class system.death: system
 local M = {}
@@ -7,7 +7,7 @@ local M = {}
 ---@static
 ---@return system.death
 function M.create_system()
-	return setmetatable(ecs.system(), { __index = M })
+	return decore.system(M, "death")
 end
 
 

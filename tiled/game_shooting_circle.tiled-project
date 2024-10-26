@@ -32,24 +32,6 @@
         },
         {
             "color": "#ffa0a0a4",
-            "id": 18,
-            "members": [
-            ],
-            "name": "collision",
-            "type": "class",
-            "useAs": [
-                "property",
-                "map",
-                "layer",
-                "object",
-                "tile",
-                "tileset",
-                "wangcolor",
-                "wangset"
-            ]
-        },
-        {
-            "color": "#ffa0a0a4",
             "id": 8,
             "members": [
                 {

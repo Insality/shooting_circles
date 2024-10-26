@@ -1,6 +1,8 @@
 local decore = require("decore.decore")
 
-decore.register_component("collision")
+---If true, will get collision events.
+---@class component.collision: boolean
+decore.register_component("collision", false)
 
 ---@class event.collision_event
 ---@field entity entity
@@ -17,10 +19,7 @@ local M = {}
 ---@static
 ---@return system.collision
 function M.create_system()
-	local system = setmetatable(decore.ecs.processingSystem(), { __index = M })
-	system.filter = decore.ecs.requireAll("game_object")
-	system.id = "collision"
-
+	local system = decore.system(M, "collision", { "game_object" })
 	system.root_to_entity = {}
 	system.collided_this_frame = {}
 

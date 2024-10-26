@@ -8,7 +8,7 @@ local decore = require("decore.decore")
 decore.register_component("on_spawn_command")
 
 ---@class component.on_spawn_command
----@field command string
+---@field command string @Json of string[], ["game_gui_command", "set_text", "hello"]
 
 ---@class system.on_spawn_command: system
 ---@field entities entity.on_spawn_command[]
