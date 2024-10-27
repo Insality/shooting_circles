@@ -559,7 +559,9 @@ function M.print_loaded_packs_debug_info()
 	for _, pack_id in ipairs(decore_data.entities_order) do
 		logger:debug(" - " .. pack_id)
 		for prefab_id, _ in pairs(decore_data.entities[pack_id]) do
-			logger:debug("   - " .. prefab_id)
+			if type(prefab_id) == "string" then
+				logger:debug("   - " .. prefab_id)
+			end
 		end
 	end
 
