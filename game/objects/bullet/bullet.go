@@ -1,30 +1,3 @@
-components {
-  id: "component_physics"
-  component: "/systems/physics/component_physics.script"
-}
-components {
-  id: "component_remove_with_delay"
-  component: "/systems/remove_with_delay/component_remove_with_delay.script"
-}
-components {
-  id: "entity"
-  component: "/decore/entity.script"
-  properties {
-    id: "prefab_id"
-    value: "bullet_sniper"
-    type: PROPERTY_TYPE_HASH
-  }
-  properties {
-    id: "size_x"
-    value: "32.0"
-    type: PROPERTY_TYPE_NUMBER
-  }
-  properties {
-    id: "size_y"
-    value: "32.0"
-    type: PROPERTY_TYPE_NUMBER
-  }
-}
 embedded_components {
   id: "collisionobject"
   type: "collisionobject"

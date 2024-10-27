@@ -18,12 +18,7 @@ local ROTATION = hash("euler.z")
 
 function init(self)
 	self.entity = nil
-	self.components = {
-		game_object = {
-			root = go.get_id(),
-		}
-	}
-
+	self.components = {}
 	msg.post(".", MSG_INIT_ENTITY)
 	msg.post(".", MSG_ADD_ENTITY)
 end
@@ -61,11 +56,14 @@ function on_message(self, message_id, message)
 	end
 
 	if message_id == MSG_ADD_ENTITY then
-		if self.components_to_register > 0 then
+		if self.components_to_register > 0 or self.is_spawn_by_entity then
 			return
 		end
 
 		decore.apply_components(self.entity, self.components)
+		decore.apply_component(self.entity, "game_object", {
+			root = go.get_id(),
+		})
 
 		-- Try pick objects
 		local object_scheme = self.entity.game_object.object_scheme
@@ -77,8 +75,6 @@ function on_message(self, message_id, message)
 			self.entity.game_object.object = object
 		end
 
-		if not self.is_spawn_by_entity then
-			events.trigger("decore.create_entity", self.entity)
-		end
+		events.trigger("decore.create_entity", self.entity)
 	end
 end

@@ -43,8 +43,7 @@ M.CURRENT_CAMERA = nil
 ---@static
 ---@return system.camera, system.camera_command
 function M.create_system()
-	local system = setmetatable(decore.ecs.system(), { __index = M })
-	system.filter = decore.ecs.requireAll("camera")
+	local system = decore.system(M, "camera", "camera")
 	system.id = "camera"
 
 	system.interval = 0.03

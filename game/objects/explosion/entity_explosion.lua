@@ -8,5 +8,5 @@ return {
 	play_fx_on_remove = {
 		fx_url = "explosion"
 	},
-	remove_with_delay = 0.01
+	remove_with_delay = 0
 }
