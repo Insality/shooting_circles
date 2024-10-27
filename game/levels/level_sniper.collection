@@ -177,10 +177,6 @@ collection_instances {
     }
   }
 }
-collection_instances {
-  id: "damage_number"
-  collection: "/game/objects/damage_number/damage_number.collection"
-}
 scale_along_z: 0
 embedded_instances {
   id: "on_spawn_command"
