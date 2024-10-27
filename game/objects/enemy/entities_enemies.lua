@@ -7,7 +7,7 @@ return {
 		},
 		game_object = {
 			factory_url = "/spawner/spawner#enemy",
-			object = {
+			object_scheme = {
 				["root"] = true,
 				["health"] = true
 			}
@@ -26,7 +26,6 @@ return {
 		target = true
 	},
 	["enemy_rectangle"] = {
-		target = true,
 		parent_prefab_id = "enemy",
 		game_object = {
 			factory_url = "/spawner/spawner#enemy_rectangle"

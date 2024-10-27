@@ -2,12 +2,11 @@
 return {
 	transform = {},
 	game_object = {
-		factory_url = "/spawner/spawner#explosion"
+		factory_url = "/spawner/spawner#explosion",
+		is_factory = true
 	},
 	play_fx_on_remove = {
 		fx_url = "explosion"
 	},
-	remove_with_delay = {
-		delay = 0.01
-	}
+	remove_with_delay = 0.01
 }

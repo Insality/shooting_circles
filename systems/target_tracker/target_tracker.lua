@@ -17,11 +17,7 @@ local M = {}
 ---@static
 ---@return system.target_tracker
 function M.create_system()
-	local system = setmetatable(decore.ecs.system(), { __index = M })
-	system.filter = decore.ecs.requireAll("target")
-	system.id = "target_tracker"
-
-	return system
+	return decore.system(M, "target_tracker", "target")
 end
 
 

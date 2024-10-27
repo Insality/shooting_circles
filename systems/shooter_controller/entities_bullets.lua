@@ -1,5 +1,15 @@
 ---@return table<string, entity> entities By prefab_id
 return {
+	["bullet_explosion"] = {
+		game_object = {
+			factory_url = "/spawner/spawner#bullet_explosion",
+			is_factory = true
+		},
+		play_fx_on_remove = {
+			fx_url = "explosion"
+		},
+		remove_with_delay = 0,
+	},
 	["bullet_sniper"] = {
 		transform = {
 			scale_x = 1.25,
@@ -10,7 +20,11 @@ return {
 			sprite_url = "/root#sprite"
 		},
 		game_object = {
-			factory_url = "/spawner/spawner#bullet"
+			factory_url = "/spawner/spawner#bullet",
+			is_factory = true,
+			object_scheme = {
+				["root"] = true
+			}
 		},
 		on_collision_explosion = {
 			power = 50000,
@@ -20,19 +34,13 @@ return {
 		on_collision_damage = {
 			damage = 30
 		},
-		play_fx_on_remove = {
-			fx_url = "explosion"
-		},
 		on_collision_remove = true,
 		physics = {},
 		collision = true,
-		remove_with_delay = {
-			delay = 0.5
-		}
+		remove_with_delay = 0.5
 	},
 	["bullet_arcade"] = {
-		transform = {
-		},
+		transform = {},
 		color = {
 			hex_color = "95C8E2",
 			sprite_url = "/root#sprite"
@@ -45,9 +53,7 @@ return {
 		},
 		physics = {},
 		collision = true,
-		remove_with_delay = {
-			delay = 3
-		}
+		remove_with_delay = 3
 	},
 	["bullet_arcade_explosion"] = {
 		parent_prefab_id = "bullet_arcade",
@@ -56,9 +62,7 @@ return {
 			damage = 20,
 			distance = 256
 		},
-		remove_with_delay = {
-			delay = 1.5
-		},
+		remove_with_delay = 1.5
 	},
 	["bullet_pistol"] = {
 		transform = {},
@@ -75,9 +79,7 @@ return {
 		on_collision_remove = true,
 		physics = {},
 		collision = true,
-		remove_with_delay = {
-			delay = 0.7
-		}
+		remove_with_delay = 0.7
 	},
 	["bullet_shotgun"] = {
 		transform = {},
@@ -94,9 +96,7 @@ return {
 		on_collision_remove = true,
 		physics = {},
 		collision = true,
-		remove_with_delay = {
-			delay = 0.7
-		}
+		remove_with_delay = 0.7,
 	},
 	["bullet_rocket"] = {
 		transform = {
@@ -122,9 +122,7 @@ return {
 		on_collision_remove = true,
 		physics = {},
 		collision = true,
-		remove_with_delay = {
-			delay = 2
-		},
+		remove_with_delay = 2,
 		play_fx_on_remove = {
 			fx_url = "explosion_rocket"
 		}
@@ -155,9 +153,7 @@ return {
 		on_collision_remove = true,
 		physics = {},
 		collision = true,
-		remove_with_delay = {
-			delay = 2
-		},
+		remove_with_delay = 2,
 		play_fx_on_remove = {
 			fx_url = "explosion_rocket"
 		}
@@ -182,11 +178,6 @@ return {
 			damage = 30,
 			distance = 256
 		},
-		remove_with_delay = {
-			delay = 0.7
-		},
-		play_fx_on_remove = {
-			fx_url = "explosion"
-		},
+		remove_with_delay = 0.7,
 	}
 }

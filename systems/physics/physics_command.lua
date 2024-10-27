@@ -1,3 +1,4 @@
+local decore = require("decore.decore")
 local ecs = require("decore.ecs")
 
 ---@class world
@@ -11,9 +12,8 @@ local M = {}
 ---@static
 ---@return system.physics_command
 function M.create_system(physics)
-	local system = setmetatable(ecs.system(), { __index = M })
+	local system = decore.system(M, "physics_command")
 	system.physics = physics
-	system.id = "physics_command"
 
 	return system
 end
@@ -31,7 +31,13 @@ function M:onRemoveFromWorld()
 end
 
 
+---@param entity entity
+---@param force_x number|nil
+---@param force_y number|nil
 function M:add_force(entity, force_x, force_y)
+	assert(entity.physics, "entity must have physics component")
+	---@cast entity entity.physics
+
 	self.physics:add_force(entity, force_x, force_y)
 end
 

@@ -1,5 +1,4 @@
 local decore = require("decore.decore")
-local decore_internal = require("decore.decore_internal")
 
 ---@class entity
 ---@field on_target_count_command component.on_target_count_command|nil
@@ -16,19 +15,13 @@ decore.register_component("on_target_count_command", {
 })
 
 ---@class system.on_target_count_command: system
----@field entities entity.on_target_count_command[]
 local M = {}
 
 
 ---@static
 ---@return system.on_target_count_command
-function M.create_system(on_target_count)
-	local system = setmetatable(decore.ecs.system(), { __index = M })
-	system.filter = decore.ecs.requireAny("on_target_count_command")
-	system.on_target_count = on_target_count
-	system.id = "on_target_count_command"
-
-	return system
+function M.create_system()
+	return decore.system(M, "on_target_count_command", "on_target_count_command")
 end
 
 

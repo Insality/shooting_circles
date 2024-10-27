@@ -145,6 +145,7 @@ function M:shoot_at(entity, screen_x, screen_y)
 		bullet_entity.transform.rotation = math.deg(new_angle) + 90
 
 		self.world:addEntity(bullet_entity)
+		pprint(bullet_entity)
 	end
 
 	if self.play_sound_timer == 0 then

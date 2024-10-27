@@ -1,17 +1,13 @@
 local decore = require("decore.decore")
 
 ---@class entity
----@field remove_with_delay component.remove_with_delay|nil
+---@field remove_with_delay number|nil
 
 ---@class entity.remove_with_delay: entity
----@field remove_with_delay component.remove_with_delay
+---@field remove_with_delay number
 
 ---@class component.remove_with_delay
----@field delay number
----@field timer_id hash|nil
-decore.register_component("remove_with_delay", {
-	delay = 0
-})
+decore.register_component("remove_with_delay", 0)
 
 ---@class system.remove_with_delay: system
 ---@field entities entity.remove_with_delay[]
@@ -21,26 +17,16 @@ local M = {}
 ---@static
 ---@return system.remove_with_delay
 function M.create_system()
-	local system = setmetatable(decore.ecs.system(), { __index = M })
-	system.filter = decore.ecs.requireAll("remove_with_delay")
-
-	return system
+	return decore.processing_system(M, "remove_with_delay", "remove_with_delay")
 end
 
 
 ---@param entity entity.remove_with_delay
-function M:onAdd(entity)
-	entity.remove_with_delay.timer_id = timer.delay(entity.remove_with_delay.delay, false, function()
-		entity.remove_with_delay.timer_id = nil
+---@param dt number
+function M:process(entity, dt)
+	entity.remove_with_delay = entity.remove_with_delay - dt
+	if entity.remove_with_delay <= 0 then
 		self.world:removeEntity(entity)
-	end)
-end
-
-
-function M:onRemove(entity)
-	if entity.remove_with_delay.timer_id then
-		timer.cancel(entity.remove_with_delay.timer_id)
-		entity.remove_with_delay.timer_id = nil
 	end
 end
 

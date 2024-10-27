@@ -5,7 +5,7 @@ return {
 	},
 	game_object = {
 		factory_url = "/spawner/spawner#player",
-		object = {
+		object_scheme = {
 			["root"] = true,
 		}
 	},

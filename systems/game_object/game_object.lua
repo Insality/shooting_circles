@@ -15,8 +15,11 @@ local decore = require("decore.decore")
 ---@field object table<string|hash, string|hash|url>
 ---@field is_slice9 boolean|nil
 ---@field remove_delay number|nil
+---@field is_factory boolean|nil
+---@field object_scheme table<string, boolean|nil> @For example: {["root"] = true}, used for find objects from already placed game object (not from collection factory)
 decore.register_component("game_object", {
 	factory_url = "",
+	is_factory = false
 })
 decore.register_component("hidden", false)
 
@@ -148,6 +151,11 @@ end
 
 
 
+local PROPERTIES = {
+	[ROOT_URL] = {
+		is_spawn_by_entity = true
+	}
+}
 ---@param entity entity.game_object
 ---@return table<string|hash, string|hash>
 function M:create_object(entity)
@@ -155,7 +163,12 @@ function M:create_object(entity)
 	TEMP_VECTOR.y = entity.transform.position_y
 	TEMP_VECTOR.z = self:get_position_z(entity.transform)
 
-	return collectionfactory.create(entity.game_object.factory_url, TEMP_VECTOR, nil, nil, entity.transform.scale_x)
+	if entity.game_object.is_factory then
+		local object = factory.create(entity.game_object.factory_url, TEMP_VECTOR, nil, PROPERTIES[ROOT_URL], entity.transform.scale_x)
+		return { [ROOT_URL] = object }
+	else
+		return collectionfactory.create(entity.game_object.factory_url, TEMP_VECTOR, nil, PROPERTIES, entity.transform.scale_x)
+	end
 end
 
 

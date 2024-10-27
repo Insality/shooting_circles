@@ -1,7 +1,8 @@
 go.property("prefab_id", hash(""))
 go.property("size_x", 16)
 go.property("size_y", 16)
-go.property("components_to_register", 0) -- autocounter
+go.property("components_to_register", 0) -- Autocounter, don't change in editor
+go.property("is_spawn_by_entity", false)
 
 local events = require("event.events")
 local decore = require("decore.decore")
@@ -10,9 +11,6 @@ local MSG_SET_COMPONENT = hash("set_component")
 local MSG_INIT_ENTITY = hash("init_entity")
 local MSG_ADD_ENTITY = hash("add_entity")
 
-local POSITION_X = hash("position.x")
-local POSITION_Y = hash("position.y")
-local POSITION_Z = hash("position.z")
 local SCALE_X = hash("scale.x")
 local SCALE_Y = hash("scale.y")
 local SCALE_Z = hash("scale.z")
@@ -66,20 +64,20 @@ function on_message(self, message_id, message)
 			return
 		end
 
-		for k, v in pairs(self.components) do
-			decore.apply_component(self.entity, k, v)
-		end
+		decore.apply_components(self.entity, self.components)
 
 		-- Try pick objects
-		local object = self.entity.game_object.object
-		if object then
-			local new_objects = {}
-			for object_path in pairs(object) do
-				new_objects[hash("/" .. object_path)] = go.get_id(object_path)
+		local object_scheme = self.entity.game_object.object_scheme
+		if object_scheme then
+			local object = self.entity.game_object.object or {}
+			for object_path in pairs(object_scheme) do
+				object[hash("/" .. object_path)] = go.get_id(object_path)
 			end
-			self.entity.game_object.object = new_objects
+			self.entity.game_object.object = object
 		end
 
-		events.trigger("create_entity", self.entity)
+		if not self.is_spawn_by_entity then
+			events.trigger("create_entity", self.entity)
+		end
 	end
 end

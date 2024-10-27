@@ -39,22 +39,6 @@ collection_instances {
   position {
     z: -1.0
   }
-  instance_properties {
-    id: "root"
-    properties {
-      id: "entity"
-      properties {
-        id: "size_x"
-        value: "1080.0"
-        type: PROPERTY_TYPE_NUMBER
-      }
-      properties {
-        id: "size_y"
-        value: "1080.0"
-        type: PROPERTY_TYPE_NUMBER
-      }
-    }
-  }
 }
 collection_instances {
   id: "enemy"

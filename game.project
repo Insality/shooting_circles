@@ -109,7 +109,7 @@ max_instances = 512
 max_count = 4
 
 [factory]
-max_count = 0
+max_count = 16
 
 [model]
 max_count = 0

@@ -3,7 +3,6 @@ collection_instances {
   id: "player"
   collection: "/game/objects/player/player.collection"
   position {
-    x: 4.0
     y: -416.0
   }
   instance_properties {
@@ -54,22 +53,6 @@ collection_instances {
   position {
     z: -1.0
   }
-  instance_properties {
-    id: "root"
-    properties {
-      id: "entity"
-      properties {
-        id: "size_x"
-        value: "1080.0"
-        type: PROPERTY_TYPE_NUMBER
-      }
-      properties {
-        id: "size_y"
-        value: "1080.0"
-        type: PROPERTY_TYPE_NUMBER
-      }
-    }
-  }
 }
 collection_instances {
   id: "enemy"
@@ -84,6 +67,114 @@ collection_instances {
   collection: "/game/objects/pit/pit.collection"
   position {
     y: -265.0
+  }
+}
+collection_instances {
+  id: "bullet"
+  collection: "/game/objects/bullet/bullet.collection"
+  position {
+    x: -273.0
+    y: -386.0
+  }
+  instance_properties {
+    id: "root"
+    properties {
+      id: "component_physics"
+      properties {
+        id: "velocity"
+        value: "0.0, 250.0, 0.0"
+        type: PROPERTY_TYPE_VECTOR3
+      }
+    }
+    properties {
+      id: "component_remove_with_delay"
+      properties {
+        id: "delay"
+        value: "5.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+    }
+  }
+}
+collection_instances {
+  id: "bullet1"
+  collection: "/game/objects/bullet/bullet.collection"
+  position {
+    x: -142.0
+    y: -420.0
+  }
+  instance_properties {
+    id: "root"
+    properties {
+      id: "component_physics"
+      properties {
+        id: "velocity"
+        value: "0.0, 250.0, 0.0"
+        type: PROPERTY_TYPE_VECTOR3
+      }
+    }
+    properties {
+      id: "component_remove_with_delay"
+      properties {
+        id: "delay"
+        value: "5.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+    }
+  }
+}
+collection_instances {
+  id: "bullet2"
+  collection: "/game/objects/bullet/bullet.collection"
+  position {
+    x: 146.0
+    y: -441.0
+  }
+  instance_properties {
+    id: "root"
+    properties {
+      id: "component_physics"
+      properties {
+        id: "velocity"
+        value: "0.0, 250.0, 0.0"
+        type: PROPERTY_TYPE_VECTOR3
+      }
+    }
+    properties {
+      id: "component_remove_with_delay"
+      properties {
+        id: "delay"
+        value: "5.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+    }
+  }
+}
+collection_instances {
+  id: "bullet3"
+  collection: "/game/objects/bullet/bullet.collection"
+  position {
+    x: 297.0
+    y: -496.0
+  }
+  instance_properties {
+    id: "root"
+    properties {
+      id: "component_physics"
+      properties {
+        id: "velocity"
+        value: "0.0, 250.0, 0.0"
+        type: PROPERTY_TYPE_VECTOR3
+      }
+    }
+    properties {
+      id: "component_remove_with_delay"
+      properties {
+        id: "delay"
+        value: "5.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+    }
   }
 }
 scale_along_z: 0

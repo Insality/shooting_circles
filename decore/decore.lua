@@ -1,9 +1,11 @@
+local ecs = require("decore.ecs")
 local queue = require("decore.queue")
 local decore_data = require("decore.decore_data")
 local decore_internal = require("decore.decore_internal")
 
 local system_queue = require("decore.system.queue")
 
+local EMPTY_HASH = hash("")
 local TYPE_TABLE = "table"
 local IS_PREHASH_ENTITIES_ID = sys.get_config_int("decore.is_prehash", 0) == 1
 
@@ -11,7 +13,6 @@ local IS_PREHASH_ENTITIES_ID = sys.get_config_int("decore.is_prehash", 0) == 1
 ---@field queue queue
 
 ---@class decore
----@field ecs tiny_ecs
 local M = {
 	ecs = require("decore.ecs"),
 }
@@ -47,50 +48,40 @@ end
 ---@generic T
 ---@param system_module T
 ---@param system_id string
----@param require_all_filters string[]|nil
+---@param require_all_filters string|string[]|nil
 ---@return T
 function M.system(system_module, system_id, require_all_filters)
-	local system = setmetatable(M.ecs.system(), { __index = system_module })
-	system.id = system_id
-	system.filter = require_all_filters and M.ecs.requireAll(unpack(require_all_filters))
-
-	return system
+	return decore_internal.create_system(M.ecs.system(), system_module, system_id, require_all_filters)
 end
 
 
 ---@generic T
 ---@param system_module T
 ---@param system_id string
+---@param require_all_filters string|string[]|nil
 ---@return T
-function M.processing_system(system_module, system_id)
-	local system = setmetatable(M.ecs.processingSystem(), { __index = system_module })
-	system.id = system_id
-
-	return system
+function M.processing_system(system_module, system_id, require_all_filters)
+	return decore_internal.create_system(M.ecs.processingSystem(), system_module, system_id, require_all_filters)
 end
 
 
 ---@generic T
 ---@param system_module T
 ---@param system_id string
+---@param require_all_filters string|string[]|nil
 ---@return T
-function M.sorted_system(system_module, system_id)
-	local system = setmetatable(M.ecs.sortedSystem(), { __index = system_module })
-	system.id = system_id
-
-	return system
+function M.sorted_system(system_module, system_id, require_all_filters)
+	return decore_internal.create_system(M.ecs.sortedSystem(), system_module, system_id, require_all_filters)
 end
 
 
 ---@generic T
 ---@param system_module T
 ---@param system_id string
+---@param require_all_filters string|string[]|nil
 ---@return T
-function M.sorted_processing_system(system_module, system_id)
-	local system = setmetatable(M.ecs.sortedProcessingSystem(), { __index = system_module })
-	system.id = system_id
-
-	return system
+function M.sorted_processing_system(system_module, system_id, require_all_filters)
+	return decore_internal.create_system(M.ecs.sortedProcessingSystem(), system_module, system_id, require_all_filters)
 end
 
 
@@ -128,6 +119,10 @@ function M.register_entity(entity_id, entity_data, pack_id)
 	end
 
 	decore_data.entities[pack_id][entity_id] = entity_data or {}
+	if IS_PREHASH_ENTITIES_ID then
+		local hashed_id = hash(entity_id)
+		decore_data.entities[pack_id][hashed_id] = entity_data or decore_data.entities[pack_id][entity_id]
+	end
 
 	entity_data.prefab_id = entity_id
 	entity_data.pack_id = pack_id
@@ -141,12 +136,6 @@ end
 ---@param entities table<string, table>
 ---@return boolean
 function M.register_entities(pack_id, entities)
-	if IS_PREHASH_ENTITIES_ID then
-		for prefab_id, entity_data in pairs(entities) do
-			entities[hash(prefab_id)] = entity_data
-		end
-	end
-
 	-- Merge entities, if conflict - throw error
 	for prefab_id, entity_data in pairs(entities) do
 		M.register_entity(prefab_id, entity_data, pack_id)
@@ -195,7 +184,7 @@ end
 function M.create_entity(prefab_id, pack_id, data)
 	local prefab = prefab_id and M.get_entity(prefab_id, pack_id)
 
-	if (prefab_id and prefab_id ~= hash("")) and not prefab then
+	if (prefab_id and prefab_id ~= EMPTY_HASH) and not prefab then
 		decore_internal.logger:error("The entity_id not registered", {
 			prefab_id = prefab_id,
 			pack_id = pack_id,

@@ -33,6 +33,21 @@ local function init_decore(self)
 end
 
 
+function init_defos(self)
+	if not defos then
+		return
+	end
+
+	local is_debug = sys.get_engine_info().is_debug
+	local system_name = sys.get_sys_info().system_name
+	local is_desktop = system_name == "Windows" or system_name == "Darwin" or system_name == "Linux"
+
+	if is_debug and is_desktop then
+		defos.set_view_size(nil, nil, 960, 540)
+	end
+end
+
+
 ---@param self scene.loader
 local function init_window_listener(self)
 	window.set_listener(function(_, window_event)
@@ -46,6 +61,7 @@ function init(self)
 	init_random(self)
 	init_logger(self)
 	init_decore(self)
+	init_defos(self)
 	init_window_listener(self)
 
 	msg.post(".", "start_game")
