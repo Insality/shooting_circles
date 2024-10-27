@@ -10,6 +10,7 @@ return {
 		},
 		remove_with_delay = 0,
 	},
+
 	["bullet_sniper"] = {
 		transform = {
 			scale_x = 1.25,
@@ -31,14 +32,13 @@ return {
 			damage = 30,
 			distance = 128
 		},
-		on_collision_damage = {
-			damage = 30
-		},
+		on_collision_damage = 30,
 		on_collision_remove = true,
 		physics = {},
 		collision = true,
 		remove_with_delay = 0.5
 	},
+
 	["bullet_arcade"] = {
 		transform = {},
 		color = {
@@ -48,9 +48,7 @@ return {
 		game_object = {
 			factory_url = "/spawner/spawner#bullet"
 		},
-		on_collision_damage = {
-			damage = 50
-		},
+		on_collision_damage = 50,
 		physics = {},
 		collision = true,
 		remove_with_delay = 3
@@ -73,9 +71,7 @@ return {
 		game_object = {
 			factory_url = "/spawner/spawner#bullet"
 		},
-		on_collision_damage = {
-			damage = 50
-		},
+		on_collision_damage = 50,
 		on_collision_remove = true,
 		physics = {},
 		collision = true,
@@ -90,9 +86,7 @@ return {
 		game_object = {
 			factory_url = "/spawner/spawner#bullet_shotgun"
 		},
-		on_collision_damage = {
-			damage = 40
-		},
+		on_collision_damage = 40,
 		on_collision_remove = true,
 		physics = {},
 		collision = true,
@@ -108,9 +102,7 @@ return {
 		game_object = {
 			factory_url = "/spawner/spawner#rocket"
 		},
-		on_collision_damage = {
-			damage = 50
-		},
+		on_collision_damage = 50,
 		on_collision_explosion = {
 			power = 80000,
 			damage = 50,
@@ -139,9 +131,7 @@ return {
 		game_object = {
 			factory_url = "/spawner/spawner#rocket"
 		},
-		on_collision_damage = {
-			damage = 20
-		},
+		on_collision_damage = 20,
 		on_collision_explosion = {
 			power = 30000,
 			damage = 50,
@@ -170,9 +160,7 @@ return {
 		physics = {},
 		collision = true,
 		on_collision_remove = true,
-		on_collision_damage = {
-			damage = 10
-		},
+		on_collision_damage = 10,
 		on_collision_explosion = {
 			power = 15000,
 			damage = 30,

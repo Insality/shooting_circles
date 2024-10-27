@@ -1,16 +1,12 @@
 local decore = require("decore.decore")
 
 ---@class entity
----@field on_collision_damage component.on_collision_damage|nil
+---@field on_collision_damage number|nil
 
 ---@class entity.on_collision_damage: entity
----@field on_collision_damage component.on_collision_damage
+---@field on_collision_damage number
 
----@class component.on_collision_damage
----@field damage number
-decore.register_component("on_collision_damage", {
-	damage = 0
-})
+decore.register_component("on_collision_damage", 0)
 
 ---@class system.on_collision_damage: system
 ---@field entities entity.on_collision_damage[]
@@ -20,7 +16,7 @@ local M = {}
 ---@static
 ---@return system.on_collision_damage
 function M.create_system()
-	return decore.system(M, "on_collision_damage", { "on_collision_damage" })
+	return decore.system(M, "on_collision_damage", "on_collision_damage")
 end
 
 
@@ -36,9 +32,9 @@ function M:process_collision_event(collision_event)
 		return
 	end
 
-	local damage = entity.on_collision_damage.damage
+	local damage = entity.on_collision_damage
 	local other = collision_event.other
-	if other and other.health then
+	if damage and other and other.health then
 		self.world.health_command:apply_damage(other, damage)
 	end
 end

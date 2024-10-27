@@ -17,6 +17,7 @@ local SCALE_Z = hash("scale.z")
 local ROTATION = hash("euler.z")
 
 function init(self)
+	self.entity = nil
 	self.components = {
 		game_object = {
 			root = go.get_id(),

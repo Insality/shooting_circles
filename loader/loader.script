@@ -33,7 +33,7 @@ local function init_decore(self)
 end
 
 
-function init_defos(self)
+local function init_defos(self)
 	if not defos then
 		return
 	end
