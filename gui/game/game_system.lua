@@ -21,7 +21,8 @@ local M = {}
 
 local LEVELS = {
 	"/worlds#level_barrage",
-	"/worlds#level_sniper"
+	"/worlds#level_sniper",
+	"/worlds#level_rocket",
 }
 
 ---@static

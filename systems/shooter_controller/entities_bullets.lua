@@ -102,11 +102,11 @@ return {
 		game_object = {
 			factory_url = "/spawner/spawner#rocket"
 		},
-		on_collision_damage = 50,
+		on_collision_damage = 100,
 		on_collision_explosion = {
-			power = 80000,
+			power = 120000,
 			damage = 50,
-			distance = 350
+			distance = 550
 		},
 		acceleration = {
 			value = 500
