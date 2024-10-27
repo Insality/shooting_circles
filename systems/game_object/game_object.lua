@@ -117,7 +117,7 @@ function M:remove_entity(entity)
 				if go.exists(object) then
 					go.delete(object, false)
 				else
-					print("False deletion", entity)
+					--print("False deletion", entity)
 				end
 			end
 		end

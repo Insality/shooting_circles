@@ -29,7 +29,7 @@ end
 
 
 function final(self)
-	events.trigger("destroy_entity", self.entity)
+	events.trigger("decore.destroy_entity", self.entity)
 end
 
 
@@ -77,7 +77,7 @@ function on_message(self, message_id, message)
 		end
 
 		if not self.is_spawn_by_entity then
-			events.trigger("create_entity", self.entity)
+			events.trigger("decore.create_entity", self.entity)
 		end
 	end
 end

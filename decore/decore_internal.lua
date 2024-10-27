@@ -28,10 +28,10 @@ M.empty_logger = {
 ---@type decore.logger
 M.logger = {
 	trace = function(_, msg) print("TRACE: " .. msg) end,
-	debug = function(_, msg, data) pprint("DEBUG: " .. msg, data) end,
-	info = function(_, msg, data) pprint("INFO: " .. msg, data) end,
-	warn = function(_, msg, data) pprint("WARN: " .. msg, data) end,
-	error = function(_, msg, data) pprint("ERROR: " .. msg, data) end
+	debug = function(_, msg, data) print("DEBUG: " .. msg, data) end,
+	info = function(_, msg, data) print("INFO: " .. msg, data) end,
+	warn = function(_, msg, data) print("WARN: " .. msg, data) end,
+	error = function(_, msg, data) print("ERROR: " .. msg, data) end
 }
 
 

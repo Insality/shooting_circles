@@ -1,5 +1,6 @@
 local ecs = require("decore.ecs")
 local queue = require("decore.queue")
+local events = require("event.events")
 local decore_data = require("decore.decore_data")
 local decore_internal = require("decore.decore_internal")
 
@@ -37,6 +38,10 @@ function M.world()
 	---@type world
 	local world = M.ecs.world()
 	world.queue = queue.create()
+
+	-- To make it works with entity.script to allows make entities in Defold editor
+	events.subscribe("decore.create_entity", world.addEntity, world)
+	events.subscribe("decore.destroy_entity", world.removeEntity, world)
 
 	-- Always included systems
 	world:addSystem(system_queue.create_system())
@@ -103,6 +108,14 @@ function M.on_message(world, message_id, message, sender)
 		message = message,
 		sender = sender,
 	})
+end
+
+
+function M.final(world)
+	events.unsubscribe("decore.create_entity", world.addEntity, world)
+	events.unsubscribe("decore.destroy_entity", world.removeEntity, world)
+	world:clearEntities()
+	world:clearSystems()
 end
 
 
@@ -578,13 +591,13 @@ end
 function M.call_command(world, command)
 	local system_command = world[command[1]]
 	if not system_command then
-		print("System not found: " .. command[1])
+		decore_internal.logger:error("System not found", command[1])
 		return
 	end
 
 	local func = command[2]
 	if not system_command[func] then
-		print("Function not found: " .. func)
+		decore_internal.logger:error("Function not found", func)
 		return
 	end
 

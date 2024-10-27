@@ -110,8 +110,6 @@ function init(self)
 	self.world = decore.world()
 	load_systems(self.world)
 	load_entities(self)
-	events.subscribe("create_entity", create_entity, self)
-	events.subscribe("destroy_entity", destroy_entity, self)
 	decore.print_loaded_packs_debug_info()
 
 	-- Uncomment for adjust game time speed
@@ -125,10 +123,7 @@ end
 
 ---@param self scene.game
 function final(self)
-	events.unsubscribe("create_entity", create_entity, self)
-	events.unsubscribe("destroy_entity", destroy_entity, self)
-	self.world:clearEntities()
-	self.world:clearSystems()
+	decore.final(self.world)
 end
 
 
