@@ -66,20 +66,7 @@ function M:process(entity, dt)
 
 	-- Is it faster?
 	local position = b2d.body.get_position(body)
-	local position_x = position.x
-	local position_y = position.y
-	--local position_x = go.get(entity.game_object.root, "position.x")
-	--local position_y = go.get(entity.game_object.root, "position.y")
-	local transform = entity.transform
-	if position_x ~= transform.position_x or position_y ~= transform.position_y then
-		transform.position_x = position_x
-		transform.position_y = position_y
-
-		self.world.queue:push("transform_event", {
-			entity = entity,
-			is_position_changed = true
-		})
-	end
+	self.world.transform_command:set_position(entity, position.x, position.y)
 
 	local velocity = b2d.body.get_linear_velocity(body)
 	entity.physics.velocity_x = velocity.x

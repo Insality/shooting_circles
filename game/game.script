@@ -95,16 +95,6 @@ local function load_entities(self)
 end
 
 
-local function create_entity(self, entity)
-	self.world:addEntity(entity)
-end
-
-
-local function destroy_entity(self, entity)
-	self.world:removeEntity(entity)
-end
-
-
 ---@param self scene.game
 function init(self)
 	self.world = decore.world()
