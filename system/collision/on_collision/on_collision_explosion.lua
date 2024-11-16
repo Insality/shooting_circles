@@ -80,7 +80,7 @@ function M:process_collision_event(collision_event)
 			time = 0.6
 		end
 
-		self.world.camera_command:shake(shake_power, time)
+		self.world.command_camera:shake(shake_power, time)
 
 		local explosion_entity = decore.create_entity(explosion.spawn_entity or "explosion")
 		if explosion_entity then

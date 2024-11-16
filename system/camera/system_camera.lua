@@ -1,6 +1,6 @@
 local decore = require("decore.decore")
 
-local camera_command = require("system.camera.camera_command")
+local command_camera = require("system.camera.command_camera")
 
 local TEMP_VECTOR = vmath.vector3()
 
@@ -38,13 +38,10 @@ decore.register_component("camera", {
 local M = {}
 
 M.DEFAULT_SIZE = math.min(sys.get_config_int("display.width"), sys.get_config_int("display.height"))
-M.CURRENT_CAMERA = nil
 
----@static
----@return system.camera, system.camera_command
+---@return system.camera
 function M.create_system()
 	local system = decore.system(M, "camera", "camera")
-	system.id = "camera"
 
 	system.interval = 0.03
 	system.entities_camera = {}
@@ -56,14 +53,14 @@ function M.create_system()
 	system.shake_time = 0
 	system.shake_max_time = 0
 
-	return system, camera_command.create_system(system)
+	return system
 end
 
 
 function M:onAddToWorld()
 	msg.post("@render:", "use_camera_projection")
+	self.world.command_camera = command_camera.create(self)
 end
-
 
 
 function M:postWrap()
@@ -78,7 +75,7 @@ function M:process_window_event(window_event)
 		return
 	end
 
-	if window_event == window.WINDOW_EVENT_RESIZED and self.camera then
+	if window_event == window.WINDOW_EVENT_RESIZED then
 		self:update_camera_position(self.camera)
 		self:update_camera_zoom(self.camera)
 	end
@@ -102,19 +99,11 @@ end
 
 ---@param entity entity.camera
 function M:onAdd(entity)
-	local camera_entity = entity --[[@as entity.camera]]
+	self.camera = entity
 
-	if self.camera then
-		self:replace_camera(camera_entity)
-	end
-	self.camera = camera_entity
-	CURRENT_CAMERA = camera_entity
-
-	-- Save initial camera position
-	camera_entity.camera.position_x = camera_entity.transform.position_x
-	camera_entity.camera.position_y = camera_entity.transform.position_y
-	camera_entity.camera.size_x = camera_entity.transform.size_x
-	camera_entity.camera.size_y = camera_entity.transform.size_y
+	local camera_url = msg.url(entity.game_object.root)
+	camera_url.fragment = "camera"
+	entity.camera.camera_url = camera_url
 
 	camera.acquire_focus(entity.camera.camera_url)
 
@@ -123,27 +112,11 @@ function M:onAdd(entity)
 end
 
 
----@param entity entity.camera @New camera entity to replace the old one
-function M:replace_camera(entity)
-	-- Update position of last camera instead
-	local position_x = entity.transform.position_x
-	local position_y = entity.transform.position_y
-	local size_x = entity.transform.size_x
-	local size_y = entity.transform.size_y
-
-	-- Grab position of prev. camera
-	entity.transform.position_x = self.camera.transform.position_x
-	entity.transform.position_y = self.camera.transform.position_y
-	entity.transform.size_x = self.camera.transform.size_x
-	entity.transform.size_y = self.camera.transform.size_y
-
-	-- Replace Camera entity
-	self.world:removeEntity(self.camera)
-	self.world:addEntity(entity)
-
-	self.world.transform_command:set_position(entity, position_x, position_y, nil)
-	self.world.transform_command:set_size(entity, size_x, size_y, nil)
-	self.world.transform_command:set_animate_time(entity, 0.9, go.EASING_OUTSINE)
+---@param entity entity.camera
+function M:onRemove(entity)
+	if self.camera == entity then
+		self.camera = nil
+	end
 end
 
 
@@ -192,14 +165,11 @@ function M:update_camera_position(entity, animate_time, easing)
 		end
 	end
 
-	local obj_url = msg.url(entity.camera.camera_url)
-	obj_url.fragment = nil
-
 	if animate_time then
 		easing = easing or go.EASING_OUTSINE
-		go.animate(obj_url, "position", go.PLAYBACK_ONCE_FORWARD, TEMP_VECTOR, easing, animate_time)
+		go.animate(entity.game_object.root, "position", go.PLAYBACK_ONCE_FORWARD, TEMP_VECTOR, easing, animate_time)
 	else
-		go.set_position(TEMP_VECTOR, obj_url)
+		go.set_position(TEMP_VECTOR, entity.game_object.root)
 	end
 end
 
@@ -271,21 +241,18 @@ local function world_to_screen(wx, wy, wz, window_width, window_height, projecti
 end
 
 
--- TODO: Is it good to have the CURRENT_CAMERA global?
 ---Convert from screen to world coordinates
----@static
 ---@param screen_x number Screen x
 ---@param screen_y number Screen y
 ---@return number, number
-function M.screen_to_world(screen_x, screen_y)
-	local camera = CURRENT_CAMERA
-	if not camera then
+function M:screen_to_world(screen_x, screen_y)
+	if not self.camera then
 		return screen_x, screen_y
 	end
 
 	local width, height = window.get_size()
-	local projection = go.get(CURRENT_CAMERA.camera.camera_url, "projection")
-	local view = go.get(CURRENT_CAMERA.camera.camera_url, "view")
+	local projection = go.get(self.camera.camera.camera_url, "projection")
+	local view = go.get(self.camera.camera.camera_url, "view")
 
 	local x, y, _ = screen_to_world(screen_x, screen_y, 0, width, height, projection, view)
 	return x, y
@@ -293,19 +260,17 @@ end
 
 
 ---Convert from world to screen coordinates
----@static
 ---@param world_x number World x
 ---@param world_y number World y
 ---@return number, number
-function M.world_to_screen(world_x, world_y)
-	local camera = CURRENT_CAMERA
-	if not camera then
+function M:world_to_screen(world_x, world_y)
+	if not self.camera then
 		return world_x, world_y
 	end
 
 	local width, height = window.get_size()
-	local projection = go.get(CURRENT_CAMERA.camera.camera_url, "projection")
-	local view = go.get(CURRENT_CAMERA.camera.camera_url, "view")
+	local projection = go.get(self.camera.camera.camera_url, "projection")
+	local view = go.get(self.camera.camera.camera_url, "view")
 
 	local x, y, _ = world_to_screen(world_x, world_y, 0, width, height, projection, view)
 	return x, y
@@ -313,22 +278,21 @@ end
 
 
 function M:shake(power)
-	local camera = self.camera
-	if not camera then
+	if not self.camera then
 		return
 	end
 
-	local obj_url = msg.url(CURRENT_CAMERA.camera.camera_url)
+	local obj_url = msg.url(self.camera.camera.camera_url)
 	obj_url.fragment = nil
 
 	local power_sqr = power * power
 	local dx = math.random(-power_sqr, power_sqr)
 	local dy = math.random(-power_sqr, power_sqr)
-	local x = camera.transform.position_x + dx
-	local y = camera.transform.position_y + dy
+	local x = self.camera.transform.position_x + dx
+	local y = self.camera.transform.position_y + dy
 	TEMP_VECTOR.x = x
 	TEMP_VECTOR.y = y
-	TEMP_VECTOR.z = camera.transform.position_z
+	TEMP_VECTOR.z = self.camera.transform.position_z
 	--go.set_position(TEMP_VECTOR, obj_url)
 
 	go.animate(obj_url, "position", go.PLAYBACK_ONCE_FORWARD,TEMP_VECTOR, go.EASING_OUTSINE, 0.03)

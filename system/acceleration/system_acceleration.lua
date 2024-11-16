@@ -19,13 +19,9 @@ decore.register_component("acceleration", {
 local M = {}
 
 
----@static
 ---@return system.acceleration
 function M.create_system()
-	local system = setmetatable(decore.ecs.processingSystem(), { __index = M })
-	system.filter = decore.ecs.requireAll("acceleration", "physics", "game_object")
-
-	return system
+	return decore.processing_system(M, "acceleration", { "acceleration", "physics", "game_object" })
 end
 
 

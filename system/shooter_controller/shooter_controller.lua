@@ -126,7 +126,7 @@ function M:shoot_at(entity, screen_x, screen_y)
 
 		local speed = entity.shooter_controller.bullet_speed
 		local spread_angle = entity.shooter_controller.spread_angle
-		local world_x, world_y = self.world.camera_command:screen_to_world(screen_x, screen_y)
+		local world_x, world_y = self.world.command_camera:screen_to_world(screen_x, screen_y)
 
 		local velocity_x = world_x - entity.transform.position_x
 		local velocity_y = world_y - entity.transform.position_y
