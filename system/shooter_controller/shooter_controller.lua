@@ -116,11 +116,13 @@ function M:shoot_at(entity, screen_x, screen_y)
 	local vary = 0.3
 	for _ = 1, sc.bullets_per_shoot do
 		local bullet_entity = decore.create_entity(entity.shooter_controller.bullet_prefab_id)
+		pprint(entity.shooter_controller)
 		if not bullet_entity then
 			logger:error("Failed to create bullet entity", entity.shooter_controller)
 			return
 		end
 
+		pprint(bullet_entity)
 		bullet_entity.transform.position_x = entity.transform.position_x
 		bullet_entity.transform.position_y = entity.transform.position_y
 

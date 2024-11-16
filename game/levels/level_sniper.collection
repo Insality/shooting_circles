@@ -5,47 +5,6 @@ collection_instances {
   position {
     y: -416.0
   }
-  instance_properties {
-    id: "root"
-    properties {
-      id: "component_shooter_controller"
-      properties {
-        id: "bullet_speed"
-        value: "5000.0"
-        type: PROPERTY_TYPE_NUMBER
-      }
-      properties {
-        id: "bullet_per_shoot"
-        value: "1.0"
-        type: PROPERTY_TYPE_NUMBER
-      }
-      properties {
-        id: "burst_rate"
-        value: "1.0"
-        type: PROPERTY_TYPE_NUMBER
-      }
-      properties {
-        id: "fire_rate"
-        value: "1.0"
-        type: PROPERTY_TYPE_NUMBER
-      }
-      properties {
-        id: "is_auto_shoot"
-        value: "false"
-        type: PROPERTY_TYPE_BOOLEAN
-      }
-      properties {
-        id: "damage"
-        value: "500.0"
-        type: PROPERTY_TYPE_NUMBER
-      }
-      properties {
-        id: "spread_angle"
-        value: "90.0"
-        type: PROPERTY_TYPE_NUMBER
-      }
-    }
-  }
 }
 collection_instances {
   id: "background"
@@ -76,25 +35,6 @@ collection_instances {
     x: -273.0
     y: -386.0
   }
-  instance_properties {
-    id: "root"
-    properties {
-      id: "component_physics"
-      properties {
-        id: "velocity"
-        value: "0.0, 250.0, 0.0"
-        type: PROPERTY_TYPE_VECTOR3
-      }
-    }
-    properties {
-      id: "component_remove_with_delay"
-      properties {
-        id: "delay"
-        value: "5.0"
-        type: PROPERTY_TYPE_NUMBER
-      }
-    }
-  }
 }
 collection_instances {
   id: "bullet1"
@@ -102,25 +42,6 @@ collection_instances {
   position {
     x: -142.0
     y: -420.0
-  }
-  instance_properties {
-    id: "root"
-    properties {
-      id: "component_physics"
-      properties {
-        id: "velocity"
-        value: "0.0, 250.0, 0.0"
-        type: PROPERTY_TYPE_VECTOR3
-      }
-    }
-    properties {
-      id: "component_remove_with_delay"
-      properties {
-        id: "delay"
-        value: "5.0"
-        type: PROPERTY_TYPE_NUMBER
-      }
-    }
   }
 }
 collection_instances {
@@ -130,25 +51,6 @@ collection_instances {
     x: 146.0
     y: -441.0
   }
-  instance_properties {
-    id: "root"
-    properties {
-      id: "component_physics"
-      properties {
-        id: "velocity"
-        value: "0.0, 250.0, 0.0"
-        type: PROPERTY_TYPE_VECTOR3
-      }
-    }
-    properties {
-      id: "component_remove_with_delay"
-      properties {
-        id: "delay"
-        value: "5.0"
-        type: PROPERTY_TYPE_NUMBER
-      }
-    }
-  }
 }
 collection_instances {
   id: "bullet3"
@@ -156,25 +58,6 @@ collection_instances {
   position {
     x: 297.0
     y: -496.0
-  }
-  instance_properties {
-    id: "root"
-    properties {
-      id: "component_physics"
-      properties {
-        id: "velocity"
-        value: "0.0, 250.0, 0.0"
-        type: PROPERTY_TYPE_VECTOR3
-      }
-    }
-    properties {
-      id: "component_remove_with_delay"
-      properties {
-        id: "delay"
-        value: "5.0"
-        type: PROPERTY_TYPE_NUMBER
-      }
-    }
   }
 }
 scale_along_z: 0

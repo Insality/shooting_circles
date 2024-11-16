@@ -1,7 +1,7 @@
 name: "game"
 instances {
   id: "debug"
-  prototype: "/systems/debug/debug.go"
+  prototype: "/system/debug/debug.go"
 }
 collection_instances {
   id: "spawner"

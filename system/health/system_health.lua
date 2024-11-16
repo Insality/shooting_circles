@@ -1,6 +1,5 @@
 local decore = require("decore.decore")
-
-local health_command = require("systems.health.health_command")
+local command_health = require("system.health.command_health")
 
 ---@class entity
 ---@field health component.health|nil
@@ -24,17 +23,14 @@ decore.register_component("health", {
 local M = {}
 
 
----@static
----@return system.health, system.health_command
+---@return system.health
 function M.create_system()
-	local system = setmetatable(decore.ecs.system(), { __index = M })
-	system.filter = decore.ecs.requireAll("health")
-
-	return system, health_command.create_system(system)
+	return decore.system(M, "health", "health")
 end
 
 
 function M:onAddToWorld()
+	self.world.command_health = command_health.create(self)
 	self.world.event_bus:set_merge_policy("health_event", function(events, event)
 		---@cast events event.health_event[]
 		---@cast event event.health_event

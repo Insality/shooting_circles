@@ -1,6 +1,7 @@
 ---@return table<string, entity> entities By prefab_id
 return {
 	["bullet_explosion"] = {
+		transform = {},
 		game_object = {
 			factory_url = "/spawner/spawner#bullet_explosion",
 			is_factory = true

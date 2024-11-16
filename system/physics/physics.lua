@@ -1,5 +1,5 @@
 local decore = require("decore.decore")
-local physics_command = require("systems.physics.physics_command")
+local physics_command = require("system.physics.physics_command")
 
 ---@class entity
 ---@field physics component.physics|nil

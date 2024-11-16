@@ -3,7 +3,7 @@ local decore = require("decore.decore")
 
 local logger = decore.get_logger("system.level_loader")
 
-local level_loader_command = require("systems.level_loader.level_loader_command")
+local level_loader_command = require("system.level_loader.level_loader_command")
 
 ---@class system.level_loader: system
 ---@field loaded_world_list table<string, entity[]> @slot_id -> entity[]

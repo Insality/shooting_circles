@@ -180,7 +180,16 @@ end
 ---@param data table|nil additional data to merge with prefab
 ---@return entity
 function M.create_entity(prefab_id, pack_id, data)
+	if prefab_id == EMPTY_HASH then
+		decore_internal.logger:error("The entity_id is empty", {
+			prefab_id = prefab_id,
+			pack_id = pack_id,
+		})
+		return {}
+	end
+
 	local prefab = prefab_id and M.get_entity(prefab_id, pack_id)
+	pprint("Prefab", prefab)
 
 	if not prefab then
 		local entity = {}
@@ -188,6 +197,7 @@ function M.create_entity(prefab_id, pack_id, data)
 			M.apply_components(entity, data)
 		end
 
+		pprint("Prefab not found", prefab_id)
 		if prefab_id and prefab_id ~= EMPTY_HASH then
 			decore_internal.logger:error("The entity_id not registered", {
 				prefab_id = prefab_id,

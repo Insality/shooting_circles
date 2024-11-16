@@ -1,5 +1,5 @@
 local decore = require("decore.decore")
-local command_input = require("systems.input.command_input")
+local command_input = require("system.input.command_input")
 
 ---@class event.input_event: action
 

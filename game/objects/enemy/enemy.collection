@@ -28,7 +28,7 @@ embedded_instances {
   "}\n"
   "components {\n"
   "  id: \"component_health\"\n"
-  "  component: \"/systems/health/component_health.script\"\n"
+  "  component: \"/system/health/component_health.script\"\n"
   "}\n"
   "embedded_components {\n"
   "  id: \"sprite\"\n"

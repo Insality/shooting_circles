@@ -2,34 +2,34 @@ local log = require("log.log")
 local decore = require("decore.decore")
 local events = require("event.events")
 
-local system_debug = require("systems.debug.debug")
-local system_window_event = require("systems.window_event.window_event")
-local system_transform = require("systems.transform.transform")
-local system_game_object = require("systems.game_object.game_object")
-local system_color = require("systems.color.color")
-local system_camera = require("systems.camera.camera")
-local system_input = require("systems.input.system_input")
-local system_on_key_released = require("systems.on_key_released.on_key_released")
-local system_level_loader = require("systems.level_loader.level_loader")
-local system_collectionproxy = require("systems.collectionproxy.collectionproxy")
-local system_panthera = require("systems.panthera.panthera_decore")
-local system_physics = require("systems.physics.physics")
-local system_acceleration = require("systems.acceleration.acceleration")
-local system_movement_controller = require("systems.movement_controller.movement_controller")
-local system_shooter_controller = require("systems.shooter_controller.shooter_controller")
-local system_remove_with_delay = require("systems.remove_with_delay.remove_with_delay")
-local system_collision = require("systems.collision.collision")
-local on_collision_remove = require("systems.collision.on_collision.on_collision_remove")
-local on_collision_explosion = require("systems.collision.on_collision.on_collision_explosion")
-local on_collision_damage = require("systems.collision.on_collision.on_collision_damage")
-local system_health = require("systems.health.health")
-local system_death = require("systems.death.death")
-local system_damage_number = require("systems.damage_number.damage_number")
-local system_health_circle_visual = require("systems.health_circle_visual.health_circle_visual")
-local system_target_tracker = require("systems.target_tracker.target_tracker")
-local system_on_target_count_command = require("systems.target_tracker.on_target_count_command.on_target_count_command")
-local system_on_spawn_command = require("systems.on_spawn_command.on_spawn_command")
-local system_play_fx_on_remove = require("systems.play_fx_on_remove.play_fx_on_remove")
+local system_debug = require("system.debug.debug")
+local system_window_event = require("system.window_event.window_event")
+local system_transform = require("system.transform.transform")
+local system_game_object = require("system.game_object.game_object")
+local system_color = require("system.color.color")
+local system_camera = require("system.camera.camera")
+local system_input = require("system.input.system_input")
+local system_on_key_released = require("system.on_key_released.on_key_released")
+local system_level_loader = require("system.level_loader.level_loader")
+local system_collectionproxy = require("system.collectionproxy.collectionproxy")
+local system_panthera = require("system.panthera.panthera_decore")
+local system_physics = require("system.physics.physics")
+local system_acceleration = require("system.acceleration.acceleration")
+local system_movement_controller = require("system.movement_controller.movement_controller")
+local system_shooter_controller = require("system.shooter_controller.shooter_controller")
+local system_remove_with_delay = require("system.remove_with_delay.remove_with_delay")
+local system_collision = require("system.collision.collision")
+local on_collision_remove = require("system.collision.on_collision.on_collision_remove")
+local on_collision_explosion = require("system.collision.on_collision.on_collision_explosion")
+local on_collision_damage = require("system.collision.on_collision.on_collision_damage")
+local system_health = require("system.health.system_health")
+local system_death = require("system.death.death")
+local system_damage_number = require("system.damage_number.damage_number")
+local system_health_circle_visual = require("system.health_circle_visual.health_circle_visual")
+local system_target_tracker = require("system.target_tracker.target_tracker")
+local system_on_target_count_command = require("system.target_tracker.on_target_count_command.on_target_count_command")
+local system_on_spawn_command = require("system.on_spawn_command.on_spawn_command")
+local system_play_fx_on_remove = require("system.play_fx_on_remove.play_fx_on_remove")
 local system_gui_game = require("gui.game.game_system")
 
 local logger = log.get_logger("scene.game")
@@ -78,18 +78,18 @@ end
 local function load_entities(self)
 	-- We can describe entities right here or separate them into different files for your convenience
 	-- Here we use a separate file for each entity type for bullets
-	decore.register_entities("bullets", require("systems.shooter_controller.entities_bullets"))
+	decore.register_entities("bullets", require("system.shooter_controller.entities_bullets"))
 
 	-- We can describe entities right here
 	decore.register_entities("game", {
 		["player"] = require("game.objects.player.entity_player"),
 		["camera"] = require("game.objects.entity_camera"),
-		["debug"] = require("systems.debug.entity_debug"),
+		["debug"] = require("system.debug.entity_debug"),
 		["game_gui"] = require("gui.game.entity_game_gui"),
-		["damage_number"] = require("systems.damage_number.entity_damage_number"),
+		["damage_number"] = require("system.damage_number.entity_damage_number"),
 		["explosion"] = require("game.objects.explosion.entity_explosion"),
-		["on_target_command"] = require("systems.target_tracker.entity_on_target_command"),
-		["on_spawn_command"] = require("systems.on_spawn_command.entity_on_spawn_command"),
+		["on_target_command"] = require("system.target_tracker.entity_on_target_command"),
+		["on_spawn_command"] = require("system.on_spawn_command.entity_on_spawn_command"),
 	})
 	decore.register_entities("game", require("game.objects.enemy.entities_enemies"))
 end

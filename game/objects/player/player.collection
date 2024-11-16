@@ -23,7 +23,7 @@ embedded_instances {
   "}\n"
   "components {\n"
   "  id: \"component_shooter_controller\"\n"
-  "  component: \"/systems/shooter_controller/component_shooter_controller.script\"\n"
+  "  component: \"/system/shooter_controller/component_shooter_controller.script\"\n"
   "  properties {\n"
   "    id: \"bullet_prefab_id\"\n"
   "    value: \"bullet_sniper\"\n"

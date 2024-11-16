@@ -1,7 +1,7 @@
 local decore = require("decore.decore")
 local log = require("log.log")
 
-local system_debug_command = require("systems.debug.debug_command")
+local system_debug_command = require("system.debug.debug_command")
 
 ---@class entity
 ---@field debug component.debug|nil

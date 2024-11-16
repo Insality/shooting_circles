@@ -1,6 +1,6 @@
 local decore = require("decore.decore")
 
-local camera_command = require("systems.camera.camera_command")
+local camera_command = require("system.camera.camera_command")
 
 local TEMP_VECTOR = vmath.vector3()
 

@@ -6,32 +6,6 @@ collection_instances {
     x: 4.0
     y: -416.0
   }
-  instance_properties {
-    id: "root"
-    properties {
-      id: "component_shooter_controller"
-      properties {
-        id: "bullet_per_shoot"
-        value: "10.0"
-        type: PROPERTY_TYPE_NUMBER
-      }
-      properties {
-        id: "burst_rate"
-        value: "0.01"
-        type: PROPERTY_TYPE_NUMBER
-      }
-      properties {
-        id: "fire_rate"
-        value: "0.01"
-        type: PROPERTY_TYPE_NUMBER
-      }
-      properties {
-        id: "damage"
-        value: "200.0"
-        type: PROPERTY_TYPE_NUMBER
-      }
-    }
-  }
 }
 collection_instances {
   id: "background"
