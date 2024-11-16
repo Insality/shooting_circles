@@ -107,7 +107,7 @@ function M:apply_explosion_force(entity, position_x, position_y, power)
 	force_x = force_x / distance * power
 	force_y = force_y / distance * power
 
-	self.world.physics_command:add_force(entity, force_x, force_y)
+	self.world.command_physics:add_force(entity, force_x, force_y)
 end
 
 

@@ -107,7 +107,7 @@ function M:process(entity, dt)
 	if movement_x ~= 0 or movement_y ~= 0 then
 		local force_x = movement_x * speed * dt * 60
 		local force_y = movement_y * speed * dt * 60
-		self.world.physics_command:add_force(entity, force_x, force_y)
+		self.world.command_physics:add_force(entity, force_x, force_y)
 	end
 end
 

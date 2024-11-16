@@ -1,5 +1,5 @@
 local decore = require("decore.decore")
-local physics_command = require("system.physics.physics_command")
+local command_physics = require("system.physics.command_physics")
 
 ---@class entity
 ---@field physics component.physics|nil
@@ -17,6 +17,7 @@ local physics_command = require("system.physics.physics_command")
 decore.register_component("physics", {
 	velocity_x = 0,
 	velocity_y = 0,
+	gravity_y = 0,
 })
 
 ---@class system.physics: system
@@ -25,14 +26,14 @@ local M = {}
 
 local TEMP_VECTOR = vmath.vector3()
 
----@static
----@return system.physics, system.physics_command
+---@return system.physics
 function M.create_system()
-	local system = setmetatable(decore.ecs.processingSystem(), { __index = M })
-	system.filter = decore.ecs.requireAll("physics", "game_object", "transform")
-	system.id = "physics"
+	return decore.processing_system(M, "physics", { "physics", "game_object", "transform" })
+end
 
-	return system, physics_command.create_system(system)
+
+function M:onAddToWorld()
+	self.world.command_physics = command_physics.create(self)
 end
 
 
@@ -66,7 +67,10 @@ function M:process(entity, dt)
 
 	-- Is it faster?
 	local position = b2d.body.get_position(body)
-	self.world.transform_command:set_position(entity, position.x, position.y)
+	local transform = entity.transform
+	if position.x ~= transform.position_x or position.y ~= transform.position_y then
+		self.world.command_transform:set_position(entity, position.x, position.y, transform.position_z)
+	end
 
 	local velocity = b2d.body.get_linear_velocity(body)
 	entity.physics.velocity_x = velocity.x

@@ -37,7 +37,7 @@ function M:process(entity, dt)
 	local force_x = velocity_x * acceleration * dt
 	local force_y = velocity_y * acceleration * dt
 
-	self.world.physics_command:add_force(entity, force_x, force_y)
+	self.world.command_physics:add_force(entity, force_x, force_y)
 end
 
 
