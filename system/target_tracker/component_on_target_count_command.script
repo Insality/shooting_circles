@@ -1,0 +1,10 @@
+go.property("amount", 0)
+
+local component = require("decore.component")
+
+function init(self)
+	component.init("on_target_count_command", {
+		command_label = true,
+		amount = self.amount
+	})
+end
