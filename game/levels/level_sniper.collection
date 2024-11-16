@@ -48,7 +48,7 @@ collection_instances {
       }
       properties {
         id: "spread_angle"
-        value: "0.0"
+        value: "60.0"
         type: PROPERTY_TYPE_NUMBER
       }
     }

@@ -1,6 +1,5 @@
 local log = require("log.log")
 local event = require("event.event")
-local events = require("event.events")
 local decore = require("decore.decore")
 local panthera = require("panthera.panthera")
 
