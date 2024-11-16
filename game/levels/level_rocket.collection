@@ -860,7 +860,7 @@ embedded_instances {
   "\\\"\\n"
   "  \\\"\\\"\\n"
   "font: \\\"/druid/fonts/text_regular.font\\\"\\n"
-  "material: \\\"/decore/materials/editor_only_label-df.material\\\"\\n"
+  "material: \\\"/core/utils/editor_only_label-df.material\\\"\\n"
   "\"\n"
   "  scale {\n"
   "    x: 2.0\n"

@@ -124,10 +124,3 @@ texture_profiles = /game/misc/game.texture_profiles
 
 [native_extension]
 app_manifest = /game/misc/game.appmanifest
-
-[library]
-include_dirs = decore
-
-[decore]
-is_prehash = 1
-

@@ -43,9 +43,11 @@ end
 
 ---@param entity entity.game_gui
 function M:onAdd(entity)
+	print("onAdd", entity)
 	entity.game_gui.current_level_index = 2
 	entity.game_gui.component = bindings.get_widget(entity.game_object.root) --[[@as gui.game]]
 
+	---@type gui.game
 	local component = entity.game_gui.component
 	component.button_left.on_click:subscribe(function() self:on_click_button(entity, -1) end)
 	component.button_right.on_click:subscribe(function() self:on_click_button(entity, 1) end)
@@ -80,6 +82,7 @@ function M:spawn_world(world_url)
 			factory_url = world_url
 		}
 	})
+
 	self.world:addEntity(entity_load_scene)
 	self.prev_level = entity_load_scene
 end

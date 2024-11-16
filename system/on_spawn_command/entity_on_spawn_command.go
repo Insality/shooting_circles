@@ -29,7 +29,7 @@ embedded_components {
   "\"\n"
   "  \"\"\n"
   "font: \"/druid/fonts/text_regular.font\"\n"
-  "material: \"/decore/materials/editor_only_label-df.material\"\n"
+  "material: \"/core/utils/editor_only_label-df.material\"\n"
   ""
   scale {
     x: 2.0
