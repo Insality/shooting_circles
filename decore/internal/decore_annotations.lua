@@ -5,10 +5,10 @@
 
 ---@class entity
 ---@field parent_prefab_id string|nil The parent prefab_id, used for prefab inheritance
----@field id number|nil @Unique entity id, autofilled by decore.create_entity
----@field prefab_id string|nil @The entity id from decore collections, autofilled by decore.create_entity
----@field pack_id string|nil @The entity id from decore collections, autofilled by decore.create_entity
----@field world_prefab_id string|nil @The world to spawn on entity creation
+---@field id number|nil Unique entity id, autofilled by decore.create_entity
+---@field prefab_id string|nil The entity id from decore collections, autofilled by decore.create_entity
+---@field pack_id string|nil The entity id from decore collections, autofilled by decore.create_entity
+---@field world_prefab_id string|nil The world to spawn on entity creation
 
 ---@class system
 ---@field id string|number|nil
@@ -16,7 +16,7 @@
 ---@field filter fun(self: system, entity: entity)|nil
 ---@field world world
 ---@field entities entity[]
----@field indices table<entity, number> @Entity index in entities table
+---@field indices table<entity, number> Entity index in entities table
 ---@field nocache boolean
 ---@field index number
 ---@field modified boolean
@@ -33,9 +33,6 @@
 ---@field process fun(entity:entity, dt:number)|nil
 ---@field postProcess fun(dt:number)|nil
 ---@field compare fun(e1:entity, e2:entity)|nil
-
----@class system_command
----@field world world
 
 ---@class world
 ---@field entities entity[]

@@ -791,8 +791,38 @@ function tiny.update(world, dt, filter)
 			postWrap(system, dt)
 		end
 	end
-
 end
+
+
+--- Updates the World by dt (delta time). Takes an optional parameter, `filter`,
+-- which is a Filter that selects Systems from the World, and updates only those
+-- Systems. If `filter` is not supplied, all Systems are updated. Put this
+-- function in your main loop.
+function tiny.fixed_update(world, dt, filter)
+	local systems = world.systems
+
+	--  Iterate through Systems IN ORDER
+	for i = 1, #systems do
+		local system = systems[i]
+		if system.active and ((not filter) or filter(world, system)) then
+			-- Update Systems that have an update method (most Systems)
+			local update = system.fixed_update
+			if update then
+				update(system, dt)
+			end
+
+			system.modified = false
+		end
+	end
+end
+
+
+--- Removes all Entities and Systems from the World.
+function tiny.clear(world)
+	tiny.clearEntities(world)
+	tiny.clearSystems(world)
+end
+
 
 --- Removes all Entities from the World.
 function tiny.clearEntities(world)
@@ -853,6 +883,8 @@ worldMetaTable = {
 		removeSystem = tiny.removeSystem,
 		refresh = tiny.refresh,
 		update = tiny.update,
+		fixed_update = tiny.fixed_update,
+		clear = tiny.clear,
 		clearEntities = tiny.clearEntities,
 		clearSystems = tiny.clearSystems,
 		getEntityCount = tiny.getEntityCount,

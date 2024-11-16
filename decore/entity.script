@@ -2,7 +2,7 @@ go.property("prefab_id", hash(""))
 go.property("size_x", 16)
 go.property("size_y", 16)
 go.property("components_to_register", 0) -- Autocounter, don't change in editor
-go.property("is_spawn_by_entity", false)
+go.property("is_spawn_by_entity", false) -- Autofilled by game_object system to prevent double spawn. Should have root node
 
 local events = require("event.events")
 local decore = require("decore.decore")
@@ -24,9 +24,9 @@ function init(self)
 end
 
 
-function final(self)
-	events.trigger("decore.destroy_entity", self.entity)
-end
+--function final(self)
+--	events.trigger("decore.destroy_entity", self.entity)
+--end
 
 
 function on_message(self, message_id, message)

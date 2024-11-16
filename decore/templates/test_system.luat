@@ -1,0 +1,22 @@
+return function()
+	describe("System TEMPLATE", function()
+		local decore = require("decore.decore")
+
+		local world ---@type world
+		local system_TEMPLATE ---@type system.TEMPLATE
+
+		before(function()
+			system_TEMPLATE = require("core.system.TEMPLATE.system_TEMPLATE")
+
+			world = decore.world()
+			world:add(system_TEMPLATE.create_system())
+		end)
+
+		it("Should init entities", function()
+			local entity = world:add({ health = { health = 100 } })
+			world:refresh()
+
+			assert(entity.health.current_health == 100)
+		end)
+	end)
+end

@@ -1,59 +1,47 @@
-local ecs = require("decore.ecs")
-local queue = require("decore.queue")
-local events = require("event.events")
-local decore_data = require("decore.decore_data")
-local decore_internal = require("decore.decore_internal")
+local event_bus = require("decore.internal.event_bus")
+local decore_data = require("decore.internal.decore_data")
+local decore_internal = require("decore.internal.decore_internal")
+local system_event_bus = require("decore.internal.system_event_bus")
 
-local system_queue = require("decore.system.queue")
+local events = require("event.events")
+
 
 local EMPTY_HASH = hash("")
 local TYPE_TABLE = "table"
 local IS_PREHASH_ENTITIES_ID = sys.get_config_int("decore.is_prehash", 0) == 1
 
 ---@class world
----@field queue queue
+---@field event_bus decore.event_bus
 
 ---@class decore
-local M = {
-	ecs = require("decore.ecs"),
-}
-
-
-function M.init()
-	M.register_components({
-		pack_id = "decore",
-		components = {
-			id = "",
-			prefab_id = false,
-			pack_id = false,
-			parent_prefab_id = false,
-		}
-	})
-end
+local M = {}
+M.ecs = require("decore.ecs")
 
 
 ---Create a new world instance
 ---@return world
-function M.world()
+function M.world(...)
 	---@type world
 	local world = M.ecs.world()
-	world.queue = queue.create()
+	world.event_bus = event_bus.create()
 
-	-- To make it works with entity.script to allows make entities in Defold editor
+	-- To make it works with entity.script to allows make entities in Defold editor via collections
 	events.subscribe("decore.create_entity", world.addEntity, world)
-	events.subscribe("decore.destroy_entity", world.removeEntity, world)
 
 	-- Always included systems
-	world:addSystem(system_queue.create_system())
+	world:addSystem(system_event_bus.create_system())
+
+	-- Add systems passed to world constructor
+	world:add(...)
 
 	return world
 end
 
 
 ---@generic T
----@param system_module T
----@param system_id string
----@param require_all_filters string|string[]|nil
+---@param system_module T The module with system functions
+---@param system_id string The system id
+---@param require_all_filters string|string[]|nil The required components. Example: {"transform", "game_object"} or "transform"
 ---@return T
 function M.system(system_module, system_id, require_all_filters)
 	return decore_internal.create_system(M.ecs.system(), system_module, system_id, require_all_filters)
@@ -61,9 +49,9 @@ end
 
 
 ---@generic T
----@param system_module T
----@param system_id string
----@param require_all_filters string|string[]|nil
+---@param system_module T The module with system functions
+---@param system_id string The system id
+---@param require_all_filters string|string[]|nil The required components. Example: {"transform", "game_object"} or "transform"
 ---@return T
 function M.processing_system(system_module, system_id, require_all_filters)
 	return decore_internal.create_system(M.ecs.processingSystem(), system_module, system_id, require_all_filters)
@@ -71,9 +59,9 @@ end
 
 
 ---@generic T
----@param system_module T
----@param system_id string
----@param require_all_filters string|string[]|nil
+---@param system_module T The module with system functions
+---@param system_id string The system id
+---@param require_all_filters string|string[]|nil The required components. Example: {"transform", "game_object"} or "transform"
 ---@return T
 function M.sorted_system(system_module, system_id, require_all_filters)
 	return decore_internal.create_system(M.ecs.sortedSystem(), system_module, system_id, require_all_filters)
@@ -81,9 +69,9 @@ end
 
 
 ---@generic T
----@param system_module T
----@param system_id string
----@param require_all_filters string|string[]|nil
+---@param system_module T The module with system functions
+---@param system_id string The system id
+---@param require_all_filters string|string[]|nil The required components. Example: {"transform", "game_object"} or "transform"
 ---@return T
 function M.sorted_processing_system(system_module, system_id, require_all_filters)
 	return decore_internal.create_system(M.ecs.sortedProcessingSystem(), system_module, system_id, require_all_filters)
@@ -96,14 +84,12 @@ end
 ---@param action action
 ---@return boolean
 function M.on_input(world, action_id, action)
-	action.action_id = action_id
-	world.queue:push("input_event", action)
-	return false
+	return world.command_input:on_input(action_id, action)
 end
 
 
 function M.on_message(world, message_id, message, sender)
-	world.queue:push("on_message", {
+	world.event_bus:trigger("on_message", {
 		message_id = message_id,
 		message = message,
 		sender = sender,
@@ -113,7 +99,6 @@ end
 
 function M.final(world)
 	events.unsubscribe("decore.create_entity", world.addEntity, world)
-	events.unsubscribe("decore.destroy_entity", world.removeEntity, world)
 	world:clearEntities()
 	world:clearSystems()
 end
@@ -122,7 +107,7 @@ end
 ---Register entity to decore entities
 ---@param entity_id string
 ---@param entity_data table
----@param pack_id string|nil @default "decore"
+---@param pack_id string|nil default "decore"
 function M.register_entity(entity_id, entity_data, pack_id)
 	pack_id = pack_id or "decore"
 
@@ -192,7 +177,7 @@ end
 ---Create entity instance from prefab
 ---@param prefab_id string|hash|nil
 ---@param pack_id string|nil
----@param data table|nil @additional data to merge with prefab
+---@param data table|nil additional data to merge with prefab
 ---@return entity
 function M.create_entity(prefab_id, pack_id, data)
 	local prefab = prefab_id and M.get_entity(prefab_id, pack_id)
@@ -235,7 +220,7 @@ end
 ---Register component to decore components
 ---@param component_id string
 ---@param component_data any
----@param pack_id string|nil @default "decore"
+---@param pack_id string|nil default "decore"
 function M.register_component(component_id, component_data, pack_id)
 	pack_id = pack_id or "decore"
 
@@ -249,7 +234,7 @@ end
 
 
 ---Register components pack to decore components
----@param components_data_or_path decore.components_pack_data|string @if string, load data from JSON file from custom resources
+---@param components_data_or_path decore.components_pack_data|string if string, load data from JSON file from custom resources
 ---@return boolean
 function M.register_components(components_data_or_path)
 	local components_pack_data = decore_internal.load_config(components_data_or_path)
@@ -290,8 +275,8 @@ end
 
 ---Return new component instance from prefab
 ---@param component_id string
----@param component_pack_id string|nil @if nil, use first found from latest loaded pack
----@return any|nil @return nil if component not found
+---@param component_pack_id string|nil if nil, use first found from latest loaded pack
+---@return any|nil return nil if component not found
 function M.create_component(component_id, component_pack_id)
 	for index = #decore_data.components_order, 1, -1 do
 		local pack_id = decore_data.components_order[index]
@@ -323,7 +308,7 @@ end
 ---To refresh system filters, call world:addEntity(entity) after this function
 ---@param entity entity
 ---@param component_id string
----@param component_data any|nil @if nil, create component with default values
+---@param component_data any|nil if nil, create component with default values
 ---@return entity
 function M.apply_component(entity, component_id, component_data)
 	component_data = component_data or {}
@@ -359,7 +344,7 @@ end
 
 ---@param world_id string
 ---@param world_data decore.world.instance
----@param pack_id string|nil @default "decore"
+---@param pack_id string|nil default "decore"
 function M.register_world(world_id, world_data, pack_id)
 	pack_id = pack_id or "decore"
 
@@ -417,7 +402,7 @@ end
 
 ---Create entity instances from world prefab
 ---@param world_id string
----@param world_pack_id string|nil @if nil, use first found from latest loaded pack
+---@param world_pack_id string|nil if nil, use first found from latest loaded pack
 ---@return entity[]|nil
 function M.create_world(world_id, world_pack_id)
 	local world = M.get_world(world_id, world_pack_id)
@@ -505,7 +490,7 @@ end
 ---It looks for component_id in entity and entityToChange tables
 ---@param world world
 ---@param component_id string
----@param component_value any|nil @if nil, return all entities with component_id
+---@param component_value any|nil if nil, return all entities with component_id
 ---@return entity[]
 function M.find_entities_by_component_value(world, component_id, component_value)
 	local entities = {}
@@ -585,16 +570,16 @@ end
 
 ---Call command from params array. Example: {"system_name", "function_name", "arg1", "arg2", ...}
 ---@param world world
----@param command any[] Example: [ "debug_command", "toggle_profiler", true ],
+---@param command any[] Example: [ "command_debug", "toggle_profiler", true ],
 function M.call_command(world, command)
-	local system_command = world[command[1]]
-	if not system_command then
+	local command_system = world[command[1]]
+	if not command_system then
 		decore_internal.logger:error("System not found", command[1])
 		return
 	end
 
 	local func = command[2]
-	if not system_command[func] then
+	if not command_system[func] then
 		decore_internal.logger:error("Function not found", func)
 		return
 	end
@@ -604,7 +589,7 @@ function M.call_command(world, command)
 		table.insert(args, command[i])
 	end
 
-	system_command[func](system_command, unpack(args))
+	command_system[func](command_system, unpack(args))
 end
 
 

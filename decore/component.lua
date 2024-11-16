@@ -1,3 +1,15 @@
+-- Used to register a component to an entity
+-- Usage
+--[[
+go.property("delay", 0.5)
+
+local component = require("decore.component")
+
+function init(self)
+	component.init("remove_with_delay", self.delay)
+end
+--]]
+
 local HASH_SET_COMPONENT = hash("set_component")
 local HASH_PROPERTY = hash("components_to_register")
 

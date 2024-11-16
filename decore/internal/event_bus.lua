@@ -1,12 +1,12 @@
----@class queue
+---@class decore.event_bus
 ---@field events table<string, table> The current list of events
 ---@field stash table<string, table> The list of events to be processed after :stash_to_events() is called
 ---@field merge_callbacks table<string, fun(events: any[], new_event: any):boolean> The merge policy for events. If the merge policy returns true, the events are merged and not will be added as new event
 local M = {}
 
 
----Creates a new event queue.
----@return queue
+---Creates a new event bus.
+---@return decore.event_bus
 function M.create()
 	local instance = {
 		events = {},
@@ -21,17 +21,17 @@ end
 ---Pushes an event onto the queue, triggering it and processing the queue of callbacks.
 ---@param event_name string The name of the event to push onto the queue.
 ---@param data any The data to pass to the event and its associated callbacks.
-function M:push(event_name, data)
+function M:trigger(event_name, data)
 	self.stash[event_name] = self.stash[event_name] or {}
 
 	local merge_callback = self.merge_callbacks[event_name]
 	if merge_callback then
 		local is_merged = merge_callback(self.stash[event_name], data)
 		if not is_merged then
-			table.insert(self.stash[event_name], data)
+			table.insert(self.stash[event_name], data or true)
 		end
 	else
-		table.insert(self.stash[event_name], data)
+		table.insert(self.stash[event_name], data or true)
 	end
 end
 
@@ -79,6 +79,11 @@ end
 
 function M:get_events(event_name)
 	return self.events[event_name]
+end
+
+
+function M:get_stash(event_name)
+	return self.stash[event_name]
 end
 
 
