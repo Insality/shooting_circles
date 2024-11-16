@@ -23,7 +23,7 @@ dependencies#1 = https://github.com/Insality/defold-log/archive/refs/heads/devel
 dependencies#2 = https://github.com/Insality/defold-event/archive/refs/tags/10.zip
 dependencies#3 = https://github.com/subsoap/defos/archive/refs/tags/v2.7.1.zip
 dependencies#4 = https://github.com/britzl/deftest/archive/refs/tags/2.8.0.zip
-dependencies#5 = https://github.com/Insality/druid/archive/refs/tags/1.0.zip
+dependencies#5 = https://github.com/Insality/druid/archive/refs/heads/annotations_rework.zip
 
 [safearea]
 resize_game_view = 0

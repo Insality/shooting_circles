@@ -43,7 +43,6 @@ end
 
 ---@param entity entity.game_gui
 function M:onAdd(entity)
-	print("onAdd", entity)
 	entity.game_gui.current_level_index = 2
 	entity.game_gui.component = bindings.get_widget(entity.game_object.root) --[[@as gui.game]]
 
@@ -72,6 +71,7 @@ end
 
 function M:spawn_world(world_url)
 	if self.prev_level then
+		print("Remove previous level")
 		self.world:removeEntity(self.prev_level)
 		self.prev_level = nil
 	end

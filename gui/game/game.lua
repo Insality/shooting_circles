@@ -4,7 +4,7 @@ local panthera = require("panthera.panthera")
 local animation = require("gui.game.game_panthera")
 local animation_button = require("gui.ui_button.ui_button_panthera")
 
----@class gui.game: druid.component
+---@class gui.game: druid.base_component
 ---@field druid druid_instance
 ---@field root node
 ---@field text_timer druid.text
