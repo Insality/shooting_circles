@@ -9,14 +9,15 @@ local panthera = require("panthera.panthera")
 local M = {}
 
 ---@static
+---@param system_panthera system.panthera
 ---@return system.panthera_command
-function M.create_system(panthera)
-	local system = setmetatable(decore.ecs.system(), { __index = M })
-	system.id = "panthera_command"
-	system.panthera = panthera
+function M.create_system(system_panthera)
+	local system = decore.system(M, "panthera_command")
+	system.panthera = system_panthera
 
 	return system
 end
+
 
 ---@private
 function M:onAddToWorld()
