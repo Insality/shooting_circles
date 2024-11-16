@@ -1,7 +1,7 @@
 local bindings = require("gui.bindings")
 local decore = require("decore.decore")
 
-local game_gui_command = require("gui.game.game_system_command")
+local command_game_gui = require("gui.game.command_game_gui")
 
 ---@class entity
 ---@field game_gui component.game_gui|nil
@@ -25,15 +25,19 @@ local LEVELS = {
 	"/worlds#level_rocket",
 }
 
----@static
----@return system.game_gui, system.game_gui_command
+
+---@return system.game_gui
 function M.create_system()
-	local system = setmetatable(decore.ecs.system(), { __index = M })
-	system.filter = decore.ecs.requireAll("game_gui", "game_object")
-	system.id = "game_gui"
+	local system = decore.system(M, "game_gui", { "game_gui", "game_object" })
+
 	system.prev_level = nil
 
-	return system, game_gui_command.create_system(system)
+	return system
+end
+
+
+function M:onAddToWorld()
+	self.world.command_game_gui = command_game_gui.create(self)
 end
 
 

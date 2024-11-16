@@ -105,9 +105,9 @@ return {
 		},
 		on_collision_damage = 100,
 		on_collision_explosion = {
-			power = 120000,
+			power = 12000,
 			damage = 50,
-			distance = 550
+			distance = 250
 		},
 		acceleration = {
 			value = 500

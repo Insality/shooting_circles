@@ -8,7 +8,7 @@ local decore = require("decore.decore")
 decore.register_component("on_spawn_command")
 
 ---@class component.on_spawn_command
----@field command string @Json of string[], ["game_gui_command", "set_text", "hello"]
+---@field command any[]
 ---@field command_label boolean
 
 ---@class system.on_spawn_command: system
@@ -19,39 +19,26 @@ local M = {}
 ---@static
 ---@return system.on_spawn_command
 function M.create_system()
-	local system = setmetatable(decore.ecs.system(), { __index = M })
-	system.filter = decore.ecs.requireAny("on_spawn_command")
-	system.id = "on_spawn_command"
-
-	return system
+	return decore.system(M, "on_spawn_command", { "on_spawn_command" })
 end
 
 
 ---@param entity entity.on_spawn_command
 function M:onAdd(entity)
-	local command = entity.on_spawn_command
-	if command then
-		self:process_command(command)
+	if entity.on_spawn_command.command then
+		decore.call_command(self.world, entity.on_spawn_command.command)
 	end
 
-	if command.command_label and entity.game_object then
+	if entity.on_spawn_command.command_label and entity.game_object then
 		local root = entity.game_object.root
-		local label_url = msg.url(nil, root, "label")
-		command.command = label.get_text(label_url)
-		-- Trim
-		command.command = command.command:match("^%s*(.-)%s*$")
-		self:process_command(command)
+		local label_url = msg.url(nil, root, "command")
+		local command = decore.parse_command(label.get_text(label_url))
+		if command then
+			decore.call_command(self.world, command)
+		end
 	end
 end
 
-
----@param command component.on_spawn_command
-function M:process_command(command)
-	if command.command then
-		local data = json.decode(command.command)
-		decore.call_command(self.world, data)
-	end
-end
 
 
 return M

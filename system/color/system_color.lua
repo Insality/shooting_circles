@@ -24,11 +24,7 @@ local M = {}
 ---@static
 ---@return system.color
 function M.create_system()
-	local system = setmetatable(decore.ecs.system(), { __index = M })
-	system.filter = decore.ecs.requireAll("color", "game_object")
-	system.id = "color"
-
-	return system
+	return decore.system(M, "color", { "game_object", "color" })
 end
 
 

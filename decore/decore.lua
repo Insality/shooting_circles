@@ -576,10 +576,46 @@ function M.print_loaded_packs_debug_info()
 end
 
 
+
+---@param command string Example: "system_name.function_name, arg1, arg2". Separators are : " ", "," and "\n" only
+---@return any[]
+function M.parse_command(command)
+	-- Split the command string into a table. check numbers, remove newlines and spaces
+	local command_table = decore_internal.split_by_several_separators(command, { " ", ",", "\n" })
+
+	-- Trim the command table
+	for i = 1, #command_table do
+		command_table[i] = string.gsub(command_table[i], "%s+", "")
+	end
+
+	-- Checks types
+	for i = 1, #command_table do
+		-- Check number
+		if tonumber(command_table[i]) then
+			command_table[i] = tonumber(command_table[i])
+		end
+		-- Check boolean
+		if command_table[i] == "true" then
+			command_table[i] = true
+		elseif command_table[i] == "false" then
+			command_table[i] = false
+		end
+	end
+
+
+	return command_table
+end
+
+
 ---Call command from params array. Example: {"system_name", "function_name", "arg1", "arg2", ...}
 ---@param world world
 ---@param command any[] Example: [ "command_debug", "toggle_profiler", true ],
 function M.call_command(world, command)
+	if not command then
+		decore_internal.logger:error("Command is nil")
+		return
+	end
+	
 	local command_system = world[command[1]]
 	if not command_system then
 		decore_internal.logger:error("System not found", command[1])

@@ -1,7 +1,4 @@
-local ecs = require("decore.ecs")
 local decore = require("decore.decore")
-
-local logger = decore.get_logger("system.collectionproxy")
 
 local HASH_PROXY_LOADED = hash("proxy_loaded")
 local HASH_INIT = hash("init")
@@ -18,8 +15,7 @@ local M = {}
 ---@static
 ---@return system.collectionproxy
 function M.create_system()
-	local system = decore.system(M, "collectionproxy", { "collectionproxy" })
-	return system
+	return decore.system(M, "collectionproxy", { "collectionproxy" })
 end
 
 

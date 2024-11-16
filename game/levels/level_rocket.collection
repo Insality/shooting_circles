@@ -48,7 +48,7 @@ collection_instances {
       }
       properties {
         id: "damage"
-        value: "200.0"
+        value: "100.0"
         type: PROPERTY_TYPE_NUMBER
       }
       properties {
@@ -831,7 +831,7 @@ embedded_instances {
   "  }\n"
   "}\n"
   "embedded_components {\n"
-  "  id: \"label\"\n"
+  "  id: \"command\"\n"
   "  type: \"label\"\n"
   "  data: \"size {\\n"
   "  x: 900.0\\n"
@@ -844,11 +844,11 @@ embedded_instances {
   "  w: 0.0\\n"
   "}\\n"
   "pivot: PIVOT_W\\n"
-  "text: \\\"[\\\\\\\"game_gui_command\\\\\\\", \\\\\\\"set_text\\\\\\\", \\\\\\\"Rocket\\\\\\\"]\\\\n"
+  "text: \\\"command_game_gui\\\\n"
   "\\\"\\n"
-  "  \\\"\\\\n"
+  "  \\\"set_text\\\\n"
   "\\\"\\n"
-  "  \\\"\\\"\\n"
+  "  \\\"rocket\\\"\\n"
   "font: \\\"/druid/fonts/text_regular.font\\\"\\n"
   "material: \\\"/builtins/fonts/label-df.material\\\"\\n"
   "\"\n"

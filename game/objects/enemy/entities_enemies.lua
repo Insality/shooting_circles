@@ -13,7 +13,8 @@ return {
 			}
 		},
 		health = {
-			health = 20
+			health = 20,
+			remove_on_death = true
 		},
 		health_circle_visual = {},
 		panthera = {

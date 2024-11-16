@@ -50,6 +50,19 @@ function M.split(s, sep)
 end
 
 
+---Split string by separator
+---@param s string
+---@param sep string[]
+function M.split_by_several_separators(s, sep)
+	local t = {}
+	local pattern = table.concat(sep, "|")
+	for str in string.gmatch(s, "([^" .. pattern .. "]+)") do
+		table.insert(t, str)
+	end
+	return t
+end
+
+
 ---Create a copy of lua table
 ---@param orig table The table to copy
 ---@return table
