@@ -5,6 +5,52 @@ collection_instances {
   position {
     y: -416.0
   }
+  instance_properties {
+    id: "root"
+    properties {
+      id: "component_shooter_controller"
+      properties {
+        id: "bullet_prefab_id"
+        value: "bullet_rocket"
+        type: PROPERTY_TYPE_HASH
+      }
+      properties {
+        id: "bullet_speed"
+        value: "1000.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+      properties {
+        id: "bullet_per_shoot"
+        value: "1.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+      properties {
+        id: "burst_rate"
+        value: "1.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+      properties {
+        id: "fire_rate"
+        value: "1.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+      properties {
+        id: "is_auto_shoot"
+        value: "false"
+        type: PROPERTY_TYPE_BOOLEAN
+      }
+      properties {
+        id: "damage"
+        value: "200.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+      properties {
+        id: "spread_angle"
+        value: "15.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+    }
+  }
 }
 collection_instances {
   id: "background"

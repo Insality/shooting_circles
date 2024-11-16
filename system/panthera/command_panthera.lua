@@ -2,32 +2,16 @@ local decore = require("decore.decore")
 local panthera = require("panthera.panthera")
 
 ---@class world
----@field panthera_command system.panthera_command
+---@field command_panthera command.panthera
 
----@class system.panthera_command: system_command
+---@class command.panthera
 ---@field panthera system.panthera
 local M = {}
 
----@static
----@param system_panthera system.panthera
----@return system.panthera_command
-function M.create_system(system_panthera)
-	local system = decore.system(M, "panthera_command")
-	system.panthera = system_panthera
 
-	return system
-end
-
-
----@private
-function M:onAddToWorld()
-	self.world.panthera_command = self
-end
-
-
----@private
-function M:onRemoveFromWorld()
-	self.world.panthera_command = nil
+---@return command.panthera
+function M.create(panthera_decore)
+	return setmetatable({ panthera = panthera_decore }, { __index = M })
 end
 
 

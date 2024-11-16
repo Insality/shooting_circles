@@ -12,10 +12,11 @@ function M.create(health)
 end
 
 
----@param entity entity.health
+---@param entity entity
 ---@param damage number
 function M:apply_damage(entity, damage)
 	assert(entity.health, "Entity does not have a health component.")
+	---@cast entity entity.health
 	self.health:apply_damage(entity, damage)
 end
 

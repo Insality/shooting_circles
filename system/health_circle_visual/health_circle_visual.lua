@@ -44,8 +44,8 @@ function M:process_health_event(health_event)
 	local entity = health_event.entity
 	if entity.health_circle_visual and health_event.damage then
 		local progress = entity.health.current_health / entity.health.health
-		self.world.panthera_command:set_progress(entity, "health", progress)
-		self.world.panthera_command:play_state(entity, entity.health_circle_visual.on_damage_animation, "on_damage")
+		self.world.command_panthera:set_progress(entity, "health", progress)
+		self.world.command_panthera:play_state(entity, entity.health_circle_visual.on_damage_animation, "on_damage")
 
 		-- Spawn damage number particle
 		local et = entity.transform or {}

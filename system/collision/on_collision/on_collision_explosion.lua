@@ -61,7 +61,7 @@ function M:process_collision_event(collision_event)
 
 				local damage = math.ceil(explosion.damage * koef)
 				if damage > 0 and target_entity.health then
-					self.world.health_command:apply_damage(target_entity, damage)
+					self.world.command_health:apply_damage(target_entity, damage)
 				end
 			end
 		end

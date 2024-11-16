@@ -35,7 +35,7 @@ function M:process_collision_event(collision_event)
 	local damage = entity.on_collision_damage
 	local other = collision_event.other
 	if damage and other and other.health then
-		self.world.health_command:apply_damage(other, damage)
+		self.world.command_health:apply_damage(other, damage)
 	end
 end
 
