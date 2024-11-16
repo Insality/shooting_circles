@@ -71,7 +71,6 @@ end
 
 function M:spawn_world(world_url)
 	if self.prev_level then
-		print("Remove previous level")
 		self.world:removeEntity(self.prev_level)
 		self.prev_level = nil
 	end

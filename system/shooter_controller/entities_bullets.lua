@@ -1,5 +1,25 @@
 ---@return table<string, entity> entities By prefab_id
 return {
+	["bullet_prototype"] = {
+		transform = {},
+		color = {
+			hex_color = "95C8E2",
+			sprite_url = "/root#sprite"
+		},
+		game_object = {
+			factory_url = "/spawner/spawner#bullet",
+			is_factory = true,
+			object_scheme = {
+				["root"] = true
+			}
+		},
+		on_collision_damage = 10,
+		on_collision_remove = true,
+		physics = {},
+		collision = true,
+		remove_with_delay = 0.5
+	},
+
 	["bullet_explosion"] = {
 		transform = {},
 		game_object = {
@@ -13,20 +33,10 @@ return {
 	},
 
 	["bullet_sniper"] = {
+		parent_prefab_id = "bullet_prototype",
 		transform = {
 			scale_x = 1.25,
 			scale_y = 1.25
-		},
-		color = {
-			hex_color = "95C8E2",
-			sprite_url = "/root#sprite"
-		},
-		game_object = {
-			factory_url = "/spawner/spawner#bullet",
-			is_factory = true,
-			object_scheme = {
-				["root"] = true
-			}
 		},
 		on_collision_explosion = {
 			power = 50000,
@@ -34,25 +44,13 @@ return {
 			distance = 128
 		},
 		on_collision_damage = 30,
-		on_collision_remove = true,
-		physics = {},
-		collision = true,
-		remove_with_delay = 0.5
 	},
 
 	["bullet_arcade"] = {
-		transform = {},
-		color = {
-			hex_color = "95C8E2",
-			sprite_url = "/root#sprite"
-		},
-		game_object = {
-			factory_url = "/spawner/spawner#bullet"
-		},
+		parent_prefab_id = "bullet_prototype",
 		on_collision_damage = 50,
-		physics = {},
-		collision = true,
-		remove_with_delay = 3
+		remove_with_delay = 3,
+		on_collision_remove = false
 	},
 	["bullet_arcade_explosion"] = {
 		parent_prefab_id = "bullet_arcade",
@@ -64,38 +62,21 @@ return {
 		remove_with_delay = 1.5
 	},
 	["bullet_pistol"] = {
-		transform = {},
-		color = {
-			hex_color = "95C8E2",
-			sprite_url = "/root#sprite"
-		},
-		game_object = {
-			factory_url = "/spawner/spawner#bullet"
-		},
+		parent_prefab_id = "bullet_prototype",
 		on_collision_damage = 50,
 		on_collision_remove = true,
-		physics = {},
-		collision = true,
 		remove_with_delay = 0.7
 	},
 	["bullet_shotgun"] = {
-		transform = {},
-		color = {
-			hex_color = "95C8E2",
-			sprite_url = "/root#sprite"
-		},
+		parent_prefab_id = "bullet_prototype",
 		game_object = {
 			factory_url = "/spawner/spawner#bullet_shotgun"
 		},
 		on_collision_damage = 40,
-		on_collision_remove = true,
-		physics = {},
-		collision = true,
 		remove_with_delay = 0.7,
 	},
 	["bullet_rocket"] = {
-		transform = {
-		},
+		transform = {},
 		color = {
 			hex_color = "CA8BD0",
 			sprite_url = "/root#sprite"
