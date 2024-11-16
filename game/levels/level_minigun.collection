@@ -1,0 +1,539 @@
+name: "level_barrage"
+instances {
+  id: "entity_camera"
+  prototype: "/core/system/camera/entity_camera.go"
+  position {
+    z: 10.0
+  }
+}
+collection_instances {
+  id: "player"
+  collection: "/game/objects/player/player.collection"
+  position {
+    x: 4.0
+    y: -416.0
+  }
+  instance_properties {
+    id: "root"
+    properties {
+      id: "component_shooter_controller"
+      properties {
+        id: "bullet_prefab_id"
+        value: "bullet_pistol_explosion"
+        type: PROPERTY_TYPE_HASH
+      }
+      properties {
+        id: "bullet_speed"
+        value: "5000.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+      properties {
+        id: "bullet_per_shoot"
+        value: "2.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+      properties {
+        id: "burst_rate"
+        value: "0.005"
+        type: PROPERTY_TYPE_NUMBER
+      }
+      properties {
+        id: "fire_rate"
+        value: "0.005"
+        type: PROPERTY_TYPE_NUMBER
+      }
+      properties {
+        id: "damage"
+        value: "50.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+      properties {
+        id: "spread_angle"
+        value: "30.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+    }
+  }
+}
+collection_instances {
+  id: "background"
+  collection: "/game/objects/background/background.collection"
+  position {
+    z: -1.0
+  }
+}
+collection_instances {
+  id: "enemy"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: -303.0
+    y: 279.0
+  }
+}
+collection_instances {
+  id: "enemy1"
+  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  position {
+    y: 200.0
+  }
+}
+collection_instances {
+  id: "enemy2"
+  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  position {
+    x: -147.0
+    y: 200.0
+  }
+}
+collection_instances {
+  id: "enemy3"
+  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  position {
+    x: -291.0
+    y: 200.0
+  }
+}
+collection_instances {
+  id: "enemy4"
+  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  position {
+    x: 146.0
+    y: 200.0
+  }
+}
+collection_instances {
+  id: "enemy5"
+  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  position {
+    x: 290.0
+    y: 200.0
+  }
+}
+collection_instances {
+  id: "enemy6"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: -216.0
+    y: 279.0
+  }
+}
+collection_instances {
+  id: "enemy7"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: -135.0
+    y: 279.0
+  }
+}
+collection_instances {
+  id: "enemy8"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: -51.0
+    y: 279.0
+  }
+}
+collection_instances {
+  id: "enemy9"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: 30.0
+    y: 279.0
+  }
+}
+collection_instances {
+  id: "enemy10"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: 117.0
+    y: 279.0
+  }
+}
+collection_instances {
+  id: "enemy11"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: 198.0
+    y: 279.0
+  }
+}
+collection_instances {
+  id: "enemy12"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: 282.0
+    y: 279.0
+  }
+}
+collection_instances {
+  id: "enemy13"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: -303.0
+    y: 358.0
+  }
+}
+collection_instances {
+  id: "enemy14"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: -216.0
+    y: 358.0
+  }
+}
+collection_instances {
+  id: "enemy15"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: -135.0
+    y: 358.0
+  }
+}
+collection_instances {
+  id: "enemy16"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: -51.0
+    y: 358.0
+  }
+}
+collection_instances {
+  id: "enemy17"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: 30.0
+    y: 358.0
+  }
+}
+collection_instances {
+  id: "enemy18"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: 117.0
+    y: 358.0
+  }
+}
+collection_instances {
+  id: "enemy19"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: 198.0
+    y: 358.0
+  }
+}
+collection_instances {
+  id: "enemy20"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: 282.0
+    y: 358.0
+  }
+}
+collection_instances {
+  id: "enemy21"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: -303.0
+    y: 437.0
+  }
+}
+collection_instances {
+  id: "enemy22"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: -216.0
+    y: 437.0
+  }
+}
+collection_instances {
+  id: "enemy23"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: -135.0
+    y: 437.0
+  }
+}
+collection_instances {
+  id: "enemy24"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: -51.0
+    y: 437.0
+  }
+}
+collection_instances {
+  id: "enemy25"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: 30.0
+    y: 437.0
+  }
+}
+collection_instances {
+  id: "enemy26"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: 117.0
+    y: 437.0
+  }
+}
+collection_instances {
+  id: "enemy27"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: 198.0
+    y: 437.0
+  }
+}
+collection_instances {
+  id: "enemy28"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: 282.0
+    y: 437.0
+  }
+}
+collection_instances {
+  id: "enemy29"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: 30.0
+    y: 29.0
+  }
+}
+collection_instances {
+  id: "enemy30"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: -216.0
+    y: 108.0
+  }
+}
+collection_instances {
+  id: "enemy31"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: -303.0
+    y: -50.0
+  }
+}
+collection_instances {
+  id: "enemy32"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: -303.0
+    y: 108.0
+  }
+}
+collection_instances {
+  id: "enemy33"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: 117.0
+    y: -50.0
+  }
+}
+collection_instances {
+  id: "enemy34"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: 282.0
+    y: 29.0
+  }
+}
+collection_instances {
+  id: "enemy35"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: 117.0
+    y: 108.0
+  }
+}
+collection_instances {
+  id: "enemy36"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: 282.0
+    y: 108.0
+  }
+}
+collection_instances {
+  id: "enemy37"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: -135.0
+    y: 29.0
+  }
+}
+collection_instances {
+  id: "enemy38"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: 30.0
+    y: -50.0
+  }
+}
+collection_instances {
+  id: "enemy39"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: -135.0
+    y: -50.0
+  }
+}
+collection_instances {
+  id: "enemy40"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: 198.0
+    y: 108.0
+  }
+}
+collection_instances {
+  id: "enemy41"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: -216.0
+    y: -50.0
+  }
+}
+collection_instances {
+  id: "enemy42"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: 198.0
+    y: -50.0
+  }
+}
+collection_instances {
+  id: "enemy43"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: -303.0
+    y: 29.0
+  }
+}
+collection_instances {
+  id: "enemy44"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: 30.0
+    y: 108.0
+  }
+}
+collection_instances {
+  id: "enemy45"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: 117.0
+    y: 29.0
+  }
+}
+collection_instances {
+  id: "enemy46"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: -135.0
+    y: 108.0
+  }
+}
+collection_instances {
+  id: "enemy47"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: -51.0
+    y: 29.0
+  }
+}
+collection_instances {
+  id: "enemy48"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: -216.0
+    y: 29.0
+  }
+}
+collection_instances {
+  id: "enemy49"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: 198.0
+    y: 29.0
+  }
+}
+collection_instances {
+  id: "enemy50"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: 282.0
+    y: -50.0
+  }
+}
+collection_instances {
+  id: "enemy51"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: -51.0
+    y: -50.0
+  }
+}
+collection_instances {
+  id: "enemy52"
+  collection: "/game/objects/enemy/enemy.collection"
+  position {
+    x: -51.0
+    y: 108.0
+  }
+}
+collection_instances {
+  id: "pit"
+  collection: "/game/objects/pit/pit.collection"
+  position {
+    y: -265.0
+  }
+}
+scale_along_z: 0
+embedded_instances {
+  id: "on_spawn_command"
+  data: "components {\n"
+  "  id: \"entity\"\n"
+  "  component: \"/decore/entity.script\"\n"
+  "  properties {\n"
+  "    id: \"prefab_id\"\n"
+  "    value: \"on_spawn_command\"\n"
+  "    type: PROPERTY_TYPE_HASH\n"
+  "  }\n"
+  "}\n"
+  "components {\n"
+  "  id: \"component_on_spawn_command\"\n"
+  "  component: \"/core/system/on_spawn_command/component_on_spawn_command.script\"\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"command\"\n"
+  "  type: \"label\"\n"
+  "  data: \"size {\\n"
+  "  x: 900.0\\n"
+  "  y: 100.0\\n"
+  "}\\n"
+  "outline {\\n"
+  "  w: 0.0\\n"
+  "}\\n"
+  "shadow {\\n"
+  "  w: 0.0\\n"
+  "}\\n"
+  "pivot: PIVOT_W\\n"
+  "text: \\\"command_game_gui, set_text, minigun\\\"\\n"
+  "font: \\\"/druid/fonts/text_regular.font\\\"\\n"
+  "material: \\\"/core/utils/editor_only_label-df.material\\\"\\n"
+  "\"\n"
+  "  scale {\n"
+  "    x: 2.0\n"
+  "    y: 2.0\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 92.0
+    y: 2978.0
+  }
+}

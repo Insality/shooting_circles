@@ -48,10 +48,11 @@ return {
 
 	["bullet_arcade"] = {
 		parent_prefab_id = "bullet_prototype",
-		on_collision_damage = 50,
-		remove_with_delay = 3,
+		on_collision_damage = 49,
+		remove_with_delay = 6,
 		on_collision_remove = false
 	},
+
 	["bullet_arcade_explosion"] = {
 		parent_prefab_id = "bullet_arcade",
 		on_collision_explosion = {
@@ -137,16 +138,20 @@ return {
 			sprite_url = "/root#sprite"
 		},
 		game_object = {
-			factory_url = "/spawner/spawner#bullet"
+			factory_url = "/spawner/spawner#bullet",
+			is_factory = true,
+			object_scheme = {
+				["root"] = true
+			}
 		},
 		physics = {},
 		collision = true,
 		on_collision_remove = true,
-		on_collision_damage = 10,
+		on_collision_damage = 40,
 		on_collision_explosion = {
-			power = 15000,
-			damage = 30,
-			distance = 256
+			power = 3000,
+			damage = 0,
+			distance = 150
 		},
 		remove_with_delay = 0.7,
 	}

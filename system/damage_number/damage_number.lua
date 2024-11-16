@@ -17,6 +17,7 @@ decore.register_component("damage_number", {
 ---@class system.damage_number: system
 ---@field entities entity.damage_number[]
 local M = {}
+local MAX_AMOUNT = 250
 
 
 ---@static
@@ -32,6 +33,11 @@ end
 
 ---@param entity entity.damage_number
 function M:onAdd(entity)
+	if #self.entities > MAX_AMOUNT then
+		self.world:removeEntity(entity)
+		return
+	end
+
 	local time_1 = 0.4
 	local time_2 = 0.7
 	local offset_x = math.random(-100, 100)

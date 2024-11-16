@@ -1,9 +1,0 @@
-go.property("health", 100)
-
-local component = require("decore.component")
-
-function init(self)
-	component.init("health", {
-		health = self.health
-	})
-end

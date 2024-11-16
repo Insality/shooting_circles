@@ -1,0 +1,237 @@
+name: "level_sniper"
+instances {
+  id: "entity_camera"
+  prototype: "/core/system/camera/entity_camera.go"
+  position {
+    z: 10.0
+  }
+}
+collection_instances {
+  id: "player"
+  collection: "/game/objects/player/player.collection"
+  position {
+    y: -416.0
+  }
+  instance_properties {
+    id: "root"
+    properties {
+      id: "component_shooter_controller"
+      properties {
+        id: "bullet_prefab_id"
+        value: "bullet_arcade"
+        type: PROPERTY_TYPE_HASH
+      }
+      properties {
+        id: "bullet_speed"
+        value: "2000.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+      properties {
+        id: "bullet_per_shoot"
+        value: "1.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+      properties {
+        id: "burst_rate"
+        value: "1.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+      properties {
+        id: "fire_rate"
+        value: "2.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+      properties {
+        id: "is_auto_shoot"
+        value: "true"
+        type: PROPERTY_TYPE_BOOLEAN
+      }
+      properties {
+        id: "damage"
+        value: "10.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+      properties {
+        id: "spread_angle"
+        value: "0.0"
+        type: PROPERTY_TYPE_NUMBER
+      }
+    }
+  }
+}
+collection_instances {
+  id: "background"
+  collection: "/game/objects/background/background.collection"
+  position {
+    z: -1.0
+  }
+}
+collection_instances {
+  id: "pit"
+  collection: "/game/objects/pit/pit.collection"
+  position {
+    y: -89.0
+  }
+}
+collection_instances {
+  id: "enemy_rectangle"
+  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  position {
+    y: 122.0
+  }
+}
+collection_instances {
+  id: "enemy_rectangle1"
+  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  position {
+    x: -146.0
+    y: 122.0
+  }
+}
+collection_instances {
+  id: "enemy_rectangle2"
+  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  position {
+    x: -294.0
+    y: 122.0
+  }
+}
+collection_instances {
+  id: "enemy_rectangle3"
+  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  position {
+    x: 294.0
+    y: 122.0
+  }
+}
+collection_instances {
+  id: "enemy_rectangle4"
+  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  position {
+    x: 148.0
+    y: 122.0
+  }
+}
+collection_instances {
+  id: "enemy_rectangle5"
+  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  position {
+    x: 73.0
+    y: 201.0
+  }
+}
+collection_instances {
+  id: "enemy_rectangle6"
+  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  position {
+    x: -73.0
+    y: 201.0
+  }
+}
+collection_instances {
+  id: "enemy_rectangle7"
+  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  position {
+    x: -221.0
+    y: 201.0
+  }
+}
+collection_instances {
+  id: "enemy_rectangle8"
+  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  position {
+    x: 221.0
+    y: 201.0
+  }
+}
+collection_instances {
+  id: "enemy_rectangle9"
+  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  position {
+    x: 143.0
+    y: 280.0
+  }
+}
+collection_instances {
+  id: "enemy_rectangle10"
+  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  position {
+    x: -3.0
+    y: 280.0
+  }
+}
+collection_instances {
+  id: "enemy_rectangle11"
+  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  position {
+    x: -151.0
+    y: 280.0
+  }
+}
+collection_instances {
+  id: "enemy_rectangle13"
+  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  position {
+    x: 68.0
+    y: 356.0
+  }
+}
+collection_instances {
+  id: "enemy_rectangle14"
+  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  position {
+    x: -80.0
+    y: 356.0
+  }
+}
+collection_instances {
+  id: "enemy_rectangle17"
+  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  position {
+    x: -8.0
+    y: 430.0
+  }
+}
+scale_along_z: 0
+embedded_instances {
+  id: "on_spawn_command"
+  data: "components {\n"
+  "  id: \"component_on_spawn_command\"\n"
+  "  component: \"/core/system/on_spawn_command/component_on_spawn_command.script\"\n"
+  "}\n"
+  "components {\n"
+  "  id: \"entity\"\n"
+  "  component: \"/decore/entity.script\"\n"
+  "  properties {\n"
+  "    id: \"prefab_id\"\n"
+  "    value: \"on_spawn_command\"\n"
+  "    type: PROPERTY_TYPE_HASH\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"command\"\n"
+  "  type: \"label\"\n"
+  "  data: \"size {\\n"
+  "  x: 900.0\\n"
+  "  y: 100.0\\n"
+  "}\\n"
+  "outline {\\n"
+  "  w: 0.0\\n"
+  "}\\n"
+  "shadow {\\n"
+  "  w: 0.0\\n"
+  "}\\n"
+  "pivot: PIVOT_W\\n"
+  "text: \\\"command_game_gui, set_text, arcade\\\\n"
+  "\\\"\\n"
+  "  \\\"\\\"\\n"
+  "font: \\\"/druid/fonts/text_regular.font\\\"\\n"
+  "material: \\\"/core/utils/editor_only_label-df.material\\\"\\n"
+  "\"\n"
+  "  scale {\n"
+  "    x: 2.0\n"
+  "    y: 2.0\n"
+  "  }\n"
+  "}\n"
+  ""
+}
