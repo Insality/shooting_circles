@@ -491,7 +491,7 @@ embedded_instances {
   "}\n"
   "components {\n"
   "  id: \"component_on_spawn_command\"\n"
-  "  component: \"/system/on_spawn_command/component_on_spawn_command.script\"\n"
+  "  component: \"/core/system/on_spawn_command/component_on_spawn_command.script\"\n"
   "}\n"
   "embedded_components {\n"
   "  id: \"command\"\n"

@@ -197,7 +197,7 @@ embedded_instances {
   id: "on_spawn_command"
   data: "components {\n"
   "  id: \"component_on_spawn_command\"\n"
-  "  component: \"/system/on_spawn_command/component_on_spawn_command.script\"\n"
+  "  component: \"/core/system/on_spawn_command/component_on_spawn_command.script\"\n"
   "}\n"
   "components {\n"
   "  id: \"entity\"\n"
