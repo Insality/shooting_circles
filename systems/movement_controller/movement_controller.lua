@@ -43,7 +43,7 @@ function M.create_system()
 end
 
 function M:postWrap()
-	self.world.queue:process("input_event", self.process_input_event, self)
+	self.world.event_bus:process("input_event", self.process_input_event, self)
 end
 
 

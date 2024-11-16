@@ -67,8 +67,8 @@ end
 
 
 function M:postWrap()
-	self.world.queue:process("window_event", self.process_window_event, self)
-	self.world.queue:process("transform_event", self.process_transform_event, self)
+	self.world.event_bus:process("window_event", self.process_window_event, self)
+	self.world.event_bus:process("transform_event", self.process_transform_event, self)
 end
 
 
@@ -78,7 +78,7 @@ function M:process_window_event(window_event)
 		return
 	end
 
-	if window_event.is_resized and self.camera then
+	if window_event == window.WINDOW_EVENT_RESIZED and self.camera then
 		self:update_camera_position(self.camera)
 		self:update_camera_zoom(self.camera)
 	end

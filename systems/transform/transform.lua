@@ -57,7 +57,7 @@ end
 
 
 function M:onAddToWorld()
-	self.world.queue:set_merge_policy("transform_event", self.event_merge_policy)
+	self.world.event_bus:set_merge_policy("transform_event", self.event_merge_policy)
 end
 
 

@@ -29,7 +29,7 @@ end
 
 
 function M:postWrap()
-	self.world.queue:process("health_event", self.process_health_event, self)
+	self.world.event_bus:process("health_event", self.process_health_event, self)
 end
 
 

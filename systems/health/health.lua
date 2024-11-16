@@ -35,7 +35,7 @@ end
 
 
 function M:onAddToWorld()
-	self.world.queue:set_merge_policy("health_event", function(events, event)
+	self.world.event_bus:set_merge_policy("health_event", function(events, event)
 		---@cast events event.health_event[]
 		---@cast event event.health_event
 
@@ -63,7 +63,7 @@ end
 function M:apply_damage(entity, damage)
 	local health = entity.health
 	health.current_health = math.max(0, health.current_health - damage)
-	self.world.queue:push("health_event", { entity = entity, damage = damage })
+	self.world.event_bus:trigger("health_event", { entity = entity, damage = damage })
 end
 
 

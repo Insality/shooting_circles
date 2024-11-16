@@ -41,7 +41,7 @@ function M:set_position(entity, x, y, z)
 	entity.transform.position_x = x or entity.transform.position_x
 	entity.transform.position_y = y or entity.transform.position_y
 
-	self.world.queue:push("transform_event", {
+	self.world.event_bus:trigger("transform_event", {
 		entity = entity,
 		is_position_changed = true
 	})
@@ -58,7 +58,7 @@ function M:set_scale(entity, x, y, z)
 	entity.transform.scale_x = x or entity.transform.scale_x
 	entity.transform.scale_y = y or entity.transform.scale_y
 
-	self.world.queue:push("transform_event", {
+	self.world.event_bus:trigger("transform_event", {
 		entity = entity,
 		is_scale_changed = true
 	})
@@ -75,7 +75,7 @@ function M:set_size(entity, x, y, z)
 	entity.transform.size_x = x or entity.transform.size_x
 	entity.transform.size_y = y or entity.transform.size_y
 
-	self.world.queue:push("transform_event", {
+	self.world.event_bus:trigger("transform_event", {
 		entity = entity,
 		is_size_changed = true
 	})
@@ -87,7 +87,7 @@ function M:set_rotation(entity, rotation)
 
 	entity.transform.rotation = rotation
 
-	self.world.queue:push("transform_event", {
+	self.world.event_bus:trigger("transform_event", {
 		entity = entity,
 		is_rotation_changed = true
 	})
@@ -100,7 +100,7 @@ end
 function M:set_animate_time(entity, animate_time, easing)
 	assert(entity.transform, "Entity does not have a transform component.")
 
-	self.world.queue:push("transform_event", {
+	self.world.event_bus:trigger("transform_event", {
 		entity = entity,
 		animate_time = animate_time,
 		easing = easing

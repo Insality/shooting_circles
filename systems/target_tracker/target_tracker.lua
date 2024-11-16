@@ -22,12 +22,12 @@ end
 
 
 function M:onAdd()
-	self.world.queue:push("target_tracker_event", #self.entities)
+	self.world.event_bus:trigger("target_tracker_event", #self.entities)
 end
 
 
 function M:onRemove()
-	self.world.queue:push("target_tracker_event", #self.entities)
+	self.world.event_bus:trigger("target_tracker_event", #self.entities)
 end
 
 

@@ -40,7 +40,7 @@ end
 
 ---@private
 function M:postWrap()
-	self.world.queue:process("window_event", self.process_window_event, self)
+	self.world.event_bus:process("window_event", self.process_window_event, self)
 end
 
 
@@ -86,7 +86,7 @@ end
 ---@private
 ---@param window_event event.window_event
 function M:process_window_event(window_event)
-	if window_event.is_focus_gained then
+	if window_event == window.WINDOW_EVENT_FOCUS_GAINED then
 		panthera.reload_animation()
 	end
 end

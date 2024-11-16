@@ -1,51 +1,35 @@
 local events = require("event.events")
 local decore = require("decore.decore")
 
-
+---window.WINDOW_EVENT_FOCUS_GAINED | window.WINDOW_EVENT_FOCUS_LOST | window.WINDOW_EVENT_RESIZED
 ---@class event.window_event
----@field is_focus_gained boolean
----@field is_focus_lost boolean
----@field is_resized boolean
 
 ---@class system.window_event: system
 local M = {}
 
 
----@static
 ---@return system.window_event
 function M.create_system()
-	local system = setmetatable(decore.ecs.system(), { __index = M })
-	system.id = "window_event"
-
-	return system
+	return decore.system(M, "window_event")
 end
 
 
 function M:onAddToWorld()
-	events.subscribe("window_event", self.on_window_event, self)
+	window.set_listener(function(_, window_event)
+		events.trigger("decore.window_event", window_event)
+	end)
+
+	events.subscribe("decore.window_event", self.on_window_event, self)
 end
 
 
 function M:onRemoveFromWorld()
-	events.unsubscribe("window_event", self.on_window_event, self)
+	events.unsubscribe("decore.window_event", self.on_window_event, self)
 end
 
 
 function M:on_window_event(event)
-	---@type event.window_event
-	local window_event = {
-		is_focus_gained = event == window.WINDOW_EVENT_FOCUS_GAINED,
-		is_focus_lost = event == window.WINDOW_EVENT_FOCUS_LOST,
-		is_resized = event == window.WINDOW_EVENT_RESIZED,
-	}
-	self.world.queue:push("window_event", window_event)
-end
-
-
-function M:postWrap()
-	for index = #self.entities, 1, -1 do
-		self.world:removeEntity(self.entities[index])
-	end
+	self.world.event_bus:trigger("window_event", event)
 end
 
 

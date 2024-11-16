@@ -39,12 +39,12 @@ return function()
 
 			world.health_command:apply_damage(entity, 10)
 
-			world.queue:stash_to_events()
+			world.event_bus:stash_to_events()
 
-			assert(world.queue:get_events("health_event"))
-			assert(#world.queue:get_events("health_event") == 1)
+			assert(world.event_bus:get_events("health_event"))
+			assert(#world.event_bus:get_events("health_event") == 1)
 
-			world.queue:process("health_event", function(event)
+			world.event_bus:process("health_event", function(event)
 				assert(event.entity == entity)
 				assert(event.damage == 10)
 			end)

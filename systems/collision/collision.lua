@@ -32,7 +32,7 @@ function M:onAddToWorld()
 		M.physics_world_listener(self, event_id, event)
 	end)
 
-	self.world.queue:set_merge_policy("collision_event", function(events, new_event)
+	self.world.event_bus:set_merge_policy("collision_event", function(events, new_event)
 		for index = #events, 1, -1 do
 			local event = events[index]
 			if event.entity == new_event.entity and event.other == new_event.other then
@@ -131,7 +131,7 @@ function M.physics_world_listener(self, event, data)
 				other = entity_target,
 				collision_event = event_data
 			}
-			self.world.queue:push("collision_event", collision_event)
+			self.world.event_bus:trigger("collision_event", collision_event)
 
 			if entity_target then
 				self.collided_this_frame[entity_source] = self.collided_this_frame[entity_source] or {}
@@ -152,7 +152,7 @@ function M.physics_world_listener(self, event, data)
 				other = entity_source,
 				collision_event = event_data
 			}
-			self.world.queue:push("collision_event", collision_event)
+			self.world.event_bus:trigger("collision_event", collision_event)
 			if entity_source then
 				self.collided_this_frame[entity_target] = self.collided_this_frame[entity_target] or {}
 				self.collided_this_frame[entity_target][entity_source] = true
@@ -177,7 +177,7 @@ function M.physics_world_listener(self, event, data)
 				other = entity_target,
 				trigger_event = event_data
 			}
-			self.world.queue:push("collision_event", collision_event)
+			self.world.event_bus:trigger("collision_event", collision_event)
 		end
 
 		if entity_target and entity_target.collision then
@@ -187,7 +187,7 @@ function M.physics_world_listener(self, event, data)
 				other = entity_source,
 				trigger_event = event_data
 			}
-			self.world.queue:push("collision_event", collision_event)
+			self.world.event_bus:trigger("collision_event", collision_event)
 		end
 	elseif event == RAY_CAST_RESPONSE then
 		-- Handle raycast hit data

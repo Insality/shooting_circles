@@ -24,7 +24,7 @@ end
 
 
 function M:postWrap()
-	self.world.queue:process("on_message", self.on_message, self)
+	self.world.event_bus:process("on_message", self.on_message, self)
 end
 
 
