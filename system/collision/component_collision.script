@@ -1,0 +1,15 @@
+local component = require("decore.component")
+
+local HASH_EMPTY = hash("")
+
+go.property("is_remove", false)
+go.property("trigger_event", hash(""))
+go.property("is_trigger_once", true)
+
+function init(self)
+	component.init("collision", {
+		is_remove = self.is_remove,
+		trigger_event = self.trigger_event ~= HASH_EMPTY and self.trigger_event or nil,
+		is_trigger_once = self.is_trigger_once
+	})
+end

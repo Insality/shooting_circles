@@ -9,7 +9,7 @@ shared_state = 1
 width = 1920
 height = 1080
 high_dpi = 1
-update_frequency = 240
+update_frequency = 60
 
 [android]
 input_method = HiddenInputField
@@ -20,10 +20,12 @@ developer = Insality
 publisher = Insality
 dependencies#0 = https://github.com/Insality/defold-tweener/archive/refs/tags/4.zip
 dependencies#1 = https://github.com/Insality/defold-log/archive/refs/heads/develop.zip
-dependencies#2 = https://github.com/Insality/defold-event/archive/refs/tags/10.zip
+dependencies#2 = https://github.com/Insality/defold-event/archive/refs/tags/11.zip
 dependencies#3 = https://github.com/subsoap/defos/archive/refs/tags/v2.7.1.zip
 dependencies#4 = https://github.com/britzl/deftest/archive/refs/tags/2.8.0.zip
-dependencies#5 = https://github.com/Insality/druid/archive/refs/heads/annotations_rework.zip
+dependencies#5 = https://github.com/Insality/decore/archive/refs/heads/develop.zip
+dependencies#6 = https://github.com/Insality/druid/archive/refs/tags/1.1.1.zip
+dependencies#7 = https://github.com/Insality/panthera/archive/refs/heads/develop.zip
 
 [safearea]
 resize_game_view = 0

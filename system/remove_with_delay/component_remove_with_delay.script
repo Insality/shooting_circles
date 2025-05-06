@@ -1,0 +1,7 @@
+go.property("delay", 1)
+
+local component = require("decore.component")
+
+function init(self)
+	component.init("remove_with_delay", self.delay)
+end

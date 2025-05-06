@@ -113,7 +113,7 @@ embedded_instances {
   "  \\\"\\\\n"
   "\\\"\\n"
   "  \\\"\\\"\\n"
-  "font: \\\"/druid/fonts/text_regular.font\\\"\\n"
+  "font: \\\"/druid/fonts/druid_text_regular.font\\\"\\n"
   "material: \\\"/builtins/fonts/label-df.material\\\"\\n"
   "\"\n"
   "  scale {\n"

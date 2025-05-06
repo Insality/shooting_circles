@@ -1,0 +1,23 @@
+local component = require("decore.component")
+go.property("default_animation", hash(""))
+go.property("speed", 1)
+go.property("is_loop", true)
+go.property("play_on_start", true)
+
+
+
+function init(self)
+	local EMPTY_HASH = hash("")
+
+	local animation = self.default_animation
+	if animation == EMPTY_HASH then
+		animation = nil
+	end
+
+	component.init("panthera", {
+		default_animation = animation,
+		speed = self.speed,
+		play_on_start = self.play_on_start,
+		is_loop = self.is_loop,
+	})
+end

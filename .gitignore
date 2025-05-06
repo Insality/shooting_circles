@@ -16,3 +16,4 @@ manifest.private.der
 manifest.public.der
 deployer_build_stats.csv
 *.tiled-session
+/.editor_settings

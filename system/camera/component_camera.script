@@ -1,0 +1,5 @@
+local component = require("decore.component")
+
+function init(self)
+	component.init("camera", {})
+end

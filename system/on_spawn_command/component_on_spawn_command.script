@@ -1,0 +1,9 @@
+go.property("command_label", true)
+
+local component = require("decore.component")
+
+function init(self)
+	component.init("on_spawn_command", {
+		command_label = self.command_label
+	})
+end

@@ -1,72 +1,12 @@
 local log = require("log.log")
 local decore = require("decore.decore")
 
-local system_camera = require("core.system.camera.system_camera")
-local system_window_event = require("core.system.window_event.system_window_event")
-local system_transform = require("core.system.transform.system_transform")
-local system_game_object = require("core.system.game_object.system_game_object")
-local system_input = require("core.system.input.system_input")
-local system_panthera = require("core.system.panthera.system_panthera")
-local system_physics = require("core.system.physics.system_physics")
-local system_remove_with_delay = require("core.system.remove_with_delay.system_remove_with_delay")
-local system_collision = require("core.system.collision.system_collision")
-local system_on_spawn_command = require("core.system.on_spawn_command.system_on_spawn_command")
-
-local system_debug = require("system.debug.debug")
-local system_color = require("system.color.system_color")
-local system_health = require("core.system.health.system_health")
-local system_on_key_released = require("system.on_key_released.on_key_released")
-local system_acceleration = require("system.acceleration.system_acceleration")
-local system_movement_controller = require("system.movement_controller.movement_controller")
-local system_shooter_controller = require("system.shooter_controller.shooter_controller")
-local on_collision_remove = require("system.collision.on_collision.on_collision_remove")
-local on_collision_explosion = require("system.collision.on_collision.on_collision_explosion")
-local on_collision_damage = require("system.collision.on_collision.on_collision_damage")
-local system_damage_number = require("system.damage_number.damage_number")
-local system_health_circle_visual = require("system.health_circle_visual.health_circle_visual")
-local system_target_tracker = require("system.target_tracker.target_tracker")
-local system_on_target_count_command = require("system.target_tracker.on_target_count_command.on_target_count_command")
-local system_play_fx_on_remove = require("system.play_fx_on_remove.play_fx_on_remove")
-local system_game_gui = require("gui.game.system_game_gui")
-
 local logger = log.get_logger("scene.game")
 
 
 ---@class scene.game
 ---@field world world
-
----@param world world
-local function load_systems(world)
-	world:add(system_debug.create_system())
-	world:add(system_window_event.create_system())
-	world:add(system_input.create_system())
-	world:add(system_on_key_released.create_system())
-	world:add(system_movement_controller.create_system())
-	world:add(system_shooter_controller.create_system())
-	world:add(system_play_fx_on_remove.create_system())
-	world:add(system_game_object.create_system())
-	world:add(system_collision.create_system())
-	world:add(on_collision_explosion.create_system())
-	world:add(on_collision_remove.create_system())
-	world:add(on_collision_damage.create_system())
-	world:add(system_physics.create_system())
-	world:add(system_acceleration.create_system())
-	world:add(system_color.create_system())
-	world:add(system_panthera.create_system())
-	world:add(system_camera.create_system())
-	world:add(system_health.create_system())
-	world:add(system_remove_with_delay.create_system())
-	world:add(system_health_circle_visual.create_system())
-	world:add(system_damage_number.create_system())
-	world:add(system_target_tracker.create_system())
-	world:add(system_on_target_count_command.create_system())
-	world:add(system_on_spawn_command.create_system())
-	world:add(system_transform.create_system())
-	world:add(system_game_gui.create_system())
-
-	world:refresh()
-end
-
+---@
 
 ---@param self scene.game
 local function load_entities(self)
@@ -83,19 +23,45 @@ local function load_entities(self)
 		["damage_number"] = require("system.damage_number.entity_damage_number"),
 		["explosion"] = require("game.objects.explosion.entity_explosion"),
 	})
+
 	decore.register_entities("game", require("game.objects.enemy.entities_enemies"))
 end
 
 
 ---@param self scene.game
 function init(self)
-	self.world = decore.world()
-	load_systems(self.world)
+	self.world = decore.world(
+		require("system.camera.system_camera").create_system(),
+		require("system.window_event.system_window_event").create_system(),
+		require("system.transform.system_transform").create_system(),
+		require("system.game_object.system_game_object").create_system(),
+		require("system.input.system_input").create_system(),
+		require("system.panthera.system_panthera").create_system(),
+		require("system.physics.system_physics").create_system(),
+		require("system.remove_with_delay.system_remove_with_delay").create_system(),
+		require("system.collision.system_collision").create_system(),
+		require("system.on_spawn_command.system_on_spawn_command").create_system(),
+		require("system.health.system_health").create_system(),
+
+		require("system.debug.debug").create_system(),
+		require("system.color.system_color").create_system(),
+		require("system.on_key_released.on_key_released").create_system(),
+		require("system.acceleration.system_acceleration").create_system(),
+		require("system.movement_controller.movement_controller").create_system(),
+		require("system.shooter_controller.shooter_controller").create_system(),
+		require("system.collision.on_collision.on_collision_remove").create_system(),
+		require("system.collision.on_collision.on_collision_explosion").create_system(),
+		require("system.collision.on_collision.on_collision_damage").create_system(),
+		require("system.damage_number.damage_number").create_system(),
+		require("system.health_circle_visual.health_circle_visual").create_system(),
+		require("system.target_tracker.target_tracker").create_system(),
+		require("system.target_tracker.on_target_count_command.on_target_count_command").create_system(),
+		require("system.play_fx_on_remove.play_fx_on_remove").create_system(),
+		require("gui.game.system_game_gui").create_system()
+	)
+
 	load_entities(self)
 	decore.print_loaded_packs_debug_info()
-
-	-- Uncomment for adjust game time speed
-	--msg.post("loader:/system#game_proxy", "set_time_step", {factor = 0.25, mode = 0})
 
 	timer.delay(1, true, function()
 		logger:debug("Entities count:", #self.world.entities)
