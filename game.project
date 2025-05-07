@@ -1,5 +1,5 @@
 [bootstrap]
-main_collection = /loader/loader.collectionc
+main_collection = /loader.collectionc
 render = /builtins/render/default.renderc
 
 [script]
@@ -126,3 +126,5 @@ texture_profiles = /game/misc/game.texture_profiles
 [native_extension]
 app_manifest = /game/misc/game.appmanifest
 
+[decore]
+is_prehash = 1

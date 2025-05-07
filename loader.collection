@@ -4,7 +4,7 @@ embedded_instances {
   id: "system"
   data: "components {\n"
   "  id: \"loader\"\n"
-  "  component: \"/loader/loader.script\"\n"
+  "  component: \"/loader.script\"\n"
   "}\n"
   "embedded_components {\n"
   "  id: \"game_proxy\"\n"

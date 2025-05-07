@@ -34,6 +34,8 @@ function init(self)
 		require("system.camera.system_camera").create_system(),
 		require("system.window_event.system_window_event").create_system(),
 		require("system.transform.system_transform").create_system(),
+		-- why here order matter
+		require("system.play_fx_on_remove.play_fx_on_remove").create_system(),
 		require("system.game_object.system_game_object").create_system(),
 		require("system.input.system_input").create_system(),
 		require("system.panthera.system_panthera").create_system(),
@@ -56,7 +58,6 @@ function init(self)
 		require("system.health_circle_visual.health_circle_visual").create_system(),
 		require("system.target_tracker.target_tracker").create_system(),
 		require("system.target_tracker.on_target_count_command.on_target_count_command").create_system(),
-		require("system.play_fx_on_remove.play_fx_on_remove").create_system(),
 		require("gui.game.system_game_gui").create_system()
 	)
 

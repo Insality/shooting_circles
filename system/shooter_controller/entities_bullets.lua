@@ -16,7 +16,7 @@ return {
 		on_collision_damage = 10,
 		on_collision_remove = true,
 		physics = {},
-		collision = true,
+		collision = {},
 		remove_with_delay = 0.5
 	},
 
@@ -96,7 +96,7 @@ return {
 		},
 		on_collision_remove = true,
 		physics = {},
-		collision = true,
+		collision = {},
 		remove_with_delay = 2,
 		play_fx_on_remove = {
 			fx_url = "explosion_rocket"
@@ -125,7 +125,7 @@ return {
 		},
 		on_collision_remove = true,
 		physics = {},
-		collision = true,
+		collision = {},
 		remove_with_delay = 2,
 		play_fx_on_remove = {
 			fx_url = "explosion_rocket"
@@ -145,7 +145,7 @@ return {
 			}
 		},
 		physics = {},
-		collision = true,
+		collision = {},
 		on_collision_remove = true,
 		on_collision_damage = 40,
 		on_collision_explosion = {

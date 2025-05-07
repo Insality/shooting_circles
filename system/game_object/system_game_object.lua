@@ -128,7 +128,6 @@ function M:remove_entity(entity)
 
 		if go.exists(root) then
 			go.delete(root, false)
-			entity.game_object.root = nil
 		end
 	end
 
