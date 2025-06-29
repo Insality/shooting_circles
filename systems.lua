@@ -25,6 +25,7 @@ end
 ---@return table<string, evolved.id>
 function M.get_systems()
 	return {
+		require("system.debug").create_system(),
 		require("system.factory_object").create_system(),
 		require("system.collectionfactory_object").create_system(),
 		require("system.physics_movement_controller").create_system(),
@@ -32,8 +33,8 @@ function M.get_systems()
 		require("system.camera").create_system(),
 		require("system.color").create_system(),
 		require("system.velocity").create_system(),
-		require("system.lifetime").create_system(),
 		require("system.health").create_system(),
+		require("system.lifetime").create_system(),
 
 		require("system.sync_game_object_position").create_system(),
 		--require("system.velocity").create_system(),

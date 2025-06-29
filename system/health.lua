@@ -14,7 +14,6 @@ function M.register_components()
 
 	components.health_max = evolved.builder():name("health_max"):default(3):spawn()
 	components.health = evolved.builder():name("health"):default(3):spawn()
-	components.request_damage = evolved.builder():name("request_damage"):default(1):spawn()
 	components.remove_on_death = evolved.builder():tag():name("remove_on_death"):spawn()
 end
 
@@ -25,9 +24,9 @@ function M.create_system()
 	evolved.builder()
 		:group(group)
 		:set(components.system)
-		:name("health.damage")
-		:include(components.request_damage, components.health)
-		:execute(M.update_request_damage)
+		:name("health.collision_damage")
+		:include(components.collision_event)
+		:execute(M.collision_damage)
 		:spawn()
 
 	return group
@@ -37,15 +36,23 @@ end
 ---@param chunk evolved.chunk
 ---@param entity_list evolved.entity[]
 ---@param entity_count number
-function M.update_request_damage(chunk, entity_list, entity_count)
-	local request_damage, health, health_max = chunk:components(components.request_damage, components.health, components.health_max)
+function M.collision_damage(chunk, entity_list, entity_count)
+	local collision_event = chunk:components(components.collision_event)
 
 	for index = 1, entity_count do
-		health[index] = min(health[index] - request_damage[index], health_max[index])
+		local event = collision_event[index]
+		local source = event.entity
+		local target = event.other
 
-		local entity = entity_list[index]
-		if health[index] <= 0 and evolved.has(entity, components.remove_on_death) then
-			evolved.remove(entity)
+		if source and evolved.has(source, components.on_collision_damage) and target and evolved.has(target, components.health) then
+			local current_health = evolved.get(target, components.health)
+			local new_health = current_health - evolved.get(source, components.on_collision_damage)
+			evolved.set(target, components.health, new_health)
+
+			if new_health <= 0 and evolved.has(target, components.remove_on_death) then
+				--evolved.destroy(target)
+				evolved.set(target, components.lifetime, 0)
+			end
 		end
 	end
 end

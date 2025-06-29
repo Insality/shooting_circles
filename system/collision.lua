@@ -10,12 +10,14 @@ function M.register_components()
 	---@field on_collision_spawn_entity evolved.id
 	---@field collision evolved.id
 	---@field collision_event evolved.id
+	---@field collision_root_stored evolved.id
 
 	components.on_collision_damage = evolved.builder():name("on_collision_damage"):default(10):spawn()
 	components.on_collision_remove = evolved.builder():name("on_collision_remove"):tag():spawn()
 	components.on_collision_spawn_entity = evolved.builder():name("on_collision_spawn_entity"):spawn()
 	components.collision = evolved.builder():name("collision"):tag():spawn()
 	components.collision_event = evolved.builder():name("collision_event"):spawn()
+	components.collision_root_stored = evolved.builder():name("collision_root_stored"):tag():spawn()
 end
 
 
@@ -23,6 +25,7 @@ end
 function M.create_system()
 	M.collision_event_prefab = evolved.builder()
 		:name("collision_event")
+		:set(components.lifetime, 0)
 		:prefab()
 		:spawn()
 
@@ -40,6 +43,7 @@ function M.create_system()
 		:set(components.system)
 		:name("collisiton.store_root")
 		:include(components.collision, components.root_url)
+		:exclude(components.collision_root_stored)
 		:execute(M.store_root)
 		:spawn()
 
@@ -100,14 +104,10 @@ end
 ---@param event_type string @"contact_point_event"|"trigger_event"|"collision_event"
 local function handle_collision_event(entity_source, entity_target, event_data, event_type)
 	if entity_source and evolved.has(entity_source, components.collision) then
-		local collision = evolved.get(entity_source, components.collision)
-
 		if evolved.has(entity_source, components.on_collision_remove) then
-			evolved.destroy(entity_source)
+			--evolved.destroy(entity_source)
+			evolved.set(entity_source, components.lifetime, 0)
 		end
-
-		--if collision.trigger_event and event_type == "trigger_event" then
-		--end
 
 		local collision_event = {
 			entity = entity_source,
@@ -120,10 +120,9 @@ local function handle_collision_event(entity_source, entity_target, event_data, 
 	end
 
 	if entity_target and evolved.has(entity_target, components.collision) then
-		local collision = evolved.get(entity_target, components.collision)
-
 		if evolved.has(entity_target, components.on_collision_remove) then
-			evolved.destroy(entity_target)
+			--evolved.destroy(entity_target)
+			evolved.set(entity_target, components.lifetime, 0)
 		end
 
 		--if collision.trigger_event and event_type == "trigger_event" then
