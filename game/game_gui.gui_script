@@ -1,0 +1,45 @@
+local druid = require("druid.druid")
+local memory_panel = require("druid.widget.memory_panel.memory_panel")
+local fps_panel = require("druid.widget.fps_panel.fps_panel")
+local properties_panel = require("druid.widget.properties_panel.properties_panel")
+local decore_debug_page = require("decore.decore_debug_page")
+local evolved = require("evolved")
+local components = require("components")
+
+function init(self)
+	self.druid = druid.new(self)
+	self.memory_panel = self.druid:new_widget(memory_panel, "memory_panel")
+	self.fps_panel = self.druid:new_widget(fps_panel, "fps_panel")
+	self.properties_panel = self.druid:new_widget(properties_panel, "properties_panel")
+
+	self.properties_panel:add_button(function(button)
+		local systems = evolved.builder():include(components.system):spawn()
+		local count = 0
+		for _, _, entity_count in evolved.execute(systems) do
+			count = count + entity_count
+		end
+
+		button:set_text_property("Systems")
+		button:set_text_button(string.format("Inspect (%d)", count))
+		button:set_color("#E6DF9F")
+		button.button.on_click:subscribe(function()
+			decore_debug_page.render_systems_page(self.druid, self.properties_panel)
+		end)
+	end)
+end
+
+function final(self)
+	self.druid:final()
+end
+
+function update(self, dt)
+	self.druid:update(dt)
+end
+
+function on_message(self, message_id, message, sender)
+	self.druid:on_message(message_id, message, sender)
+end
+
+function on_input(self, action_id, action)
+	return self.druid:on_input(action_id, action)
+end

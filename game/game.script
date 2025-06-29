@@ -9,19 +9,43 @@ local logger = log.get_logger("game")
 
 ---@class scene.game
 ---@field systems evolved.id[]
+---@field systems_fixed evolved.id[]
 
 ---@param self scene.game
 function init(self)
 	logger:info("Game Init")
 
 	self.systems = systems.get_systems()
+	self.systems_fixed = systems.get_systems_fixed()
 	evolved.clone(entities["level1"])
+
+	msg.post(".", "acquire_input_focus")
+
+
+	local com = evolved.id()
+	timer.delay(0, true, function()
+		local query = evolved.builder()
+			:include(com)
+			:spawn()
+
+		local count = 0
+		for chunk, entity_list, entity_count in evolved.execute(query) do
+			count = count + entity_count
+		end
+
+		--print(count)
+	end)
 end
 
 
 function update(self, dt)
 	evolved.set(components.dt, components.dt, dt)
 	evolved.process(unpack(self.systems))
+end
+
+
+function fixed_update(self, dt)
+	evolved.process(unpack(self.systems_fixed))
 end
 
 ---@param self scene.game

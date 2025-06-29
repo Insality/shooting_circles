@@ -24,7 +24,7 @@ dependencies#2 = https://github.com/Insality/defold-event/archive/refs/tags/12.z
 dependencies#3 = https://github.com/Insality/panthera/archive/refs/heads/prerelease.zip
 dependencies#4 = https://github.com/subsoap/defos/archive/refs/tags/v2.7.1.zip
 dependencies#5 = https://github.com/britzl/deftest/archive/refs/tags/2.8.0.zip
-dependencies#6 = https://github.com/Insality/druid/archive/refs/tags/1.1.4.zip
+dependencies#6 = https://github.com/Insality/druid/archive/refs/heads/properties_panel.zip
 
 [safearea]
 resize_game_view = 0
@@ -95,8 +95,8 @@ gravity_y = 0.0
 ray_cast_limit_3d = 0
 scale = 0.01
 use_fixed_timestep = 1
-max_collision_object_count = 512
-max_collisions = 512
+max_collision_object_count = 2048
+max_collisions = 2048
 max_contacts = 512
 
 [collectionfactory]

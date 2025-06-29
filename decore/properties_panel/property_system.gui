@@ -1,0 +1,287 @@
+fonts {
+  name: "druid_text_bold"
+  font: "/druid/fonts/druid_text_bold.font"
+}
+textures {
+  name: "druid"
+  texture: "/druid/druid.atlas"
+}
+nodes {
+  size {
+    x: 400.0
+    y: 40.0
+  }
+  type: TYPE_BOX
+  texture: "druid/empty"
+  id: "root"
+  adjust_mode: ADJUST_MODE_STRETCH
+  inherit_alpha: true
+  visible: false
+}
+nodes {
+  position {
+    x: -200.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 360.0
+    y: 40.0
+  }
+  color {
+    x: 0.463
+    y: 0.475
+    z: 0.49
+  }
+  type: TYPE_TEXT
+  text: "System ID"
+  font: "druid_text_bold"
+  id: "text_name"
+  pivot: PIVOT_W
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "root"
+  inherit_alpha: true
+  outline_alpha: 0.0
+  shadow_alpha: 0.0
+}
+nodes {
+  position {
+    x: 200.0
+  }
+  size {
+    x: 200.0
+    y: 40.0
+  }
+  type: TYPE_BOX
+  id: "E_Anchor"
+  pivot: PIVOT_E
+  parent: "root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    x: -20.0
+  }
+  size {
+    x: 40.0
+    y: 40.0
+  }
+  color {
+    x: 0.463
+    y: 0.475
+    z: 0.49
+  }
+  type: TYPE_BOX
+  texture: "druid/rect_round2_width2"
+  id: "button_inspect"
+  parent: "E_Anchor"
+  inherit_alpha: true
+  slice9 {
+    x: 5.0
+    y: 5.0
+    z: 5.0
+    w: 5.0
+  }
+}
+nodes {
+  color {
+    x: 0.722
+    y: 0.741
+    z: 0.761
+  }
+  type: TYPE_BOX
+  texture: "druid/icon_arrow"
+  id: "icon_right"
+  parent: "button_inspect"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: -40.0
+  }
+  size {
+    x: 80.0
+    y: 40.0
+  }
+  type: TYPE_BOX
+  id: "group_memory"
+  pivot: PIVOT_E
+  parent: "E_Anchor"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  size {
+    x: 80.0
+    y: 32.0
+  }
+  color {
+    x: 0.129
+    y: 0.141
+    z: 0.157
+  }
+  type: TYPE_BOX
+  id: "node_update_back"
+  pivot: PIVOT_E
+  parent: "group_memory"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  size {
+    x: 80.0
+    y: 32.0
+  }
+  color {
+    x: 0.835
+    y: 0.62
+    z: 0.62
+  }
+  type: TYPE_BOX
+  id: "node_update"
+  pivot: PIVOT_E
+  parent: "group_memory"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: -3.0
+  }
+  scale {
+    x: 0.35
+    y: 0.35
+  }
+  size {
+    x: 210.0
+    y: 40.0
+  }
+  color {
+    x: 0.463
+    y: 0.475
+    z: 0.49
+  }
+  type: TYPE_TEXT
+  text: "100 kb/s"
+  font: "druid_text_bold"
+  id: "text_memory_update"
+  pivot: PIVOT_E
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "group_memory"
+  inherit_alpha: true
+  outline_alpha: 0.0
+  shadow_alpha: 0.0
+}
+nodes {
+  position {
+    x: -200.0
+  }
+  size {
+    x: 80.0
+    y: 40.0
+  }
+  type: TYPE_BOX
+  id: "group_fps"
+  pivot: PIVOT_W
+  parent: "E_Anchor"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  size {
+    x: 80.0
+    y: 32.0
+  }
+  color {
+    x: 0.129
+    y: 0.141
+    z: 0.157
+  }
+  type: TYPE_BOX
+  id: "node_update_fps_back"
+  pivot: PIVOT_W
+  parent: "group_fps"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  size {
+    x: 80.0
+    y: 32.0
+  }
+  color {
+    x: 0.835
+    y: 0.62
+    z: 0.62
+  }
+  type: TYPE_BOX
+  id: "node_update_fps"
+  pivot: PIVOT_W
+  parent: "group_fps"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 3.0
+  }
+  scale {
+    x: 0.35
+    y: 0.35
+  }
+  size {
+    x: 210.0
+    y: 40.0
+  }
+  color {
+    x: 0.463
+    y: 0.475
+    z: 0.49
+  }
+  type: TYPE_TEXT
+  text: "0.1 ms"
+  font: "druid_text_bold"
+  id: "text_memory_update_fps"
+  pivot: PIVOT_W
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "group_fps"
+  inherit_alpha: true
+  outline_alpha: 0.0
+  shadow_alpha: 0.0
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

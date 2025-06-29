@@ -8,12 +8,8 @@ function M.register_components()
 	---@field color evolved.id
 	---@field color_dirty evolved.id
 
-	components.color = evolved.builder():name("color"):default(vmath.vector4(1, 1, 1, 1)):on_set(function(entity, fragment, new_color, old_color)
-		if new_color ~= old_color then
-			evolved.set(entity, components.color_dirty)
-		end
-	end):spawn()
 	components.color_dirty = evolved.builder():name("color_dirty"):tag():spawn()
+	components.color = evolved.builder():name("color"):require(components.color_dirty):default(vmath.vector4(1, 1, 1, 1)):spawn()
 end
 
 

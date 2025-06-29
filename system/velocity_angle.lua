@@ -7,9 +7,8 @@ local M = {}
 
 function M.register_components()
 	---@class components
-	---@field speed evolved.id
 	---@field velocity_angle evolved.id
-	components.speed = evolved.builder():name("speed"):default(0):spawn()
+
 	components.velocity_angle = evolved.builder():name("velocity_angle"):default(0):spawn()
 end
 

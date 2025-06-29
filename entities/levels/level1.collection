@@ -42,8 +42,105 @@ collection_instances {
     y: -540.0
   }
 }
+collection_instances {
+  id: "player5"
+  collection: "/entities/player/player.collection"
+  position {
+    x: -960.0
+  }
+}
+collection_instances {
+  id: "player6"
+  collection: "/entities/player/player.collection"
+  position {
+    x: 960.0
+  }
+}
+collection_instances {
+  id: "player7"
+  collection: "/entities/player/player.collection"
+  position {
+    y: -540.0
+  }
+}
+collection_instances {
+  id: "player8"
+  collection: "/entities/player/player.collection"
+  position {
+    y: 540.0
+  }
+}
 scale_along_z: 0
 embedded_instances {
   id: "root"
-  data: ""
+  data: "embedded_components {\n"
+  "  id: \"sprite\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"ui_circle_64\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/druid/druid.atlas\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "  position {\n"
+  "    y: 158.0\n"
+  "  }\n"
+  "  scale {\n"
+  "    x: 4.19051\n"
+  "    y: 2.392659\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"collisionobject\"\n"
+  "  type: \"collisionobject\"\n"
+  "  data: \"type: COLLISION_OBJECT_TYPE_DYNAMIC\\n"
+  "mass: 100.0\\n"
+  "friction: 0.0\\n"
+  "restitution: 0.5\\n"
+  "group: \\\"entity\\\"\\n"
+  "mask: \\\"player\\\"\\n"
+  "mask: \\\"entity\\\"\\n"
+  "mask: \\\"projectile\\\"\\n"
+  "embedded_collision_shape {\\n"
+  "  shapes {\\n"
+  "    shape_type: TYPE_SPHERE\\n"
+  "    position {\\n"
+  "      x: 2.0\\n"
+  "      y: 160.0\\n"
+  "    }\\n"
+  "    rotation {\\n"
+  "    }\\n"
+  "    index: 0\\n"
+  "    count: 1\\n"
+  "  }\\n"
+  "  shapes {\\n"
+  "    shape_type: TYPE_SPHERE\\n"
+  "    position {\\n"
+  "      x: -61.0\\n"
+  "      y: 160.0\\n"
+  "    }\\n"
+  "    rotation {\\n"
+  "    }\\n"
+  "    index: 1\\n"
+  "    count: 1\\n"
+  "  }\\n"
+  "  shapes {\\n"
+  "    shape_type: TYPE_SPHERE\\n"
+  "    position {\\n"
+  "      x: 64.0\\n"
+  "      y: 156.0\\n"
+  "    }\\n"
+  "    rotation {\\n"
+  "    }\\n"
+  "    index: 2\\n"
+  "    count: 1\\n"
+  "  }\\n"
+  "  data: 84.94643\\n"
+  "  data: 69.19277\\n"
+  "  data: 69.19277\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  ""
 }

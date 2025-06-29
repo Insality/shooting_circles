@@ -29,7 +29,7 @@ end
 
 function on_message(self, message_id, message)
 	if message_id == MSG_INIT_ENTITY then
-		self.prefab = entities[self.entity_id] or empty_prefab
+		self.prefab = entities[self.entity_id] or evolved.builder():prefab():spawn()
 
 		local world_position = go.get_world_position()
 		local self_url = msg.url(".")
@@ -94,10 +94,10 @@ function on_message(self, message_id, message)
 		end
 		--]]
 
-		pprint("clone entity", self.prefab, self.components)
-		for k, v in pairs(self.components) do
-			pprint(evolved.get(k, evolved.NAME))
-		end
+		--pprint("clone entity", self.prefab, self.components)
+		--for k, v in pairs(self.components) do
+		--	pprint(evolved.get(k, evolved.NAME))
+		--end
 		evolved.clone(self.prefab, self.components)
 	end
 end

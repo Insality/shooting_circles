@@ -6,9 +6,9 @@ local M = {}
 
 function M.register_components()
 	---@class components
-	---@field movement_controller evolved.id
+	---@field physics_movement_controller evolved.id
 
-	components.movement_controller = evolved.builder():name("movement_controller"):default(0):spawn()
+	components.physics_movement_controller = evolved.builder():name("physics_movement_controller"):default(0):spawn()
 end
 
 
@@ -62,26 +62,33 @@ end)
 
 function M.create_system()
 	return evolved.builder()
-		:name("system.movement_controller")
-		:include(components.movement_controller, components.position)
+		:name("system.physics_movement_controller")
+		:include(components.physics_movement_controller, components.velocity, components.body_url)
 		:set(components.system)
 		:execute(M.update)
 		:spawn()
 end
 
 
+local TEMP_VECTOR = vmath.vector3()
 function M.update(chunk, entity_list, entity_count)
 	if direction_x == 0 and direction_y == 0 then
 		return
 	end
 
 	local dt = evolved.get(components.dt, components.dt)
-	local movement_controller, position = chunk:components(components.movement_controller, components.position)
+	local velocity_x, velocity_y = chunk:components(components.velocity_x, components.velocity_y)
+	local body_url = chunk:components(components.body_url)
 
 	for index = 1, entity_count do
-		local speed = movement_controller[index]
-		position[index].x = position[index].x + direction_x * speed * dt
-		position[index].y = position[index].y + direction_y * speed * dt
+
+		local speed = 100000
+		TEMP_VECTOR.x = direction_x * speed * dt
+		TEMP_VECTOR.y = direction_y * speed * dt
+		b2d.body.apply_force_to_center(body_url[index], TEMP_VECTOR)
+
+		--velocity_x[index] = direction_x * speed * dt
+		--velocity_y[index] = direction_y * speed * dt
 	end
 end
 

@@ -17,12 +17,18 @@ end
 
 
 function M.create_system()
-	return evolved.builder()
+	local group = evolved.builder():spawn()
+
+	evolved.builder()
 		:name("system.velocity")
-		:include(components.velocity_x, components.velocity_y, components.position)
+		:group(group)
+		:include(components.velocity, components.position)
+		:exclude(components.physics)
 		:set(components.system)
 		:execute(M.update)
 		:spawn()
+
+	return group
 end
 
 
