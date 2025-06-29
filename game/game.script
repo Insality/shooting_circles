@@ -1,131 +1,32 @@
 local log = require("log.log")
-local ecs = require("decore.ecs")
+local evolved = require("evolved")
+local components = require("components")
+local events = require("event.events")
+local entities = require("entities")
+local systems = require("systems")
 
-local system_debug = require("systems.debug.debug")
-local system_window_event = require("systems.window.window_event")
-local system_transform = require("systems.transform.transform")
-local system_game_object = require("systems.game_object.game_object")
-local system_color = require("systems.color.color")
-local system_camera = require("systems.camera.camera")
-local system_input = require("systems.input.input")
-local system_on_key_released = require("systems.on_key_released.on_key_released")
-local system_level_loader = require("systems.level_loader.level_loader")
-local system_panthera = require("systems.panthera.panthera_decore")
-local system_physics = require("systems.physics.physics")
-local system_acceleration = require("systems.acceleration.acceleration")
-local system_physics_movement = require("systems.physics_movement.physics_movement")
-local system_movement_controller = require("systems.movement_controller.movement_controller")
-local system_shooter_controller = require("systems.shooter_controller.shooter_controller")
-local system_remove_with_delay = require("systems.remove_with_delay.remove_with_delay")
-local system_explosion = require("systems.explosion.explosion")
-local system_collision = require("systems.collision.collision")
-local on_collision_remove = require("systems.collision.on_collision.on_collision_remove")
-local on_collision_explosion = require("systems.collision.on_collision.on_collision_explosion")
-local on_collision_damage = require("systems.collision.on_collision.on_collision_damage")
-local system_health = require("systems.health.health")
-local system_death = require("systems.death.death")
-local system_damage_number = require("systems.damage_number.damage_number")
-local system_health_circle_visual = require("systems.health_circle_visual.health_circle_visual")
-local system_target_tracker = require("systems.target_tracker.target_tracker")
-local system_on_target_count_command = require("systems.target_tracker.on_target_count_command.on_target_count_command")
-local system_on_spawn_command = require("systems.on_spawn_command.on_spawn_command")
-local system_play_fx_on_remove = require("systems.play_fx_on_remove.play_fx_on_remove")
-local system_gui_main_menu = require("gui.gui_main.gui_main")
-
-local logger = log.get_logger("scene.game")
-
+local logger = log.get_logger("game")
 
 ---@class scene.game
----@field world world
-
----@param world world
-local function load_systems(world)
-	world:add(system_debug.create_system())
-	world:add(system_window_event.create_system())
-	world:add(system_input.create_system())
-	world:add(system_on_key_released.create_system())
-	world:add(system_physics_movement.create_system())
-	world:add(system_movement_controller.create_system())
-	world:add(system_shooter_controller.create_system())
-	world:add(system_game_object.create_system())
-	world:add(system_collision.create_system())
-	world:add(on_collision_explosion.create_system())
-	world:add(on_collision_remove.create_system())
-	world:add(on_collision_damage.create_system())
-	world:add(system_physics.create_system())
-	world:add(system_acceleration.create_system())
-	world:add(system_color.create_system())
-	world:add(system_panthera.create_system())
-	world:add(system_camera.create_system())
-	world:add(system_health.create_system())
-	world:add(system_death.create_system())
-	world:add(system_explosion.create_system())
-	world:add(system_level_loader.create_system())
-	world:add(system_remove_with_delay.create_system())
-	world:add(system_health_circle_visual.create_system())
-	world:add(system_damage_number.create_system())
-	world:add(system_target_tracker.create_system())
-	world:add(system_on_target_count_command.create_system())
-	world:add(system_on_spawn_command.create_system())
-	world:add(system_transform.create_system())
-	world:add(system_play_fx_on_remove.create_system())
-	world:add(system_gui_main_menu.create_system())
-end
-
-
----@param self scene.game
----@param world_id string
-local function load_level(self, world_id)
-	---@type component.level_loader_command
-	local level_loader_command = {
-		world_id = world_id
-	}
-	self.world:addEntity({ level_loader_command = level_loader_command })
-
-	-- Call refresh to apply changes immediately
-	self.world:refresh()
-end
-
+---@field systems evolved.id[]
 
 ---@param self scene.game
 function init(self)
-	self.world = ecs.world()
+	logger:info("Game Init")
 
-	load_systems(self.world)
-	load_level(self, "game")
-
-	-- Uncomment for adjust game time speed
-	--msg.post("loader:/game#collectionproxy", "set_time_step", {factor = 0.5, mode = 0})
-
-	timer.delay(1, true, function()
-		logger:debug("Entities count:", #self.world.entities)
-	end)
+	self.systems = systems.get_systems()
+	evolved.clone(entities["level1"])
 end
 
 
----@param self scene.game
-function final(self)
-	self.world:clearEntities()
-	self.world:clearSystems()
-end
-
-
----@param self scene.game
----@param dt number
 function update(self, dt)
-	self.world:update(dt)
+	evolved.set(components.dt, components.dt, dt)
+	evolved.process(unpack(self.systems))
 end
-
 
 ---@param self scene.game
 ---@param action_id hash
 ---@param action table
 function on_input(self, action_id, action)
-	---@type component.input_event
-	local input_event = {
-		action_id = action_id,
-		action = action,
-	}
-
-	self.world:addEntity({ input_event = input_event })
+	events.trigger("input_event", action_id, action)
 end

@@ -15,3 +15,4 @@ dist
 manifest.private.der
 manifest.public.der
 deployer_build_stats.csv
+/.editor_settings

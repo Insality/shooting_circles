@@ -14,7 +14,3 @@ embedded_instances {
   "}\n"
   ""
 }
-embedded_instances {
-  id: "go"
-  data: ""
-}

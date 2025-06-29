@@ -1,8 +1,8 @@
 local log = require("log.log")
 local event = require("event.event")
 local events = require("event.events")
-local decore = require("decore.decore")
-local detiled = require("detiled.detiled")
+local evolved = require("evolved")
+local systems = require("systems")
 local panthera = require("panthera.panthera")
 
 local HASH_START_GAME = hash("start_game")
@@ -23,36 +23,7 @@ end
 ---@param self scene.loader
 local function init_logger(self)
 	event.set_logger(log.get_logger("event"))
-	decore.set_logger(log.get_logger("decore"))
-	detiled.set_logger(log.get_logger("detiled"))
 	panthera.set_logger(log.get_logger("panthera"))
-end
-
-
----@param self scene.loader
-local function init_decore(self)
-	decore.register_components("/resources/components.json")
-	decore.register_entities("/resources/entities.json")
-end
-
-
----@param self scene.loader
-local function init_detiled(self)
-	local entities_packs_data = detiled.get_entities_packs_data("/resources/tilesets_list.json")
-	if entities_packs_data then
-		for _, pack_data in ipairs(entities_packs_data) do
-			decore.register_entities(pack_data)
-		end
-	end
-
-	local worlds_packs_data = detiled.get_worlds_packs_data("/resources/maps_list.json")
-	if worlds_packs_data then
-		for _, pack_data in ipairs(worlds_packs_data) do
-			decore.register_worlds(pack_data)
-		end
-	end
-
-	decore.print_loaded_packs_debug_info()
 end
 
 
@@ -68,9 +39,9 @@ end
 function init(self)
 	init_random(self)
 	init_logger(self)
-	init_decore(self)
-	init_detiled(self)
 	init_window_listener(self)
+	evolved.debug_mode(true)
+	systems.register_components()
 
 	msg.post(".", "start_game")
 end

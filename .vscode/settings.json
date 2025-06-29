@@ -80,12 +80,17 @@
 		"utf8",
 		"clipboard",
 		"spine",
-		"init"
+		"init",
+		"go_position_setter"
 	],
 
 	"Lua.workspace.ignoreDir": [
 		".vscode",
 		"decore/templates",
 	],
-	"Lua.runtime.version": "Lua 5.1"
+	"Lua.runtime.version": "Lua 5.1",
+	"Lua.workspace.library": [
+		"~/Library/Application Support/Cursor/User/globalStorage/astronachos.defold",
+		"~/Library/Application Support/Cursor/User/workspaceStorage/5a6483106d595a19c7a762f1436a1836/astronachos.defold"
+	]
 }

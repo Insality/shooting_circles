@@ -14,9 +14,6 @@ images {
   image: "/assets/images/arena_background.png"
 }
 images {
-  image: "/tiled/images/wall.png"
-}
-images {
   image: "/assets/images/button.png"
 }
 images {

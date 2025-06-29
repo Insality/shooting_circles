@@ -1,6 +1,5 @@
 [bootstrap]
 main_collection = /loader/loader.collectionc
-render = /builtins/render/default.renderc
 
 [script]
 shared_state = 1
@@ -18,12 +17,14 @@ title = Shooting Circles
 developer = Insality
 publisher = Insality
 custom_resources = /resources
-dependencies#0 = https://github.com/Insality/defold-tweener/archive/refs/tags/2.zip
+version = 2.0
+dependencies#0 = https://github.com/Insality/defold-tweener/archive/refs/tags/5.zip
 dependencies#1 = https://github.com/Insality/defold-log/archive/refs/tags/3.zip
-dependencies#2 = https://github.com/Insality/defold-event/archive/refs/tags/3.zip
-dependencies#3 = https://github.com/Insality/panthera/archive/refs/tags/runtime.3.zip
+dependencies#2 = https://github.com/Insality/defold-event/archive/refs/tags/12.zip
+dependencies#3 = https://github.com/Insality/panthera/archive/refs/heads/prerelease.zip
 dependencies#4 = https://github.com/subsoap/defos/archive/refs/tags/v2.7.1.zip
 dependencies#5 = https://github.com/britzl/deftest/archive/refs/tags/2.8.0.zip
+dependencies#6 = https://github.com/Insality/druid/archive/refs/tags/1.1.4.zip
 
 [safearea]
 resize_game_view = 0

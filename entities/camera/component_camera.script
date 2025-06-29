@@ -1,0 +1,6 @@
+local components = require("components")
+local component = require("entities.component")
+
+function init(self)
+	component.set(components.camera)
+end

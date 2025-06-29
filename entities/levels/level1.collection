@@ -1,0 +1,49 @@
+name: "level1"
+instances {
+  id: "camera"
+  prototype: "/entities/camera/camera.go"
+  position {
+    z: 10.0
+  }
+}
+collection_instances {
+  id: "player"
+  collection: "/entities/player/player.collection"
+}
+collection_instances {
+  id: "player1"
+  collection: "/entities/player/player.collection"
+  position {
+    x: 960.0
+    y: 540.0
+  }
+}
+collection_instances {
+  id: "player2"
+  collection: "/entities/player/player.collection"
+  position {
+    x: 960.0
+    y: -540.0
+  }
+}
+collection_instances {
+  id: "player3"
+  collection: "/entities/player/player.collection"
+  position {
+    x: -960.0
+    y: 540.0
+  }
+}
+collection_instances {
+  id: "player4"
+  collection: "/entities/player/player.collection"
+  position {
+    x: -960.0
+    y: -540.0
+  }
+}
+scale_along_z: 0
+embedded_instances {
+  id: "root"
+  data: ""
+}

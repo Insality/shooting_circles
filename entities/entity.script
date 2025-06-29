@@ -1,0 +1,103 @@
+go.property("entity_id", hash(""))
+go.property("size_x", 0)
+go.property("size_y", 0)
+
+go.property("components_to_register", 0) -- Autocounter, don't change in editor
+go.property("is_spawn_by_system", false) -- Autofilled by game_object system to prevent double spawn. Should have root node
+
+local evolved = require("evolved")
+local components = require("components")
+local entities = require("entities")
+
+local MSG_SET_COMPONENT = hash("set_component")
+local MSG_INIT_ENTITY = hash("init_entity")
+local MSG_ADD_ENTITY = hash("add_entity")
+
+local SCALE_X = hash("scale.x")
+local SCALE_Y = hash("scale.y")
+local SCALE_Z = hash("scale.z")
+
+local empty_prefab = evolved.builder():prefab():spawn()
+
+function init(self)
+	self.entity = nil
+
+	msg.post(".", MSG_INIT_ENTITY)
+	msg.post(".", MSG_ADD_ENTITY)
+end
+
+
+function on_message(self, message_id, message)
+	if message_id == MSG_INIT_ENTITY then
+		self.prefab = entities[self.entity_id] or empty_prefab
+
+		local world_position = go.get_world_position()
+		local self_url = msg.url(".")
+		self.components = {
+			[components.transform] = true,
+			[components.position] = vmath.vector3(world_position.x, world_position.y, world_position.z),
+			[components.scale_x] = go.get(self_url, SCALE_X),
+			[components.scale_y] = go.get(self_url, SCALE_Y),
+			[components.scale_z] = go.get(self_url, SCALE_Z),
+			[components.quat] = go.get_rotation(),
+		}
+
+		if self.size_x ~= 0 then
+			self.components[components.size_x] = self.size_x
+		end
+
+		if self.size_y ~= 0 then
+			self.components[components.size_y] = self.size_y
+		end
+	end
+
+	if message_id == MSG_SET_COMPONENT then
+		local data = message.data
+		if data == nil then
+			data = true
+		end
+
+		self.components[message.id] = data
+		self.components_to_register = self.components_to_register - 1
+		if self.components_to_register == 0 then
+			msg.post(".", MSG_ADD_ENTITY)
+		end
+	end
+
+	if message_id == MSG_ADD_ENTITY then
+		if self.components_to_register > 0 or self.is_spawn_by_system then
+			return
+		end
+
+		self.components[components.root_url] = go.get_id()
+
+		-- Try pick objects
+		--[[
+		local object_scheme = self.entity.game_object.object_scheme
+		if object_scheme then
+			local object = self.entity.game_object.object or {}
+			for object_path in pairs(object_scheme) do
+				-- If first "/" use get_id
+				local first_char = string.sub(object_path, 1, 1)
+				local other_chars = string.sub(object_path, 2, -1)
+
+				if first_char == "/" then
+					object[hash(object_path)] = go.get_id(other_chars)
+				elseif first_char == "#" then
+					local component_url = msg.url()
+					component_url.fragment = hash(other_chars)
+
+					object[hash(object_path)] = component_url
+				end
+			end
+			self.entity.game_object.object = object
+		end
+		--]]
+
+		pprint("clone entity", self.prefab, self.components)
+		for k, v in pairs(self.components) do
+			pprint(evolved.get(k, evolved.NAME))
+		end
+		evolved.clone(self.prefab, self.components)
+	end
+end

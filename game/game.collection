@@ -1,4 +1,8 @@
 name: "game"
+instances {
+  id: "levels"
+  prototype: "/entities/levels/levels.go"
+}
 collection_instances {
   id: "spawner"
   collection: "/game/spawner/spawner.collection"
