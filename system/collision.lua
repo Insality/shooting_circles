@@ -105,7 +105,6 @@ end
 local function handle_collision_event(entity_source, entity_target, event_data, event_type)
 	if entity_source and evolved.has(entity_source, components.collision) then
 		if evolved.has(entity_source, components.on_collision_remove) then
-			--evolved.destroy(entity_source)
 			evolved.set(entity_source, components.lifetime, 0)
 		end
 
@@ -121,7 +120,6 @@ local function handle_collision_event(entity_source, entity_target, event_data, 
 
 	if entity_target and evolved.has(entity_target, components.collision) then
 		if evolved.has(entity_target, components.on_collision_remove) then
-			--evolved.destroy(entity_target)
 			evolved.set(entity_target, components.lifetime, 0)
 		end
 

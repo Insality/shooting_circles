@@ -15,8 +15,10 @@ function M.register_components()
 	require("system.collision").register_components()
 	require("system.lifetime").register_components()
 	require("system.health").register_components()
+	require("system.play_particlefx").register_components()
 	require("system.shooter_controller.component_shooter_controller").register_components()
 
+	require("entities.damage_number.system_damage_number").register_components()
 	require("entities.enemy.enemy_visual").register_components()
 
 	--require("system.velocity").register_components()
@@ -40,8 +42,10 @@ function M.get_systems()
 		require("system.velocity").create_system(),
 		require("system.health").create_system(),
 		require("system.lifetime").create_system(),
+		require("system.play_particlefx").create_system(),
 
-		require("entities.enemy.enemy_visual").register_system(),
+		require("entities.damage_number.system_damage_number").create_system(),
+		require("entities.enemy.enemy_visual").create_system(),
 
 		require("system.sync_game_object_position").create_system(),
 		--require("system.velocity").create_system(),

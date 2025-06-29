@@ -3,6 +3,8 @@ local M = {
 	["player"] = require("entities.player.player"),
 	["enemy"] = require("entities.enemy.enemy"),
 	["bullet"] = require("entities.bullet.bullet"),
+	["explosion"] = require("entities.explosion.explosion"),
+	["damage_number"] = require("entities.damage_number.damage_number"),
 	--[hash("enemy")] = require("entities.enemy.enemy"),
 	["level1"] = require("entities.levels.level1"),
 }

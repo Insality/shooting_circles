@@ -1,6 +1,7 @@
 local evolved = require("evolved")
 local components = require("components")
 local panthera = require("panthera.panthera")
+local damage_number = require("entities.damage_number.damage_number")
 
 local M = {}
 
@@ -8,6 +9,7 @@ local M = {}
 local function clone_state(state)
 	return {
 		progress = state.progress,
+		last_health = state.last_health,
 	}
 end
 
@@ -17,11 +19,12 @@ function M.register_components()
 
 	components.enemy_visual = evolved.builder():name("enemy_visual"):default({
 		progress = 0,
+		last_health = nil,
 	}):duplicate(clone_state):spawn()
 end
 
 
-function M.register_system()
+function M.create_system()
 	return evolved.builder()
 		:name("enemy_visual")
 		:set(components.system)
@@ -39,8 +42,22 @@ function M.update(chunk, entity_list, entity_count)
 		local progress = health[index] / health_max[index]
 		progress = math.max(0, math.min(1, progress))
 
-		if progress ~= enemy_visual[index].progress then
+		if not enemy_visual[index].last_health or enemy_visual[index].last_health ~= health[index] then
+			if not enemy_visual[index].last_health then
+				enemy_visual[index].last_health = health[index]
+			end
+
+			local damage = enemy_visual[index].last_health - health[index]
+			if damage > 0 then
+				evolved.clone(damage_number, {
+					[components.position] = evolved.get(entity_list[index], components.position),
+					[components.damage_number] = damage,
+				})
+			end
+
 			enemy_visual[index].progress = progress
+			enemy_visual[index].last_health = health[index]
+
 			panthera.set_time(panthera_state[index], "health", progress)
 			panthera.play_detached(panthera_state[index], "on_hit")
 		end

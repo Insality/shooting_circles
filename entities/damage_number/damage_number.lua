@@ -1,0 +1,11 @@
+local evolved = require("evolved")
+local components = require("components")
+
+return evolved.builder()
+	:name("damage_number")
+	:prefab()
+	:set(components.transform)
+	:set(components.damage_number, 1)
+	:set(components.collectionfactory_url, "/entities#damage_number")
+	:set(components.no_sync_game_object)
+	:spawn()

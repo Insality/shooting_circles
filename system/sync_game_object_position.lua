@@ -8,9 +8,12 @@ local go_setter = go_position_setter.new()
 function M.register_components()
 	---@class components
 	---@field root_url evolved.id
+	---@field no_sync_game_object evolved.id
+
+	components.no_sync_game_object = evolved.builder():name("no_sync_game_object"):tag():spawn()
 
 	components.root_url = evolved.builder():name("root_url"):require(components.position, components.quat):on_set(function(entity, fragment, component)
-		if evolved.has(entity, components.physics) then
+		if evolved.has(entity, components.physics) or evolved.has(entity, components.no_sync_game_object) then
 			return
 		end
 

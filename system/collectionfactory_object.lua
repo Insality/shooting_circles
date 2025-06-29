@@ -11,7 +11,11 @@ function M.register_components()
 	---@field game_objects_scheme evolved.id
 
 	components.collectionfactory_url = evolved.builder():require(components.transform):name("collectionfactory_url"):spawn()
-	components.game_objects = evolved.builder():name("game_objects"):spawn()
+	components.game_objects = evolved.builder():name("game_objects"):on_remove(function(entity, fragment, component)
+		for _, game_object in pairs(component) do
+			go.delete(game_object)
+		end
+	end):spawn()
 	components.game_objects_scheme = evolved.builder():name("game_objects_scheme"):spawn()
 end
 

@@ -42,6 +42,8 @@ function init(self)
 	init_window_listener(self)
 	evolved.debug_mode(true)
 	systems.register_components()
+	profiler.enable_ui(true)
+	profiler.set_ui_view_mode(profiler.VIEW_MODE_MINIMIZED)
 
 	msg.post(".", "start_game")
 end

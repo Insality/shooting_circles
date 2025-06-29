@@ -12,3 +12,17 @@ embedded_components {
   "load_dynamically: true\n"
   ""
 }
+embedded_components {
+  id: "explosion"
+  type: "collectionfactory"
+  data: "prototype: \"/entities/explosion/explosion.collection\"\n"
+  "load_dynamically: true\n"
+  ""
+}
+embedded_components {
+  id: "damage_number"
+  type: "collectionfactory"
+  data: "prototype: \"/entities/damage_number/damage_number.collection\"\n"
+  "load_dynamically: true\n"
+  ""
+}

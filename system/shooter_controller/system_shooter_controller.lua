@@ -1,7 +1,6 @@
 local evolved = require("evolved")
 local components = require("components")
 local events = require("event.events")
-local entities = require("entities")
 local camera = require("system.camera")
 
 local M = {}
@@ -41,14 +40,19 @@ function M.on_input_event(action_id, action)
 end
 
 function M.update(chunk, entity_list, entity_count)
-	if is_pressed then
-		-- Create bullet
-		local position = chunk:components(components.position)
-		local quat = chunk:components(components.quat)
+	local shooter_controller = chunk:components(components.shooter_controller)
+	local position = chunk:components(components.position)
+	local quat = chunk:components(components.quat)
+	local dt = evolved.get(components.dt, components.dt)
 
-		local pos_x, pos_y = camera.screen_to_world(last_screen_x, last_screen_y)
+	local pos_x, pos_y = camera.screen_to_world(last_screen_x, last_screen_y)
 
-		for index = 1, entity_count do
+	for index = 1, entity_count do
+		local controller = shooter_controller[index]
+		controller.current_cooldown = controller.current_cooldown or 0
+		controller.spread_euler = controller.spread_euler or 5
+
+		if is_pressed and controller.current_cooldown == 0 then
 			local velocity_x = pos_x - position[index].x
 			local velocity_y = pos_y - position[index].y
 
@@ -56,15 +60,27 @@ function M.update(chunk, entity_list, entity_count)
 			velocity_x = velocity_x / length
 			velocity_y = velocity_y / length
 
-			velocity_x = velocity_x * 2500
-			velocity_y = velocity_y * 2500
+			-- Add spread to the angle
+			local base_angle = math.atan2(velocity_y, velocity_x)
+			local spread_radians = math.rad(controller.spread_euler)
+			local random_spread = (math.random() - 0.5) * spread_radians
+			local final_angle = base_angle + random_spread
 
-			evolved.clone(entities["bullet"], {
+			velocity_x = math.cos(final_angle) * 2500
+			velocity_y = math.sin(final_angle) * 2500
+
+			evolved.clone(controller.prefab, {
 				[components.position] = position[index],
 				[components.quat] = quat[index],
 				[components.velocity_x] = velocity_x,
 				[components.velocity_y] = velocity_y,
 			})
+
+			controller.current_cooldown = controller.cooldown
+		end
+
+		if controller.current_cooldown > 0 then
+			controller.current_cooldown = math.max(0, controller.current_cooldown - dt)
 		end
 	end
 end

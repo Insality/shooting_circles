@@ -1,0 +1,11 @@
+local evolved = require("evolved")
+local components = require("components")
+
+return evolved.builder()
+	:prefab()
+	:name("explosion")
+	:set(components.transform)
+	:set(components.collectionfactory_url, "/entities#explosion")
+	:set(components.request_play_particlefx, "explosion")
+	:set(components.lifetime, 0.4)
+	:spawn()
