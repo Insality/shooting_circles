@@ -11,7 +11,9 @@ function M.register_components()
 	require("system.velocity").register_components()
 	require("system.camera").register_components()
 	require("system.physics").register_components()
+	require("system.collision").register_components()
 	require("system.lifetime").register_components()
+	require("system.health").register_components()
 	require("system.shooter_controller.component_shooter_controller").register_components()
 	--require("system.velocity").register_components()
 	--require("system.velocity_angle").register_components()
@@ -31,6 +33,7 @@ function M.get_systems()
 		require("system.color").create_system(),
 		require("system.velocity").create_system(),
 		require("system.lifetime").create_system(),
+		require("system.health").create_system(),
 
 		require("system.sync_game_object_position").create_system(),
 		--require("system.velocity").create_system(),
@@ -45,6 +48,7 @@ end
 function M.get_systems_fixed()
 	return {
 		require("system.physics").create_system(),
+		require("system.collision").create_system(),
 	}
 end
 

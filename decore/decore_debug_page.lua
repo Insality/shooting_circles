@@ -96,7 +96,7 @@ function M.render_systems_page(druid, properties_panel)
 				local entity_count = get_entity_count_from_system(system_query)
 				if prev_count ~= entity_count then
 					prev_count = entity_count
-					return string.format("%s (%s)", system_id, entity_count or 0)
+					return string.format("%s | %s", entity_count or 0, system_id)
 				end
 				return nil
 			end)

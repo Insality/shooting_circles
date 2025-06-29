@@ -1,6 +1,7 @@
 ---@class entities
 local M = {
 	["player"] = require("entities.player.player"),
+	["enemy"] = require("entities.enemy.enemy"),
 	["bullet"] = require("entities.bullet.bullet"),
 	--[hash("enemy")] = require("entities.enemy.enemy"),
 	["level1"] = require("entities.levels.level1"),

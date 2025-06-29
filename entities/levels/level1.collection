@@ -70,6 +70,38 @@ collection_instances {
     y: 540.0
   }
 }
+collection_instances {
+  id: "enemy"
+  collection: "/entities/enemy/enemy.collection"
+  position {
+    x: -505.88156
+    y: -256.98566
+  }
+}
+collection_instances {
+  id: "enemy1"
+  collection: "/entities/enemy/enemy.collection"
+  position {
+    x: 569.11847
+    y: -256.98566
+  }
+}
+collection_instances {
+  id: "enemy2"
+  collection: "/entities/enemy/enemy.collection"
+  position {
+    x: -505.88156
+    y: 254.01436
+  }
+}
+collection_instances {
+  id: "enemy3"
+  collection: "/entities/enemy/enemy.collection"
+  position {
+    x: 569.11847
+    y: 254.01436
+  }
+}
 scale_along_z: 0
 embedded_instances {
   id: "root"

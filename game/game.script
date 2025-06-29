@@ -20,21 +20,6 @@ function init(self)
 	evolved.clone(entities["level1"])
 
 	msg.post(".", "acquire_input_focus")
-
-
-	local com = evolved.id()
-	timer.delay(0, true, function()
-		local query = evolved.builder()
-			:include(com)
-			:spawn()
-
-		local count = 0
-		for chunk, entity_list, entity_count in evolved.execute(query) do
-			count = count + entity_count
-		end
-
-		--print(count)
-	end)
 end
 
 
