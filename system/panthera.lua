@@ -17,13 +17,14 @@ end
 function M.create_system()
 	local group = evolved.id()
 
-	 evolved.builder()
+	evolved.builder()
 		:set(components.system)
-		:name("panthera.create_state")
+		:name("panthera.create")
 		:group(group)
-		:include(components.panthera_file)
+		:include(components.panthera_file, components.game_objects)
 		:exclude(components.panthera_state)
-		:execute(M.update_create_state)
+		:execute(M.update_create)
+		:spawn()
 
 	return group
 end
@@ -32,11 +33,11 @@ end
 ---@param chunk evolved.chunk
 ---@param entity_list evolved.entity[]
 ---@param entity_count number
-function M.update_create_state(chunk, entity_list, entity_count)
+function M.update_create(chunk, entity_list, entity_count)
 	local panthera_file = chunk:components(components.panthera_file)
-
+	local game_objects = chunk:components(components.game_objects)
 	for index = 1, entity_count do
-		local state = panthera.create_go(panthera_file)
+		local state = panthera.create_go(panthera_file[index], nil, game_objects[index])
 		evolved.set(entity_list[index], components.panthera_state, state)
 	end
 end

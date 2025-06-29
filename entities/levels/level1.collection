@@ -11,66 +11,6 @@ collection_instances {
   collection: "/entities/player/player.collection"
 }
 collection_instances {
-  id: "player1"
-  collection: "/entities/player/player.collection"
-  position {
-    x: 960.0
-    y: 540.0
-  }
-}
-collection_instances {
-  id: "player2"
-  collection: "/entities/player/player.collection"
-  position {
-    x: 960.0
-    y: -540.0
-  }
-}
-collection_instances {
-  id: "player3"
-  collection: "/entities/player/player.collection"
-  position {
-    x: -960.0
-    y: 540.0
-  }
-}
-collection_instances {
-  id: "player4"
-  collection: "/entities/player/player.collection"
-  position {
-    x: -960.0
-    y: -540.0
-  }
-}
-collection_instances {
-  id: "player5"
-  collection: "/entities/player/player.collection"
-  position {
-    x: -960.0
-  }
-}
-collection_instances {
-  id: "player6"
-  collection: "/entities/player/player.collection"
-  position {
-    x: 960.0
-  }
-}
-collection_instances {
-  id: "player7"
-  collection: "/entities/player/player.collection"
-  position {
-    y: -540.0
-  }
-}
-collection_instances {
-  id: "player8"
-  collection: "/entities/player/player.collection"
-  position {
-    y: 540.0
-  }
-}
-collection_instances {
   id: "enemy"
   collection: "/entities/enemy/enemy.collection"
   position {
@@ -100,6 +40,102 @@ collection_instances {
   position {
     x: 569.11847
     y: 254.01436
+  }
+}
+collection_instances {
+  id: "enemy4"
+  collection: "/entities/enemy/enemy.collection"
+  position {
+    x: -297.88156
+    y: -405.98566
+  }
+}
+collection_instances {
+  id: "enemy5"
+  collection: "/entities/enemy/enemy.collection"
+  position {
+    x: 777.11847
+    y: -405.98566
+  }
+}
+collection_instances {
+  id: "enemy6"
+  collection: "/entities/enemy/enemy.collection"
+  position {
+    x: -297.88156
+    y: 105.01436
+  }
+}
+collection_instances {
+  id: "enemy7"
+  collection: "/entities/enemy/enemy.collection"
+  position {
+    x: 777.11847
+    y: 105.01436
+  }
+}
+collection_instances {
+  id: "enemy8"
+  collection: "/entities/enemy/enemy.collection"
+  position {
+    x: -128.88156
+    y: -574.98566
+  }
+}
+collection_instances {
+  id: "enemy9"
+  collection: "/entities/enemy/enemy.collection"
+  position {
+    x: 946.11847
+    y: -574.98566
+  }
+}
+collection_instances {
+  id: "enemy10"
+  collection: "/entities/enemy/enemy.collection"
+  position {
+    x: -128.88156
+    y: -63.985645
+  }
+}
+collection_instances {
+  id: "enemy11"
+  collection: "/entities/enemy/enemy.collection"
+  position {
+    x: 946.11847
+    y: -63.985645
+  }
+}
+collection_instances {
+  id: "enemy12"
+  collection: "/entities/enemy/enemy.collection"
+  position {
+    x: -693.88153
+    y: -438.98566
+  }
+}
+collection_instances {
+  id: "enemy13"
+  collection: "/entities/enemy/enemy.collection"
+  position {
+    x: 381.11844
+    y: -438.98566
+  }
+}
+collection_instances {
+  id: "enemy14"
+  collection: "/entities/enemy/enemy.collection"
+  position {
+    x: -693.88153
+    y: 72.01436
+  }
+}
+collection_instances {
+  id: "enemy15"
+  collection: "/entities/enemy/enemy.collection"
+  position {
+    x: 381.11844
+    y: 72.01436
   }
 }
 scale_along_z: 0

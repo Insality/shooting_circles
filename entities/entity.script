@@ -72,27 +72,25 @@ function on_message(self, message_id, message)
 		self.components[components.root_url] = go.get_id()
 
 		-- Try pick objects
-		--[[
-		local object_scheme = self.entity.game_object.object_scheme
-		if object_scheme then
-			local object = self.entity.game_object.object or {}
-			for object_path in pairs(object_scheme) do
+		local game_objects_scheme = evolved.get(self.prefab, components.game_objects_scheme)
+		if game_objects_scheme then
+			local game_objects = {}
+			for object_path in pairs(game_objects_scheme) do
 				-- If first "/" use get_id
 				local first_char = string.sub(object_path, 1, 1)
 				local other_chars = string.sub(object_path, 2, -1)
 
 				if first_char == "/" then
-					object[hash(object_path)] = go.get_id(other_chars)
+					game_objects[hash(object_path)] = go.get_id(other_chars)
 				elseif first_char == "#" then
 					local component_url = msg.url()
 					component_url.fragment = hash(other_chars)
 
-					object[hash(object_path)] = component_url
+					game_objects[hash(object_path)] = component_url
 				end
 			end
-			self.entity.game_object.object = object
+			self.components[components.game_objects] = game_objects
 		end
-		--]]
 
 		--pprint("clone entity", self.prefab, self.components)
 		--for k, v in pairs(self.components) do

@@ -2,6 +2,7 @@ name: "circle"
 scale_along_z: 0
 embedded_instances {
   id: "root"
+  children: "fill"
   data: "components {\n"
   "  id: \"entity\"\n"
   "  component: \"/entities/entity.script\"\n"
@@ -35,7 +36,7 @@ embedded_instances {
   "  id: \"collisionobject\"\n"
   "  type: \"collisionobject\"\n"
   "  data: \"type: COLLISION_OBJECT_TYPE_DYNAMIC\\n"
-  "mass: 10.0\\n"
+  "mass: 100.0\\n"
   "friction: 0.01\\n"
   "restitution: 0.4\\n"
   "group: \\\"entity\\\"\\n"
@@ -64,5 +65,43 @@ embedded_instances {
   scale3 {
     x: 2.0
     y: 2.0
+  }
+}
+embedded_instances {
+  id: "fill"
+  data: "embedded_components {\n"
+  "  id: \"fill\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"default_animation: \\\"ui_circle_64\\\"\\n"
+  "material: \\\"/panthera/materials/sprite.material\\\"\\n"
+  "slice9 {\\n"
+  "  x: 32.0\\n"
+  "  y: 32.0\\n"
+  "  z: 32.0\\n"
+  "  w: 32.0\\n"
+  "}\\n"
+  "size {\\n"
+  "  x: 64.0\\n"
+  "  y: 64.0\\n"
+  "}\\n"
+  "size_mode: SIZE_MODE_MANUAL\\n"
+  "attributes {\\n"
+  "  name: \\\"color\\\"\\n"
+  "  double_values {\\n"
+  "    v: 1.0\\n"
+  "    v: 1.0\\n"
+  "    v: 1.0\\n"
+  "    v: 1.0\\n"
+  "  }\\n"
+  "}\\n"
+  "textures {\\n"
+  "  sampler: \\\"texture_sampler\\\"\\n"
+  "  texture: \\\"/assets/atlases/game_shooting_circle.atlas\\\"\\n"
+  "}\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    z: 0.001
   }
 }

@@ -8,6 +8,7 @@ function M.register_components()
 	require("system.sync_game_object_position").register_components()
 	require("system.physics_movement_controller").register_components()
 	require("system.color").register_components()
+	require("system.panthera").register_components()
 	require("system.velocity").register_components()
 	require("system.camera").register_components()
 	require("system.physics").register_components()
@@ -15,6 +16,9 @@ function M.register_components()
 	require("system.lifetime").register_components()
 	require("system.health").register_components()
 	require("system.shooter_controller.component_shooter_controller").register_components()
+
+	require("entities.enemy.enemy_visual").register_components()
+
 	--require("system.velocity").register_components()
 	--require("system.velocity_angle").register_components()
 	--require("system.movement_controller").register_components()
@@ -30,11 +34,14 @@ function M.get_systems()
 		require("system.collectionfactory_object").create_system(),
 		require("system.physics_movement_controller").create_system(),
 		require("system.shooter_controller.system_shooter_controller").create_system(),
+		require("system.panthera").create_system(),
 		require("system.camera").create_system(),
 		require("system.color").create_system(),
 		require("system.velocity").create_system(),
 		require("system.health").create_system(),
 		require("system.lifetime").create_system(),
+
+		require("entities.enemy.enemy_visual").register_system(),
 
 		require("system.sync_game_object_position").create_system(),
 		--require("system.velocity").create_system(),

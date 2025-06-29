@@ -147,6 +147,7 @@ function M.render_entities(system_query, properties_panel)
 			button:set_text_property(string.format("%s. %s", id, name))
 			button:set_text_button("View")
 			button.button.on_click:subscribe(function()
+				pprint("RENDER evolved", entity)
 				M.render_entity(entity, properties_panel)
 			end)
 		end)
@@ -178,27 +179,26 @@ function M.render_entity(entity, properties_panel)
 		text:set_text_value(tostring(evolved.unpack(entity)))
 	end)
 
-	--properties_panel:add_text(function(text)
-	--	text:set_text_property("Name")
-	--	text:set_text_value(evolved.get(entity, evolved.NAME))
-	--end)
-
 	for fragment, value in evolved.each(entity) do
-		properties_panel:add_text(function(text)
-			text:set_text_property(evolved.get(fragment, evolved.NAME) or "Unknown")
-			text:set_text_value(evolved.get(entity, fragment))
-		end)
+		if type(value) == "table" then
+			properties_panel:add_button(function(button)
+				local data = value
+				button:set_text_property(evolved.get(fragment, evolved.NAME) or "Unknown")
+				button:set_text_button("View")
+				button.button.on_click:subscribe(function()
+					print("here?")
+					properties_panel:next_scene()
+					properties_panel:set_header(evolved.get(fragment, evolved.NAME) or "Unknown")
+					properties_panel:render_lua_table(data)
+				end)
+			end)
+		else
+			properties_panel:add_text(function(text)
+				text:set_text_property(evolved.get(fragment, evolved.NAME) or "Unknown")
+				text:set_text_value(evolved.get(entity, fragment))
+			end)
+		end
 	end
-
-	--local entity_components = M.get_components(entity)
-	--for index = 1, #entity_components do
-	--	local component_id = entity_components[index]
-	--	properties_panel:add_text(function(text)
-	--		text:set_text_property(component_id)
-	--		text:set_text_value(evolved.get(entity, components[component_id]))
-	--	end)
-	--end
-
 end
 
 
