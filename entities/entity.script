@@ -17,8 +17,6 @@ local SCALE_X = hash("scale.x")
 local SCALE_Y = hash("scale.y")
 local SCALE_Z = hash("scale.z")
 
-local empty_prefab = evolved.builder():prefab():spawn()
-
 function init(self)
 	self.entity = nil
 
@@ -92,10 +90,6 @@ function on_message(self, message_id, message)
 			self.fragments[fragments.game_objects] = game_objects
 		end
 
-		--pprint("clone entity", self.prefab, self.fragments)
-		--for k, v in pairs(self.fragments) do
-		--	pprint(evolved.get(k, evolved.NAME))
-		--end
 		evolved.clone(self.prefab, self.fragments)
 	end
 end

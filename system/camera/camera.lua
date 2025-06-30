@@ -84,8 +84,12 @@ function M.refresh_camera(chunk, entity_list, entity_count)
 	local root_url, position, size_x, size_y = chunk:components(fragments.root_url, fragments.position, fragments.size_x, fragments.size_y)
 	local scale_x, scale_y = chunk:components(fragments.scale_x, fragments.scale_y)
 	for index = 1, entity_count do
-		M.update_camera_position(root_url[index], position[index])
-		M.update_camera_zoom(root_url[index], size_x[index], size_y[index], scale_x[index], scale_y[index])
+		local entity = entity_list[index]
+		if evolved.has(entity, fragments.camera_dirty) then
+			M.update_camera_position(root_url[index], position[index])
+			M.update_camera_zoom(root_url[index], size_x[index], size_y[index], scale_x[index], scale_y[index])
+			evolved.set(entity, fragments.camera_dirty, false)
+		end
 	end
 end
 

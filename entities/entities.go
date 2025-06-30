@@ -21,8 +21,7 @@ embedded_components {
 }
 embedded_components {
   id: "damage_number"
-  type: "collectionfactory"
-  data: "prototype: \"/entities/damage_number/damage_number.collection\"\n"
-  "load_dynamically: true\n"
+  type: "factory"
+  data: "prototype: \"/entities/damage_number/damage_number.go\"\n"
   ""
 }

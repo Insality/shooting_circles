@@ -107,9 +107,6 @@ max_instances = 2048
 [collection_proxy]
 max_count = 4
 
-[factory]
-max_count = 0
-
 [model]
 max_count = 0
 

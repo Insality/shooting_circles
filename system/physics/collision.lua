@@ -1,6 +1,39 @@
 local evolved = require("evolved")
 local fragments = require("fragments")
 
+---@class physics.collision.object
+---@field id hash @Id of the object
+---@field group hash @Group of the object
+---@field position vector3|nil @Position of the object
+---@field relative_velocity vector3|nil @Relative velocity of the object
+---@field mass number|nil @Mass of the object
+---@field normal vector3|nil @Normal of the object
+
+---@class physics.collision.contact_point_event
+---@field a physics.collision.object
+---@field b physics.collision.object
+---@field applied_impulse number @Applied impulse
+---@field distance number @Distance
+
+---@class physics.collision.collision_event
+---@field a physics.collision.object
+---@field b physics.collision.object
+
+---@class physics.collision.ray_cast_response
+---@field requst_id number @Request id
+---@field group hash @Group of the object
+---@field position vector3 @Position of the object
+---@field normal vector3 @Normal of the object
+---@field fraction number @Fraction of the object
+
+---@class physics.collision.ray_cast_missed
+---@field requst_id number @Request id
+
+---@class physics.collision.trigger_event
+---@field a physics.collision.object
+---@field b physics.collision.object
+---@field enter boolean @True if the trigger interaction is entering, false if it is exiting
+
 local M = {}
 
 function M.register_fragments()
@@ -82,7 +115,7 @@ local TRIGGER_EVENT = hash("trigger_event")
 local RAY_CAST_RESPONSE = hash("ray_cast_response")
 local RAY_CAST_MISSED = hash("ray_cast_missed")
 
----@param event hash @Event type
+---@param event hash Event type
 ---@param data any
 function M.physics_world_listener(event, data)
 	if event == CONTACT_POINT_EVENT then
@@ -98,11 +131,10 @@ function M.physics_world_listener(event, data)
 	end
 end
 
-
 ---@param entity_source evolved.entity?
 ---@param entity_target evolved.entity?
 ---@param event_data physics.collision.contact_point_event|physics.collision.trigger_event|physics.collision.collision_event
----@param event_type string @"contact_point_event"|"trigger_event"|"collision_event"
+---@param event_type string "contact_point_event"|"trigger_event"|"collision_event"
 local function handle_collision_event(entity_source, entity_target, event_data, event_type)
 	if entity_source and evolved.has(entity_source, fragments.collision) then
 		if evolved.has(entity_source, fragments.on_collision_remove) then

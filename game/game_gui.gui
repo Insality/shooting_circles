@@ -1,8 +1,8 @@
 script: "/game/game_gui.gui_script"
 nodes {
   position {
-    x: 1347.0
-    y: 92.0
+    x: 1803.0
+    y: 849.0
   }
   type: TYPE_TEMPLATE
   id: "memory_panel"
@@ -101,8 +101,8 @@ nodes {
 }
 nodes {
   position {
-    x: 1122.0
-    y: 107.0
+    x: 1803.0
+    y: 996.0
   }
   type: TYPE_TEMPLATE
   id: "fps_panel"
