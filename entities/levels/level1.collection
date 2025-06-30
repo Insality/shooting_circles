@@ -3,27 +3,32 @@ instances {
   id: "camera"
   prototype: "/entities/camera/camera.go"
   position {
+    x: 11.0
+    y: 11.0
     z: 10.0
   }
 }
 collection_instances {
   id: "player"
   collection: "/entities/player/player.collection"
+  position {
+    y: -144.0
+  }
 }
 collection_instances {
   id: "enemy"
   collection: "/entities/enemy/enemy.collection"
   position {
-    x: -505.88156
-    y: -256.98566
+    x: -462.88156
+    y: 491.01434
   }
 }
 collection_instances {
   id: "enemy1"
   collection: "/entities/enemy/enemy.collection"
   position {
-    x: 569.11847
-    y: -256.98566
+    x: 334.11847
+    y: 283.01434
   }
 }
 collection_instances {
@@ -31,7 +36,7 @@ collection_instances {
   collection: "/entities/enemy/enemy.collection"
   position {
     x: -505.88156
-    y: 254.01436
+    y: 260.01437
   }
 }
 collection_instances {
@@ -39,23 +44,23 @@ collection_instances {
   collection: "/entities/enemy/enemy.collection"
   position {
     x: 569.11847
-    y: 254.01436
+    y: 260.01437
   }
 }
 collection_instances {
   id: "enemy4"
   collection: "/entities/enemy/enemy.collection"
   position {
-    x: -297.88156
-    y: -405.98566
+    x: -254.88156
+    y: 342.01434
   }
 }
 collection_instances {
   id: "enemy5"
   collection: "/entities/enemy/enemy.collection"
   position {
-    x: 777.11847
-    y: -405.98566
+    x: 542.11847
+    y: 134.01434
   }
 }
 collection_instances {
@@ -63,7 +68,7 @@ collection_instances {
   collection: "/entities/enemy/enemy.collection"
   position {
     x: -297.88156
-    y: 105.01436
+    y: 111.01436
   }
 }
 collection_instances {
@@ -71,23 +76,23 @@ collection_instances {
   collection: "/entities/enemy/enemy.collection"
   position {
     x: 777.11847
-    y: 105.01436
+    y: 111.01436
   }
 }
 collection_instances {
   id: "enemy8"
   collection: "/entities/enemy/enemy.collection"
   position {
-    x: -128.88156
-    y: -574.98566
+    x: -85.88156
+    y: 173.01434
   }
 }
 collection_instances {
   id: "enemy9"
   collection: "/entities/enemy/enemy.collection"
   position {
-    x: 946.11847
-    y: -574.98566
+    x: 711.11847
+    y: -34.985657
   }
 }
 collection_instances {
@@ -95,31 +100,31 @@ collection_instances {
   collection: "/entities/enemy/enemy.collection"
   position {
     x: -128.88156
-    y: -63.985645
+    y: -57.985645
   }
 }
 collection_instances {
   id: "enemy11"
   collection: "/entities/enemy/enemy.collection"
   position {
-    x: 946.11847
-    y: -63.985645
+    x: 711.11847
+    y: 476.01434
   }
 }
 collection_instances {
   id: "enemy12"
   collection: "/entities/enemy/enemy.collection"
   position {
-    x: -693.88153
-    y: -438.98566
+    x: -650.88153
+    y: 309.01434
   }
 }
 collection_instances {
   id: "enemy13"
   collection: "/entities/enemy/enemy.collection"
   position {
-    x: 381.11844
-    y: -438.98566
+    x: 146.11844
+    y: 101.01434
   }
 }
 collection_instances {
@@ -127,7 +132,7 @@ collection_instances {
   collection: "/entities/enemy/enemy.collection"
   position {
     x: -693.88153
-    y: 72.01436
+    y: 78.01436
   }
 }
 collection_instances {
@@ -135,7 +140,31 @@ collection_instances {
   collection: "/entities/enemy/enemy.collection"
   position {
     x: 381.11844
-    y: 72.01436
+    y: 78.01436
+  }
+}
+collection_instances {
+  id: "player1"
+  collection: "/entities/player/player.collection"
+  position {
+    x: -91.0
+    y: -235.0
+  }
+}
+collection_instances {
+  id: "player2"
+  collection: "/entities/player/player.collection"
+  position {
+    x: 55.0
+    y: -253.0
+  }
+}
+collection_instances {
+  id: "player3"
+  collection: "/entities/player/player.collection"
+  position {
+    x: 19.0
+    y: -344.0
   }
 }
 scale_along_z: 0
@@ -151,9 +180,6 @@ embedded_instances {
   "  texture: \\\"/druid/druid.atlas\\\"\\n"
   "}\\n"
   "\"\n"
-  "  position {\n"
-  "    y: 158.0\n"
-  "  }\n"
   "  scale {\n"
   "    x: 4.19051\n"
   "    y: 2.392659\n"
@@ -163,8 +189,8 @@ embedded_instances {
   "  id: \"collisionobject\"\n"
   "  type: \"collisionobject\"\n"
   "  data: \"type: COLLISION_OBJECT_TYPE_DYNAMIC\\n"
-  "mass: 100.0\\n"
-  "friction: 0.0\\n"
+  "mass: 10.0\\n"
+  "friction: 0.1\\n"
   "restitution: 0.5\\n"
   "group: \\\"entity\\\"\\n"
   "mask: \\\"player\\\"\\n"
@@ -175,7 +201,6 @@ embedded_instances {
   "    shape_type: TYPE_SPHERE\\n"
   "    position {\\n"
   "      x: 2.0\\n"
-  "      y: 160.0\\n"
   "    }\\n"
   "    rotation {\\n"
   "    }\\n"
@@ -186,7 +211,6 @@ embedded_instances {
   "    shape_type: TYPE_SPHERE\\n"
   "    position {\\n"
   "      x: -61.0\\n"
-  "      y: 160.0\\n"
   "    }\\n"
   "    rotation {\\n"
   "    }\\n"
@@ -197,7 +221,6 @@ embedded_instances {
   "    shape_type: TYPE_SPHERE\\n"
   "    position {\\n"
   "      x: 64.0\\n"
-  "      y: 156.0\\n"
   "    }\\n"
   "    rotation {\\n"
   "    }\\n"
@@ -208,7 +231,13 @@ embedded_instances {
   "  data: 69.19277\\n"
   "  data: 69.19277\\n"
   "}\\n"
+  "linear_damping: 1.0\\n"
+  "event_contact: false\\n"
+  "event_trigger: false\\n"
   "\"\n"
   "}\n"
   ""
+  position {
+    y: 483.0
+  }
 }

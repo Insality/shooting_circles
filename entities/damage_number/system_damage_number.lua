@@ -37,6 +37,8 @@ function M.update(chunk, entity_list, entity_count)
 		M.animate_damage_number(entity_list[index], object, damage_number[index])
 		evolved.set(entity_list[index], components.damage_number_started)
 	end
+
+	--evolved.batch_set(entity_list, components.damage_number_started)
 end
 
 
@@ -63,10 +65,7 @@ function M.animate_damage_number(entity, object, damage)
 
 	-- Animate Y position
 	go.set(root, "position.y", current_pos.y + offset_y)
-	go.animate(root, "position.y", go.PLAYBACK_ONCE_FORWARD, current_pos.y + height + offset_y, go.EASING_OUTSINE, time_1 + time_2, 0, function()
-		-- Remove entity when animation is complete
-		evolved.remove(entity)
-	end)
+	go.animate(root, "position.y", go.PLAYBACK_ONCE_FORWARD, current_pos.y + height + offset_y, go.EASING_OUTSINE, time_1 + time_2)
 
 	-- Animate Z position for depth sorting
 	local z = current_pos.z

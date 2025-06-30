@@ -1,5 +1,5 @@
 [bootstrap]
-main_collection = /loader/loader.collectionc
+main_collection = /loader.collectionc
 
 [script]
 shared_state = 1
@@ -16,7 +16,6 @@ input_method = HiddenInputField
 title = Shooting Circles
 developer = Insality
 publisher = Insality
-custom_resources = /resources
 version = 2.0
 dependencies#0 = https://github.com/Insality/defold-tweener/archive/refs/tags/5.zip
 dependencies#1 = https://github.com/Insality/defold-log/archive/refs/tags/3.zip
@@ -46,9 +45,9 @@ max_tile_count = 0
 max_count = 1024
 
 [particle_fx]
-max_count = 512
-max_emitter_count = 512
-max_particle_count = 2048
+max_count = 4096
+max_emitter_count = 2048
+max_particle_count = 4096
 
 [mesh]
 max_count = 0

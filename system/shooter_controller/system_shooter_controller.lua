@@ -1,7 +1,7 @@
 local evolved = require("evolved")
 local components = require("components")
 local events = require("event.events")
-local camera = require("system.camera")
+local camera = require("system.camera.camera")
 
 local M = {}
 
