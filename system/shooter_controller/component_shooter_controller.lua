@@ -1,9 +1,9 @@
 local evolved = require("evolved")
-local components = require("components")
+local fragments = require("fragments")
 
 local M = {}
 
----@class components.shooter_controller
+---@class fragments.shooter_controller
 ---@field prefab evolved.id
 ---@field cooldown number
 ---@field current_cooldown number
@@ -18,11 +18,11 @@ local function clone_state(state)
 end
 
 
-function M.register_components()
-	---@class components
+function M.register_fragments()
+	---@class fragments
 	---@field shooter_controller evolved.id
 
-	components.shooter_controller = evolved.builder():name("shooter_controller"):default({
+	fragments.shooter_controller = evolved.builder():name("shooter_controller"):default({
 		prefab = nil,
 		cooldown = 0.1,
 		current_cooldown = 0,

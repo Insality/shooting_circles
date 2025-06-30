@@ -1,18 +1,18 @@
 local evolved = require("evolved")
-local components = require("components")
+local fragments = require("fragments")
 
 local M = {}
 
 
-function M.register_components()
-	---@class components
+function M.register_fragments()
+	---@class fragments
 	---@field velocity_x evolved.id
 	---@field velocity_y evolved.id
 	---@field velocity evolved.id
 
-	components.velocity_x = evolved.builder():name("velocity_x"):default(0):spawn()
-	components.velocity_y = evolved.builder():name("velocity_y"):default(0):spawn()
-	components.velocity = evolved.builder():name("velocity"):tag():require(components.velocity_x, components.velocity_y):spawn()
+	fragments.velocity_x = evolved.builder():name("velocity_x"):default(0):spawn()
+	fragments.velocity_y = evolved.builder():name("velocity_y"):default(0):spawn()
+	fragments.velocity = evolved.builder():name("velocity"):tag():require(fragments.velocity_x, fragments.velocity_y):spawn()
 end
 
 
@@ -22,9 +22,9 @@ function M.create_system()
 	evolved.builder()
 		:name("system.velocity")
 		:group(group)
-		:include(components.velocity, components.position)
-		:exclude(components.physics)
-		:set(components.system)
+		:include(fragments.velocity, fragments.position)
+		:exclude(fragments.physics)
+		:set(fragments.system)
 		:execute(M.update)
 		:spawn()
 
@@ -32,9 +32,12 @@ function M.create_system()
 end
 
 
+---@param chunk evolved.chunk
+---@param entity_list evolved.entity[]
+---@param entity_count number
 function M.update(chunk, entity_list, entity_count)
-	local dt = evolved.get(components.dt, components.dt)
-	local velocity_x, velocity_y, position = chunk:components(components.velocity_x, components.velocity_y, components.position)
+	local dt = evolved.get(fragments.dt, fragments.dt)
+	local velocity_x, velocity_y, position = chunk:components(fragments.velocity_x, fragments.velocity_y, fragments.position)
 
 	for index = 1, entity_count do
 		position[index].x = position[index].x + velocity_x[index] * dt

@@ -1,30 +1,31 @@
 local M = {}
 
 
-function M.register_components()
-	require("system.transform.transform").register_components()
-	require("system.game_objects.factory_object").register_components()
-	require("system.game_objects.collectionfactory_object").register_components()
-	require("system.game_objects.sync_game_object_position").register_components()
-	require("system.physics.physics_movement_controller").register_components()
-	require("system.color.color").register_components()
-	require("system.panthera.panthera").register_components()
-	require("system.velocity.velocity").register_components()
-	require("system.camera.camera").register_components()
-	require("system.physics.physics").register_components()
-	require("system.physics.collision").register_components()
-	require("system.lifetime.lifetime").register_components()
-	require("system.health.health").register_components()
-	require("system.play_particlefx.play_particlefx").register_components()
-	require("system.shooter_controller.component_shooter_controller").register_components()
+---Call on loader step of the game
+function M.register_fragments()
+	require("system.transform.transform").register_fragments()
+	require("system.game_objects.factory_object").register_fragments()
+	require("system.game_objects.collectionfactory_object").register_fragments()
+	require("system.game_objects.sync_game_object_position").register_fragments()
+	require("system.physics.physics_movement_controller").register_fragments()
+	require("system.color.color").register_fragments()
+	require("system.panthera.panthera").register_fragments()
+	require("system.velocity.velocity").register_fragments()
+	require("system.camera.camera").register_fragments()
+	require("system.physics.physics").register_fragments()
+	require("system.physics.collision").register_fragments()
+	require("system.lifetime.lifetime").register_fragments()
+	require("system.health.health").register_fragments()
+	require("system.play_particlefx.play_particlefx").register_fragments()
+	require("system.shooter_controller.component_shooter_controller").register_fragments()
 
-	require("entities.damage_number.system_damage_number").register_components()
-	require("entities.enemy.enemy_visual").register_components()
+	require("entities.damage_number.system_damage_number").register_fragments()
+	require("entities.enemy.enemy_visual").register_fragments()
 
-	--require("system.velocity").register_components()
-	--require("system.velocity_angle").register_components()
-	--require("system.movement_controller").register_components()
-	--require("system.camera").register_components()
+	--require("system.velocity").register_fragments()
+	--require("system.velocity_angle").register_fragments()
+	--require("system.movement_controller").register_fragments()
+	--require("system.camera").register_fragments()
 end
 
 

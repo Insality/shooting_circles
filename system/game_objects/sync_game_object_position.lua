@@ -1,27 +1,27 @@
 local evolved = require("evolved")
-local components = require("components")
+local fragments = require("fragments")
 
 local M = {}
 
 local go_setter = go_position_setter.new()
 
-function M.register_components()
-	---@class components
+function M.register_fragments()
+	---@class fragments
 	---@field root_url evolved.id
 	---@field no_sync_game_object evolved.id
 
-	components.no_sync_game_object = evolved.builder():name("no_sync_game_object"):tag():spawn()
+	fragments.no_sync_game_object = evolved.builder():name("no_sync_game_object"):tag():spawn()
 
-	components.root_url = evolved.builder():name("root_url"):require(components.position, components.quat):on_set(function(entity, fragment, component)
-		if evolved.has(entity, components.physics) or evolved.has(entity, components.no_sync_game_object) then
+	fragments.root_url = evolved.builder():name("root_url"):require(fragments.position, fragments.quat):on_set(function(entity, fragment, component)
+		if evolved.has(entity, fragments.physics) or evolved.has(entity, fragments.no_sync_game_object) then
 			return
 		end
 
-		local position = evolved.get(entity, components.position)
-		local quat = evolved.get(entity, components.quat)
+		local position = evolved.get(entity, fragments.position)
+		local quat = evolved.get(entity, fragments.quat)
 		go_setter:add(component, position, quat)
 	end):on_remove(function(entity, fragment, component)
-		if evolved.has(entity, components.physics) then
+		if evolved.has(entity, fragments.physics) then
 			return
 		end
 
@@ -35,7 +35,7 @@ end
 function M.create_system()
 	return evolved.builder()
 		:name("sync_position")
-		:set(components.system)
+		:set(fragments.system)
 		:prologue(M.sync_position)
 		:spawn()
 end

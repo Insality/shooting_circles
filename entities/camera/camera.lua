@@ -1,9 +1,9 @@
 local evolved = require("evolved")
-local components = require("components")
+local fragments = require("fragments")
 
 return evolved.builder()
 	:name("camera")
 	:prefab()
-	:set(components.transform)
-	:set(components.camera)
+	:set(fragments.transform)
+	:set(fragments.camera)
 	:spawn()

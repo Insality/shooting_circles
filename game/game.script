@@ -1,6 +1,6 @@
 local log = require("log.log")
 local evolved = require("evolved")
-local components = require("components")
+local fragments = require("fragments")
 local events = require("event.events")
 local entities = require("entities")
 local systems = require("systems")
@@ -24,7 +24,7 @@ end
 
 
 function update(self, dt)
-	evolved.set(components.dt, components.dt, dt)
+	evolved.set(fragments.dt, fragments.dt, dt)
 	evolved.process(unpack(self.systems))
 end
 

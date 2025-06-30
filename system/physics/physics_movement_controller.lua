@@ -1,14 +1,14 @@
 local events = require("event.events")
 local evolved = require("evolved")
-local components = require("components")
+local fragments = require("fragments")
 
 local M = {}
 
-function M.register_components()
-	---@class components
+function M.register_fragments()
+	---@class fragments
 	---@field physics_movement_controller evolved.id
 
-	components.physics_movement_controller = evolved.builder():name("physics_movement_controller"):default(0):spawn()
+	fragments.physics_movement_controller = evolved.builder():name("physics_movement_controller"):default(0):spawn()
 end
 
 
@@ -63,8 +63,8 @@ end)
 function M.create_system()
 	return evolved.builder()
 		:name("system.physics_movement_controller")
-		:include(components.physics_movement_controller, components.velocity, components.body_url)
-		:set(components.system)
+		:include(fragments.physics_movement_controller, fragments.velocity, fragments.body_url)
+		:set(fragments.system)
 		:execute(M.update)
 		:spawn()
 end
@@ -76,9 +76,9 @@ function M.update(chunk, entity_list, entity_count)
 		return
 	end
 
-	local dt = evolved.get(components.dt, components.dt)
-	local velocity_x, velocity_y = chunk:components(components.velocity_x, components.velocity_y)
-	local body_url = chunk:components(components.body_url)
+	local dt = evolved.get(fragments.dt, fragments.dt)
+	local velocity_x, velocity_y = chunk:components(fragments.velocity_x, fragments.velocity_y)
+	local body_url = chunk:components(fragments.body_url)
 
 	for index = 1, entity_count do
 

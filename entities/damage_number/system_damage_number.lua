@@ -1,26 +1,26 @@
 local evolved = require("evolved")
-local components = require("components")
+local fragments = require("fragments")
 
 
 local M = {}
 
 
-function M.register_components()
-	---@class components
+function M.register_fragments()
+	---@class fragments
 	---@field damage_number evolved.id
 	---@field damage_number_started evolved.id
 
-	components.damage_number = evolved.builder():default(1):name("damage_number"):spawn()
-	components.damage_number_started = evolved.builder():name("damage_number_started"):tag():spawn()
+	fragments.damage_number = evolved.builder():default(1):name("damage_number"):spawn()
+	fragments.damage_number_started = evolved.builder():name("damage_number_started"):tag():spawn()
 end
 
 
 function M.create_system()
 	return evolved.builder()
-		:set(components.system)
+		:set(fragments.system)
 		:name("damage_number")
-		:include(components.damage_number, components.root_url)
-		:exclude(components.damage_number_started)
+		:include(fragments.damage_number, fragments.root_url)
+		:exclude(fragments.damage_number_started)
 		:execute(M.update)
 		:spawn()
 end
@@ -30,15 +30,13 @@ end
 ---@param entity_list evolved.entity[]
 ---@param entity_count number
 function M.update(chunk, entity_list, entity_count)
-	local root_url, damage_number = chunk:components(components.root_url, components.damage_number)
+	local root_url, damage_number = chunk:components(fragments.root_url, fragments.damage_number)
 	for index = 1, entity_count do
 		local object = root_url[index]
 
 		M.animate_damage_number(entity_list[index], object, damage_number[index])
-		evolved.set(entity_list[index], components.damage_number_started)
+		evolved.set(entity_list[index], fragments.damage_number_started)
 	end
-
-	--evolved.batch_set(entity_list, components.damage_number_started)
 end
 
 

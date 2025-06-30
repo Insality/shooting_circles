@@ -1,6 +1,6 @@
-local components = require("components")
+local fragments = require("fragments")
 local component = require("entities.component")
 
 function init(self)
-	component.set(components.camera)
+	component.set(fragments.camera)
 end

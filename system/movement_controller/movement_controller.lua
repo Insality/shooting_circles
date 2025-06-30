@@ -1,14 +1,14 @@
 local events = require("event.events")
 local evolved = require("evolved")
-local components = require("components")
+local fragments = require("fragments")
 
 local M = {}
 
-function M.register_components()
-	---@class components
+function M.register_fragments()
+	---@class fragments
 	---@field movement_controller evolved.id
 
-	components.movement_controller = evolved.builder():name("movement_controller"):default(0):spawn()
+	fragments.movement_controller = evolved.builder():name("movement_controller"):default(0):spawn()
 end
 
 
@@ -63,8 +63,8 @@ end)
 function M.create_system()
 	return evolved.builder()
 		:name("system.movement_controller")
-		:include(components.movement_controller, components.position)
-		:set(components.system)
+		:include(fragments.movement_controller, fragments.position)
+		:set(fragments.system)
 		:execute(M.update)
 		:spawn()
 end
@@ -75,8 +75,8 @@ function M.update(chunk, entity_list, entity_count)
 		return
 	end
 
-	local dt = evolved.get(components.dt, components.dt)
-	local movement_controller, position = chunk:components(components.movement_controller, components.position)
+	local dt = evolved.get(fragments.dt, fragments.dt)
+	local movement_controller, position = chunk:components(fragments.movement_controller, fragments.position)
 
 	for index = 1, entity_count do
 		local speed = movement_controller[index]

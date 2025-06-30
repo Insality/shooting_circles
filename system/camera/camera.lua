@@ -1,55 +1,55 @@
 local events = require("event.events")
 local evolved = require("evolved")
-local components = require("components")
+local fragments = require("fragments")
 
 local M = {}
 
 
-function M.register_components()
-	---@class components
+function M.register_fragments()
+	---@class fragments
 	---@field camera evolved.id
 	---@field camera_dirty evolved.id
 
-	components.camera_dirty = evolved.builder():name("camera_dirty"):tag():spawn()
-	components.camera = evolved.builder():name("camera"):require(components.camera_dirty):tag():spawn()
+	fragments.camera_dirty = evolved.builder():name("camera_dirty"):tag():spawn()
+	fragments.camera = evolved.builder():name("camera"):require(fragments.camera_dirty):tag():spawn()
 end
 
 
 function M.create_system()
 	M.get_camera_query = evolved.builder()
-		:include(components.camera, components.root_url)
+		:include(fragments.camera, fragments.root_url)
 		:spawn()
 
 	local group = evolved.builder()
 		:name("camera")
-		:include(components.camera)
-		:set(components.system)
+		:include(fragments.camera)
+		:set(fragments.system)
 		:spawn()
 
 	evolved.builder()
 		:name("camera.dirty_by_pos")
 		:group(group)
-		:include(components.camera, components.position_dirty)
+		:include(fragments.camera, fragments.position_dirty)
 		:execute(M.set_dirty)
 		:spawn()
 
 	evolved.builder()
 		:name("camera.dirty_by_size")
 		:group(group)
-		:include(components.camera, components.size_dirty)
+		:include(fragments.camera, fragments.size_dirty)
 		:execute(M.set_dirty)
 		:spawn()
 
 	evolved.builder()
 		:name("camera.refresh")
 		:group(group)
-		:include(components.camera_dirty)
+		:include(fragments.camera_dirty)
 		:execute(M.refresh_camera)
 		:spawn()
 
 	do -- Resize subscription
 		local query = evolved.builder()
-			:include(components.camera, components.size_x, components.size_y)
+			:include(fragments.camera, fragments.size_x, fragments.size_y)
 			:spawn()
 
 		events.subscribe("window_event", function(window_event)
@@ -72,7 +72,7 @@ end
 ---@param entity_count number
 function M.set_dirty(chunk, entity_list, entity_count)
 	for index = 1, entity_count do
-		evolved.set(entity_list[index], components.camera_dirty, true)
+		evolved.set(entity_list[index], fragments.camera_dirty, true)
 	end
 end
 
@@ -81,8 +81,8 @@ end
 ---@param entity_list evolved.entity[]
 ---@param entity_count number
 function M.refresh_camera(chunk, entity_list, entity_count)
-	local root_url, position, size_x, size_y = chunk:components(components.root_url, components.position, components.size_x, components.size_y)
-	local scale_x, scale_y = chunk:components(components.scale_x, components.scale_y)
+	local root_url, position, size_x, size_y = chunk:components(fragments.root_url, fragments.position, fragments.size_x, fragments.size_y)
+	local scale_x, scale_y = chunk:components(fragments.scale_x, fragments.scale_y)
 	for index = 1, entity_count do
 		M.update_camera_position(root_url[index], position[index])
 		M.update_camera_zoom(root_url[index], size_x[index], size_y[index], scale_x[index], scale_y[index])
@@ -179,7 +179,7 @@ end
 
 local function get_camera_url()
 	for chunk, entity_list, entity_count in evolved.execute(M.get_camera_query) do
-		local root_url = chunk:components(components.root_url)
+		local root_url = chunk:components(fragments.root_url)
 		for index = 1, entity_count do
 			local url = msg.url(root_url[index])
 			url.fragment = hash("camera")

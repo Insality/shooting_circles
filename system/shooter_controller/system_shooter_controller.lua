@@ -1,5 +1,5 @@
 local evolved = require("evolved")
-local components = require("components")
+local fragments = require("fragments")
 local events = require("event.events")
 local camera = require("system.camera.camera")
 
@@ -12,8 +12,8 @@ function M.create_system()
 
 	return evolved.builder()
 		:name("shooter_controller")
-		:set(components.system)
-		:include(components.shooter_controller, components.transform)
+		:set(fragments.system)
+		:include(fragments.shooter_controller, fragments.transform)
 		:execute(M.update)
 		:spawn()
 end
@@ -40,10 +40,10 @@ function M.on_input_event(action_id, action)
 end
 
 function M.update(chunk, entity_list, entity_count)
-	local shooter_controller = chunk:components(components.shooter_controller)
-	local position = chunk:components(components.position)
-	local quat = chunk:components(components.quat)
-	local dt = evolved.get(components.dt, components.dt)
+	local shooter_controller = chunk:components(fragments.shooter_controller)
+	local position = chunk:components(fragments.position)
+	local quat = chunk:components(fragments.quat)
+	local dt = evolved.get(fragments.dt, fragments.dt)
 
 	local pos_x, pos_y = camera.screen_to_world(last_screen_x, last_screen_y)
 
@@ -70,10 +70,10 @@ function M.update(chunk, entity_list, entity_count)
 			velocity_y = math.sin(final_angle) * 2500
 
 			evolved.clone(controller.prefab, {
-				[components.position] = position[index],
-				[components.quat] = quat[index],
-				[components.velocity_x] = velocity_x,
-				[components.velocity_y] = velocity_y,
+				[fragments.position] = position[index],
+				[fragments.quat] = quat[index],
+				[fragments.velocity_x] = velocity_x,
+				[fragments.velocity_y] = velocity_y,
 			})
 
 			controller.current_cooldown = controller.cooldown

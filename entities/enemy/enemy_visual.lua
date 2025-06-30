@@ -1,5 +1,5 @@
 local evolved = require("evolved")
-local components = require("components")
+local fragments = require("fragments")
 local panthera = require("panthera.panthera")
 local damage_number = require("entities.damage_number.damage_number")
 
@@ -13,11 +13,11 @@ local function clone_state(state)
 	}
 end
 
-function M.register_components()
-	---@class components
+function M.register_fragments()
+	---@class fragments
 	---@field enemy_visual evolved.id
 
-	components.enemy_visual = evolved.builder():name("enemy_visual"):default({
+	fragments.enemy_visual = evolved.builder():name("enemy_visual"):default({
 		progress = 0,
 		last_health = nil,
 	}):duplicate(clone_state):spawn()
@@ -27,16 +27,16 @@ end
 function M.create_system()
 	return evolved.builder()
 		:name("enemy_visual")
-		:set(components.system)
-		:include(components.enemy_visual, components.panthera_state, components.health)
+		:set(fragments.system)
+		:include(fragments.enemy_visual, fragments.panthera_state, fragments.health)
 		:execute(M.update)
 		:spawn()
 end
 
 
 function M.update(chunk, entity_list, entity_count)
-	local enemy_visual, panthera_state = chunk:components(components.enemy_visual, components.panthera_state)
-	local health, health_max = chunk:components(components.health, components.health_max)
+	local enemy_visual, panthera_state = chunk:components(fragments.enemy_visual, fragments.panthera_state)
+	local health, health_max = chunk:components(fragments.health, fragments.health_max)
 
 	for index = 1, entity_count do
 		local progress = health[index] / health_max[index]
@@ -50,8 +50,8 @@ function M.update(chunk, entity_list, entity_count)
 			local damage = enemy_visual[index].last_health - health[index]
 			if damage > 0 then
 				evolved.clone(damage_number, {
-					[components.position] = evolved.get(entity_list[index], components.position),
-					[components.damage_number] = damage,
+					[fragments.position] = evolved.get(entity_list[index], fragments.position),
+					[fragments.damage_number] = damage,
 				})
 			end
 

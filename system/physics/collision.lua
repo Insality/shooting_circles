@@ -1,10 +1,10 @@
 local evolved = require("evolved")
-local components = require("components")
+local fragments = require("fragments")
 
 local M = {}
 
-function M.register_components()
-	---@class components
+function M.register_fragments()
+	---@class fragments
 	---@field on_collision_damage evolved.id
 	---@field on_collision_remove evolved.id
 	---@field on_collision_spawn_entity evolved.id
@@ -12,19 +12,19 @@ function M.register_components()
 	---@field collision_event evolved.id
 	---@field collision_root_stored evolved.id
 
-	components.on_collision_damage = evolved.builder():name("on_collision_damage"):default(10):spawn()
-	components.on_collision_remove = evolved.builder():name("on_collision_remove"):tag():spawn()
-	components.on_collision_spawn_entity = evolved.builder():name("on_collision_spawn_entity"):spawn()
-	components.collision = evolved.builder():name("collision"):tag():spawn()
-	components.collision_event = evolved.builder():name("collision_event"):spawn()
-	components.collision_root_stored = evolved.builder():name("collision_root_stored"):tag():spawn()
+	fragments.on_collision_damage = evolved.builder():name("on_collision_damage"):default(10):spawn()
+	fragments.on_collision_remove = evolved.builder():name("on_collision_remove"):tag():spawn()
+	fragments.on_collision_spawn_entity = evolved.builder():name("on_collision_spawn_entity"):spawn()
+	fragments.collision = evolved.builder():name("collision"):tag():spawn()
+	fragments.collision_event = evolved.builder():name("collision_event"):spawn()
+	fragments.collision_root_stored = evolved.builder():name("collision_root_stored"):tag():spawn()
 end
 
 
 function M.create_system()
 	M.collision_event_prefab = evolved.builder()
 		:name("collision_event")
-		:set(components.lifetime, 0)
+		:set(fragments.lifetime, 0)
 		:prefab()
 		:spawn()
 
@@ -37,21 +37,21 @@ function M.create_system()
 
 	local group = evolved.builder()
 		:name("collision")
-		:include(components.collision)
+		:include(fragments.collision)
 		:spawn()
 
 	evolved.builder()
 		:group(group)
-		:set(components.system)
+		:set(fragments.system)
 		:name("collisiton.store_root")
-		:include(components.collision, components.root_url)
-		:exclude(components.collision_root_stored)
+		:include(fragments.collision, fragments.root_url)
+		:exclude(fragments.collision_root_stored)
 		:execute(M.store_root)
 		:spawn()
 
 	evolved.builder()
 		:group(group)
-		:set(components.system)
+		:set(fragments.system)
 		:name("collisiton.reset_collided_this_frame")
 		:prologue(M.reset_collided_this_frame)
 		:spawn()
@@ -62,7 +62,7 @@ end
 
 local root_to_entity = {}
 function M.store_root(chunk, entity_list, entity_count)
-	local root_url = chunk:components(components.root_url)
+	local root_url = chunk:components(fragments.root_url)
 
 	for index = 1, entity_count do
 		root_to_entity[root_url[index]] = entity_list[index]
@@ -72,7 +72,6 @@ end
 
 local collided_this_frame = {}
 function M.reset_collided_this_frame(chunk, entity_list, entity_count)
-	pprint("reset_collided_this_frame")
 	collided_this_frame = {}
 end
 
@@ -105,9 +104,9 @@ end
 ---@param event_data physics.collision.contact_point_event|physics.collision.trigger_event|physics.collision.collision_event
 ---@param event_type string @"contact_point_event"|"trigger_event"|"collision_event"
 local function handle_collision_event(entity_source, entity_target, event_data, event_type)
-	if entity_source and evolved.has(entity_source, components.collision) then
-		if evolved.has(entity_source, components.on_collision_remove) then
-			evolved.set(entity_source, components.lifetime, 0)
+	if entity_source and evolved.has(entity_source, fragments.collision) then
+		if evolved.has(entity_source, fragments.on_collision_remove) then
+			evolved.set(entity_source, fragments.lifetime, 0)
 		end
 
 		local collision_event = {
@@ -116,13 +115,13 @@ local function handle_collision_event(entity_source, entity_target, event_data, 
 			[event_type] = event_data
 		}
 		evolved.clone(M.collision_event_prefab, {
-			[components.collision_event] = collision_event,
+			[fragments.collision_event] = collision_event,
 		})
 	end
 
-	if entity_target and evolved.has(entity_target, components.collision) then
-		if evolved.has(entity_target, components.on_collision_remove) then
-			evolved.set(entity_target, components.lifetime, 0)
+	if entity_target and evolved.has(entity_target, fragments.collision) then
+		if evolved.has(entity_target, fragments.on_collision_remove) then
+			evolved.set(entity_target, fragments.lifetime, 0)
 		end
 
 		--if collision.trigger_event and event_type == "trigger_event" then
@@ -134,7 +133,7 @@ local function handle_collision_event(entity_source, entity_target, event_data, 
 			[event_type] = event_data
 		}
 		evolved.clone(M.collision_event_prefab, {
-			[components.collision_event] = collision_event,
+			[fragments.collision_event] = collision_event,
 		})
 	end
 end
@@ -164,7 +163,7 @@ function M.handle_collision_event(event_data)
 	local entity_target = root_to_entity[event_data.b.id]
 
 	local is_source_collided = collided_this_frame[entity_source] and collided_this_frame[entity_source][entity_target]
-	if entity_source and evolved.has(entity_source, components.collision) and not is_source_collided then
+	if entity_source and evolved.has(entity_source, fragments.collision) and not is_source_collided then
 		handle_collision_event(entity_source, entity_target, event_data, "collision_event")
 
 		if entity_target then
@@ -177,7 +176,7 @@ function M.handle_collision_event(event_data)
 	end
 
 	local is_target_collided = collided_this_frame[entity_target] and collided_this_frame[entity_target][entity_source]
-	if entity_target and evolved.has(entity_target, components.collision) and not is_target_collided then
+	if entity_target and evolved.has(entity_target, fragments.collision) and not is_target_collided then
 		handle_collision_event(entity_target, entity_source, event_data, "collision_event")
 
 		if entity_source then

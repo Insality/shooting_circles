@@ -1,23 +1,23 @@
 local evolved = require("evolved")
-local components = require("components")
+local fragments = require("fragments")
 
 local M = {}
 
-function M.register_components()
-	---@class components
+function M.register_fragments()
+	---@class fragments
 	---@field color_dirty evolved.id
 	---@field color evolved.id
 
-	components.color_dirty = evolved.builder():name("color_dirty"):tag():spawn()
-	components.color = evolved.builder():name("color"):require(components.color_dirty):default(vmath.vector4(1, 1, 1, 1)):spawn()
+	fragments.color_dirty = evolved.builder():name("color_dirty"):tag():spawn()
+	fragments.color = evolved.builder():name("color"):require(fragments.color_dirty):default(vmath.vector4(1, 1, 1, 1)):spawn()
 end
 
 
 function M.create_system()
 	return evolved.builder()
 		:name("color_system")
-		:set(components.system)
-		:include(components.color, components.game_objects, components.color_dirty)
+		:set(fragments.system)
+		:include(fragments.color, fragments.game_objects, fragments.color_dirty)
 		:execute(M.update)
 		:spawn()
 end
@@ -48,15 +48,15 @@ end
 
 
 function M.update(chunk, entity_list, entity_count)
-	local color = chunk:components(components.color)
-	local game_objects = chunk:components(components.game_objects)
+	local color = chunk:components(fragments.color)
+	local game_objects = chunk:components(fragments.game_objects)
 
 	for index = 1, entity_count do
 		for sprite_url, color_value in pairs(color[index]) do
 			go.set(get_target_url(game_objects[index], sprite_url), "color", color_value)
 		end
 
-		evolved.remove(entity_list[index], components.color_dirty)
+		evolved.remove(entity_list[index], fragments.color_dirty)
 	end
 end
 

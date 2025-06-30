@@ -1,6 +1,6 @@
 local property_system = require("decore.properties_panel.property_system")
 local evolved = require("evolved")
-local components = require("components")
+local fragments = require("fragments")
 
 local M = {}
 
@@ -69,7 +69,7 @@ function M.render_systems_page(druid, properties_panel)
 	properties_panel:next_scene()
 	properties_panel:set_header("Systems")
 
-	local systems_query = evolved.builder():include(components.system):spawn()
+	local systems_query = evolved.builder():include(fragments.system):spawn()
 
 	local systems = {}
 	for chunk, entity_list, entity_count in evolved.execute(systems_query) do
@@ -158,7 +158,7 @@ end
 ---@return string[]
 function M.get_components(entity)
 	local component_lists = {}
-	for k, v in pairs(components) do
+	for k, v in pairs(fragments) do
 		if evolved.has(entity, v) then
 			table.insert(component_lists, k)
 		end

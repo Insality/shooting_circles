@@ -1,13 +1,13 @@
 local evolved = require("evolved")
-local components = require("components")
+local fragments = require("fragments")
 
 local M = {}
 
-function M.register_components()
-	---@class components
+function M.register_fragments()
+	---@class fragments
 	---@field follow_cursor evolved.id
 
-	components.follow_cursor = evolved.builder():tag():name("follow_cursor"):spawn()
+	fragments.follow_cursor = evolved.builder():tag():name("follow_cursor"):spawn()
 end
 
 local is_dirty = false
@@ -17,9 +17,9 @@ local last_cursor_pos_y = 0
 
 function M.create_system()
 	return evolved.builder()
-		:set(components.system)
+		:set(fragments.system)
 		:name("follow_cursor")
-		:include(components.follow_cursor, components.position)
+		:include(fragments.follow_cursor, fragments.position)
 		:execute(M.update)
 		:spawn()
 end
@@ -33,9 +33,9 @@ function M.update(chunk, entity_list, entity_count)
 		return
 	end
 
-	local position = chunk:components(components.position)
+	local position = chunk:components(fragments.position)
 	for index = 1, entity_count do
-		local pos = position[components.position]
+		local pos = position[fragments.position]
 		pos.x = last_cursor_pos_x
 		pos.y = last_cursor_pos_y
 	end
