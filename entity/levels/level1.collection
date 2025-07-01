@@ -424,6 +424,774 @@ collection_instances {
     y: 107.01434
   }
 }
+collection_instances {
+  id: "enemy48"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 769.11847
+    y: 8.014343
+  }
+}
+collection_instances {
+  id: "enemy49"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 471.11844
+    y: 289.01437
+  }
+}
+collection_instances {
+  id: "enemy50"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -329.88153
+    y: 439.01434
+  }
+}
+collection_instances {
+  id: "enemy51"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 656.11847
+    y: -261.98566
+  }
+}
+collection_instances {
+  id: "enemy52"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -272.88156
+    y: 304.01434
+  }
+}
+collection_instances {
+  id: "enemy53"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 358.11844
+    y: -247.98566
+  }
+}
+collection_instances {
+  id: "enemy54"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 169.11847
+    y: 288.01434
+  }
+}
+collection_instances {
+  id: "enemy55"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -27.88153
+    y: 147.01437
+  }
+}
+collection_instances {
+  id: "enemy56"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 3.11847
+    y: -124.98563
+  }
+}
+collection_instances {
+  id: "enemy57"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 625.11847
+    y: 10.014343
+  }
+}
+collection_instances {
+  id: "enemy58"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 603.11847
+    y: -124.98563
+  }
+}
+collection_instances {
+  id: "enemy59"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -329.88153
+    y: 159.01434
+  }
+}
+collection_instances {
+  id: "enemy60"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 153.11847
+    y: -124.98563
+  }
+}
+collection_instances {
+  id: "enemy61"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 301.11847
+    y: -112.98566
+  }
+}
+collection_instances {
+  id: "enemy62"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -97.88156
+    y: -262.98563
+  }
+}
+collection_instances {
+  id: "enemy63"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 200.11847
+    y: -263.98566
+  }
+}
+collection_instances {
+  id: "enemy64"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 327.11844
+    y: 304.01434
+  }
+}
+collection_instances {
+  id: "enemy65"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 722.11847
+    y: 427.01437
+  }
+}
+collection_instances {
+  id: "enemy66"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 753.11847
+    y: -124.98563
+  }
+}
+collection_instances {
+  id: "enemy67"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 800.11847
+    y: -263.98566
+  }
+}
+collection_instances {
+  id: "enemy68"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -182.88153
+    y: 439.01434
+  }
+}
+collection_instances {
+  id: "enemy69"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 572.11847
+    y: 427.01437
+  }
+}
+collection_instances {
+  id: "enemy70"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 471.11844
+    y: 9.01436
+  }
+}
+collection_instances {
+  id: "enemy71"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 502.11844
+    y: -262.98563
+  }
+}
+collection_instances {
+  id: "enemy72"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 572.11847
+    y: 147.01437
+  }
+}
+collection_instances {
+  id: "enemy73"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 270.11847
+    y: 159.01434
+  }
+}
+collection_instances {
+  id: "enemy74"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -128.88156
+    y: 9.01436
+  }
+}
+collection_instances {
+  id: "enemy75"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 122.11847
+    y: 147.01437
+  }
+}
+collection_instances {
+  id: "enemy76"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 417.11847
+    y: 159.01434
+  }
+}
+collection_instances {
+  id: "enemy77"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 169.11847
+    y: 8.01434
+  }
+}
+collection_instances {
+  id: "enemy78"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 56.11847
+    y: -261.98566
+  }
+}
+collection_instances {
+  id: "enemy79"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 25.11847
+    y: 10.01434
+  }
+}
+collection_instances {
+  id: "enemy80"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 122.11847
+    y: 427.01437
+  }
+}
+collection_instances {
+  id: "enemy81"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 722.11847
+    y: 147.01437
+  }
+}
+collection_instances {
+  id: "enemy82"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -298.88153
+    y: -112.98566
+  }
+}
+collection_instances {
+  id: "enemy83"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -128.88156
+    y: 289.01437
+  }
+}
+collection_instances {
+  id: "enemy84"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 769.11847
+    y: 288.01434
+  }
+}
+collection_instances {
+  id: "enemy85"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -241.88156
+    y: -247.98566
+  }
+}
+collection_instances {
+  id: "enemy86"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -27.88153
+    y: 427.01437
+  }
+}
+collection_instances {
+  id: "enemy87"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -151.88153
+    y: -112.98566
+  }
+}
+collection_instances {
+  id: "enemy88"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 270.11847
+    y: 439.01434
+  }
+}
+collection_instances {
+  id: "enemy89"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -272.88156
+    y: 24.01434
+  }
+}
+collection_instances {
+  id: "enemy90"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 448.11847
+    y: -112.98566
+  }
+}
+collection_instances {
+  id: "enemy91"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 625.11847
+    y: 290.01434
+  }
+}
+collection_instances {
+  id: "enemy92"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 327.11844
+    y: 24.014343
+  }
+}
+collection_instances {
+  id: "enemy93"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 417.11847
+    y: 439.01434
+  }
+}
+collection_instances {
+  id: "enemy94"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 25.11847
+    y: 290.01434
+  }
+}
+collection_instances {
+  id: "enemy95"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -182.88153
+    y: 159.01434
+  }
+}
+collection_instances {
+  id: "enemy96"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 717.11847
+    y: 59.01437
+  }
+}
+collection_instances {
+  id: "enemy97"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -32.88153
+    y: 59.01437
+  }
+}
+collection_instances {
+  id: "enemy98"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -303.88153
+    y: -200.98566
+  }
+}
+collection_instances {
+  id: "enemy99"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 748.11847
+    y: -212.98563
+  }
+}
+collection_instances {
+  id: "enemy100"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 117.11847
+    y: 339.01437
+  }
+}
+collection_instances {
+  id: "enemy101"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 567.11847
+    y: 339.01437
+  }
+}
+collection_instances {
+  id: "enemy102"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -334.88153
+    y: 351.01434
+  }
+}
+collection_instances {
+  id: "enemy103"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -187.88153
+    y: 71.01434
+  }
+}
+collection_instances {
+  id: "enemy104"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 296.11847
+    y: -200.98566
+  }
+}
+collection_instances {
+  id: "enemy105"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 148.11847
+    y: -212.98563
+  }
+}
+collection_instances {
+  id: "enemy106"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 412.11847
+    y: 351.01434
+  }
+}
+collection_instances {
+  id: "enemy107"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 20.11847
+    y: 202.01434
+  }
+}
+collection_instances {
+  id: "enemy108"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -334.88153
+    y: 71.01434
+  }
+}
+collection_instances {
+  id: "enemy109"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 195.11847
+    y: -351.98566
+  }
+}
+collection_instances {
+  id: "enemy110"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 764.11847
+    y: -79.98566
+  }
+}
+collection_instances {
+  id: "enemy111"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 265.11847
+    y: 351.01434
+  }
+}
+collection_instances {
+  id: "enemy112"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 497.11844
+    y: -350.98563
+  }
+}
+collection_instances {
+  id: "enemy113"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 117.11847
+    y: 59.01437
+  }
+}
+collection_instances {
+  id: "enemy114"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -102.88156
+    y: -350.98563
+  }
+}
+collection_instances {
+  id: "enemy115"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -156.88153
+    y: -200.98566
+  }
+}
+collection_instances {
+  id: "enemy116"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -32.88153
+    y: 339.01437
+  }
+}
+collection_instances {
+  id: "enemy117"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -277.88156
+    y: -63.98566
+  }
+}
+collection_instances {
+  id: "enemy118"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -277.88156
+    y: 216.01434
+  }
+}
+collection_instances {
+  id: "enemy119"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 412.11847
+    y: 71.01434
+  }
+}
+collection_instances {
+  id: "enemy120"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -246.88156
+    y: -335.98566
+  }
+}
+collection_instances {
+  id: "enemy121"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 717.11847
+    y: 339.01437
+  }
+}
+collection_instances {
+  id: "enemy122"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 651.11847
+    y: -349.98566
+  }
+}
+collection_instances {
+  id: "enemy123"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 322.11844
+    y: 216.01434
+  }
+}
+collection_instances {
+  id: "enemy124"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 764.11847
+    y: 200.01434
+  }
+}
+collection_instances {
+  id: "enemy125"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 20.11847
+    y: -77.98566
+  }
+}
+collection_instances {
+  id: "enemy126"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 466.11844
+    y: -78.98564
+  }
+}
+collection_instances {
+  id: "enemy127"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 466.11844
+    y: 201.01436
+  }
+}
+collection_instances {
+  id: "enemy128"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -133.88156
+    y: -78.98564
+  }
+}
+collection_instances {
+  id: "enemy129"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 598.11847
+    y: -212.98563
+  }
+}
+collection_instances {
+  id: "enemy130"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -133.88156
+    y: 201.01436
+  }
+}
+collection_instances {
+  id: "enemy131"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 265.11847
+    y: 71.01434
+  }
+}
+collection_instances {
+  id: "enemy132"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 322.11844
+    y: -63.985657
+  }
+}
+collection_instances {
+  id: "enemy133"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 164.11847
+    y: -79.98566
+  }
+}
+collection_instances {
+  id: "enemy134"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 620.11847
+    y: 202.01434
+  }
+}
+collection_instances {
+  id: "enemy135"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -187.88153
+    y: 351.01434
+  }
+}
+collection_instances {
+  id: "enemy136"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 443.11847
+    y: -200.98566
+  }
+}
+collection_instances {
+  id: "enemy137"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 795.11847
+    y: -351.98566
+  }
+}
+collection_instances {
+  id: "enemy138"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 567.11847
+    y: 59.01437
+  }
+}
+collection_instances {
+  id: "enemy139"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: -1.88153
+    y: -212.98563
+  }
+}
+collection_instances {
+  id: "enemy140"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 620.11847
+    y: -77.98566
+  }
+}
+collection_instances {
+  id: "enemy141"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 164.11847
+    y: 200.01434
+  }
+}
+collection_instances {
+  id: "enemy142"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 353.11844
+    y: -335.98566
+  }
+}
+collection_instances {
+  id: "enemy143"
+  collection: "/entity/enemy/enemy.collection"
+  position {
+    x: 51.11847
+    y: -349.98566
+  }
+}
 scale_along_z: 0
 embedded_instances {
   id: "wall"

@@ -3,16 +3,14 @@ local fragments = require("fragments")
 
 local M = {}
 
-local empty_state = {}
 local clone_state = function(state)
 	---@class fragments.game_gui
 	---@field shoot_count number
 	---@field patrons number
 
-	state = state or empty_state
 	return {
-		shoot_count = state.shoot_count or 0,
-		patrons = state.patrons or 6,
+		shoot_count = state and state.shoot_count or nil,
+		patrons = state and state.patrons or nil,
 	}
 end
 

@@ -87,8 +87,8 @@ gravity_y = 0.0
 ray_cast_limit_3d = 0
 scale = 0.01
 use_fixed_timestep = 1
-max_collision_object_count = 16000
-max_collisions = 16000
+max_collision_object_count = 8000
+max_collisions = 8000
 max_contacts = 512
 
 [collectionfactory]

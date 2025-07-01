@@ -18,15 +18,15 @@ function init(self)
 	self.systems_fixed = systems.get_systems_fixed()
 
 	evolved.clone(entities["level1"])
-	evolved.clone(entities["level1"])
-	evolved.clone(entities["level1"])
-	evolved.clone(entities["level1"])
-	evolved.clone(entities["level1"])
-	evolved.clone(entities["level1"])
-	evolved.clone(entities["level1"])
-	evolved.clone(entities["level1"])
-	evolved.clone(entities["level1"])
-	evolved.clone(entities["level1"])
+	--evolved.clone(entities["level1"])
+	--evolved.clone(entities["level1"])
+	--evolved.clone(entities["level1"])
+	--evolved.clone(entities["level1"])
+	--evolved.clone(entities["level1"])
+	--evolved.clone(entities["level1"])
+	--evolved.clone(entities["level1"])
+	--evolved.clone(entities["level1"])
+	--evolved.clone(entities["level1"])
 
 	evolved.clone(entities["game_gui"])
 	msg.post(".", "acquire_input_focus")
@@ -47,5 +47,5 @@ end
 ---@param action_id hash
 ---@param action table
 function on_input(self, action_id, action)
-	events.trigger("input_event", action_id, action)
+
 end
