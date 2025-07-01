@@ -1,6 +1,6 @@
 components {
   id: "entity"
-  component: "/entities/entity.script"
+  component: "/entity/entity.script"
   properties {
     id: "size_x"
     value: "1920.0"
@@ -14,7 +14,7 @@ components {
 }
 components {
   id: "component_camera"
-  component: "/entities/camera/component_camera.script"
+  component: "/entity/camera/component_camera.script"
 }
 embedded_components {
   id: "camera"
@@ -38,7 +38,7 @@ embedded_components {
   "size_mode: SIZE_MODE_MANUAL\n"
   "textures {\n"
   "  sampler: \"texture_sampler\"\n"
-  "  texture: \"/entities/camera/screen_overlay.atlas\"\n"
+  "  texture: \"/entity/camera/screen_overlay.atlas\"\n"
   "}\n"
   ""
   position {

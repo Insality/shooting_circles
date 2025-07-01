@@ -1,0 +1,11 @@
+local evolved = require("evolved")
+local fragments = require("fragments")
+
+return evolved.builder()
+	:prefab()
+	:name("game_gui")
+	:set(fragments.factory_url, "/entities#game_gui")
+	:set(fragments.druid_component_name, "game_gui")
+	:set(fragments.druid_widget_class, require("entity.game_gui.game_gui"))
+	:set(fragments.game_gui)
+	:spawn()

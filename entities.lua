@@ -1,12 +1,14 @@
 ---@class entities
 local M = {
-	["player"] = require("entities.player.player"),
-	["enemy"] = require("entities.enemy.enemy"),
-	["bullet"] = require("entities.bullet.bullet"),
-	["explosion"] = require("entities.explosion.explosion"),
-	["damage_number"] = require("entities.damage_number.damage_number"),
-	--[hash("enemy")] = require("entities.enemy.enemy"),
-	["level1"] = require("entities.levels.level1"),
+	["player"] = require("entity.player.player"),
+	["enemy"] = require("entity.enemy.enemy"),
+	["bullet"] = require("entity.bullet.bullet"),
+	["explosion"] = require("entity.explosion.explosion"),
+	["damage_number"] = require("entity.damage_number.damage_number"),
+	--[hash("enemy")] = require("entity.enemy.enemy"),
+	["level1"] = require("entity.levels.level1"),
+
+	["game_gui"] = require("entity.game_gui.entity_game_gui"),
 }
 
 

@@ -12,23 +12,29 @@ function M.register_fragments()
 
 	fragments.no_sync_game_object = evolved.builder():name("no_sync_game_object"):tag():spawn()
 
-	fragments.root_url = evolved.builder():name("root_url"):require(fragments.position, fragments.quat):on_set(function(entity, fragment, component)
-		if evolved.has(entity, fragments.physics) or evolved.has(entity, fragments.no_sync_game_object) then
-			return
-		end
+	fragments.root_url = evolved.builder()
+		:name("root_url")
+		:require(fragments.position, fragments.quat)
+		:on_set(function(entity, fragment, component)
+			if evolved.has(entity, fragments.physics) or evolved.has(entity, fragments.no_sync_game_object) then
+				return
+			end
 
-		local position = evolved.get(entity, fragments.position)
-		local quat = evolved.get(entity, fragments.quat)
-		go_setter:add(component, position, quat)
-	end):on_remove(function(entity, fragment, component)
-		if evolved.has(entity, fragments.physics) then
-			return
-		end
+			local position = evolved.get(entity, fragments.position)
+			local quat = evolved.get(entity, fragments.quat)
+			go_setter:add(component, position, quat)
 
-		-- Since this go_setter is faster than other options, will use the position as vector3 field only
-		go_setter:remove(component)
-		go.delete(component)
-	end):spawn()
+			end)
+		:on_remove(function(entity, fragment, component)
+			if evolved.has(entity, fragments.physics) then
+				return
+			end
+
+			-- Since this go_setter is faster than other options, will use the position as vector3 field only
+			go_setter:remove(component)
+			go.delete(component)
+		end)
+		:spawn()
 end
 
 

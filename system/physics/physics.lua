@@ -3,7 +3,6 @@ local fragments = require("fragments")
 
 local M = {}
 
-
 function M.register_fragments()
 	---@class fragments
 	---@field physics evolved.id
@@ -33,6 +32,7 @@ function M.create_system()
 		:name("physics.sync_body")
 		:group(group)
 		:include(fragments.body_url, fragments.position)
+		:exclude(fragments.no_sync_game_object)
 		:execute(M.sync_body)
 		:spawn()
 

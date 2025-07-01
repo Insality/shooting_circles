@@ -1,11 +1,11 @@
 name: "game"
 instances {
   id: "levels"
-  prototype: "/entities/levels/levels.go"
+  prototype: "/entity/levels/levels.go"
 }
 instances {
   id: "entities"
-  prototype: "/entities/entities.go"
+  prototype: "/entity/entities.go"
 }
 scale_along_z: 0
 embedded_instances {

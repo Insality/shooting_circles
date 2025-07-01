@@ -1,106 +1,106 @@
 platforms:
   armv7-ios:
     context:
-      excludeLibs: [record, vpx, liveupdate, gamesys_model, physics, box2d_defold, script_box2d_defold]
+      excludeLibs: [record, vpx, liveupdate, gamesys_model, gamesys_rig, rig, physics, box2d_defold, script_box2d_defold]
       excludeSymbols: [ScriptModelExt]
       symbols: []
-      libs: [record_null, liveupdate_null, physics_2d, box2d, script_box2d, gamesys_model_null]
+      libs: [record_null, liveupdate_null, gamesys_rig_null, gamesys_model_null, rig_null, physics_2d, box2d, script_box2d]
       frameworks: []
       linkFlags: []
   arm64-ios:
     context:
-      excludeLibs: [record, vpx, liveupdate, gamesys_model, physics, box2d_defold, script_box2d_defold]
+      excludeLibs: [record, vpx, liveupdate, gamesys_model, gamesys_rig, rig, physics, box2d_defold, script_box2d_defold]
       excludeSymbols: [ScriptModelExt]
       symbols: []
-      libs: [record_null, liveupdate_null, physics_2d, box2d, script_box2d, gamesys_model_null]
+      libs: [record_null, liveupdate_null, gamesys_rig_null, gamesys_model_null, rig_null, physics_2d, box2d, script_box2d]
       frameworks: []
       linkFlags: []
   x86_64-ios:
     context:
-      excludeLibs: [record, vpx, liveupdate, gamesys_model, physics, box2d_defold, script_box2d_defold]
+      excludeLibs: [record, vpx, liveupdate, gamesys_model, gamesys_rig, rig, physics, box2d_defold, script_box2d_defold]
       excludeSymbols: [ScriptModelExt]
       symbols: []
-      libs: [record_null, liveupdate_null, physics_2d, box2d, script_box2d, gamesys_model_null]
+      libs: [record_null, liveupdate_null, gamesys_rig_null, gamesys_model_null, rig_null, physics_2d, box2d, script_box2d]
       frameworks: []
       linkFlags: []
   armv7-android:
     context:
-      excludeLibs: [record, vpx, liveupdate, gamesys_model, physics, box2d_defold, script_box2d_defold]
+      excludeLibs: [record, vpx, liveupdate, gamesys_model, gamesys_rig, rig, physics, box2d_defold, script_box2d_defold]
       excludeJars: []
       excludeSymbols: [ScriptModelExt]
       symbols: []
-      libs: [record_null, liveupdate_null, physics_2d, box2d, script_box2d, gamesys_model_null]
+      libs: [record_null, liveupdate_null, gamesys_rig_null, gamesys_model_null, rig_null, physics_2d, box2d, script_box2d]
       linkFlags: []
       jetifier: true
   arm64-android:
     context:
-      excludeLibs: [record, vpx, liveupdate, gamesys_model, physics, box2d_defold, script_box2d_defold]
+      excludeLibs: [record, vpx, liveupdate, gamesys_model, gamesys_rig, rig, physics, box2d_defold, script_box2d_defold]
       excludeJars: []
       excludeSymbols: [ScriptModelExt]
       symbols: []
-      libs: [record_null, liveupdate_null, physics_2d, box2d, script_box2d, gamesys_model_null]
+      libs: [record_null, liveupdate_null, gamesys_rig_null, gamesys_model_null, rig_null, physics_2d, box2d, script_box2d]
       linkFlags: []
       jetifier: true
   arm64-osx:
     context:
-      excludeLibs: [record, vpx, liveupdate, gamesys_model, physics, box2d_defold, script_box2d_defold]
-      excludeSymbols: [ScriptModelExt]
-      symbols: []
-      libs: [record_null, liveupdate_null, physics_2d, box2d, script_box2d, gamesys_model_null]
-      frameworks: []
+      excludeLibs: [record, vpx, liveupdate, gamesys_model, gamesys_rig, rig, graphics_vulkan, platform_vulkan, MoltenVK, physics, box2d_defold, script_box2d_defold]
+      excludeSymbols: [ScriptModelExt, GraphicsAdapterVulkan]
+      symbols: [GraphicsAdapterOpenGL]
+      libs: [record_null, liveupdate_null, gamesys_rig_null, gamesys_model_null, rig_null, graphics, platform, physics_2d, box2d, script_box2d]
+      frameworks: [OpenGL]
       linkFlags: []
   x86_64-osx:
     context:
-      excludeLibs: [record, vpx, liveupdate, gamesys_model, physics, box2d_defold, script_box2d_defold]
-      excludeSymbols: [ScriptModelExt]
-      symbols: []
-      libs: [record_null, liveupdate_null, physics_2d, box2d, script_box2d, gamesys_model_null]
-      frameworks: []
+      excludeLibs: [record, vpx, liveupdate, gamesys_model, gamesys_rig, rig, graphics_vulkan, platform_vulkan, MoltenVK, physics, box2d_defold, script_box2d_defold]
+      excludeSymbols: [ScriptModelExt, GraphicsAdapterVulkan]
+      symbols: [GraphicsAdapterOpenGL]
+      libs: [record_null, liveupdate_null, gamesys_rig_null, gamesys_model_null, rig_null, graphics, platform, physics_2d, box2d, script_box2d]
+      frameworks: [OpenGL]
       linkFlags: []
   x86_64-linux:
     context:
-      excludeLibs: [record, vpx, liveupdate, gamesys_model, physics, box2d_defold, script_box2d_defold]
+      excludeLibs: [record, vpx, liveupdate, gamesys_model, gamesys_rig, rig, physics, box2d_defold, script_box2d_defold]
       excludeSymbols: [ScriptModelExt]
       symbols: []
-      libs: [record_null, liveupdate_null, physics_2d, box2d, script_box2d, gamesys_model_null]
+      libs: [record_null, liveupdate_null, gamesys_rig_null, gamesys_model_null, rig_null, physics_2d, box2d, script_box2d]
       linkFlags: []
   arm64-linux:
     context:
-      excludeLibs: [record, vpx, liveupdate, gamesys_model, physics, box2d_defold, script_box2d_defold]
+      excludeLibs: [record, vpx, liveupdate, gamesys_model, gamesys_rig, rig, physics, box2d_defold, script_box2d_defold]
       excludeSymbols: [ScriptModelExt]
-      libs: [record_null, liveupdate_null, physics_2d, box2d, script_box2d, gamesys_model_null]
+      libs: [record_null, liveupdate_null, gamesys_rig_null, gamesys_model_null, rig_null, physics_2d, box2d, script_box2d]
   x86-win32:
     context:
-      excludeLibs: [librecord, vpx, libliveupdate, libgamesys_model, libphysics, libbox2d_defold, libscript_box2d_defold]
+      excludeLibs: [librecord, vpx, libliveupdate, libgamesys_model, libgamesys_rig, librig, libphysics, libbox2d_defold, libscript_box2d_defold]
       excludeSymbols: [ScriptModelExt]
       symbols: []
-      libs: [librecord_null.lib, libliveupdate_null.lib, libphysics_2d.lib, libbox2d.lib, libscript_box2d.lib, libgamesys_model_null.lib]
+      libs: [librecord_null.lib, libliveupdate_null.lib, libgamesys_rig_null.lib, libgamesys_model_null.lib, librig_null.lib, libphysics_2d.lib, libbox2d.lib, libscript_box2d.lib]
       linkFlags: []
   x86_64-win32:
     context:
-      excludeLibs: [librecord, vpx, libliveupdate, libgamesys_model, libphysics, libbox2d_defold, libscript_box2d_defold]
+      excludeLibs: [librecord, vpx, libliveupdate, libgamesys_model, libgamesys_rig, librig, libphysics, libbox2d_defold, libscript_box2d_defold]
       excludeSymbols: [ScriptModelExt]
       symbols: []
-      libs: [librecord_null.lib, libliveupdate_null.lib, libphysics_2d.lib, libbox2d.lib, libscript_box2d.lib, libgamesys_model_null.lib]
+      libs: [librecord_null.lib, libliveupdate_null.lib, libgamesys_rig_null.lib, libgamesys_model_null.lib, librig_null.lib, libphysics_2d.lib, libbox2d.lib, libscript_box2d.lib]
       linkFlags: []
   js-web:
     context:
-      excludeLibs: [record, vpx, liveupdate, gamesys_model, physics, box2d_defold, script_box2d_defold]
+      excludeLibs: [record, vpx, liveupdate, gamesys_model, gamesys_rig, rig, physics, box2d_defold, script_box2d_defold]
       excludeJsLibs: []
       excludeSymbols: [ScriptModelExt]
       symbols: []
-      libs: [record_null, liveupdate_null, physics_2d, box2d, script_box2d, gamesys_model_null]
+      libs: [record_null, liveupdate_null, gamesys_rig_null, gamesys_model_null, rig_null, physics_2d, box2d, script_box2d]
       linkFlags: []
   wasm-web:
     context:
-      excludeLibs: [record, vpx, liveupdate, gamesys_model, physics, box2d_defold, script_box2d_defold]
+      excludeLibs: [record, vpx, liveupdate, gamesys_model, gamesys_rig, rig, physics, box2d_defold, script_box2d_defold]
       excludeJsLibs: []
       excludeSymbols: [ScriptModelExt]
       symbols: []
-      libs: [record_null, liveupdate_null, physics_2d, box2d, script_box2d, gamesys_model_null]
+      libs: [record_null, liveupdate_null, gamesys_rig_null, gamesys_model_null, rig_null, physics_2d, box2d, script_box2d]
       linkFlags: []
   wasm_pthread-web:
     context:
-      excludeLibs: [record, vpx, liveupdate, gamesys_model, physics, box2d_defold, script_box2d_defold]
+      excludeLibs: [record, vpx, liveupdate, gamesys_model, gamesys_rig, rig, physics, box2d_defold, script_box2d_defold]
       excludeSymbols: [ScriptModelExt]
-      libs: [record_null, liveupdate_null, physics_2d, box2d, script_box2d, gamesys_model_null]
+      libs: [record_null, liveupdate_null, gamesys_rig_null, gamesys_model_null, rig_null, physics_2d, box2d, script_box2d]

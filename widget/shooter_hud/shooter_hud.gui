@@ -1,0 +1,146 @@
+script: "/druid/druid_widget.gui_script"
+fonts {
+  name: "text"
+  font: "/assets/fonts/text.font"
+}
+textures {
+  name: "druid"
+  texture: "/druid/druid.atlas"
+}
+nodes {
+  size {
+    x: 84.0
+    y: 900.0
+  }
+  type: TYPE_BOX
+  id: "root"
+  pivot: PIVOT_S
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  size {
+    x: 84.0
+    y: 500.0
+  }
+  color {
+    x: 0.38
+    y: 0.173
+    z: 0.173
+  }
+  type: TYPE_BOX
+  texture: "druid/rect_round2_width2"
+  id: "panel"
+  pivot: PIVOT_S
+  parent: "root"
+  inherit_alpha: true
+  slice9 {
+    x: 4.0
+    y: 4.0
+    z: 4.0
+    w: 4.0
+  }
+}
+nodes {
+  position {
+    y: 60.0
+  }
+  size {
+    x: 84.0
+    y: 440.0
+  }
+  color {
+    x: 0.38
+    y: 0.173
+    z: 0.173
+  }
+  type: TYPE_BOX
+  texture: "druid/ui_circle_32"
+  id: "patrons_reload"
+  pivot: PIVOT_S
+  parent: "panel"
+  inherit_alpha: true
+  slice9 {
+    x: 16.0
+    y: 16.0
+    z: 16.0
+    w: 16.0
+  }
+}
+nodes {
+  position {
+    y: 60.0
+  }
+  size {
+    x: 84.0
+    y: 440.0
+  }
+  type: TYPE_BOX
+  id: "patrons"
+  pivot: PIVOT_S
+  parent: "panel"
+  inherit_alpha: true
+  slice9 {
+    x: 8.0
+    y: 8.0
+    z: 8.0
+    w: 8.0
+  }
+  visible: false
+}
+nodes {
+  position {
+    y: 52.0
+  }
+  color {
+    x: 0.933
+    y: 0.435
+    z: 0.435
+  }
+  type: TYPE_BOX
+  texture: "druid/ui_circle_64"
+  id: "prefab_bullet"
+  parent: "patrons"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    y: 30.0
+  }
+  size {
+    x: 80.0
+    y: 50.0
+  }
+  type: TYPE_BOX
+  id: "group_text"
+  parent: "panel"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  scale {
+    x: 0.9
+    y: 0.9
+  }
+  size {
+    x: 90.0
+    y: 50.0
+  }
+  color {
+    x: 0.933
+    y: 0.435
+    z: 0.435
+  }
+  type: TYPE_TEXT
+  text: "9999"
+  font: "text"
+  id: "text_shoot_count"
+  parent: "group_text"
+  inherit_alpha: true
+  outline_alpha: 0.0
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

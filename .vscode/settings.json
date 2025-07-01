@@ -81,7 +81,8 @@
 		"clipboard",
 		"spine",
 		"init",
-		"go_position_setter"
+		"go_position_setter",
+		"chronos"
 	],
 
 	"Lua.workspace.ignoreDir": [

@@ -1,0 +1,80 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+The project written on Defold with Lua
+Project in ECS (Entity Component System) approach
+Using [evolved-ref.md](mdc:ai/evolved-ref.md) Evolved pure lua ECS library
+
+When write new system file, use this template
+
+```lua
+local evolved = require("evolved")
+local fragments = require("fragments")
+
+local M = {}
+
+
+function M.register_fragments()
+	---@class fragments
+	---@field new_fragment evolved.id
+
+	fragments.new_fragment = evolved.builder():name("new_fragment"):spawn()
+end
+
+
+function M.create_system()
+	return evolved.builder()
+		:name("new_system")
+		:set(fragments.system)
+		:include(fragments.new_fragment)
+		:execute(M.update)
+		:spawn()
+end
+
+---@param chunk evolved.chunk
+---@param entity_list evolved.id[]
+---@param entity_count number
+function M.update(chunk, entity_list, entity_count)
+	local factory_url, position, quat, scale_x = chunk:components(fragments.factory_url, fragments.position, fragments.quat, fragments.scale_x)
+
+	for index = 1, entity_count do
+		print("Position", position[index])
+		print("Quat", quat[index])
+		print("Scale", scale_x[index])
+		print("Factory URL", factory_url[index])
+	end
+end
+
+
+return M
+
+```
+
+
+When define a new entity use this template
+
+
+```lua
+local evolved = require("evolved")
+local fragments = require("fragments")
+local color = require("druid.color")
+
+return evolved.builder()
+	:prefab()
+	:name("player")
+	:set(fragments.transform)
+	:set(fragments.collectionfactory_url, "/entities#player")
+	:set(fragments.game_objects_scheme, { ["/root"] = true })
+	:set(fragments.color, { ["/root#sprite"] = color.get_color("#EE6F6F") })
+	:set(fragments.physics)
+	:set(fragments.velocity)
+	:set(fragments.physics_movement_controller)
+	:set(fragments.shooter_controller, { prefab = require("entity.bullet.bullet"), cooldown = 0.03 })
+	:spawn()
+```
+
+When writing Druid widgets in gui scripts and widgets lua modules, use [druid-ref.md](mdc:ai/druid-ref.md)
+When using Defold API, check [defold-ref.md](mdc:ai/defold-ref.md)

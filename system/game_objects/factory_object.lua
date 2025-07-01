@@ -23,7 +23,8 @@ function M.create_system()
 end
 
 local PROPERTIES = {
-	is_spawn_by_system = true
+	is_spawn_by_system = true,
+	parent_entity = nil
 }
 
 ---@param chunk evolved.chunk
@@ -33,12 +34,8 @@ function M.create_factory_object(chunk, entity_list, entity_count)
 	local factory_url, position, quat, scale_x = chunk:components(fragments.factory_url, fragments.position, fragments.quat, fragments.scale_x)
 
 	for index = 1, entity_count do
-		-- if sync_game_object_position is goes after this system, for some reason the exclude is not working
-		-- so we need to check if the entity has root_url and if it does, we need to remove it
-		-- How to do better?
-		-- Only if sync goes first
-		-- Oh seems the component.root_url is nil, so need to register them first somehow
 		if not evolved.has(entity_list[index], fragments.root_url) then
+			PROPERTIES.parent_entity = entity_list[index]
 			local object = factory.create(factory_url[index], position[index], quat[index], PROPERTIES, scale_x[index])
 			evolved.set(entity_list[index], fragments.root_url, object)
 		end

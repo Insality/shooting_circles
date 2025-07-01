@@ -75,6 +75,7 @@ function M.update(chunk, entity_list, entity_count)
 				[fragments.velocity_x] = velocity_x,
 				[fragments.velocity_y] = velocity_y,
 			})
+			controller.shoot_count = controller.shoot_count + 1
 
 			controller.current_cooldown = controller.cooldown
 		end

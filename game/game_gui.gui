@@ -1,8 +1,8 @@
 script: "/game/game_gui.gui_script"
 nodes {
   position {
-    x: 1803.0
-    y: 849.0
+    x: 1600.0
+    y: 996.0
   }
   type: TYPE_TEMPLATE
   id: "memory_panel"
@@ -101,7 +101,7 @@ nodes {
 }
 nodes {
   position {
-    x: 1803.0
+    x: 1804.0
     y: 996.0
   }
   type: TYPE_TEMPLATE
@@ -195,8 +195,8 @@ nodes {
 }
 nodes {
   position {
-    x: 212.0
-    y: 1021.0
+    x: 1702.0
+    y: 923.0
   }
   type: TYPE_TEMPLATE
   id: "properties_panel"

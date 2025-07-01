@@ -1,7 +1,7 @@
 local evolved = require("evolved")
 local fragments = require("fragments")
 local panthera = require("panthera.panthera")
-local damage_number = require("entities.damage_number.damage_number")
+local damage_number = require("entity.damage_number.damage_number")
 
 local M = {}
 

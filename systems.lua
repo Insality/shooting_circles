@@ -4,6 +4,7 @@ local M = {}
 ---Call on loader step of the game
 function M.register_fragments()
 	require("system.transform.transform").register_fragments()
+	require("system.game_objects.parent_entity").register_fragments()
 	require("system.game_objects.factory_object").register_fragments()
 	require("system.game_objects.collectionfactory_object").register_fragments()
 	require("system.game_objects.sync_game_object_position").register_fragments()
@@ -17,10 +18,12 @@ function M.register_fragments()
 	require("system.lifetime.lifetime").register_fragments()
 	require("system.health.health").register_fragments()
 	require("system.play_particlefx.play_particlefx").register_fragments()
-	require("system.shooter_controller.component_shooter_controller").register_fragments()
+	require("system.shooter_controller.fragment_shooter_controller").register_fragments()
+	require("system.druid_widget.druid_widget").register_fragments()
 
-	require("entities.damage_number.system_damage_number").register_fragments()
-	require("entities.enemy.enemy_visual").register_fragments()
+	require("entity.damage_number.system_damage_number").register_fragments()
+	require("entity.enemy.enemy_visual").register_fragments()
+	require("entity.game_gui.system_game_gui").register_fragments()
 
 	--require("system.velocity").register_fragments()
 	--require("system.velocity_angle").register_fragments()
@@ -45,10 +48,14 @@ function M.get_systems()
 		require("system.lifetime.lifetime").create_system(),
 		require("system.play_particlefx.play_particlefx").create_system(),
 
-		require("entities.damage_number.system_damage_number").create_system(),
-		require("entities.enemy.enemy_visual").create_system(),
+		require("entity.damage_number.system_damage_number").create_system(),
+		require("entity.enemy.enemy_visual").create_system(),
 
 		require("system.game_objects.sync_game_object_position").create_system(),
+
+		require("system.druid_widget.druid_widget").create_system(),
+
+		require("entity.game_gui.system_game_gui").create_system(),
 		--require("system.velocity").create_system(),
 		--require("system.velocity_angle").create_system(),
 		--require("system.movement_controller").create_system(),

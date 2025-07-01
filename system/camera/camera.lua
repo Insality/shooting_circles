@@ -120,8 +120,8 @@ end
 function M.update_camera_zoom(root_url, size_x, size_y, scale_x, scale_y, animate_time, easing)
 	local camera_url = msg.url(nil, root_url, "camera")
 	local _, _, width, height = defos.get_view_size()
-	local camera_size_x = size_x * scale_x
-	local camera_size_y = size_y * scale_y
+	local camera_size_x = size_x * 2
+	local camera_size_y = size_y * 2
 
 	local camera_scale_x = width / camera_size_x
 	local camera_scale_y = height / camera_size_y
@@ -190,6 +190,8 @@ local function get_camera_url()
 			return url
 		end
 	end
+
+	return nil
 end
 
 
@@ -200,6 +202,10 @@ end
 function M.screen_to_world(screen_x, screen_y)
 	local width, height = window.get_size()
 	local camera_url = get_camera_url()
+	if not camera_url then
+		return screen_x, screen_y
+	end
+
 	local projection = go.get(camera_url, "projection")
 	local view = go.get(camera_url, "view")
 
@@ -215,6 +221,10 @@ end
 function M.world_to_screen(world_x, world_y)
 	local width, height = window.get_size()
 	local camera_url = get_camera_url()
+	if not camera_url then
+		return world_x, world_y
+	end
+
 	local projection = go.get(camera_url, "projection")
 	local view = go.get(camera_url, "view")
 

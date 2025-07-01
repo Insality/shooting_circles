@@ -1,11 +1,10 @@
 local log = require("log.log")
+
 local evolved = require("evolved")
 local fragments = require("fragments")
 local events = require("event.events")
 local entities = require("entities")
 local systems = require("systems")
-
-local logger = log.get_logger("game")
 
 ---@class scene.game
 ---@field systems evolved.id[]
@@ -13,12 +12,23 @@ local logger = log.get_logger("game")
 
 ---@param self scene.game
 function init(self)
-	logger:info("Game Init")
+	log:info("Game Init")
 
 	self.systems = systems.get_systems()
 	self.systems_fixed = systems.get_systems_fixed()
+
+	evolved.clone(entities["level1"])
+	evolved.clone(entities["level1"])
+	evolved.clone(entities["level1"])
+	evolved.clone(entities["level1"])
+	evolved.clone(entities["level1"])
+	evolved.clone(entities["level1"])
+	evolved.clone(entities["level1"])
+	evolved.clone(entities["level1"])
+	evolved.clone(entities["level1"])
 	evolved.clone(entities["level1"])
 
+	evolved.clone(entities["game_gui"])
 	msg.post(".", "acquire_input_focus")
 end
 
