@@ -11,10 +11,13 @@ function M:init()
 	self.text_shoot_count = self.druid:new_text("text_shoot_count")
 	self.layout = self.druid:new_layout("patrons", "vertical")
 	self.animation = panthera.create_gui(animation, self:get_template(), self:get_nodes())
+	self.animation_hit = panthera.clone_state(self.animation)
 
 	gui.set_enabled(self.prefab_bullet, false)
 
 	self.patron_nodes = {}
+
+	panthera.play(self.animation, "appear")
 end
 
 
@@ -41,7 +44,7 @@ end
 
 
 function M:play_hit()
-	panthera.play(self.animation, "hit")
+	panthera.play(self.animation_hit, "hit")
 end
 
 

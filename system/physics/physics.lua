@@ -63,13 +63,15 @@ function M.sync_body(chunk, entity_list, entity_count)
 
 	for index = 1, entity_count do
 		local pos = position[index]
-		local body_position = b2d.body.get_position(body_url[index])
-		pos.x = body_position.x
-		pos.y = body_position.y
+		if b2d.body.is_awake(body_url[index]) then
+			local body_position = b2d.body.get_position(body_url[index])
+			pos.x = body_position.x
+			pos.y = body_position.y
 
-		local velocity = b2d.body.get_linear_velocity(body_url[index])
-		velocity_x[index] = velocity.x
-		velocity_y[index] = velocity.y
+			local velocity = b2d.body.get_linear_velocity(body_url[index])
+			velocity_x[index] = velocity.x
+			velocity_y[index] = velocity.y
+		end
 	end
 end
 

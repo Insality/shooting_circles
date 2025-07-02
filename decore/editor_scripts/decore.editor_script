@@ -1,0 +1,63 @@
+local M = {}
+
+local function ends_with(str, ending)
+	return ending == "" or str:sub(-#ending) == ending
+end
+
+function M.get_commands()
+	return {
+		{
+			label = "[Decore] Set as Bootstrap Collection",
+			locations = { "Assets" },
+			query = { selection = { type = "resource", cardinality = "one" } },
+			active = function(opts)
+				local path = editor.get(opts.selection, "path")
+				return ends_with(path, ".collection")
+			end,
+			run = function(opts)
+				local file = opts.selection
+				print("Run script for", editor.get(file, "path"))
+				local collection_path = editor.get(file, "path")
+
+				local project_path = editor.external_file_attributes(".").path
+				local game_project_path = project_path .. editor.get("/game.project", "path")
+
+				local lines = {}
+				do -- Open game.project file for reading
+					local game_project_file = io.open(game_project_path, "r")
+					if not game_project_file then
+						print("Error: Could not open game.project file")
+						return
+					end
+
+					-- Read all lines and modify the main_collection line
+					for line in game_project_file:lines() do
+						if line:match("main_collection%s*=.*") then
+							line = "main_collection = " .. collection_path .. "c"
+						end
+						table.insert(lines, line)
+					end
+					game_project_file:close()
+				end
+
+				do -- Write the modified content back to the file
+					local game_project_file = io.open(game_project_path, "w")
+					if not game_project_file then
+						print("Error: Could not open game.project file for writing")
+						return
+					end
+
+					for _, line in ipairs(lines) do
+						game_project_file:write(line .. "\n")
+					end
+					game_project_file:close()
+
+					print("Successfully updated main_collection to " .. collection_path .. "c")
+				end
+			end
+		}
+	}
+end
+
+
+return M

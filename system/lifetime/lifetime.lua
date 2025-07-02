@@ -39,7 +39,8 @@ function M.update(chunk, entity_list, entity_count)
 		if lifetime[index] <= 0 then
 			local prefab = spawn_on_destroy[index]
 			if prefab then
-				evolved.clone(prefab, { [fragments.position] = position[index] })
+				local instance = evolved.clone(prefab)
+				evolved.set(instance, fragments.position, position[index])
 			end
 
 			evolved.destroy(entity_list[index])

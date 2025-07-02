@@ -43,18 +43,18 @@ platforms:
       jetifier: true
   arm64-osx:
     context:
-      excludeLibs: [record, vpx, liveupdate, gamesys_model, gamesys_rig, rig, graphics_vulkan, platform_vulkan, MoltenVK, physics, box2d_defold, script_box2d_defold]
+      excludeLibs: [record, vpx, liveupdate, gamesys_model, gamesys_rig, rig, physics, box2d_defold, script_box2d_defold, graphics_vulkan, platform_vulkan, MoltenVK]
       excludeSymbols: [ScriptModelExt, GraphicsAdapterVulkan]
       symbols: [GraphicsAdapterOpenGL]
-      libs: [record_null, liveupdate_null, gamesys_rig_null, gamesys_model_null, rig_null, graphics, platform, physics_2d, box2d, script_box2d]
+      libs: [record_null, liveupdate_null, gamesys_rig_null, gamesys_model_null, rig_null, physics_2d, box2d, script_box2d, graphics, platform]
       frameworks: [OpenGL]
       linkFlags: []
   x86_64-osx:
     context:
-      excludeLibs: [record, vpx, liveupdate, gamesys_model, gamesys_rig, rig, graphics_vulkan, platform_vulkan, MoltenVK, physics, box2d_defold, script_box2d_defold]
+      excludeLibs: [record, vpx, liveupdate, gamesys_model, gamesys_rig, rig, physics, box2d_defold, script_box2d_defold, graphics_vulkan, platform_vulkan, MoltenVK]
       excludeSymbols: [ScriptModelExt, GraphicsAdapterVulkan]
       symbols: [GraphicsAdapterOpenGL]
-      libs: [record_null, liveupdate_null, gamesys_rig_null, gamesys_model_null, rig_null, graphics, platform, physics_2d, box2d, script_box2d]
+      libs: [record_null, liveupdate_null, gamesys_rig_null, gamesys_model_null, rig_null, physics_2d, box2d, script_box2d, graphics, platform]
       frameworks: [OpenGL]
       linkFlags: []
   x86_64-linux:
