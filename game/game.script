@@ -2,7 +2,6 @@ local log = require("log.log")
 
 local evolved = require("evolved")
 local fragments = require("fragments")
-local events = require("event.events")
 local entities = require("entities")
 local systems = require("systems")
 
@@ -17,18 +16,9 @@ function init(self)
 	self.systems = systems.get_systems()
 	self.systems_fixed = systems.get_systems_fixed()
 
-	evolved.clone(entities["level1"])
-	--evolved.clone(entities["level1"])
-	--evolved.clone(entities["level1"])
-	--evolved.clone(entities["level1"])
-	--evolved.clone(entities["level1"])
-	--evolved.clone(entities["level1"])
-	--evolved.clone(entities["level1"])
-	--evolved.clone(entities["level1"])
-	--evolved.clone(entities["level1"])
-	--evolved.clone(entities["level1"])
-
 	evolved.clone(entities["game_gui"])
+	evolved.clone(entities["level1"])
+
 	msg.post(".", "acquire_input_focus")
 end
 

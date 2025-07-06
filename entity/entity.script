@@ -20,9 +20,9 @@ local SCALE_Y = hash("scale.y")
 local SCALE_Z = hash("scale.z")
 
 function init(self)
+	queues.push("decore.game_objects", msg.url(nil, nil, "entity"))
 	msg.post(".", MSG_INIT_ENTITY)
 	msg.post(".", MSG_ADD_ENTITY)
-	queues.push("decore.game_objects", msg.url(nil, nil, "entity"))
 end
 
 

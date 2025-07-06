@@ -6,10 +6,13 @@ local M = {}
 function M.register_fragments()
 	---@class fragments
 	---@field color_dirty evolved.id
-	---@field color evolved.id
+	---@field color evolved.id table<sprite_url, vmath.vector4>
 
 	fragments.color_dirty = evolved.builder():name("color_dirty"):tag():spawn()
-	fragments.color = evolved.builder():name("color"):require(fragments.color_dirty):default(vmath.vector4(1, 1, 1, 1)):spawn()
+	fragments.color = evolved.builder()
+		:name("color")
+		:require(fragments.color_dirty)
+		:spawn()
 end
 
 

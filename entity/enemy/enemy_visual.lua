@@ -65,6 +65,4 @@ function M.update(chunk, entity_list, entity_count)
 end
 
 
-
-
 return M

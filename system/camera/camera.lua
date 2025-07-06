@@ -120,8 +120,8 @@ end
 function M.update_camera_zoom(root_url, size_x, size_y, scale_x, scale_y, animate_time, easing)
 	local camera_url = msg.url(nil, root_url, "camera")
 	local _, _, width, height = defos.get_view_size()
-	local camera_size_x = size_x * 2
-	local camera_size_y = size_y * 2
+	local camera_size_x = size_x * scale_x
+	local camera_size_y = size_y * scale_y
 
 	local camera_scale_x = width / camera_size_x
 	local camera_scale_y = height / camera_size_y

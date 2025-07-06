@@ -14,10 +14,6 @@ embedded_instances {
   "  id: \"game\"\n"
   "  component: \"/game/game.script\"\n"
   "}\n"
-  "components {\n"
-  "  id: \"game_gui\"\n"
-  "  component: \"/game/game_gui.gui\"\n"
-  "}\n"
   ""
 }
 embedded_instances {
