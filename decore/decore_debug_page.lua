@@ -87,16 +87,23 @@ function M.render_systems_page(druid, properties_panel)
 		local system = systems[i]
 		local system_id = evolved.get(system, evolved.NAME) or "Unknown"
 		local system_query = get_system_query(system)
+		local fragments_list = evolved.get(system, evolved.INCLUDES) or {}
+		local fragments_names = {}
+		for _, fragment in ipairs(fragments_list) do
+			table.insert(fragments_names, evolved.get(fragment, evolved.NAME) or fragment)
+		end
 
 		properties_panel:add_widget(function()
 			local widget = druid:new_widget(property_system, "property_system", "root")
 			widget:set_system(system)
 			local prev_count = nil
-			widget:set_text_function(function()
+			widget:set_text(system_id)
+			widget:set_text_fragments(table.concat(fragments_names, " "))
+			widget:set_count_function(function()
 				local entity_count = get_entity_count_from_system(system_query)
 				if prev_count ~= entity_count then
 					prev_count = entity_count
-					return string.format("%s | %s", entity_count or 0, system_id)
+					return entity_count
 				end
 				return nil
 			end)

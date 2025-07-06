@@ -20,6 +20,11 @@ function M:init()
 	self.text_name = self.druid:new_text("text_name")
 		:set_text_adjust("scale_then_trim", 0.3)
 
+	self.text_fragments = self.druid:new_text("text_fragments")
+		:set_text_adjust("scale_then_trim", 0.2)
+
+	self.text_entity_count = self.druid:new_text("text_entity_count")
+
 	self.text_memory_update = self.druid:new_text("text_memory_update")
 	self.text_memory_update_fps = self.druid:new_text("text_memory_update_fps")
 
@@ -34,6 +39,7 @@ function M:init()
 
 	self.container = self.druid:new_container(self.root)
 	self.container:add_container("text_name")
+	self.container:add_container("text_fragments")
 	self.container:add_container("E_Anchor")
 end
 
@@ -54,11 +60,17 @@ function M:set_text(text)
 end
 
 
-function M:set_text_function(text_function)
-	self.text_function = text_function
-	local text = text_function()
+function M:set_text_fragments(fragments)
+	self.text_fragments:set_text(fragments)
+	return self
+end
+
+
+function M:set_count_function(count_function)
+	self.count_function = count_function
+	local text = count_function()
 	if text then
-		self.text_name:set_text(text)
+		self.text_entity_count:set_text(text)
 	end
 	return self
 end
@@ -112,10 +124,10 @@ function M:update(dt)
 		return
 	end
 
-	if self.text_function then
-		local text = self.text_function()
-		if text then
-			self.text_name:set_text(text)
+	if self.count_function then
+		local count = self.count_function()
+		if count then
+			self.text_entity_count:set_text(count)
 		end
 	end
 

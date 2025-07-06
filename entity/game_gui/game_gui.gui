@@ -906,6 +906,12 @@ nodes {
   template_node_child: true
 }
 nodes {
+  type: TYPE_TEXT
+  id: "property_system/text_fragments"
+  parent: "property_system/root"
+  template_node_child: true
+}
+nodes {
   type: TYPE_BOX
   id: "property_system/E_Anchor"
   parent: "property_system/root"
@@ -969,6 +975,18 @@ nodes {
   type: TYPE_TEXT
   id: "property_system/text_memory_update_fps"
   parent: "property_system/group_fps"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "property_system/text_entity_count"
+  parent: "property_system/E_Anchor"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "property_system/text_other_count"
+  parent: "property_system/E_Anchor"
   template_node_child: true
 }
 material: "/builtins/materials/gui.material"
