@@ -1,5 +1,6 @@
 ---@class entities
 local M = {
+	["camera"] = require("entity.camera.camera"),
 	["player"] = require("entity.player.player"),
 	["enemy"] = require("entity.enemy.enemy"),
 	["bullet"] = require("entity.bullet.bullet"),

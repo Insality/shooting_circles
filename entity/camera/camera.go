@@ -2,6 +2,11 @@ components {
   id: "entity"
   component: "/entity/entity.script"
   properties {
+    id: "entity_id"
+    value: "camera"
+    type: PROPERTY_TYPE_HASH
+  }
+  properties {
     id: "size_x"
     value: "1920.0"
     type: PROPERTY_TYPE_NUMBER
@@ -11,10 +16,6 @@ components {
     value: "1080.0"
     type: PROPERTY_TYPE_NUMBER
   }
-}
-components {
-  id: "component_camera"
-  component: "/entity/camera/component_camera.script"
 }
 embedded_components {
   id: "camera"

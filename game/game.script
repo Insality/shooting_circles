@@ -1,9 +1,11 @@
 local log = require("log.log")
 
 local evolved = require("evolved")
-local fragments = require("fragments")
-local entities = require("entities")
 local systems = require("systems")
+local entities = require("entities")
+local fragments = require("fragments")
+
+_G.ENTITIES = entities
 
 ---@class scene.game
 ---@field systems evolved.id[]

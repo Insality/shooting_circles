@@ -2,24 +2,24 @@ local events = require("event.events")
 local druid = require("druid.druid")
 
 function init(self)
-    self.druid = druid.new(self)
+	self.druid = druid.new(self)
 	druid.register_druid_as_widget(self.druid)
 end
 
 function final(self)
-    self.druid:final()
+	self.druid:final()
 end
 
 function update(self, dt)
-    self.druid:update(dt)
+	self.druid:update(dt)
 end
 
 function on_message(self, message_id, message, sender)
-    self.druid:on_message(message_id, message, sender)
+	self.druid:on_message(message_id, message, sender)
 end
 
 function on_input(self, action_id, action)
-    local is_consumed = self.druid:on_input(action_id, action)
+	local is_consumed = self.druid:on_input(action_id, action)
 	if not is_consumed then
 		events.trigger("input_event", action_id, action)
 	end

@@ -9,7 +9,11 @@ function M.register_fragments()
 	---@field lifetime evolved.id
 	---@field spawn_on_destroy evolved.id
 
-	fragments.lifetime = evolved.builder():name("lifetime"):default(1):spawn()
+	fragments.lifetime = evolved.builder()
+		:name("lifetime")
+		:default(1)
+		:spawn()
+
 	fragments.spawn_on_destroy = evolved.builder()
 		:name("spawn_on_destroy")
 		:spawn()

@@ -989,5 +989,66 @@ nodes {
   parent: "property_system/E_Anchor"
   template_node_child: true
 }
+nodes {
+  position {
+    x: 210.0
+    y: -34.0
+  }
+  type: TYPE_TEMPLATE
+  id: "property_entity_prefab"
+  parent: "E_Anchor"
+  inherit_alpha: true
+  template: "/decore/properties_panel/property_entity_prefab.gui"
+  enabled: false
+}
+nodes {
+  type: TYPE_BOX
+  id: "property_entity_prefab/root"
+  parent: "property_entity_prefab"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "property_entity_prefab/text_name"
+  parent: "property_entity_prefab/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "property_entity_prefab/E_Anchor"
+  parent: "property_entity_prefab/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "property_entity_prefab/button"
+  parent: "property_entity_prefab/E_Anchor"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "property_entity_prefab/selected"
+  parent: "property_entity_prefab/button"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "property_entity_prefab/text_button"
+  parent: "property_entity_prefab/button"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "property_entity_prefab/drag"
+  parent: "property_entity_prefab/E_Anchor"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "property_entity_prefab/drag_icon"
+  parent: "property_entity_prefab/drag"
+  template_node_child: true
+}
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT
+max_nodes: 2048

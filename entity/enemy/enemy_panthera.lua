@@ -96,7 +96,7 @@ return {
             fps = 60,
             gizmo_steps = {
             },
-            gui_path = "entities/enemy/enemy.collection",
+            gui_path = "entity/enemy/enemy.collection",
             layers = {
             },
             settings = {

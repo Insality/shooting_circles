@@ -1,5 +1,7 @@
 local evolved = require("evolved")
 local fragments = require("fragments")
+local events = require("event.events")
+local camera = require("system.camera.camera")
 
 local M = {}
 
@@ -10,9 +12,14 @@ function M.register_fragments()
 	fragments.follow_cursor = evolved.builder():tag():name("follow_cursor"):spawn()
 end
 
-local is_dirty = false
 local last_cursor_pos_x = 0
 local last_cursor_pos_y = 0
+
+events.subscribe("input_event", function(action_id, action)
+	if action_id then return end
+	last_cursor_pos_x = action.screen_x
+	last_cursor_pos_y = action.screen_y
+end)
 
 
 function M.create_system()
@@ -29,15 +36,12 @@ end
 ---@param entity_list evolved.entity[]
 ---@param entity_count number
 function M.update(chunk, entity_list, entity_count)
-	if not is_dirty then
-		return
-	end
-
 	local position = chunk:components(fragments.position)
 	for index = 1, entity_count do
-		local pos = position[fragments.position]
-		pos.x = last_cursor_pos_x
-		pos.y = last_cursor_pos_y
+		local pos = position[index]
+		local world_x, world_y = camera.screen_to_world(last_cursor_pos_x, last_cursor_pos_y)
+		pos.x = world_x
+		pos.y = world_y
 	end
 end
 

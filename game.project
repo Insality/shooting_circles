@@ -23,7 +23,7 @@ dependencies#2 = https://github.com/Insality/panthera/archive/refs/tags/runtime.
 dependencies#3 = https://github.com/subsoap/defos/archive/refs/tags/v2.7.1.zip
 dependencies#4 = https://github.com/britzl/deftest/archive/refs/tags/2.8.0.zip
 dependencies#5 = https://github.com/Insality/druid/archive/refs/heads/develop.zip
-dependencies#6 = https://github.com/Insality/defold-log/archive/refs/tags/5.zip
+dependencies#6 = https://github.com/Insality/defold-log/archive/refs/heads/develop.zip
 
 [safearea]
 resize_game_view = 0

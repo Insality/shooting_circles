@@ -20,6 +20,8 @@ function M.register_fragments()
 	require("system.play_particlefx.play_particlefx").register_fragments()
 	require("system.shooter_controller.fragment_shooter_controller").register_fragments()
 	require("system.druid_widget.druid_widget").register_fragments()
+	require("system.movement_controller.movement_controller").register_fragments()
+	require("system.follow_cursor.follow_cursor").register_fragments()
 
 	require("entity.damage_number.system_damage_number").register_fragments()
 	require("entity.enemy.enemy_visual").register_fragments()
@@ -27,7 +29,6 @@ function M.register_fragments()
 
 	--require("system.velocity").register_fragments()
 	--require("system.velocity_angle").register_fragments()
-	--require("system.movement_controller").register_fragments()
 	--require("system.camera").register_fragments()
 end
 
@@ -47,6 +48,8 @@ function M.get_systems()
 		require("system.health.health").create_system(),
 		require("system.lifetime.lifetime").create_system(),
 		require("system.play_particlefx.play_particlefx").create_system(),
+		require("system.movement_controller.movement_controller").create_system(),
+		require("system.follow_cursor.follow_cursor").create_system(),
 
 		require("entity.damage_number.system_damage_number").create_system(),
 		require("entity.enemy.enemy_visual").create_system(),
@@ -58,7 +61,6 @@ function M.get_systems()
 		require("entity.game_gui.system_game_gui").create_system(),
 		--require("system.velocity").create_system(),
 		--require("system.velocity_angle").create_system(),
-		--require("system.movement_controller").create_system(),
 		--require("system.camera").create_system(),
 	}
 end

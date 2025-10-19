@@ -54,6 +54,14 @@ function M:init()
 			decore_debug_page.render_systems_page(self.druid, self.properties_panel)
 		end)
 	end)
+
+	self.properties_panel:add_button(function(button)
+		button:set_text_property("Prefabs")
+		button:set_text_button(string.format("Inspect"))
+		button.button.on_click:subscribe(function()
+			decore_debug_page.render_prefabs_page(self.druid, self.properties_panel, _G.ENTITIES)
+		end)
+	end)
 end
 
 

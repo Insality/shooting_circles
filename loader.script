@@ -22,6 +22,8 @@ end
 
 ---@param self scene.loader
 local function init_logger(self)
+	log.clear_log_files()
+
 	event.set_logger(log.get_logger("event"))
 	panthera.set_logger(log.get_logger("panthera"))
 end
@@ -40,6 +42,7 @@ function init(self)
 	init_random(self)
 	init_logger(self)
 	init_window_listener(self)
+	event.set_mode("xpcall")
 	evolved.debug_mode(true)
 	systems.register_fragments()
 
@@ -61,4 +64,9 @@ function on_message(self, message_id, message, sender)
 		msg.post(sender, "enable")
 		msg.post(sender, "acquire_input_focus")
 	end
+end
+
+
+function final(self)
+	log.close_log_files()
 end

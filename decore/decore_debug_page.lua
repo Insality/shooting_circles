@@ -1,4 +1,5 @@
 local property_system = require("decore.properties_panel.property_system")
+local property_entity_prefab = require("decore.properties_panel.property_entity_prefab")
 local evolved = require("evolved")
 local fragments = require("fragments")
 
@@ -15,6 +16,14 @@ function M.render_properties_panel(druid, properties_panel)
 		button:set_color("#E6DF9F")
 		button.button.on_click:subscribe(function()
 			M.render_systems_page(druid, properties_panel)
+		end)
+	end)
+
+	properties_panel:add_button(function(button)
+		button:set_text_property("Prefabs")
+		button:set_text_button(string.format("Inspect"))
+		button.button.on_click:subscribe(function()
+			M.render_prefabs_page(druid, properties_panel)
 		end)
 	end)
 end
@@ -203,6 +212,68 @@ function M.render_entity(entity, properties_panel)
 				text:set_text_value(evolved.get(entity, fragment))
 			end)
 		end
+	end
+end
+
+
+---@param druid druid.instance
+---@param properties_panel druid.widget.properties_panel
+---@param entities table<string, evolved.id>
+function M.render_prefabs_page(druid, properties_panel, entities)
+	properties_panel:next_scene()
+	properties_panel:set_header("Prefabs")
+
+	local prefabs = {}
+	for entity_id, entity in pairs(entities) do
+		if type(entity_id) == "string" then
+			table.insert(prefabs, entity_id)
+		end
+	end
+	table.sort(prefabs)
+	pprint(prefabs)
+
+	for index = 1, #prefabs do
+		local prefab = entities[prefabs[index]]
+
+		properties_panel:add_widget(function()
+			local draggable_entity = nil
+			local widget = druid:new_widget(property_entity_prefab, "property_entity_prefab", "root")
+			widget:set_text_property(evolved.get(prefab, evolved.NAME) or "Prefab")
+			widget.on_drag_start:subscribe(function()
+				local entity_builder = evolved.builder()
+					:set(fragments.transform)
+					:set(fragments.follow_cursor)
+
+				local factory_url = evolved.get(prefab, fragments.factory_url)
+				local collectionfactory_url = evolved.get(prefab, fragments.collectionfactory_url)
+
+				if factory_url then
+					entity_builder:set(fragments.factory_url, factory_url)
+				end
+				if collectionfactory_url then
+					entity_builder:set(fragments.collectionfactory_url, collectionfactory_url)
+				end
+
+				draggable_entity = entity_builder:spawn()
+
+				print(evolved.get(prefab, fragments.factory_url))
+				print(evolved.get(prefab, fragments.collectionfactory_url))
+
+				print("drag start")
+			end)
+			widget.on_drag_end:subscribe(function()
+				if draggable_entity then
+					--evolved.destroy(draggable_entity)
+					local spawned = evolved.clone(prefab)
+					evolved.set(spawned, fragments.position, evolved.get(draggable_entity, fragments.position))
+
+					evolved.set(draggable_entity, fragments.lifetime, 0)
+					draggable_entity = nil
+				end
+				print("drag end")
+			end)
+			return widget
+		end)
 	end
 end
 
