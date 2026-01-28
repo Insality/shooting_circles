@@ -1,8 +1,4 @@
 name: "game"
-instances {
-  id: "debug"
-  prototype: "/system/debug/debug.go"
-}
 collection_instances {
   id: "spawner"
   collection: "/game/spawner/spawner.collection"

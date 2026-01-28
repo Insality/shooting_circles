@@ -18,7 +18,6 @@ local function load_entities(self)
 	decore.register_entities("game", {
 		["player"] = require("game.objects.player.entity_player"),
 		["camera"] = require("game.objects.entity_camera"),
-		["debug"] = require("system.debug.entity_debug"),
 		["game_gui"] = require("gui.game.entity_game_gui"),
 		["damage_number"] = require("system.damage_number.entity_damage_number"),
 		["explosion"] = require("game.objects.explosion.entity_explosion"),
@@ -30,7 +29,7 @@ end
 
 ---@param self scene.game
 function init(self)
-	self.world = decore.world(
+	self.world = decore.new_world(
 		require("system.camera.system_camera").create_system(),
 		require("system.window_event.system_window_event").create_system(),
 		require("system.transform.system_transform").create_system(),
@@ -42,10 +41,9 @@ function init(self)
 		require("system.physics.system_physics").create_system(),
 		require("system.remove_with_delay.system_remove_with_delay").create_system(),
 		require("system.collision.system_collision").create_system(),
-		require("system.on_spawn_command.system_on_spawn_command").create_system(),
+		--require("system.on_spawn_command.system_on_spawn_command").create_system(),
 		require("system.health.system_health").create_system(),
 
-		require("system.debug.debug").create_system(),
 		require("system.color.system_color").create_system(),
 		require("system.on_key_released.on_key_released").create_system(),
 		require("system.acceleration.system_acceleration").create_system(),
@@ -88,7 +86,7 @@ end
 ---@param action action
 ---@return boolean
 function on_input(self, action_id, action)
-	return decore.on_input(self.world, action_id, action)
+	return self.world.command_input:on_input(action_id, action)
 end
 
 

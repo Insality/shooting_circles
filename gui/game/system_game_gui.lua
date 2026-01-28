@@ -77,7 +77,7 @@ function M:spawn_world(world_url)
 		self.prev_level = nil
 	end
 
-	local entity_load_scene = decore.create_entity(nil, nil, {
+	local entity_load_scene = decore.create({
 		transform = {},
 		game_object = {
 			factory_url = world_url
