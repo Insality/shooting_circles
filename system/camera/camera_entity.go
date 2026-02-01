@@ -17,10 +17,6 @@ components {
     type: PROPERTY_TYPE_NUMBER
   }
 }
-components {
-  id: "component_camera"
-  component: "/system/camera/component_camera.script"
-}
 embedded_components {
   id: "camera"
   type: "camera"

@@ -72,7 +72,7 @@ function M:process(entity, dt)
 
 	local transform = entity.transform
 	if position_x ~= transform.position_x or position_y ~= transform.position_y then
-		self.world.command_transform:set_position(entity, position_x, position_y, transform.position_z)
+		self.world.transform:set_position(entity, position_x, position_y, transform.position_z)
 	end
 
 	local velocity = b2d.body.get_linear_velocity(body)

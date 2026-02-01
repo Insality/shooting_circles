@@ -30,21 +30,21 @@ end
 ---@param self scene.game
 function init(self)
 	self.world = decore.new_world(
-		require("system.camera.system_camera").create_system(),
+		require("system.camera.camera_system").create(),
 		require("system.window_event.system_window_event").create_system(),
-		require("system.transform.system_transform").create_system(),
+		require("system.transform.transform_system").create(),
 		-- why here order matter
 		require("system.play_fx_on_remove.play_fx_on_remove").create_system(),
-		require("system.game_object.system_game_object").create_system(),
-		require("system.input.system_input").create_system(),
-		require("system.panthera.system_panthera").create_system(),
+		require("system.game_object.game_object_system").create(),
+		require("system.input.input_system").create(),
+		require("system.panthera.panthera_system").create(),
 		require("system.physics.system_physics").create_system(),
 		require("system.remove_with_delay.system_remove_with_delay").create_system(),
 		require("system.collision.system_collision").create_system(),
 		--require("system.on_spawn_command.system_on_spawn_command").create_system(),
-		require("system.health.system_health").create_system(),
+		require("system.health.health_system").create(),
 
-		require("system.color.system_color").create_system(),
+		require("system.color.color_system").create_system(),
 		require("system.on_key_released.on_key_released").create_system(),
 		require("system.acceleration.system_acceleration").create_system(),
 		require("system.movement_controller.movement_controller").create_system(),
@@ -70,7 +70,8 @@ end
 
 ---@param self scene.game
 function final(self)
-	decore.final(self.world)
+	self.world:clearEntities()
+	self.world:clearSystems()
 end
 
 
@@ -86,7 +87,7 @@ end
 ---@param action action
 ---@return boolean
 function on_input(self, action_id, action)
-	return self.world.command_input:on_input(action_id, action)
+	return self.world.input:on_input(action_id, action)
 end
 
 

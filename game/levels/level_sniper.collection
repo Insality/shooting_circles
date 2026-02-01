@@ -1,7 +1,7 @@
 name: "level_sniper"
 instances {
   id: "entity_camera"
-  prototype: "/system/camera/entity_camera.go"
+  prototype: "/system/camera/camera_entity.go"
   position {
     z: 10.0
   }
