@@ -55,7 +55,7 @@ function init(self)
 		require("system.damage_number.damage_number").create_system(),
 		require("system.health_circle_visual.health_circle_visual").create_system(),
 		require("system.target_tracker.target_tracker").create_system(),
-		require("system.target_tracker.on_target_count_command.on_target_count_command").create_system(),
+		--require("system.target_tracker.on_target_count_command.on_target_count_command").create_system(),
 		require("gui.game.system_game_gui").create_system()
 	)
 

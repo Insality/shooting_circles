@@ -13,7 +13,7 @@ local command_game_gui = require("gui.game.command_game_gui")
 ---@class component.game_gui
 ---@field component gui.game
 ---@field current_level_index number
-decore.register_component("game_gui")
+decore.register_component("game_gui", {})
 
 ---@class system.game_gui: system
 ---@field entities entity.game_gui[]
