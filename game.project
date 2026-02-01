@@ -18,14 +18,15 @@ input_method = HiddenInputField
 title = Shooting Circles
 developer = Insality
 publisher = Insality
-dependencies#0 = https://github.com/Insality/defold-tweener/archive/refs/tags/4.zip
-dependencies#1 = https://github.com/Insality/defold-log/archive/refs/heads/develop.zip
-dependencies#2 = https://github.com/Insality/defold-event/archive/refs/tags/11.zip
-dependencies#3 = https://github.com/subsoap/defos/archive/refs/tags/v2.7.1.zip
+dependencies#0 = https://github.com/Insality/defold-tweener/archive/refs/tags/6.zip
+dependencies#1 = https://github.com/Insality/defold-log/archive/refs/tags/6.zip
+dependencies#2 = https://github.com/Insality/defold-event/archive/refs/tags/13.zip
+dependencies#3 = https://github.com/subsoap/defos/archive/refs/tags/v2.8.4.zip
 dependencies#4 = https://github.com/britzl/deftest/archive/refs/tags/2.8.0.zip
-dependencies#5 = https://github.com/Insality/decore/archive/refs/heads/develop.zip
-dependencies#6 = https://github.com/Insality/druid/archive/refs/tags/1.1.1.zip
-dependencies#7 = https://github.com/Insality/panthera/archive/refs/heads/develop.zip
+dependencies#5 = https://github.com/Insality/decore/archive/refs/tags/3.zip
+dependencies#6 = https://github.com/Insality/druid/archive/refs/tags/1.1.6.zip
+dependencies#7 = https://github.com/Insality/panthera/archive/refs/tags/runtime.6.zip
+dependencies#8 = https://github.com/Insality/asset-store/archive/refs/heads/main.zip
 
 [safearea]
 resize_game_view = 0
@@ -128,3 +129,4 @@ app_manifest = /game/misc/game.appmanifest
 
 [decore]
 is_prehash = 1
+
