@@ -1,5 +1,5 @@
 ---@class world
----@field command_health system.health.command
+---@field health system.health.command
 
 ---@class system.health.command
 ---@field health system.health

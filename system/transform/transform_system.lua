@@ -1,13 +1,10 @@
 local decore = require("decore.decore")
-local command_transform = require("system.transform.command_transform")
+local transform_command = require("system.transform.transform_command")
 
 ---@class entity
----@field transform component.transform|nil
+---@field transform component.transform?
 
 ---@class entity.transform: entity
----@field transform component.transform
-
----@class entity.command_transform: entity
 ---@field transform component.transform
 
 ---@class component.transform
@@ -21,6 +18,7 @@ local command_transform = require("system.transform.command_transform")
 ---@field scale_y number The scale y
 ---@field scale_z number The scale z
 ---@field rotation number The rotation
+---@field is_animated boolean Whether the transform is animated
 decore.register_component("transform", {
 	position_x = 0,
 	position_y = 0,
@@ -42,6 +40,8 @@ decore.register_component("transform", {
 ---@field is_size_changed boolean|nil If true, the size was changed.
 ---@field animate_time number|nil If true, the time it took to animate the transform.
 ---@field easing userdata|nil The easing function used for the animation.
+---@field delay number|nil The delay before the animation starts.
+---@field callback function|nil The callback function to call when the animation is complete.
 
 ---@class system.transform: system
 ---@field entities entity.transform[]
@@ -49,13 +49,13 @@ local M = {}
 
 
 ---@return system.transform
-function M.create_system()
+function M.create()
 	return decore.system(M, "transform", "transform")
 end
 
 
 function M:onAddToWorld()
-	self.world.command_transform = command_transform.create(self)
+	self.world.transform = transform_command.create(self)
 	self.world.event_bus:set_merge_policy("transform_event", self.event_merge_policy)
 end
 
@@ -142,31 +142,42 @@ end
 ---@param entity entity.transform
 ---@param animate_time number|nil
 ---@param easing userdata|nil
-function M:set_animate_time(entity, animate_time, easing)
+---@param delay number|nil
+---@param callback function|nil
+function M:set_animate_time(entity, animate_time, easing, delay, callback)
 	self.world.event_bus:trigger("transform_event", {
 		entity = entity,
 		animate_time = animate_time,
 		easing = easing,
+		delay = delay,
+		callback = callback
 	})
 end
 
 
+---@param new_event system.transform.event
 ---@param events system.transform.event[]
----@param event system.transform.event
+---@param entity_map table<entity|table, system.transform.event[]>
 ---@return boolean is_merged
-function M.event_merge_policy(event, events)
-	local entity = event.entity
-	for i = 1, #events do
-		local e = events[i]
-		if e.entity == entity then
-			e.is_position_changed = event.is_position_changed or e.is_position_changed
-			e.is_scale_changed = event.is_scale_changed or e.is_scale_changed
-			e.is_rotation_changed = event.is_rotation_changed or e.is_rotation_changed
-			e.is_size_changed = event.is_size_changed or e.is_size_changed
-			e.animate_time = event.animate_time or e.animate_time
-			e.easing = event.easing or e.easing
-			return true
-		end
+function M.event_merge_policy(new_event, events, entity_map)
+	local entity = new_event.entity
+	if not entity then
+		return false
+	end
+
+	local existing_events = entity_map[entity]
+	if existing_events and #existing_events > 0 then
+		-- Merge with the last event for this entity
+		local existing_event = existing_events[#existing_events]
+		existing_event.is_position_changed = new_event.is_position_changed or existing_event.is_position_changed
+		existing_event.is_scale_changed = new_event.is_scale_changed or existing_event.is_scale_changed
+		existing_event.is_rotation_changed = new_event.is_rotation_changed or existing_event.is_rotation_changed
+		existing_event.is_size_changed = new_event.is_size_changed or existing_event.is_size_changed
+		existing_event.animate_time = new_event.animate_time or existing_event.animate_time
+		existing_event.easing = new_event.easing or existing_event.easing
+		existing_event.delay = new_event.delay or existing_event.delay
+		existing_event.callback = new_event.callback or existing_event.callback
+		return true
 	end
 
 	return false

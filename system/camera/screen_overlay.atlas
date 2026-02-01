@@ -1,0 +1,3 @@
+images {
+  image: "/system/camera/empty.png"
+}

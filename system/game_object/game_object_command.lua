@@ -1,5 +1,5 @@
 ---@class world
----@field command_game_object system.game_object.command
+---@field game_object system.game_object.command
 
 ---@class system.game_object.command
 ---@field game_object system.game_object
@@ -34,5 +34,13 @@ function M:set_enabled(entity, enabled)
 		end
 	end
 end
+
+
+---@param id string|hash
+---@return entity|nil
+function M:get_entity(id)
+	return self.game_object.root_to_entity[id]
+end
+
 
 return M

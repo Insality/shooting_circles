@@ -25,14 +25,14 @@ embedded_components {
   id: "camera"
   type: "camera"
   data: "aspect_ratio: 1.0\n"
-  "fov: 0.7854\n"
+  "fov: 1.0\n"
   "near_z: 0.01\n"
   "far_z: 1000.0\n"
   "orthographic_projection: 1\n"
   ""
 }
 embedded_components {
-  id: "sprite"
+  id: "screen_overlay"
   type: "sprite"
   data: "default_animation: \"empty\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
@@ -43,7 +43,7 @@ embedded_components {
   "size_mode: SIZE_MODE_MANUAL\n"
   "textures {\n"
   "  sampler: \"texture_sampler\"\n"
-  "  texture: \"/assets/atlases/game_shooting_circle.atlas\"\n"
+  "  texture: \"/system/camera/screen_overlay.atlas\"\n"
   "}\n"
   ""
   position {

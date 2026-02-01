@@ -1,5 +1,5 @@
 local decore = require("decore.decore")
-local command_health = require("system.health.command_health")
+local command_health = require("system.health.health_command")
 
 ---@class entity
 ---@field health component.health|nil
@@ -25,13 +25,13 @@ local M = {}
 
 
 ---@return system.health
-function M.create_system()
+function M.create()
 	return decore.system(M, "health", "health")
 end
 
 
 function M:onAddToWorld()
-	self.world.command_health = command_health.create(self)
+	self.world.health = command_health.create(self)
 	self.world.event_bus:set_merge_policy("health_event", M.event_merge_policy)
 end
 
@@ -39,7 +39,7 @@ end
 ---@param entity entity.health
 function M:onAdd(entity)
 	local health = entity.health
-	health.current_health = health.max_health
+	health.current_health = health.current_health or health.max_health
 end
 
 

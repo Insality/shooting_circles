@@ -1,6 +1,7 @@
+local tweener = require("tweener.tweener")
 local decore = require("decore.decore")
 
-local command_camera = require("system.camera.command_camera")
+local command_camera = require("system.camera.camera_command")
 
 local TEMP_VECTOR = vmath.vector3()
 local HASH_SIZE_X = hash("size.x")
@@ -22,12 +23,15 @@ local HASH_SPRITE = hash("sprite")
 ---@field position_y number|nil
 ---@field size_x number|nil
 ---@field size_y number|nil
----@field offset_x number|nil
----@field offset_y number|nil
----@field offset_size number|nil
+---@field offset_position_x number|nil
+---@field offset_position_y number|nil
+---@field offset_zoom number|nil
 ---@field zoom number|nil
 decore.register_component("camera", {
 	camera_url = "",
+	offset_position_x = 0,
+	offset_position_y = 0,
+	offset_zoom = 0,
 })
 
 ---@class system.camera.event
@@ -46,7 +50,7 @@ local M = {}
 M.DEFAULT_SIZE = math.min(sys.get_config_int("display.width"), sys.get_config_int("display.height"))
 
 ---@return system.camera
-function M.create_system()
+function M.create()
 	local system = decore.system(M, "camera", "camera")
 
 	system.interval = 0.03
@@ -62,41 +66,43 @@ end
 
 
 function M:onAddToWorld()
-	self.world.command_camera = command_camera.create(self)
+	self.world.camera = command_camera.create(self)
 end
 
 
 function M:postWrap()
-	self.world.event_bus:process("window_event", self.process_window_event, self)
+	self.world.event_bus:process("decore.window_event", self.process_window_event, self)
 	self.world.event_bus:process("transform_event", self.process_transform_event, self)
 end
 
 
----@param window_event system.window_event.event
-function M:process_window_event(window_event)
-	if not self.camera then
-		return
-	end
-
-	if window_event == window.WINDOW_EVENT_RESIZED then
-		self:update_camera_position(self.camera)
-		self:update_camera_zoom(self.camera)
+---@param window_events constant[]
+function M:process_window_event(window_events)
+	for i = 1, #window_events do
+		local window_event = window_events[i]
+		if self.camera and window_event == window.WINDOW_EVENT_RESIZED then
+			self:update_camera_position(self.camera)
+			self:update_camera_zoom(self.camera)
+		end
 	end
 end
 
 
----@param event system.transform.event
-function M:process_transform_event(event)
-	if event.entity ~= self.camera then
-		return
-	end
-
-	if event.is_position_changed then
-		self:update_camera_position(self.camera, event.animate_time, event.easing)
-	end
-
-	if event.is_scale_changed or event.is_size_changed then
-		self:update_camera_zoom(self.camera, event.animate_time, event.easing)
+---@param events system.transform.event[]
+function M:process_transform_event(events)
+	for i = 1, #events do
+		local event = events[i]
+		local entity = event.entity
+		if entity == self.camera and event.is_position_changed then
+			local animate_time = event.animate_time
+			local easing = event.easing
+			self:update_camera_position(self.camera, animate_time, easing)
+		end
+		if entity == self.camera and event.is_scale_changed then
+			local animate_time = event.animate_time
+			local easing = event.easing
+			self:update_camera_zoom(self.camera, animate_time, easing)
+		end
 	end
 end
 
@@ -155,12 +161,13 @@ end
 ---@param animate_time number|nil
 ---@param easing userdata|nil
 function M:move_to(position_x, position_y, animate_time, easing)
-	local entity = self.camera
-	if entity then
-		self.world.command_transform:set_position(entity, position_x, position_y)
-		if animate_time then
-			self.world.command_transform:set_animate_time(entity, animate_time, easing)
-		end
+	if not self.camera then
+		return
+	end
+
+	self.world.transform:set_position(self.camera, position_x, position_y)
+	if animate_time then
+		self.world.transform:set_animate_time(self.camera, animate_time, easing)
 	end
 end
 
@@ -170,13 +177,22 @@ end
 ---@param size_y number
 ---@param animate_time number|nil
 ---@param easing userdata|nil
-function M:size_to(size_x, size_y, animate_time, easing)
-	local entity = self.camera
-	if entity then
-		self.world.command_transform:set_size(entity, size_x, size_y)
-		if animate_time then
-			self.world.command_transform:set_animate_time(entity, animate_time, easing)
-		end
+function M:scale_to(size_x, size_y, animate_time, easing)
+	if not self.camera then
+		return
+	end
+
+	print("scale_to", size_x, size_y, animate_time, easing)
+	if animate_time and animate_time > 0 then
+		easing = easing or go.EASING_OUTSINE
+		local from_x = self.camera.transform.scale_x
+		local from_y = self.camera.transform.scale_y
+		tweener.tween(easing, from_x, size_x, animate_time, function(to_x, is_end, time_elapsed, time_total)
+			local to_y = tweener.ease(easing, from_y, size_y, time_total, time_elapsed)
+			self.world.transform:set_scale(self.camera, to_x, to_y)
+		end)
+	else
+		self.world.transform:set_scale(self.camera, size_x, size_y)
 	end
 end
 
@@ -186,8 +202,8 @@ end
 ---@param animate_time number|nil
 ---@param easing userdata|nil
 function M:update_camera_position(entity, animate_time, easing)
-	TEMP_VECTOR.x = entity.transform.position_x
-	TEMP_VECTOR.y = entity.transform.position_y
+	TEMP_VECTOR.x = entity.transform.position_x + entity.camera.offset_position_x
+	TEMP_VECTOR.y = entity.transform.position_y + entity.camera.offset_position_y
 	TEMP_VECTOR.z = entity.transform.position_z
 
 	-- Apply borders
@@ -230,7 +246,7 @@ function M:update_camera_zoom(entity, animate_time, easing)
 	local scale_x = width / camera_size_x
 	local scale_y = height / camera_size_y
 	self.zoom = math.min(scale_x, scale_y)
-	--self.zoom = math.max(scale_x, scale_y)
+	self.zoom = self.zoom + entity.camera.offset_zoom
 	entity.camera.zoom = self.zoom
 
 	if animate_time then
@@ -241,6 +257,32 @@ function M:update_camera_zoom(entity, animate_time, easing)
 	end
 end
 
+
+function M:get_zoom()
+	return go.get(self.camera.camera.camera_url, "orthographic_zoom")
+end
+
+
+---@param entity entity.camera
+---@param position_x number
+---@param position_y number
+---@param time number
+---@param easing userdata|nil
+function M:set_offset_position(entity, position_x, position_y, time, easing)
+	entity.camera.offset_position_x = position_x
+	entity.camera.offset_position_y = position_y
+	self:update_camera_position(entity, time, easing)
+end
+
+
+---@param entity entity.camera
+---@param zoom number
+---@param time number
+---@param easing userdata|nil
+function M:set_offset_zoom(entity, zoom, time, easing)
+	entity.camera.offset_zoom = zoom
+	self:update_camera_zoom(entity, time, easing)
+end
 
 ---Convert from screen to world coordinates
 ---@param sx number Screen x
@@ -297,8 +339,8 @@ function M:screen_to_world(screen_x, screen_y)
 	end
 
 	local width, height = window.get_size()
-	local projection = go.get(self.camera.camera.camera_url, "projection")
-	local view = go.get(self.camera.camera.camera_url, "view")
+	local projection = go.get(self.camera.camera.camera_url, "projection") --[[@as matrix4]]
+	local view = go.get(self.camera.camera.camera_url, "view") --[[@as vector4]]
 
 	local x, y, _ = screen_to_world(screen_x, screen_y, 0, width, height, projection, view)
 	return x, y
@@ -315,8 +357,8 @@ function M:world_to_screen(world_x, world_y)
 	end
 
 	local width, height = window.get_size()
-	local projection = go.get(self.camera.camera.camera_url, "projection")
-	local view = go.get(self.camera.camera.camera_url, "view")
+	local projection = go.get(self.camera.camera.camera_url, "projection") --[[@as matrix4]]
+	local view = go.get(self.camera.camera.camera_url, "view") --[[@as vector4]]
 
 	local x, y, _ = world_to_screen(world_x, world_y, 0, width, height, projection, view)
 	return x, y

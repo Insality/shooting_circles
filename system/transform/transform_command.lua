@@ -1,8 +1,8 @@
 ---@class world
----@field command_transform system.transform.command
+---@field transform system.transform.command
 
 ---@class system.transform.command
----@field transform system.transform
+---@field private transform system.transform
 local M = {}
 
 
@@ -72,10 +72,12 @@ end
 ---@param entity entity
 ---@param animate_time number|nil
 ---@param easing userdata|nil
-function M:set_animate_time(entity, animate_time, easing)
+---@param delay number|nil
+---@param callback function|nil
+function M:set_animate_time(entity, animate_time, easing, delay, callback)
 	assert(entity.transform, "Entity does not have a transform component.")
 	---@cast entity entity.transform
-	self.transform:set_animate_time(entity, animate_time, easing)
+	self.transform:set_animate_time(entity, animate_time, easing, delay, callback)
 end
 
 
@@ -105,6 +107,15 @@ function M:is_overlap(entity1, entity2)
 	return left1 < right2 and right1 > left2 and top1 > bottom2 and bottom1 < top2
 end
 
+
+---@param entity entity
+---@param x number
+---@param y number
+---@return boolean
+function M:pick_entity(entity, x, y)
+	local left, top, right, bottom = self:get_transform_borders(entity)
+	return x > left and x < right and y > bottom and y < top
+end
 
 
 return M
