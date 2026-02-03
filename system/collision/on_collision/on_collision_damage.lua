@@ -15,7 +15,7 @@ local M = {}
 
 ---@static
 ---@return system.on_collision_damage
-function M.create_system()
+function M.create()
 	return decore.system(M, "on_collision_damage", "on_collision_damage")
 end
 

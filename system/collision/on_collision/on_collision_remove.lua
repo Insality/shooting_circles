@@ -13,7 +13,7 @@ local M = {}
 
 ---@static
 ---@return system.on_collision_remove
-function M.create_system()
+function M.create()
 	return decore.system(M, "on_collision_remove", { "physics" })
 end
 

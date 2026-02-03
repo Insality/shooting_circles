@@ -15,7 +15,7 @@ local M = {}
 
 
 ---@return system.remove_with_delay
-function M.create_system()
+function M.create()
 	return decore.processing_system(M, "remove_with_delay", "remove_with_delay")
 end
 

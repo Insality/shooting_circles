@@ -34,7 +34,7 @@ local ACTION_ID_TO_SIDE = {
 
 ---@static
 ---@return system.movement_controller
-function M.create_system()
+function M.create()
 	local system = decore.processing_system(M, "movement_controller", { "movement_controller", "transform" })
 	system.input_keys = {}
 	return system

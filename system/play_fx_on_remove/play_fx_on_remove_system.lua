@@ -20,12 +20,8 @@ local M = {}
 
 ---@static
 ---@return system.play_fx_on_remove
-function M.create_system()
-	local system = setmetatable(decore.ecs.system(), { __index = M })
-	system.filter = decore.ecs.requireAll("play_fx_on_remove", "game_object")
-	system.id = "play_fx_on_remove"
-
-	return system
+function M.create()
+	return decore.system(M, "play_fx_on_remove", { "play_fx_on_remove", "game_object" })
 end
 
 

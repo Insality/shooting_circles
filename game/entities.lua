@@ -11,7 +11,7 @@ function M.get_entities()
 		["player"] = require("game.objects.player.entity_player"),
 		["camera"] = require("game.objects.entity_camera"),
 		["game_gui"] = require("gui.game.entity_game_gui"),
-		["damage_number"] = require("system.damage_number.entity_damage_number"),
+		["damage_number"] = require("system.damage_number.damage_number_entity"),
 		["explosion"] = require("game.objects.explosion.entity_explosion"),
 	}
 

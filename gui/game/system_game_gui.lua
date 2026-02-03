@@ -29,7 +29,7 @@ local LEVELS = {
 
 
 ---@return system.game_gui
-function M.create_system()
+function M.create()
 	local system = decore.system(M, "game_gui", { "game_gui", "game_object" })
 
 	system.prev_level = nil

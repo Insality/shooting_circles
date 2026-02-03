@@ -10,7 +10,7 @@ local M = {}
 
 
 ---@return system.window_event
-function M.create_system()
+function M.create()
 	return decore.system(M, "window_event")
 end
 

@@ -27,7 +27,7 @@ local M = {}
 
 
 ---@return system.color
-function M.create_system()
+function M.create()
 	return decore.system(M, "color", { "color", "game_object" })
 end
 

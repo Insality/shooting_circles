@@ -1,5 +1,5 @@
 local decore = require("decore.decore")
-local command_physics = require("system.physics.command_physics")
+local command_physics = require("system.physics.physics_command")
 
 ---@class entity
 ---@field physics component.physics|nil
@@ -27,7 +27,7 @@ local M = {}
 local TEMP_VECTOR = vmath.vector3()
 
 ---@return system.physics
-function M.create_system()
+function M.create()
 	return decore.processing_system(M, "physics", { "physics", "game_object", "transform" })
 end
 

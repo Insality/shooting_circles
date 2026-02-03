@@ -47,7 +47,7 @@ local HASH_SPACE = hash("key_space")
 
 ---@static
 ---@return system.shooter_controller
-function M.create_system()
+function M.create()
 	local self = decore.system(M, "shooter_controller", { "shooter_controller" })
 	self.play_sound_timer = 0
 

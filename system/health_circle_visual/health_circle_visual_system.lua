@@ -19,7 +19,7 @@ local M = {}
 
 ---@static
 ---@return system.health_circle_visual
-function M.create_system()
+function M.create()
 	return decore.system(M, "health_circle_visual", { "health_circle_visual", "health" })
 end
 

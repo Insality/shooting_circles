@@ -20,7 +20,7 @@ local M = {}
 
 ---@static
 ---@return system.on_target_count_command
-function M.create_system()
+function M.create()
 	return decore.system(M, "on_target_count_command", "on_target_count_command")
 end
 

@@ -22,12 +22,8 @@ local MAX_AMOUNT = 250
 
 ---@static
 ---@return system.damage_number
-function M.create_system()
-	local system = setmetatable(decore.ecs.system(), { __index = M })
-	system.filter = decore.ecs.requireAll("damage_number", "game_object")
-	system.id = "damage_number"
-
-	return system
+function M.create()
+	return decore.system(M, "damage_number", { "damage_number", "game_object" })
 end
 
 

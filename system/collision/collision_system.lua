@@ -28,7 +28,7 @@ local M = {}
 
 
 ---@return system.collision
-function M.create_system()
+function M.create()
 	local system = decore.system(M, "collision", { "collision", "game_object" })
 
 	system.root_to_entity = {}

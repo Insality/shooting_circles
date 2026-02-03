@@ -16,7 +16,7 @@ local M = {}
 
 ---@static
 ---@return system.target_tracker
-function M.create_system()
+function M.create()
 	return decore.system(M, "target_tracker", "target")
 end
 

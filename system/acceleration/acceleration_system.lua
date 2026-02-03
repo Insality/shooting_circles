@@ -20,7 +20,7 @@ local M = {}
 
 
 ---@return system.acceleration
-function M.create_system()
+function M.create()
 	return decore.processing_system(M, "acceleration", { "acceleration", "physics", "game_object" })
 end
 
