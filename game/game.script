@@ -1,65 +1,19 @@
 local log = require("log.log")
 local decore = require("decore.decore")
+local systems = require("game.systems")
+local entities = require("game.entities")
 
 local logger = log.get_logger("scene.game")
 
 
 ---@class scene.game
 ---@field world world
----@
-
----@param self scene.game
-local function load_entities(self)
-	-- We can describe entities right here or separate them into different files for your convenience
-	-- Here we use a separate file for each entity type for bullets
-	decore.register_entities("bullets", require("system.shooter_controller.entities_bullets"))
-
-	-- We can describe entities right here
-	decore.register_entities("game", {
-		["player"] = require("game.objects.player.entity_player"),
-		["camera"] = require("game.objects.entity_camera"),
-		["game_gui"] = require("gui.game.entity_game_gui"),
-		["damage_number"] = require("system.damage_number.entity_damage_number"),
-		["explosion"] = require("game.objects.explosion.entity_explosion"),
-	})
-
-	decore.register_entities("game", require("game.objects.enemy.entities_enemies"))
-end
-
 
 ---@param self scene.game
 function init(self)
-	self.world = decore.new_world(
-		require("system.camera.camera_system").create(),
-		require("system.window_event.system_window_event").create_system(),
-		require("system.transform.transform_system").create(),
-		-- why here order matter
-		require("system.play_fx_on_remove.play_fx_on_remove").create_system(),
-		require("system.game_object.game_object_system").create(),
-		require("system.input.input_system").create(),
-		require("system.panthera.panthera_system").create(),
-		require("system.physics.system_physics").create_system(),
-		require("system.remove_with_delay.system_remove_with_delay").create_system(),
-		require("system.collision.system_collision").create_system(),
-		--require("system.on_spawn_command.system_on_spawn_command").create_system(),
-		require("system.health.health_system").create(),
+	self.world = decore.new_world(systems.get_systems())
+	decore.register_entities("game", entities.get_entities())
 
-		require("system.color.color_system").create_system(),
-		require("system.on_key_released.on_key_released").create_system(),
-		require("system.acceleration.system_acceleration").create_system(),
-		require("system.movement_controller.movement_controller").create_system(),
-		require("system.shooter_controller.shooter_controller").create_system(),
-		require("system.collision.on_collision.on_collision_remove").create_system(),
-		require("system.collision.on_collision.on_collision_explosion").create_system(),
-		require("system.collision.on_collision.on_collision_damage").create_system(),
-		require("system.damage_number.damage_number").create_system(),
-		require("system.health_circle_visual.health_circle_visual").create_system(),
-		require("system.target_tracker.target_tracker").create_system(),
-		--require("system.target_tracker.on_target_count_command.on_target_count_command").create_system(),
-		require("gui.game.system_game_gui").create_system()
-	)
-
-	load_entities(self)
 	decore.print_loaded_packs_debug_info()
 
 	timer.delay(1, true, function()

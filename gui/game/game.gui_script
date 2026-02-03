@@ -11,7 +11,7 @@ local game = require("gui.game.game")
 ---@param self script.game
 function init(self)
 	self.druid = druid.new(self)
-	self.game = self.druid:new(game)
+	self.game = self.druid:new_widget(game)
 	bindings.set_widget(self.game)
 end
 

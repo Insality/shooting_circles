@@ -48,13 +48,11 @@ local HASH_SPACE = hash("key_space")
 ---@static
 ---@return system.shooter_controller
 function M.create_system()
-	local system = setmetatable(decore.ecs.system(), { __index = M })
-	system.filter = decore.ecs.requireAll("shooter_controller")
-	system.play_sound_timer = 0
+	local self = decore.system(M, "shooter_controller", { "shooter_controller" })
+	self.play_sound_timer = 0
 
-	return system
+	return self
 end
-
 
 function M:postWrap()
 	self.world.event_bus:process("input_event", self.process_input_events, self)

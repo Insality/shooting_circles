@@ -5,7 +5,7 @@ local decore = require("decore.decore")
 
 ---@class entity.target: entity
 ---@field target boolean
-decore.register_component("target")
+decore.register_component("target", false)
 
 ---@class event.target_tracker_event: number
 

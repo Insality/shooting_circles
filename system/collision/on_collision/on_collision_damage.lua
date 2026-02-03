@@ -21,21 +21,23 @@ end
 
 
 function M:postWrap()
-	self.world.event_bus:process("collision_event", self.process_collision_event, self)
+	self.world.event_bus:process("collision_event", self.process_collision_events, self)
 end
 
 
----@param collision_event event.collision_event
-function M:process_collision_event(collision_event)
-	local entity = collision_event.entity
-	if not self.indices[entity] then
-		return
-	end
+---@param collision_events system.collision.event[]
+function M:process_collision_events(collision_events)
+	for _, collision_event in ipairs(collision_events) do
+		local entity = collision_event.entity
+		if not self.indices[entity] then
+			return
+		end
 
-	local damage = entity.on_collision_damage
-	local other = collision_event.other
-	if damage and other and other.health then
-		self.world.command_health:apply_damage(other, damage)
+		local damage = entity.on_collision_damage
+		local other = collision_event.other
+		if damage and other and other.health then
+			self.world.health:apply_damage(other, damage)
+		end
 	end
 end
 
