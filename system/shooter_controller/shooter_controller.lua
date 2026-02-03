@@ -57,20 +57,22 @@ end
 
 
 function M:postWrap()
-	self.world.event_bus:process("input_event", self.process_input_event, self)
+	self.world.event_bus:process("input_event", self.process_input_events, self)
 end
 
 
----@param input_event event.input_event
-function M:process_input_event(input_event)
-	for _, entity in ipairs(self.entities) do
-		self:apply_input_event(entity, input_event)
+---@param input_events system.input.event[]
+function M:process_input_events(input_events)
+	for _, input_event in ipairs(input_events) do
+		for _, entity in ipairs(self.entities) do
+			self:apply_input_event(entity, input_event)
+		end
 	end
 end
 
 
 ---@param entity entity.shooter_controller
----@param input_event event.input_event
+---@param input_event system.input.event
 function M:apply_input_event(entity, input_event)
 	local action_id = input_event.action_id
 	local action = input_event
@@ -115,7 +117,7 @@ function M:shoot_at(entity, screen_x, screen_y)
 
 	local vary = 0.3
 	for _ = 1, sc.bullets_per_shoot do
-		local bullet_entity = decore.create_entity(entity.shooter_controller.bullet_prefab_id)
+		local bullet_entity = decore.create_prefab(entity.shooter_controller.bullet_prefab_id)
 		if not bullet_entity then
 			logger:error("Failed to create bullet entity", entity.shooter_controller)
 			return
@@ -126,7 +128,7 @@ function M:shoot_at(entity, screen_x, screen_y)
 
 		local speed = entity.shooter_controller.bullet_speed
 		local spread_angle = entity.shooter_controller.spread_angle
-		local world_x, world_y = self.world.command_camera:screen_to_world(screen_x, screen_y)
+		local world_x, world_y = self.world.camera:screen_to_world(screen_x, screen_y)
 
 		local velocity_x = world_x - entity.transform.position_x
 		local velocity_y = world_y - entity.transform.position_y

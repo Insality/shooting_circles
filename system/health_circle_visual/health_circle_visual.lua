@@ -47,7 +47,7 @@ function M:process_health_events(health_events)
 
 			-- Spawn damage number particle
 			local et = entity.transform or {}
-			local damage_number_entity = decore.create_entity("damage_number")
+			local damage_number_entity = decore.create_prefab("damage_number")
 			damage_number_entity.transform.position_x = et.position_x
 			damage_number_entity.transform.position_y = et.position_y + et.size_y/2
 			damage_number_entity.transform.position_z = et.position_z
