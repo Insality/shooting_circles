@@ -156,23 +156,18 @@ function M:shoot_at(entity, screen_x, screen_y)
 end
 
 
----@param entity entity.shooter_controller
 ---@param dt number
-function M:process(entity, dt)
-	local shooter_controller = entity.shooter_controller
-	if shooter_controller.fire_rate_timer > 0 then
-		shooter_controller.fire_rate_timer = math.max(shooter_controller.fire_rate_timer - dt, 0)
-	end
-end
-
-
 function M:update(dt)
 	if self.play_sound_timer > 0 then
 		self.play_sound_timer = math.max(self.play_sound_timer - dt, 0)
 	end
 
-	for _, entity in ipairs(self.entities) do
-		self:process(entity, dt)
+	for index = 1, #self.entities do
+		local entity = self.entities[index]
+		local shooter_controller = entity.shooter_controller
+		if shooter_controller.fire_rate_timer > 0 then
+			shooter_controller.fire_rate_timer = math.max(shooter_controller.fire_rate_timer - dt, 0)
+		end
 	end
 end
 

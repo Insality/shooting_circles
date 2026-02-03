@@ -16,16 +16,18 @@ local M = {}
 
 ---@return system.remove_with_delay
 function M.create()
-	return decore.processing_system(M, "remove_with_delay", "remove_with_delay")
+	return decore.system(M, "remove_with_delay", "remove_with_delay")
 end
 
 
----@param entity entity.remove_with_delay
 ---@param dt number
-function M:process(entity, dt)
-	entity.remove_with_delay = entity.remove_with_delay - dt
-	if entity.remove_with_delay <= 0 then
-		self.world:removeEntity(entity)
+function M:update(dt)
+	for index = 1, #self.entities do
+		local entity = self.entities[index]
+		entity.remove_with_delay = entity.remove_with_delay - dt
+		if entity.remove_with_delay <= 0 then
+			self.world:removeEntity(entity)
+		end
 	end
 end
 

@@ -28,7 +28,7 @@ local TEMP_VECTOR = vmath.vector3()
 
 ---@return system.physics
 function M.create()
-	return decore.processing_system(M, "physics", { "physics", "game_object", "transform" })
+	return decore.system(M, "physics", { "physics", "game_object", "transform" })
 end
 
 
@@ -56,28 +56,28 @@ function M:onRemove(entity)
 end
 
 
----@param entity entity.physics
 ---@param dt number
-function M:process(entity, dt)
-	local body = entity.physics.box2d_body
-	local is_awake = b2d.body.is_awake(body)
-	if not is_awake then
-		return
+function M:update(dt)
+	for index = 1, #self.entities do
+		local entity = self.entities[index]
+		local body = entity.physics.box2d_body
+		local is_awake = b2d.body.is_awake(body)
+		if is_awake then
+			-- Is it faster?
+			local position = b2d.body.get_position(body)
+			local position_x = position.x
+			local position_y = position.y
+
+			local transform = entity.transform
+			if position_x ~= transform.position_x or position_y ~= transform.position_y then
+				self.world.transform:set_position(entity, position_x, position_y, transform.position_z)
+			end
+
+			local velocity = b2d.body.get_linear_velocity(body)
+			entity.physics.velocity_x = velocity.x
+			entity.physics.velocity_y = velocity.y
+		end
 	end
-
-	-- Is it faster?
-	local position = b2d.body.get_position(body)
-	local position_x = position.x
-	local position_y = position.y
-
-	local transform = entity.transform
-	if position_x ~= transform.position_x or position_y ~= transform.position_y then
-		self.world.transform:set_position(entity, position_x, position_y, transform.position_z)
-	end
-
-	local velocity = b2d.body.get_linear_velocity(body)
-	entity.physics.velocity_x = velocity.x
-	entity.physics.velocity_y = velocity.y
 end
 
 

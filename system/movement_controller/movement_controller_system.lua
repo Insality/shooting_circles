@@ -35,7 +35,7 @@ local ACTION_ID_TO_SIDE = {
 ---@static
 ---@return system.movement_controller
 function M.create()
-	local system = decore.processing_system(M, "movement_controller", { "movement_controller", "transform" })
+	local system = decore.system(M, "movement_controller", { "movement_controller", "transform" })
 	system.input_keys = {}
 	return system
 end
@@ -99,17 +99,21 @@ function M:apply_input_event(entity, input_event)
 end
 
 
-function M:process(entity, dt)
-	local movement_controller = entity.movement_controller
+---@param dt number
+function M:update(dt)
+	for index = 1, #self.entities do
+		local entity = self.entities[index]
+		local movement_controller = entity.movement_controller
 
-	local speed = movement_controller.speed
-	local movement_x = movement_controller.movement_x
-	local movement_y = movement_controller.movement_y
+		local speed = movement_controller.speed
+		local movement_x = movement_controller.movement_x
+		local movement_y = movement_controller.movement_y
 
-	if movement_x ~= 0 or movement_y ~= 0 then
-		local force_x = movement_x * speed * dt * 60
-		local force_y = movement_y * speed * dt * 60
-		self.world.command_physics:add_force(entity, force_x, force_y)
+		if movement_x ~= 0 or movement_y ~= 0 then
+			local force_x = movement_x * speed * dt * 60
+			local force_y = movement_y * speed * dt * 60
+			self.world.command_physics:add_force(entity, force_x, force_y)
+		end
 	end
 end
 

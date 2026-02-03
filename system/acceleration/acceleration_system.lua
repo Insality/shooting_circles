@@ -21,23 +21,25 @@ local M = {}
 
 ---@return system.acceleration
 function M.create()
-	return decore.processing_system(M, "acceleration", { "acceleration", "physics", "game_object" })
+	return decore.system(M, "acceleration", { "acceleration", "physics", "game_object" })
 end
 
 
----@param entity entity.acceleration
 ---@param dt number
-function M:process(entity, dt)
-	-- Add force to the direction of the velocity
-	local physics = entity.physics
-	local velocity_x = physics.velocity_x
-	local velocity_y = physics.velocity_y
-	local acceleration = entity.acceleration.value
+function M:update(dt)
+	for index = 1, #self.entities do
+		local entity = self.entities[index]
+		-- Add force to the direction of the velocity
+		local physics = entity.physics
+		local velocity_x = physics.velocity_x
+		local velocity_y = physics.velocity_y
+		local acceleration = entity.acceleration.value
 
-	local force_x = velocity_x * acceleration * dt
-	local force_y = velocity_y * acceleration * dt
+		local force_x = velocity_x * acceleration * dt
+		local force_y = velocity_y * acceleration * dt
 
-	self.world.command_physics:add_force(entity, force_x, force_y)
+		self.world.command_physics:add_force(entity, force_x, force_y)
+	end
 end
 
 
