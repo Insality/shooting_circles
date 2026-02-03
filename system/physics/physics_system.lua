@@ -1,5 +1,5 @@
 local decore = require("decore.decore")
-local command_physics = require("system.physics.physics_command")
+local physics_command = require("system.physics.physics_command")
 
 ---@class entity
 ---@field physics component.physics|nil
@@ -33,7 +33,7 @@ end
 
 
 function M:onAddToWorld()
-	self.world.command_physics = command_physics.create(self)
+	self.world.command_physics = physics_command.create(self)
 end
 
 

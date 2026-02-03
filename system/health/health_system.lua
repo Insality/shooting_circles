@@ -1,5 +1,5 @@
 local decore = require("decore.decore")
-local command_health = require("system.health.health_command")
+local health_command = require("system.health.health_command")
 
 ---@class entity
 ---@field health component.health|nil
@@ -31,7 +31,7 @@ end
 
 
 function M:onAddToWorld()
-	self.world.health = command_health.create(self)
+	self.world.health = health_command.create(self)
 	self.world.event_bus:set_merge_policy("health_event", M.event_merge_policy)
 end
 

@@ -1,7 +1,7 @@
 local decore = require("decore.decore")
 local panthera = require("panthera.panthera")
 
-local command_panthera = require("system.panthera.panthera_command")
+local panthera_command = require("system.panthera.panthera_command")
 
 ---@class entity
 ---@field panthera component.panthera|nil
@@ -44,7 +44,7 @@ end
 
 
 function M:onAddToWorld()
-	self.world.panthera = command_panthera.create(self)
+	self.world.panthera = panthera_command.create(self)
 end
 
 

@@ -1,7 +1,7 @@
 local tweener = require("tweener.tweener")
 local decore = require("decore.decore")
 
-local command_camera = require("system.camera.camera_command")
+local camera_command = require("system.camera.camera_command")
 
 local TEMP_VECTOR = vmath.vector3()
 local HASH_SIZE_X = hash("size.x")
@@ -66,7 +66,7 @@ end
 
 
 function M:onAddToWorld()
-	self.world.camera = command_camera.create(self)
+	self.world.camera = camera_command.create(self)
 end
 
 

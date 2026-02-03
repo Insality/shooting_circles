@@ -1,5 +1,5 @@
 local decore = require("decore.decore")
-local command_game_object = require("system.game_object.game_object_command")
+local game_object_command = require("system.game_object.game_object_command")
 
 ---@class entity
 ---@field game_object component.game_object|nil
@@ -59,7 +59,7 @@ end
 
 
 function M:onAddToWorld()
-	self.world.game_object = command_game_object.create(self)
+	self.world.game_object = game_object_command.create(self)
 end
 
 
