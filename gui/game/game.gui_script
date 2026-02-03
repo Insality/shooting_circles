@@ -1,21 +1,17 @@
 local druid = require("druid.druid")
 local bindings = require("gui.bindings")
-local memory_panel = require("druid.widget.memory_panel.memory_panel")
-local fps_panel = require("druid.widget.fps_panel.fps_panel")
 
 local game = require("gui.game.game")
 
 
 ---@class script.game
----@field druid druid_instance
+---@field druid druid.instance
 ---@field game gui.game
 
 ---@param self script.game
 function init(self)
 	self.druid = druid.new(self)
 	self.game = self.druid:new(game)
-	self.druid:new_widget(memory_panel, "memory_panel")
-	self.druid:new_widget(fps_panel, "fps_panel")
 	bindings.set_widget(self.game)
 end
 

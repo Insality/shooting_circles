@@ -42,26 +42,28 @@ end
 
 
 function M:postWrap()
-	self.world.event_bus:process("input_event", self.process_input_event, self)
+	self.world.event_bus:process("input_event", self.process_input_events, self)
 end
 
 
----@param input_event event.input_event
-function M:process_input_event(input_event)
-	local action_id = input_event.action_id
-	local side = ACTION_ID_TO_SIDE[action_id]
-	if not side then
-		return
-	end
+---@param input_events system.input.event[]
+function M:process_input_events(input_events)
+	for _, input_event in ipairs(input_events) do
+		local action_id = input_event.action_id
+		local side = ACTION_ID_TO_SIDE[action_id]
+		if not side then
+			return
+		end
 
-	for index = 1, #self.entities do
-		self:apply_input_event(self.entities[index], input_event)
+		for index = 1, #self.entities do
+			self:apply_input_event(self.entities[index], input_event)
+		end
 	end
 end
 
 
 ---@param entity entity.movement_controller
----@param input_event event.input_event
+---@param input_event system.input.event
 function M:apply_input_event(entity, input_event)
 	local action_id = input_event.action_id
 	local action = input_event

@@ -71,7 +71,7 @@ end
 
 
 function M:postWrap()
-	self.world.event_bus:process("decore.window_event", self.process_window_event, self)
+	self.world.event_bus:process("window_event", self.process_window_event, self)
 	self.world.event_bus:process("transform_event", self.process_transform_event, self)
 end
 

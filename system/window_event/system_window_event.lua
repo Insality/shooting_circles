@@ -16,10 +16,6 @@ end
 
 
 function M:onAddToWorld()
-	window.set_listener(function(_, window_event)
-		events.trigger("decore.window_event", window_event)
-	end)
-
 	events.subscribe("decore.window_event", self.on_window_event, self)
 end
 

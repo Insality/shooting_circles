@@ -28,7 +28,7 @@ end
 ---@param collision_event event.collision_event
 function M:process_collision_event(collision_event)
 	local entity = collision_event.entity
-	if not decore.is_alive(self, entity) then
+	if not self.indices[entity] then
 		return
 	end
 

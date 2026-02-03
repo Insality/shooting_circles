@@ -85,7 +85,7 @@ end
 ---@param force_x number|nil
 ---@param force_y number|nil
 function M:add_force(entity, force_x, force_y)
-	if not decore.is_alive(self, entity) then
+	if not self.indices[entity] then
 		return
 	end
 
