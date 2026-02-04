@@ -10,7 +10,7 @@ function M.get_entities()
 	local entities = {
 		["player"] = require("game.objects.player.entity_player"),
 		["camera"] = require("game.objects.entity_camera"),
-		["game_gui"] = require("gui.game.entity_game_gui"),
+		["game_gui"] = require("entity.game_gui.game_gui_entity"),
 		["damage_number"] = require("system.damage_number.damage_number_entity"),
 		["explosion"] = require("game.objects.explosion.entity_explosion"),
 	}

@@ -1,9 +1,9 @@
 local panthera = require("panthera.panthera")
 
-local animation = require("gui.game.game_panthera")
-local animation_button = require("gui.ui_button.ui_button_panthera")
+local animation = require("entity.game_gui.game_gui_panthera")
+local animation_button = require("widget.ui_button.ui_button_panthera")
 
----@class gui.game: druid.widget
+---@class entity.game_gui: druid.widget
 ---@field druid druid.instance
 ---@field root node
 ---@field text_timer druid.text

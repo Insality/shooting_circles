@@ -16,6 +16,8 @@ function init(self)
 
 	decore.print_loaded_packs_debug_info()
 
+	self.world.game_manager:start()
+
 	timer.delay(1, true, function()
 		logger:debug("Entities count:", #self.world.entities)
 	end)

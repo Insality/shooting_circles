@@ -13,7 +13,6 @@ function M.create(game_gui)
 end
 
 
-
 function M:set_text(text)
 	for _, entity in ipairs(self.game_gui.entities) do
 		local component = entity.game_gui.component

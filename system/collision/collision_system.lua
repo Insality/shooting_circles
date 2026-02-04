@@ -104,12 +104,6 @@ end
 ---@param event_data physics.collision.contact_point_event|physics.collision.trigger_event|physics.collision.collision_event
 ---@param event_type string @"contact_point_event"|"trigger_event"|"collision_event"
 local function handle_collision_event(self, entity_source, entity_target, event_data, event_type)
-	--pprint("======Handle Collision Event")
-	--pprint("Entity Source: ", entity_source)
-	--pprint("Entity Target: ", entity_target)
-	--pprint("Event Data: ", event_data)
-	--pprint("Event Type: ", event_type)
-
 	if entity_source and entity_source.collision then
 		local collision = entity_source.collision ---@type component.collision
 

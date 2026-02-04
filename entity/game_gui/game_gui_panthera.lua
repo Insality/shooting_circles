@@ -219,7 +219,7 @@ return {
                     color = "90D2F6",
                 },
             },
-            gui_path = "/gui/game/game.gui",
+            gui_path = "/entity/game_gui/game_gui.gui",
             is_frame_view = true,
             fps = 30,
             settings = {

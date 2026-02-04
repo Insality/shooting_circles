@@ -4,7 +4,7 @@ return {
 	game_object = {
 		factory_url = "/spawner/spawner#damage_number",
 		object_scheme = {
-			["root"] = true,
+			["/root"] = true,
 		}
 	},
 	damage_number = 1

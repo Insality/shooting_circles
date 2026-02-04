@@ -25,7 +25,8 @@ function M.get_systems()
 		require("system.damage_number.damage_number_system").create(),
 		require("system.health_circle_visual.health_circle_visual_system").create(),
 		require("system.target_tracker.target_tracker_system").create(),
-		require("gui.game.system_game_gui").create()
+
+		require("entity.game_gui.game_gui_system").create()
 	})
 end
 

@@ -1,11 +1,7 @@
 name: "game"
-collection_instances {
-  id: "spawner"
-  collection: "/game/spawner/spawner.collection"
-}
-collection_instances {
-  id: "game"
-  collection: "/gui/game/game.collection"
+instances {
+  id: "entities"
+  prototype: "/entity/entities.go"
 }
 scale_along_z: 0
 embedded_instances {

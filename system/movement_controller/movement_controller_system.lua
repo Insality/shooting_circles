@@ -51,12 +51,10 @@ function M:process_input_events(input_events)
 	for _, input_event in ipairs(input_events) do
 		local action_id = input_event.action_id
 		local side = ACTION_ID_TO_SIDE[action_id]
-		if not side then
-			return
-		end
-
-		for index = 1, #self.entities do
-			self:apply_input_event(self.entities[index], input_event)
+		if side then
+			for index = 1, #self.entities do
+				self:apply_input_event(self.entities[index], input_event)
+			end
 		end
 	end
 end
