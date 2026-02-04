@@ -76,38 +76,6 @@ collection_instances {
     y: -265.0
   }
 }
-collection_instances {
-  id: "bullet"
-  collection: "/game/objects/bullet/bullet.collection"
-  position {
-    x: -273.0
-    y: -386.0
-  }
-}
-collection_instances {
-  id: "bullet1"
-  collection: "/game/objects/bullet/bullet.collection"
-  position {
-    x: -142.0
-    y: -420.0
-  }
-}
-collection_instances {
-  id: "bullet2"
-  collection: "/game/objects/bullet/bullet.collection"
-  position {
-    x: 146.0
-    y: -441.0
-  }
-}
-collection_instances {
-  id: "bullet3"
-  collection: "/game/objects/bullet/bullet.collection"
-  position {
-    x: 297.0
-    y: -496.0
-  }
-}
 scale_along_z: 0
 embedded_instances {
   id: "system"

@@ -10,7 +10,7 @@ local decore = require("decore.decore")
 
 ---@class component.color
 ---@field color_id string|nil
----@field color vector4 # color of the entity, constructor can be string
+---@field color vector4|string # color of the entity, constructor can be string
 ---@field sprites string # "/root#sprite,/root#sprite2"
 ---@field random_color vector4[] # two colors for lerp
 decore.register_component("color", {
@@ -39,11 +39,6 @@ function M:onAdd(entity)
 		entity.color.color = color.lerp(math.random(), random_color[1], random_color[2])
 	end
 
-	local color_data = entity.color.color
-	if type(color_data) == "string" then
-		entity.color.color = color.hex2vector4(color_data)
-	end
-
 	if entity.color.color then
 		self:apply_color(entity, entity.color.color, entity.color.sprites)
 	end
@@ -51,11 +46,15 @@ end
 
 
 ---@param entity entity.color
----@param color vector4|nil
+---@param color_value vector4|string|nil
 ---@param sprites string|nil "/root#sprite,/root#sprite2"
-function M:apply_color(entity, color, sprites)
-	if not color or not sprites then
+function M:apply_color(entity, color_value, sprites)
+	if not color_value or not sprites then
 		return
+	end
+
+	if type(color_value) == "string" then
+		color_value = color.hex2vector4(color_value)
 	end
 
 	local splitted_sprites = M.split(sprites, ",")
@@ -73,15 +72,15 @@ function M:apply_color(entity, color, sprites)
 
 		local object = entity.game_object.object
 		if object_id then
-			if object and object[object_id] then
-				local sprite_url = msg.url(nil, object[object_id], component_id)
-				go.set(sprite_url, "color", color) -- vertex attribute
+			if object and object[hash(object_id)] then
+				local sprite_url = msg.url(nil, object[hash(object_id)], component_id)
+				go.set(sprite_url, "color", color_value) -- vertex attribute
 			end
 		else
 			local root = entity.game_object.root
 			if root then
 				local sprite_url = msg.url(nil, root, component_id)
-				go.set(sprite_url, "color", color) -- vertex attribute
+				go.set(sprite_url, "color", color_value) -- vertex attribute
 			end
 		end
 	end

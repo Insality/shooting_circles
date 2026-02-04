@@ -1,16 +1,17 @@
----@return table<string, entity> entities By prefab_id
+---@diagnostic disable: missing-fields
+---@type table<string, entity>
 return {
 	["bullet_prototype"] = {
 		transform = {},
 		color = {
-			hex_color = "95C8E2",
-			sprite_url = "/root#sprite"
+			color = "#95C8E2",
+			sprites = "/root#sprite"
 		},
 		game_object = {
 			factory_url = "/spawner/spawner#bullet",
 			is_factory = true,
 			object_scheme = {
-				["root"] = true
+				["/root"] = true
 			}
 		},
 		on_collision_damage = 10,
@@ -79,8 +80,8 @@ return {
 	["bullet_rocket"] = {
 		transform = {},
 		color = {
-			hex_color = "CA8BD0",
-			sprite_url = "/root#sprite"
+			color = "#CA8BD0",
+			sprites = "/root#sprite"
 		},
 		game_object = {
 			factory_url = "/spawner/spawner#rocket"
@@ -108,8 +109,8 @@ return {
 			scale_y = 0.5
 		},
 		color = {
-			hex_color = "CA8BD0",
-			sprite_url = "/root#sprite"
+			color = "#CA8BD0",
+			sprites = "/root#sprite"
 		},
 		game_object = {
 			factory_url = "/spawner/spawner#rocket"
@@ -134,14 +135,14 @@ return {
 	["bullet_pistol_explosion"] = {
 		transform = {},
 		color = {
-			hex_color = "95C8E2",
-			sprite_url = "/root#sprite"
+			color = "#95C8E2",
+			sprites = "/root#sprite"
 		},
 		game_object = {
 			factory_url = "/spawner/spawner#bullet",
 			is_factory = true,
 			object_scheme = {
-				["root"] = true
+				["/root"] = true
 			}
 		},
 		physics = {},

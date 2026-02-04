@@ -39,14 +39,16 @@ end
 
 
 function M:onAddToWorld()
-	physics.set_listener(function(_, event_id, event)
-		M.physics_world_listener(self, event_id, event)
+	physics.set_event_listener(function(_, events)
+		for _, event in ipairs(events) do
+			self:physics_world_listener(event)
+		end
 	end)
 end
 
 
 function M:onRemoveFromWorld()
-	physics.set_listener(nil)
+	physics.set_event_listener(nil)
 end
 
 
@@ -80,16 +82,15 @@ local RAY_CAST_RESPONSE = hash("ray_cast_response")
 local RAY_CAST_MISSED = hash("ray_cast_missed")
 
 ---@param self system.collision
----@param event hash @Event type
----@param data any
-function M.physics_world_listener(self, event, data)
-	if event == CONTACT_POINT_EVENT then
-		self:handle_contact_point_event(data)
-	elseif event == COLLISION_EVENT then
-		self:handle_collision_event(data)
-	elseif event == TRIGGER_EVENT then
-		self:handle_trigger_event(data)
-	elseif event == RAY_CAST_RESPONSE then
+---@param event table
+function M:physics_world_listener(event)
+	if event.type == CONTACT_POINT_EVENT then
+		self:handle_contact_point_event(event)
+	elseif event.type == COLLISION_EVENT then
+		self:handle_collision_event(event)
+	elseif event.type == TRIGGER_EVENT then
+		self:handle_trigger_event(event)
+	elseif event.type == RAY_CAST_RESPONSE then
 		-- Handle raycast hit data
 	elseif event == RAY_CAST_MISSED then
 		-- Handle raycast miss data

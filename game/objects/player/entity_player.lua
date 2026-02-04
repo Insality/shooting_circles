@@ -1,12 +1,14 @@
+---@diagnostic disable: missing-fields
+---@type entity
 return {
 	color = {
-		hex_color = "#95C8E2",
-		sprite_url = "/root#sprite"
+		color = "#95C8E2",
+		sprites = "/root#sprite"
 	},
 	game_object = {
 		factory_url = "/spawner/spawner#player",
 		object_scheme = {
-			["root"] = true,
+			["/root"] = true,
 		}
 	},
 	movement_controller = {

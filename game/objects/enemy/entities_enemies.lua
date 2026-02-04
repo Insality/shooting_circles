@@ -2,14 +2,14 @@
 return {
 	["enemy"] = {
 		color = {
-			hex_color = "612C2C",
-			sprite_url = "/root#sprite"
+			color = "612C2C",
+			sprites = "/root#sprite"
 		},
 		game_object = {
 			factory_url = "/spawner/spawner#enemy",
 			object_scheme = {
-				["root"] = true,
-				["health"] = true
+				["/root"] = true,
+				["/health"] = true
 			}
 		},
 		health = {
