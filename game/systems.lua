@@ -5,11 +5,11 @@ function M.get_systems()
 		require("system.camera.camera_system").create(),
 		require("system.window_event.window_event_system").create(),
 		require("system.transform.transform_system").create(),
-		-- why here order matter
 		require("system.play_fx_on_remove.play_fx_on_remove_system").create(),
 		require("system.game_object.game_object_system").create(),
 		require("system.input.input_system").create(),
 		require("system.panthera.panthera_system").create(),
+		require("system.druid_widget.druid_widget_system").create(),
 		require("system.physics.physics_system").create(),
 		require("system.remove_with_delay.remove_with_delay_system").create(),
 		require("system.collision.collision_system").create(),
@@ -25,6 +25,7 @@ function M.get_systems()
 		require("system.damage_number.damage_number_system").create(),
 		require("system.health_circle_visual.health_circle_visual_system").create(),
 		require("system.target_tracker.target_tracker_system").create(),
+		require("system.game_manager.game_manager_system").create(),
 
 		require("entity.game_gui.game_gui_system").create()
 	})

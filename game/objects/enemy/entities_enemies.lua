@@ -6,7 +6,7 @@ return {
 			sprites = "/root#sprite"
 		},
 		game_object = {
-			factory_url = "/spawner/spawner#enemy",
+			factory_url = "/entities#enemy",
 			object_scheme = {
 				["/root"] = true,
 				["/health"] = true
@@ -29,7 +29,7 @@ return {
 	["enemy_rectangle"] = {
 		parent_prefab_id = "enemy",
 		game_object = {
-			factory_url = "/spawner/spawner#enemy_rectangle"
+			factory_url = "/entities#enemy_rectangle"
 		},
 		health = {
 			health = 400

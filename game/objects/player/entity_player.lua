@@ -6,7 +6,7 @@ return {
 		sprites = "/root#sprite"
 	},
 	game_object = {
-		factory_url = "/spawner/spawner#player",
+		factory_url = "/entities#player",
 		object_scheme = {
 			["/root"] = true,
 		}

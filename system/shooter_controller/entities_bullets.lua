@@ -8,7 +8,7 @@ return {
 			sprites = "/root#sprite"
 		},
 		game_object = {
-			factory_url = "/spawner/spawner#bullet",
+			factory_url = "/entities#bullet",
 			is_factory = true,
 			object_scheme = {
 				["/root"] = true
@@ -24,7 +24,7 @@ return {
 	["bullet_explosion"] = {
 		transform = {},
 		game_object = {
-			factory_url = "/spawner/spawner#bullet_explosion",
+			factory_url = "/entities#bullet_explosion",
 			is_factory = true
 		},
 		play_fx_on_remove = {
@@ -72,7 +72,7 @@ return {
 	["bullet_shotgun"] = {
 		parent_prefab_id = "bullet_prototype",
 		game_object = {
-			factory_url = "/spawner/spawner#bullet_shotgun"
+			factory_url = "/entities#bullet_shotgun"
 		},
 		on_collision_damage = 40,
 		remove_with_delay = 0.7,
@@ -84,7 +84,7 @@ return {
 			sprites = "/root#sprite"
 		},
 		game_object = {
-			factory_url = "/spawner/spawner#rocket"
+			factory_url = "/entities#rocket"
 		},
 		on_collision_damage = 100,
 		on_collision_explosion = {
@@ -113,7 +113,7 @@ return {
 			sprites = "/root#sprite"
 		},
 		game_object = {
-			factory_url = "/spawner/spawner#rocket"
+			factory_url = "/entities#rocket"
 		},
 		on_collision_damage = 20,
 		on_collision_explosion = {
@@ -139,7 +139,7 @@ return {
 			sprites = "/root#sprite"
 		},
 		game_object = {
-			factory_url = "/spawner/spawner#bullet",
+			factory_url = "/entities#bullet",
 			is_factory = true,
 			object_scheme = {
 				["/root"] = true

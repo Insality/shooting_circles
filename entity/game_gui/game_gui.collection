@@ -1,7 +1,7 @@
 name: "game_gui"
 scale_along_z: 0
 embedded_instances {
-  id: "go"
+  id: "root"
   data: "components {\n"
   "  id: \"game_gui\"\n"
   "  component: \"/entity/game_gui/game_gui.gui\"\n"

@@ -1,4 +1,5 @@
 local decore = require("decore.decore")
+local druid = require("druid.druid")
 
 local command_game_gui = require("entity.game_gui.game_gui_command")
 
@@ -45,10 +46,8 @@ end
 ---@param entity entity.game_gui
 function M:onAdd(entity)
 	entity.game_gui.current_level_index = 2
-	entity.game_gui.component = bindings.get_widget(entity.game_object.root) --[[@as entity.game_gui]]
 
-	---@type entity.game_gui
-	local component = entity.game_gui.component
+	local component = entity.druid_widget.widget --[[@as entity.game_gui]]
 	component.button_left.on_click:subscribe(function() self:on_click_button(entity, -1) end)
 	component.button_right.on_click:subscribe(function() self:on_click_button(entity, 1) end)
 

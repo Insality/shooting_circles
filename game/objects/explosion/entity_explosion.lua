@@ -2,7 +2,7 @@
 return {
 	transform = {},
 	game_object = {
-		factory_url = "/spawner/spawner#explosion",
+		factory_url = "/entities#explosion",
 		is_factory = true
 	},
 	play_fx_on_remove = {
