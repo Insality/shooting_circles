@@ -73,7 +73,6 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ format('https://{0}.github.io/{1}', github.repository_owner, split(github.repository, '/')[1]) }}
     steps:
       - name: configure pages
         uses: actions/configure-pages@4
@@ -84,7 +83,8 @@ jobs:
 
       - name: summary
         run: |
-          echo "Published at: ${{ format('https://{0}.github.io/{1}', github.repository_owner, split(github.repository, '/')[1]) }}/"
+          REPO_NAME="${GITHUB_REPOSITORY#*/}"
+          echo "Published at: https://${GITHUB_REPOSITORY_OWNER}.github.io/${REPO_NAME}/"
 
   release:
     needs: build
