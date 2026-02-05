@@ -20,7 +20,7 @@ function M.create()
 end
 
 
-function M:postWrap()
+function M:fixed_update()
 	self.world.event_bus:process("collision_event", self.process_collision_events, self)
 end
 

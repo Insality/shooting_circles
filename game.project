@@ -27,6 +27,7 @@ dependencies#5 = https://github.com/Insality/decore/archive/refs/tags/3.zip
 dependencies#6 = https://github.com/Insality/druid/archive/refs/heads/develop.zip
 dependencies#7 = https://github.com/Insality/panthera/archive/refs/tags/runtime.6.zip
 dependencies#8 = https://github.com/Insality/asset-store/archive/refs/heads/main.zip
+dependencies#9 = https://github.com/Insality/defold-saver/archive/refs/tags/5.zip
 
 [safearea]
 resize_game_view = 0

@@ -38,6 +38,11 @@ function update(self, dt)
 end
 
 
+function fixed_update(self, dt)
+	self.world:fixed_update(dt)
+end
+
+
 ---@param self scene.game
 ---@param action_id hash
 ---@param action action

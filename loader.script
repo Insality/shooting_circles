@@ -1,4 +1,5 @@
 local log = require("log.log")
+local saver = require("saver.saver")
 local event = require("event.event")
 local events = require("event.events")
 local decore = require("decore.decore")
@@ -22,8 +23,15 @@ end
 ---@param self scene.loader
 local function init_logger(self)
 	event.set_logger(log.get_logger("event"))
+	saver.set_logger(log.get_logger("saver"))
 	decore.set_logger(log.get_logger("decore"))
 	panthera.set_logger(log.get_logger("panthera"))
+end
+
+
+---@param self scene.loader
+local function init_saver(self)
+	saver.init()
 end
 
 
@@ -37,7 +45,23 @@ local function init_defos(self)
 	local is_desktop = system_name == "Windows" or system_name == "Darwin" or system_name == "Linux"
 
 	if is_debug and is_desktop then
-		defos.set_view_size(nil, nil, 960, 540)
+		timer.delay(1, true, function()
+			local x, y, w, h = defos.get_window_size()
+			saver.set_value("window.last_state", { x, y, w, h })
+		end)
+
+		-- Restore window size and position
+		local prev_settings = saver.get_value("window.last_state")
+		if prev_settings then
+			---@cast prev_settings number[]
+			local x, y, w, h = unpack(prev_settings)
+			-- Limit size to 300x200
+			x = vmath.clamp(x, 0, 4000)
+			y = vmath.clamp(y, 0, 4000)
+			w = vmath.clamp(w, 300, 4000)
+			h = vmath.clamp(h, 200, 4000)
+			defos.set_window_size(x, y, w, h)
+		end
 	end
 end
 
@@ -53,6 +77,7 @@ end
 function init(self)
 	init_random(self)
 	init_logger(self)
+	init_saver(self)
 	init_defos(self)
 	init_window_listener(self)
 
