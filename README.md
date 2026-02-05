@@ -4,18 +4,9 @@
 
 This project was created for the [Explosion Community](https://forum.defold.com/t/community-challenge-explosions/77315) challenge, and it goes a bit beyond the initial scope.
 
-Shooting Circles is a simple game example built using only the ECS architecture for Defold (I think it pretty close to Pure ECS). Below, you will find a detailed description of the different parts of the project. If you are interested in the code structure and ECS, welcome!
+Shooting Circles is a simple game example built using only the tiny-ecs library. It's a ECS-kind of implementation, where I have a systems, entities and a world. Systems have a states and external API. Levels are created as a collections and when spawned they will create a new entities.
 
 ## Overview
-
-### Restrictions
-- Use the [tiny-ecs](https://github.com/bakpakin/tiny-ecs) library without modifications.
-- Entities are created using regular tables `{}`.
-- No external `require()` calls in systems to maintain portability between projects.
-- Components can only be modified within one system. For example, `entity.transform.x = 10` cannot be set in a non-transform system.
-- Entities should only contain data, not logic.
-- Sure no any global variables.
-- The GUI collection should be able to run as the game’s bootstrap collection.
 
 ### Game Flow
 The initial script is `/loader/loader.script`, which initializes all libraries and loads the game.collection.
@@ -24,8 +15,6 @@ All other logic is handled through the ECS systems, located in the `/systems` fo
 
 ### Systems
 - All systems are placed in the `/systems` folder.
-- Systems can return multiple sub-systems.
-- Systems are divided into "system", "system_command", and "system_event":
   - **System**: Filters entities by required components and processes them. It usually returns up to three sub-systems: system, system_command. Contains all system logic and events this system handling (in `postWrap` function).
   - **System Command**: Describes an external API for the system with the "system_command" component. To spawn a command for the system, call `self.world.system_command:method_name()`. Awailable from all systems.
 - Systems can register components in Decore, so usually the registration placed in system files under system component annotation. Example: `transform_system` registers `transform` component with all default values. If they exists here, they will be used as defaults for all new components.
@@ -41,17 +30,3 @@ decore.register_component("transform", {
 	rotation = 0,
 })
 ```
-
-### Creating a New System
-To create a new system, I use the `system_*` template located in `/decore/templates` and replace `TEMPLATE` with the system name. Then, add the system to the `game.script` in the system list. That’s all it takes to create a new system.
-
-
-## Decore
-
-**[Decore](https://github.com/Insality/decore)** is a library that manages data collections for ECS and allows the creation of entities from prefabs.
-
-- All decore entities are created from prefabs.
-- World are created from "world_prefabs"
-- All prefabs registered in the `game.script` in the `init_decore()` in `load_entities()` and `load_worlds()` functions.
-- Some of prefabs created from Tiles tileset and maps, using Detiled library.
-- Other prefabs can be registered in place from your lua tables.
