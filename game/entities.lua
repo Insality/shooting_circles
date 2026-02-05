@@ -8,14 +8,14 @@ end
 
 function M.get_entities()
 	local entities = {
-		["player"] = require("game.objects.player.entity_player"),
-		["camera"] = require("game.objects.entity_camera"),
+		["player"] = require("entity.player.entity_player"),
+		["camera"] = require("system.camera.camera_entity"),
 		["game_gui"] = require("entity.game_gui.game_gui_entity"),
 		["damage_number"] = require("system.damage_number.damage_number_entity"),
-		["explosion"] = require("game.objects.explosion.entity_explosion"),
+		["explosion"] = require("entity.explosion.entity_explosion"),
 	}
 
-	M.merge(entities, require("game.objects.enemy.entities_enemies"))
+	M.merge(entities, require("entity.enemy.entities_enemies"))
 	M.merge(entities, require("system.shooter_controller.entities_bullets"))
 
 	return entities

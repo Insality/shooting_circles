@@ -18,7 +18,7 @@ return {
 		},
 		health_circle_visual = {},
 		panthera = {
-			animation_path = require("game.objects.enemy.health_visual_circle_panthera")
+			animation_path = require("entity.enemy.health_visual_circle_panthera")
 		},
 		physics = {},
 		play_fx_on_remove = {
@@ -35,7 +35,7 @@ return {
 			health = 400
 		},
 		panthera = {
-			animation_path = require("game.objects.enemy.health_visual_rectangle_panthera")
+			animation_path = require("entity.enemy.health_visual_rectangle_panthera")
 		}
 	}
 }

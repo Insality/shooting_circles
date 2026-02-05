@@ -8,7 +8,7 @@ instances {
 }
 collection_instances {
   id: "player"
-  collection: "/game/objects/player/player.collection"
+  collection: "/entity/player/player.collection"
   position {
     y: -416.0
   }
@@ -56,14 +56,14 @@ collection_instances {
 }
 collection_instances {
   id: "background"
-  collection: "/game/objects/background/background.collection"
+  collection: "/entity/background/background.collection"
   position {
     z: -1.0
   }
 }
 collection_instances {
   id: "enemy"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: 4.0
     y: 459.0
@@ -71,7 +71,7 @@ collection_instances {
 }
 collection_instances {
   id: "pit"
-  collection: "/game/objects/pit/pit.collection"
+  collection: "/entity/pit/pit.collection"
   position {
     y: -265.0
   }

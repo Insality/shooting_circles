@@ -8,7 +8,7 @@ instances {
 }
 collection_instances {
   id: "player"
-  collection: "/game/objects/player/player.collection"
+  collection: "/entity/player/player.collection"
   position {
     x: 4.0
     y: -416.0
@@ -42,14 +42,14 @@ collection_instances {
 }
 collection_instances {
   id: "background"
-  collection: "/game/objects/background/background.collection"
+  collection: "/entity/background/background.collection"
   position {
     z: -1.0
   }
 }
 collection_instances {
   id: "enemy"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: -303.0
     y: 279.0
@@ -57,14 +57,14 @@ collection_instances {
 }
 collection_instances {
   id: "enemy1"
-  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  collection: "/entity/enemy/enemy_rectangle.collection"
   position {
     y: 200.0
   }
 }
 collection_instances {
   id: "enemy2"
-  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  collection: "/entity/enemy/enemy_rectangle.collection"
   position {
     x: -147.0
     y: 200.0
@@ -72,7 +72,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy3"
-  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  collection: "/entity/enemy/enemy_rectangle.collection"
   position {
     x: -291.0
     y: 200.0
@@ -80,7 +80,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy4"
-  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  collection: "/entity/enemy/enemy_rectangle.collection"
   position {
     x: 146.0
     y: 200.0
@@ -88,7 +88,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy5"
-  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  collection: "/entity/enemy/enemy_rectangle.collection"
   position {
     x: 290.0
     y: 200.0
@@ -96,7 +96,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy6"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: -216.0
     y: 279.0
@@ -104,7 +104,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy7"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: -135.0
     y: 279.0
@@ -112,7 +112,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy8"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: -51.0
     y: 279.0
@@ -120,7 +120,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy9"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: 30.0
     y: 279.0
@@ -128,7 +128,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy10"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: 117.0
     y: 279.0
@@ -136,7 +136,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy11"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: 198.0
     y: 279.0
@@ -144,7 +144,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy12"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: 282.0
     y: 279.0
@@ -152,7 +152,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy13"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: -303.0
     y: 358.0
@@ -160,7 +160,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy14"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: -216.0
     y: 358.0
@@ -168,7 +168,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy15"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: -135.0
     y: 358.0
@@ -176,7 +176,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy16"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: -51.0
     y: 358.0
@@ -184,7 +184,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy17"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: 30.0
     y: 358.0
@@ -192,7 +192,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy18"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: 117.0
     y: 358.0
@@ -200,7 +200,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy19"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: 198.0
     y: 358.0
@@ -208,7 +208,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy20"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: 282.0
     y: 358.0
@@ -216,7 +216,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy21"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: -303.0
     y: 437.0
@@ -224,7 +224,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy22"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: -216.0
     y: 437.0
@@ -232,7 +232,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy23"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: -135.0
     y: 437.0
@@ -240,7 +240,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy24"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: -51.0
     y: 437.0
@@ -248,7 +248,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy25"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: 30.0
     y: 437.0
@@ -256,7 +256,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy26"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: 117.0
     y: 437.0
@@ -264,7 +264,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy27"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: 198.0
     y: 437.0
@@ -272,7 +272,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy28"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: 282.0
     y: 437.0
@@ -280,7 +280,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy29"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: 30.0
     y: 29.0
@@ -288,7 +288,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy30"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: -216.0
     y: 108.0
@@ -296,7 +296,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy31"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: -303.0
     y: -50.0
@@ -304,7 +304,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy32"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: -303.0
     y: 108.0
@@ -312,7 +312,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy33"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: 117.0
     y: -50.0
@@ -320,7 +320,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy34"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: 282.0
     y: 29.0
@@ -328,7 +328,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy35"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: 117.0
     y: 108.0
@@ -336,7 +336,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy36"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: 282.0
     y: 108.0
@@ -344,7 +344,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy37"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: -135.0
     y: 29.0
@@ -352,7 +352,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy38"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: 30.0
     y: -50.0
@@ -360,7 +360,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy39"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: -135.0
     y: -50.0
@@ -368,7 +368,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy40"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: 198.0
     y: 108.0
@@ -376,7 +376,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy41"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: -216.0
     y: -50.0
@@ -384,7 +384,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy42"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: 198.0
     y: -50.0
@@ -392,7 +392,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy43"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: -303.0
     y: 29.0
@@ -400,7 +400,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy44"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: 30.0
     y: 108.0
@@ -408,7 +408,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy45"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: 117.0
     y: 29.0
@@ -416,7 +416,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy46"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: -135.0
     y: 108.0
@@ -424,7 +424,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy47"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: -51.0
     y: 29.0
@@ -432,7 +432,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy48"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: -216.0
     y: 29.0
@@ -440,7 +440,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy49"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: 198.0
     y: 29.0
@@ -448,7 +448,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy50"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: 282.0
     y: -50.0
@@ -456,7 +456,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy51"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: -51.0
     y: -50.0
@@ -464,7 +464,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy52"
-  collection: "/game/objects/enemy/enemy.collection"
+  collection: "/entity/enemy/enemy.collection"
   position {
     x: -51.0
     y: 108.0
@@ -472,7 +472,7 @@ collection_instances {
 }
 collection_instances {
   id: "pit"
-  collection: "/game/objects/pit/pit.collection"
+  collection: "/entity/pit/pit.collection"
   position {
     y: -265.0
   }

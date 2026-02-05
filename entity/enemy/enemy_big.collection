@@ -5,7 +5,7 @@ embedded_instances {
   children: "health"
   data: "components {\n"
   "  id: \"explosion_enemy\"\n"
-  "  component: \"/game/objects/explosion/explosion_enemy.particlefx\"\n"
+  "  component: \"/entity/explosion/explosion_enemy.particlefx\"\n"
   "}\n"
   "components {\n"
   "  id: \"entity\"\n"

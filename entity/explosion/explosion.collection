@@ -4,7 +4,7 @@ embedded_instances {
   id: "root"
   data: "components {\n"
   "  id: \"explosion\"\n"
-  "  component: \"/game/objects/explosion/explosion.particlefx\"\n"
+  "  component: \"/entity/explosion/explosion.particlefx\"\n"
   "}\n"
   ""
   position {

@@ -8,7 +8,7 @@ instances {
 }
 collection_instances {
   id: "player"
-  collection: "/game/objects/player/player.collection"
+  collection: "/entity/player/player.collection"
   position {
     y: -416.0
   }
@@ -61,28 +61,28 @@ collection_instances {
 }
 collection_instances {
   id: "background"
-  collection: "/game/objects/background/background.collection"
+  collection: "/entity/background/background.collection"
   position {
     z: -1.0
   }
 }
 collection_instances {
   id: "pit"
-  collection: "/game/objects/pit/pit.collection"
+  collection: "/entity/pit/pit.collection"
   position {
     y: -89.0
   }
 }
 collection_instances {
   id: "enemy_rectangle"
-  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  collection: "/entity/enemy/enemy_rectangle.collection"
   position {
     y: 122.0
   }
 }
 collection_instances {
   id: "enemy_rectangle1"
-  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  collection: "/entity/enemy/enemy_rectangle.collection"
   position {
     x: -146.0
     y: 122.0
@@ -90,7 +90,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy_rectangle2"
-  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  collection: "/entity/enemy/enemy_rectangle.collection"
   position {
     x: -294.0
     y: 122.0
@@ -98,7 +98,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy_rectangle3"
-  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  collection: "/entity/enemy/enemy_rectangle.collection"
   position {
     x: 294.0
     y: 122.0
@@ -106,7 +106,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy_rectangle4"
-  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  collection: "/entity/enemy/enemy_rectangle.collection"
   position {
     x: 148.0
     y: 122.0
@@ -114,7 +114,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy_rectangle5"
-  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  collection: "/entity/enemy/enemy_rectangle.collection"
   position {
     x: 73.0
     y: 201.0
@@ -122,7 +122,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy_rectangle6"
-  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  collection: "/entity/enemy/enemy_rectangle.collection"
   position {
     x: -73.0
     y: 201.0
@@ -130,7 +130,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy_rectangle7"
-  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  collection: "/entity/enemy/enemy_rectangle.collection"
   position {
     x: -221.0
     y: 201.0
@@ -138,7 +138,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy_rectangle8"
-  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  collection: "/entity/enemy/enemy_rectangle.collection"
   position {
     x: 221.0
     y: 201.0
@@ -146,7 +146,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy_rectangle9"
-  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  collection: "/entity/enemy/enemy_rectangle.collection"
   position {
     x: 143.0
     y: 280.0
@@ -154,7 +154,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy_rectangle10"
-  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  collection: "/entity/enemy/enemy_rectangle.collection"
   position {
     x: -3.0
     y: 280.0
@@ -162,7 +162,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy_rectangle11"
-  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  collection: "/entity/enemy/enemy_rectangle.collection"
   position {
     x: -151.0
     y: 280.0
@@ -170,7 +170,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy_rectangle13"
-  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  collection: "/entity/enemy/enemy_rectangle.collection"
   position {
     x: 68.0
     y: 356.0
@@ -178,7 +178,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy_rectangle14"
-  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  collection: "/entity/enemy/enemy_rectangle.collection"
   position {
     x: -80.0
     y: 356.0
@@ -186,7 +186,7 @@ collection_instances {
 }
 collection_instances {
   id: "enemy_rectangle17"
-  collection: "/game/objects/enemy/enemy_rectangle.collection"
+  collection: "/entity/enemy/enemy_rectangle.collection"
   position {
     x: -8.0
     y: 430.0

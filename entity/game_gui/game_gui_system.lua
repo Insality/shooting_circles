@@ -1,5 +1,4 @@
 local decore = require("decore.decore")
-local druid = require("druid.druid")
 
 local command_game_gui = require("entity.game_gui.game_gui_command")
 
@@ -11,7 +10,6 @@ local command_game_gui = require("entity.game_gui.game_gui_command")
 ---@field game_object component.game_object
 
 ---@class component.game_gui
----@field component entity.game_gui
 ---@field current_level_index number
 decore.register_component("game_gui", {})
 
@@ -20,21 +18,20 @@ decore.register_component("game_gui", {})
 local M = {}
 
 local LEVELS = {
-	"/worlds#level_barrage",
-	"/worlds#level_sniper",
-	"/worlds#level_rocket",
-	"/worlds#level_arcade",
-	"/worlds#level_minigun",
+	"/levels#level_barrage",
+	"/levels#level_sniper",
+	"/levels#level_rocket",
+	"/levels#level_arcade",
+	"/levels#level_minigun",
 }
 
 
 ---@return system.game_gui
 function M.create()
-	local system = decore.system(M, "game_gui", { "game_gui", "game_object" })
+	local self = decore.system(M, "game_gui", { "game_gui", "game_object" })
+	self.prev_level = nil
 
-	system.prev_level = nil
-
-	return system
+	return self
 end
 
 
@@ -47,7 +44,7 @@ end
 function M:onAdd(entity)
 	entity.game_gui.current_level_index = 2
 
-	local component = entity.druid_widget.widget --[[@as entity.game_gui]]
+	local component = entity.druid_widget.widget --[[@as widget.game_gui]]
 	component.button_left.on_click:subscribe(function() self:on_click_button(entity, -1) end)
 	component.button_right.on_click:subscribe(function() self:on_click_button(entity, 1) end)
 
