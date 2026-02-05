@@ -17,3 +17,7 @@ manifest.public.der
 deployer_build_stats.csv
 *.tiled-session
 /.editor_settings
+deployer_version_settings.ini
+
+/.cache_deployer
+bob*.jar
