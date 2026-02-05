@@ -239,14 +239,21 @@ end
 ---@param animate_time number|nil
 ---@param easing userdata|nil
 function M:update_camera_zoom(entity, animate_time, easing)
-	local _, _, width, height = defos.get_view_size()
+	local width, height = window.get_size()
 	local camera_size_x = entity.transform.size_x * entity.transform.scale_x
 	local camera_size_y = entity.transform.size_y * entity.transform.scale_y
+
+	local device_pixel_ratio = 2
+	if html5 then
+		-- Why it should be disabled while high dpi enabled
+		device_pixel_ratio = tonumber(html5.run("window.devicePixelRatio || 1")) or 1
+	end
 
 	local scale_x = width / camera_size_x
 	local scale_y = height / camera_size_y
 	self.zoom = math.min(scale_x, scale_y)
 	self.zoom = self.zoom + entity.camera.offset_zoom
+	self.zoom = self.zoom / device_pixel_ratio
 	entity.camera.zoom = self.zoom
 
 	if animate_time then
