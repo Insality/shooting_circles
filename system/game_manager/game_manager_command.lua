@@ -23,4 +23,9 @@ function M:start()
 end
 
 
+function M:level_complete()
+	self.world.game_gui:level_complete()
+end
+
+
 return M

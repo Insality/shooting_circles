@@ -39,7 +39,7 @@ end
 
 ---@private
 function M:postWrap()
-	self.world.event_bus:process("decore.window_event", self.process_window_event, self)
+	self.world.event_bus:process("window_event", self.process_window_event, self)
 end
 
 

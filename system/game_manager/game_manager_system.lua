@@ -22,4 +22,19 @@ function M:start()
 end
 
 
+function M:postWrap()
+	self.world.event_bus:process("target_tracker_event", self.process_target_tracker_events, self)
+end
+
+
+---@param amounts number[]
+function M:process_target_tracker_events(amounts)
+	for _, amount in ipairs(amounts) do
+		if amount == 0 then
+			self.world.game_manager:level_complete()
+		end
+	end
+end
+
+
 return M

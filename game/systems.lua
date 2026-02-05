@@ -2,11 +2,11 @@ local M = {}
 
 function M.get_systems()
 	return unpack({
-		require("system.camera.camera_system").create(),
 		require("system.window_event.window_event_system").create(),
 		require("system.transform.transform_system").create(),
 		require("system.play_fx_on_remove.play_fx_on_remove_system").create(),
 		require("system.game_object.game_object_system").create(),
+		require("system.camera.camera_system").create(),
 		require("system.input.input_system").create(),
 		require("system.panthera.panthera_system").create(),
 		require("system.druid_widget.druid_widget_system").create(),
