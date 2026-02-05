@@ -5,6 +5,8 @@ local events = require("event.events")
 local decore = require("decore.decore")
 local panthera = require("panthera.panthera")
 
+local levels = require("game.levels")
+
 local HASH_START_GAME = hash("start_game")
 local HASH_PROXY_LOADED = hash("proxy_loaded")
 
@@ -32,6 +34,8 @@ end
 ---@param self scene.loader
 local function init_saver(self)
 	saver.init()
+
+	saver.bind_save_state("levels", levels.state)
 end
 
 

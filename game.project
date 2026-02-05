@@ -51,7 +51,7 @@ max_count = 1024
 [particle_fx]
 max_count = 1024
 max_emitter_count = 1024
-max_particle_count = 2048
+max_particle_count = 4096
 
 [mesh]
 max_count = 0

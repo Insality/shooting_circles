@@ -1,5 +1,7 @@
 local decore = require("decore.decore")
 
+local levels = require("game.levels")
+
 ---@class world
 ---@field game_manager command.game_manager
 
@@ -17,7 +19,7 @@ end
 
 
 function M:start()
-	self.world:addEntity(decore.create_prefab("game_gui"))
+	levels.spawn(self.world, levels.state.current_level_index)
 end
 
 

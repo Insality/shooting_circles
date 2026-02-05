@@ -14,9 +14,12 @@ function init(self)
 	self.world = decore.new_world(systems.get_systems())
 	decore.register_entities("game", entities.get_entities())
 
-	--decore.print_loaded_packs_debug_info()
+	self.world:addEntity(decore.create_prefab("game_gui"))
+	self.world:refresh()
 
 	self.world.game_manager:start()
+
+	--decore.print_loaded_packs_debug_info()
 
 	timer.delay(1, true, function()
 		logger:debug("Entities count:", #self.world.entities)
