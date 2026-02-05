@@ -1,9 +1,10 @@
-go.property("health", 100)
+go.property("current_health", 100)
+go.property("max_health", 100)
 
 local component = require("decore.component")
 
 function init(self)
 	component.init("health", {
-		health = self.health
+		max_health = self.max_health
 	})
 end

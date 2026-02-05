@@ -13,10 +13,11 @@ return {
 			}
 		},
 		health = {
-			health = 20,
+			max_health = 20,
 			remove_on_death = true
 		},
 		health_circle_visual = {},
+		collision = {},
 		panthera = {
 			animation_path = require("entity.enemy.health_visual_circle_panthera")
 		},
@@ -32,7 +33,7 @@ return {
 			factory_url = "/entities#enemy_rectangle"
 		},
 		health = {
-			health = 400
+			max_health = 400
 		},
 		panthera = {
 			animation_path = require("entity.enemy.health_visual_rectangle_panthera")

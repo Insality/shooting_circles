@@ -25,9 +25,9 @@ local M = {}
 ---@static
 ---@return system.on_collision_explosion
 function M.create()
-	local system = decore.system(M, "on_collision_explosion", { "physics" })
-	system.play_sound_timer = 0
-	return system
+	local self = decore.system(M, "on_collision_explosion", { "physics" })
+	self.play_sound_timer = 0
+	return self
 end
 
 

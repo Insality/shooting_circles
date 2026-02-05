@@ -29,14 +29,12 @@ end
 function M:process_collision_events(collision_events)
 	for _, collision_event in ipairs(collision_events) do
 		local entity = collision_event.entity
-		if not self.indices[entity] then
-			return
-		end
-
-		local damage = entity.on_collision_damage
-		local other = collision_event.other
-		if damage and other and other.health then
-			self.world.health:apply_damage(other, damage)
+		if self.indices[entity] then
+			local damage = entity.on_collision_damage
+			local other = collision_event.other
+			if damage and other and other.health then
+				self.world.health:apply_damage(other, damage)
+			end
 		end
 	end
 end
