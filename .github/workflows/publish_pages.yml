@@ -58,12 +58,12 @@ jobs:
           echo "zip=${HTML_ZIP}" >> $GITHUB_OUTPUT
 
       - name: upload pages artifact
-        uses: actions/upload-pages-artifact@3
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ${{ steps.artifacts.outputs.dir }}
 
       - name: upload html zip
-        uses: actions/upload-artifact@4
+        uses: actions/upload-artifact@v4
         with:
           name: html-build
           path: ${{ steps.artifacts.outputs.zip }}
@@ -75,11 +75,11 @@ jobs:
       name: github-pages
     steps:
       - name: configure pages
-        uses: actions/configure-pages@4
+        uses: actions/configure-pages@v4
 
       - name: deploy to pages
         id: deployment
-        uses: actions/deploy-pages@4
+        uses: actions/deploy-pages@v4
 
       - name: summary
         run: |
@@ -101,7 +101,7 @@ jobs:
           fi
 
       - name: download html zip
-        uses: actions/download-artifact@4
+        uses: actions/download-artifact@v4
         with:
           name: html-build
 
